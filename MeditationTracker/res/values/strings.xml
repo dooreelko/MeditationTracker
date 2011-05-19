@@ -56,9 +56,9 @@
 	<string name="addMala">Add mala</string>
 	<string name="setMalaCount">Set count</string>
 
-	<string name="appUrl">http://dooreelkow.blogspot.com/</string>
+	<string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html</string>
 	<string name="about">About...</string>
 	<string name="version">v4 Mantra\n\nWritten by Doo Reelkow\nGerman and Spanish translations\nby Philipp Rollinger\n\nKarmapa chenno!</string>
-	<string name="support">Support/discussion</string>
+	<string name="support">Support/discussion→</string>
 	<string name="support_web_warning">Go to app\'s blog</string>
 </resources>

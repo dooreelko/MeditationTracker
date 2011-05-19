@@ -29,10 +29,7 @@
 	</PreferenceCategory>
 	<PreferenceCategory android:title="@string/info">
 		<com.meditationtracker.preferences.ActionPreference
-			android:title="@string/support" 
-			android:summary="@string/support_web_warning"
-			doo:actor="com.meditationtracker.SupportActor"
-			doo:param="@string/appUrl" />
+			doo:actor="com.meditationtracker.SupportActor" doo:param="@string/appUrl" ns:summary="@string/support_web_warning" ns:title="@string/support"/>
 		<com.meditationtracker.preferences.ShowDialogPreference
 			android:title="@string/about" android:dialogLayout="@layout/about"  />
 	</PreferenceCategory>
