@@ -50,8 +50,10 @@ public class SessionActivity extends VerboseActivity {
 
 		setContentView(R.layout.session);
 
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_DIM_BEHIND,
-				WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+		int windowFlagsToSet = WindowManager.LayoutParams.FLAG_FULLSCREEN /*| WindowManager.LayoutParams.FLAG_DIM_BEHIND*/;
+		getWindow().setFlags(windowFlagsToSet,
+				windowFlagsToSet);
+
 		updateUI();
 	}
 
