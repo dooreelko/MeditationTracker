@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/RelativeLayout01" android:background="#ffffff"
+
+	android:layout_width="fill_parent" android:padding="6dip" android:layout_height="fill_parent">
+
+	<!--
+
+		?android:attr/listPreferredItemHeight <ImageView
+		android:id="@+id/icon" android:src="@drawable/icon_refuge"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"/> <ImageView
+		android:id="@+id/ImageView01" android:layout_height="wrap_content"
+		android:src="@drawable/more" android:layout_alignParentRight="true"
+		android:layout_alignParentTop="true"
+		android:layout_width="wrap_content"
+		android:layout_centerVertical="true"></ImageView> <TextView
+		android:id="@+id/secondLine" android:singleLine="true"
+		android:text="Simple application that shows how to use RelativeLayout
+		and let's make it longer than usual"
+		android:layout_width="wrap_content"
+		android:layout_alignParentBottom="true" android:layout_height="26dip"
+		android:layout_toRightOf="@id/icon" android:ellipsize="marquee"/>
+
+		<TextView android:layout_height="wrap_content"
+
+		android:layout_alignParentRight="true"
+		android:layout_alignParentTop="true"
+		android:layout_above="@id/secondLine"
+		android:gravity="center_vertical" android:text="My Application"
+		android:layout_alignWithParentIfMissing="true"
+		android:layout_toRightOf="@id/icon"
+		android:layout_width="wrap_content"/>
+	-->
+
+	<ImageView android:layout_width="wrap_content" android:src="@drawable/icon_refuge"
+		android:layout_height="wrap_content" android:id="@+id/practiceImg"
+		android:scaleType="center"></ImageView>
+
+	<ImageView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:src="@drawable/more"
+		android:layout_alignParentRight="true" android:id="@+id/imgMore" android:layout_centerVertical="true"></ImageView>
+
+	<TextView android:layout_alignParentTop="true"
+		android:layout_height="wrap_content" android:paddingLeft="6dip"
+		android:textStyle="bold" android:textColor="#000000" android:textSize="25sp"
+		android:layout_toRightOf="@id/practiceImg" android:id="@+id/practiceTitle"
+		android:text="Refuge" android:layout_width="fill_parent"
+		android:layout_toLeftOf="@id/imgMore"></TextView>
+
+
+	<TextView android:paddingLeft="6dip" android:textColor="#909090"
+		android:layout_toRightOf="@id/practiceImg" android:layout_below="@id/practiceTitle"
+		android:textSize="12sp" android:layout_width="wrap_content"
+		android:id="@+id/scheduledTitle" android:text="@string/scheduled" android:layout_height="wrap_content"></TextView>
+		
+	<TextView android:textColor="#909090"
+		android:layout_toRightOf="@id/scheduledTitle" android:layout_below="@id/practiceTitle"
+		android:textSize="12sp" android:layout_width="wrap_content"
+		android:text="108"
+		android:paddingLeft="6dip" android:id="@+id/scheduledText" android:layout_height="wrap_content"></TextView>
+		
+	<TextView android:textColor="#909090"
+		android:layout_toRightOf="@id/scheduledText" android:layout_below="@id/practiceTitle"
+		android:textSize="12sp" android:layout_width="wrap_content"
+		android:id="@+id/completedTitle" android:text="@string/completed"
+		android:layout_height="wrap_content"></TextView>
+		
+	<TextView android:textColor="#909090"
+		android:layout_toRightOf="@id/completedTitle" android:layout_below="@id/practiceTitle"
+		android:textSize="12sp" android:layout_width="wrap_content"
+		android:id="@+id/completedText" android:text="0"
+		android:paddingLeft="6dip" android:layout_height="wrap_content"></TextView>
+		
+		
+</RelativeLayout>

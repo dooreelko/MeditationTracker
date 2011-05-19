@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:title="@string/startTimer" android:icon="@android:drawable/ic_media_play" android:id="@+id/startTimerMenuItem"></item>
+<item android:title="@string/stopTimer" android:icon="@android:drawable/ic_media_pause" android:id="@+id/stopTimerMenuItem"></item>
+</menu>

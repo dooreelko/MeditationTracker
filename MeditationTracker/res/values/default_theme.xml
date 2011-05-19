@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="window" parent="@android:Theme.NoTitleBar">
+		<item name="android:background">#f0f0f0</item>
+	</style>
+</resources>

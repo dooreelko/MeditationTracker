@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="#ffffff" android:orientation="vertical"
+	android:layout_height="fill_parent" android:layout_width="fill_parent">
+
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:id="@+id/bottomRow"
+		android:layout_alignParentBottom="true">
+		<Button android:text="@string/start" android:layout_weight="1"
+			android:layout_width="0dip" android:id="@+id/startPracticeButton"
+			android:layout_height="fill_parent"></Button>
+		<Button android:text="@string/schedule" android:layout_weight="1"
+			android:layout_width="0dip" android:id="@+id/scheduleButton"
+			android:layout_height="fill_parent"></Button>
+		<Button android:text="@string/edit" android:layout_weight="1"
+			android:layout_width="0dip" android:id="@+id/editPracticeButton"
+			android:layout_height="fill_parent"></Button>
+	</LinearLayout>
+
+	<com.meditationtracker.controls.MenuBar
+		android:layout_height="wrap_content" android:layout_width="fill_parent"
+		android:id="@+id/menuBar" />
+
+	<ScrollView android:background="#ffffff"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_above="@id/bottomRow" android:layout_below="@id/menuBar">
+		<LinearLayout android:orientation="vertical"
+			android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+			<LinearLayout android:orientation="horizontal"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+				<ImageView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:src="@drawable/karmapa"
+					android:id="@+id/imgPractice" android:layout_margin="10dip"></ImageView>
+
+				<TableLayout android:id="@+id/TableLayout01"
+					android:layout_height="wrap_content" android:layout_toRightOf="@id/imgPractice"
+					android:layout_width="fill_parent" android:layout_marginRight="10dip">
+
+
+					<TextView android:layout_width="wrap_content"
+						android:layout_height="wrap_content" android:layout_marginTop="30dip"
+						android:text="@string/requiredRepetitions" android:id="@+id/titleReqRepetitions"
+						android:textColor="#000000"></TextView>
+
+					<TextView android:layout_height="wrap_content"
+						android:text="111111" android:layout_width="wrap_content"
+						android:gravity="right" android:textColor="#000000"
+						android:textSize="25sp" android:id="@+id/textRepetitionCount"></TextView>
+
+					<TextView android:layout_width="wrap_content"
+						android:layout_height="wrap_content" android:layout_marginTop="30dip"
+						android:text="@string/completedRepetitions" android:id="@+id/titleDoneRepetitions"
+						android:textColor="#000000"></TextView>
+
+					<TextView android:layout_height="wrap_content"
+						android:layout_width="wrap_content" android:gravity="right"
+						android:text="108" android:textColor="#000000" android:textSize="25sp"
+						android:id="@+id/textCompletedRepetitions"></TextView>
+
+
+					<ProgressBar android:layout_width="wrap_content"
+						android:layout_height="wrap_content" android:max="100"
+						style="?android:attr/progressBarStyleHorizontal" android:id="@+id/practiceProgressBar"
+						android:progress="60"></ProgressBar>
+				</TableLayout>
+			</LinearLayout>
+			<TableLayout android:id="@+id/TableLayout02"
+				android:layout_width="fill_parent" android:layout_margin="10dip"
+				android:layout_height="wrap_content">
+				<TableRow android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+					<TextView android:layout_width="wrap_content"
+						android:layout_height="wrap_content" android:text="@string/scheduledForToday"
+						android:textColor="#000000" android:layout_weight="0.6"></TextView>
+
+					<TextView android:layout_height="wrap_content"
+						android:text="108" android:textColor="#000000" android:textSize="18sp"
+						android:gravity="right" android:layout_width="fill_parent"
+						android:layout_weight="0.4" android:id="@+id/textScheduledForToday"></TextView>
+				</TableRow>
+
+				<TableRow android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+					<TextView android:layout_width="wrap_content"
+						android:layout_height="wrap_content" android:text="@string/completedToday"
+						android:textColor="#000000" android:id="@+id/titleScheduledForToday"></TextView>
+
+					<TextView android:layout_height="wrap_content"
+						android:text="108" android:textColor="#000000" android:textSize="18sp"
+						android:gravity="right" android:layout_width="fill_parent"
+						android:layout_weight="1" android:id="@+id/textCompletedToday"></TextView>
+				</TableRow>
+
+				<TableRow android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+					<TextView android:layout_width="wrap_content"
+						android:layout_height="wrap_content" android:text="@string/lastPracticeDate"
+						android:textColor="#000000"></TextView>
+
+					<TextView android:layout_height="wrap_content"
+						android:text="21/03/2010" android:textColor="#000000"
+						android:textSize="18sp" android:gravity="right"
+						android:layout_width="fill_parent" android:layout_weight="1"
+						android:id="@+id/textLastPracticeDate"></TextView>
+				</TableRow>
+
+				<TableRow android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:id="@+id/rowScheduledCompletion">
+					<TextView android:layout_width="wrap_content"
+						android:layout_height="wrap_content" android:text="@string/scheduledCompletionDate"
+						android:textColor="#000000" android:id="@+id/titleScheduledForToday"></TextView>
+
+					<TextView android:layout_height="wrap_content"
+						android:text="02/02/2013" android:textColor="#000000"
+						android:textSize="18sp" android:gravity="right"
+						android:layout_width="fill_parent" android:layout_weight="1"
+						android:id="@+id/textScheduledEndDate"></TextView>
+				</TableRow>
+
+
+			</TableLayout>
+
+		</LinearLayout>
+	</ScrollView>
+
+
+</RelativeLayout>

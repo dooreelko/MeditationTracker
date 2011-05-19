@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:doo="http://schemas.android.com/apk/res/com.meditationtracker"
+	xmlns:ns="http://schemas.android.com/apk/res/android">
+
+	<CheckBoxPreference android:title="@string/showNgondro"
+		android:key="@string/prefShowNgondro" android:defaultValue="true"></CheckBoxPreference>
+	<com.meditationtracker.preferences.ChattyIntPreference
+		android:defaultValue="108" android:inputType="number"
+		android:dialogTitle="@string/malaSize" android:title="@string/malaSize"
+		android:key="@string/prefMalaSize" />
+	<com.meditationtracker.preferences.ChattyIntPreference
+		android:title="@string/sessionLength" android:inputType="number"
+		android:key="@string/prefSessionLength" android:defaultValue="10" />
+	<CheckBoxPreference android:summaryOn="@string/stopWatch"
+		android:title="@string/useStopWatch" android:summaryOff="@string/countDown"
+		android:key="@string/prefUseStopWatch" android:defaultValue="true"></CheckBoxPreference>
+
+	<PreferenceCategory android:title="@string/sessionEndNotification">
+		<CheckBoxPreference android:title="@string/timerNotification"
+			android:key="@string/prefTimerSound" android:shouldDisableView="true"
+			android:disableDependentsState="false" android:defaultValue="false"></CheckBoxPreference>
+		<com.meditationtracker.preferences.ChattyRingtonePreference
+			android:key="@string/prefBellSound" android:dependency="@string/prefTimerSound"
+			android:title="@string/ringtone" android:showDefault="true"
+			android:showSilent="true" android:ringtoneType="all" />
+		<CheckBoxPreference android:key="@string/prefTimerBuzz"
+			android:title="@string/buzz" android:defaultValue="false"></CheckBoxPreference>
+	</PreferenceCategory>
+	<PreferenceCategory android:title="@string/info">
+		<com.meditationtracker.preferences.ActionPreference
+			android:title="@string/support" 
+			android:summary="@string/support_web_warning"
+			doo:actor="com.meditationtracker.SupportActor"
+			doo:param="http://dooreelkow.blogspot.com/" />
+		<com.meditationtracker.preferences.ShowDialogPreference
+			android:title="@string/about" doo:layout="@layout/about" />
+	</PreferenceCategory>
+
+
+</PreferenceScreen>

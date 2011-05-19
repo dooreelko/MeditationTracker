@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MenuBar">
+        <attr name="text" format="string"/>
+    </declare-styleable>
+    
+    <declare-styleable name="ActionPreference">
+        <attr name="actor" format="string"/>
+        <attr name="param" format="string"/>
+    </declare-styleable>
+    
+    <declare-styleable name="ShowDialogPreferece">
+        <attr name="layout" format="reference"/>
+    </declare-styleable>
+</resources>

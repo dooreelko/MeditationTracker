@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+	<string name="delete">Löschen</string>
+	<string name="open">Öffnen</string>
+	<string name="takePicture">Fotografieren</string>
+	<string name="browseImage">Bild wählen</string>
+	<string name="ringtone">Klingelton</string>
+	<string name="buzz">Vibrieren</string>
+	<string name="newPractice">Meditation hinzufügen</string>
+	<string name="countDown">Countdown</string>
+	<string name="stopWatch">Stopuhr</string>
+	<string name="useStopWatch">Stopuhr oder countdown?</string>
+	<!--  string name="clockType">Session clock</string -->
+	<string name="timerNotification">Ton</string>
+	<string name="sessionLength">Session länge min.</string>
+	<string name="malaSize">Mala grösse</string>
+	<string name="customMalaSize">Mala grösse (leer für standarte)</string>
+	<string name="showNgondro">Ngondro zeigen</string>
+
+	<string name="settings">Einstellungen</string>
+
+	<string name="app_name">Meditation Tracker</string>
+	<string name="ngondroTitle">Ngondro</string>
+	<string name="myMeditationsTitle">Meine Meditationen</string>
+	<string name="guruYoga">Guru Yoga</string>
+	<string name="refuge">Zuflücht</string>
+	<string name="diamondMind">Diamond Geist</string>
+	<string name="mandalaOffering">#Mandala Offering</string>
+	<string name="practiceName">Übungs Name</string>
+	<string name="requiredRepetitions">Benötigte Menge</string>
+	<string name="completedRepetitions">Abgeschlossene Menge</string>
+	<string name="save">Speichern</string>
+	<string name="tapImgToChoose">Bild tippen für ändern</string>
+	<string name="imageSourceTitle">Bild Quelle</string>
+	<string name="start">Starten</string>
+	<string name="schedule">Zeitplan</string>
+	<string name="edit">Editiern</string>
+	<string name="scheduledForToday">Geplannt für heute</string>
+	<string name="completedToday">Heute gemacht</string>
+	<string name="lastPracticeDate">Tag letztes Übung</string>
+	<string name="scheduledCompletionDate">Erwartete Abschlussdatum</string>
+	<string name="dailyRepetitions">Tägliche repetitionen</string>
+	<string name="completionDate">Abschlussdatum</string>
+	<string name="chooseAction">Aktion wählen</string>
+	<string name="msgNoEditNgondro">Sie könenn den Ngondro nicht löschen. Wenn nicht gebraucht - kann man es im einstellungen ausschalten.</string>
+	<string name="error">Fehler</string>
+	<string name="info">Information</string>
+	<string name="confirmDeletionMsg">Möchten Sie wirklich dieses Übung löschen?</string>
+	<string name="confirmDeletionTitle">Bestätigen</string>
+	<string name="scheduled">Geplannt:</string>
+    <string name="completed">, fertig:</string>
+	<string name="howMuch">Wie viel zugeben?</string>
+	<string name="stopTimer">Uhr stoppen</string>
+    <string name="startTimer">Uhr starten</string>
+	<string name="addMala">Mala zugeben</string>
+	<string name="setMalaCount">Neues Zahl</string>
+</resources>
