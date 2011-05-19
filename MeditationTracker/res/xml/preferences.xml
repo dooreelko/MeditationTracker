@@ -32,9 +32,9 @@
 			android:title="@string/support" 
 			android:summary="@string/support_web_warning"
 			doo:actor="com.meditationtracker.SupportActor"
-			doo:param="http://dooreelkow.blogspot.com/" />
+			doo:param="@string/appUrl" />
 		<com.meditationtracker.preferences.ShowDialogPreference
-			android:title="@string/about" doo:layout="@layout/about" />
+			android:title="@string/about" android:dialogLayout="@layout/about"  />
 	</PreferenceCategory>
 
 
