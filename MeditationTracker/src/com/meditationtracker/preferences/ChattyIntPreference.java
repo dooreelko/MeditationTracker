@@ -14,11 +14,4 @@ public class ChattyIntPreference extends ChattyEditTextPreference {
 		
 		getEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
 	}
-
-	@Override
-	protected CharSequence getChattySummary() {
-		String text = getText();
-		return text;
-	}
-
 }

@@ -11,7 +11,7 @@
 	<string name="countDown">Countdown</string>
 	<string name="stopWatch">Stopwatch</string>
 	<string name="useStopWatch">Stop watch or countdown?</string>
-	<!--  string name="clockType">Session clock</string -->
+	<!-- string name="clockType">Session clock</string -->
 	<string name="timerNotification">Play sound</string>
 	<string name="sessionLength">Session length min.</string>
 	<string name="malaSize">Mala size</string>
@@ -43,22 +43,40 @@
 	<string name="dailyRepetitions">Daily repetitions</string>
 	<string name="completionDate">Completion date</string>
 	<string name="chooseAction">Choose action</string>
-	<string name="msgNoEditNgondro">You cannot delete Ngondro entries. If you\'re not interested in them - you can hide them in settings.</string>
+	<string name="msgNoEditNgondro">You cannot delete Ngondro entries. If you\'re not
+		interested in them - you can hide them in settings.</string>
 	<string name="error">Error</string>
 	<string name="info">Information</string>
-	<string name="confirmDeletionMsg">Are you sure you want to delete this practice?</string>
+	<string name="confirmDeletionMsg">Are you sure you want to delete this practice?
+	</string>
 	<string name="confirmDeletionTitle">Confirm deletion</string>
 	<string name="scheduled">Scheduled:</string>
-    <string name="completed">, completed:</string>
+	<string name="completed">, completed:</string>
 	<string name="howMuch">How much shall we add this time?</string>
 	<string name="stopTimer">Stop timer</string>
-    <string name="startTimer">Start timer</string>
+	<string name="startTimer">Start timer</string>
 	<string name="addMala">Add mala</string>
 	<string name="setMalaCount">Set count</string>
 
-	<string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html</string>
+	<string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html
+	</string>
 	<string name="about">About...</string>
-	<string name="version">v4 Mantra\n\nWritten by Doo Reelkow\nGerman and Spanish translations\nby Philipp Rollinger\n\nKarmapa chenno!</string>
+	<string name="version">v4 Mantra\n\nWritten by Doo Reelkow\nGerman and
+		Spanish translations\nby Philipp Rollinger\n\nKarmapa chenno!</string>
 	<string name="support">Support/discussion→</string>
 	<string name="support_web_warning">Go to app\'s blog</string>
+
+	<string name="oneBeadHeptic">Buzz differently</string>
+	<string name="oneBeadHepticSummary">Use different patterns on every 10th and 50th
+		\"bead\"</string>
+	<string name="dimNight">Dim at night time</string>
+	<string name="dimNightSummary">Dim session screen during late meditations</string>
+	<string name="versionInfo">Version</string>
+	<string name="postInstallWelcome">Welcome to the new meditation tracker.\n\nThe next
+		release will contain synchronisation with Google documents and to make
+		it work for all of us I want to ask you for your help. Apart from that
+		it would be really nice to have more feedback from you. So I would
+		really appreciate if you visit the link below (found also in
+		settings/about) and volunteer for beta-testing or leave your
+		comments.\n\nYours, Doo Reelkow.</string>
 </resources>

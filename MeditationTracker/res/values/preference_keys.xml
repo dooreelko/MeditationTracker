@@ -9,5 +9,9 @@
     <string name="prefSessionLength">prefSessionLength</string>
     <string name="prefMalaSize">prefMalaSize</string>
     <string name="prefShowNgondro">prefShowNgondro</string>
-<string name="prefFirstRun">prefFirstRun</string>
+	<string name="prefFirstRun">prefFirstRun</string>
+	<string name="prefOneBeadHeptic"></string>
+	<string name="prefDimNight"></string>
+
+	<string name="prefVersion"></string>
 </resources>

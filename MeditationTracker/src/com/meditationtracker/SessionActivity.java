@@ -1,5 +1,7 @@
 package com.meditationtracker;
 
+import java.util.Calendar;
+
 import com.meditationtracker.controls.MenuBar;
 
 import android.app.AlertDialog;
@@ -41,6 +43,8 @@ public class SessionActivity extends VerboseActivity {
 	protected String sessionEndSoundUrl;
 	protected boolean doSessionEndBuzz;
 
+	private boolean oneBeadHeptic;
+
 	protected static CountDownTimer timer;
 	protected static TextView timerView;
 
@@ -50,9 +54,8 @@ public class SessionActivity extends VerboseActivity {
 
 		setContentView(R.layout.session);
 
-		int windowFlagsToSet = WindowManager.LayoutParams.FLAG_FULLSCREEN /*| WindowManager.LayoutParams.FLAG_DIM_BEHIND*/;
-		getWindow().setFlags(windowFlagsToSet,
-				windowFlagsToSet);
+		int windowFlagsToSet = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+		getWindow().setFlags(windowFlagsToSet, windowFlagsToSet);
 
 		updateUI();
 	}
@@ -63,11 +66,9 @@ public class SessionActivity extends VerboseActivity {
 			String imgUrl = extras.getString(ExtraKeys.ImgURL);
 			Pair<Boolean, Long> parsed = Util.tryParse(imgUrl);
 			if (parsed._1)
-				((ImageView) findViewById(R.id.imgPractice))
-						.setImageResource(parsed._2.intValue());
+				((ImageView) findViewById(R.id.imgPractice)).setImageResource(parsed._2.intValue());
 			else
-				((ImageView) findViewById(R.id.imgPractice)).setImageURI(Uri
-						.parse(imgUrl));
+				((ImageView) findViewById(R.id.imgPractice)).setImageURI(Uri.parse(imgUrl));
 
 			malaSize = extras.getLong(ExtraKeys.MalaSize);
 
@@ -79,19 +80,15 @@ public class SessionActivity extends VerboseActivity {
 
 		Button btnAdd = (Button) findViewById(R.id.addMalaButton);
 		btnAdd.setOnClickListener(addMalaClick);
-		btnAdd.setText(String.format("%s (%d)", getString(R.string.addMala),
-				malaSize));
+		btnAdd.setText(String.format("%s (%d)", getString(R.string.addMala), malaSize));
 
 		// findViewById(R.id.textMalaCount).setOnKeyListener(malaCountChanged);
 
-		((Button) findViewById(R.id.editMalaButton))
-				.setOnClickListener(editMalaClick);
+		((Button) findViewById(R.id.editMalaButton)).setOnClickListener(editMalaClick);
 
-		SharedPreferences preferences = PreferenceManager
-				.getDefaultSharedPreferences(this);
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-		doStopwatch = preferences.getBoolean(
-				getString(R.string.prefUseStopWatch), true);
+		doStopwatch = preferences.getBoolean(getString(R.string.prefUseStopWatch), true);
 
 		Pair<Boolean, Long> parsed = Util.tryParse(preferences.getString(
 				getString(R.string.prefSessionLength), "10"));
@@ -99,24 +96,25 @@ public class SessionActivity extends VerboseActivity {
 		if (parsed._1)
 			sessionLength = parsed._2.intValue() * 60;
 
-		doSessionEndSound = preferences.getBoolean(
-				getString(R.string.prefTimerSound), false);
-		sessionEndSoundUrl = preferences.getString(
-				getString(R.string.prefBellSound), "");
-		doSessionEndBuzz = preferences.getBoolean(
-				getString(R.string.prefTimerBuzz), false);
+		doSessionEndSound = preferences.getBoolean(getString(R.string.prefTimerSound), false);
+		sessionEndSoundUrl = preferences.getString(getString(R.string.prefBellSound), "");
+		doSessionEndBuzz = preferences.getBoolean(getString(R.string.prefTimerBuzz), false);
 
 		timerView = (TextView) findViewById(R.id.textTimer);
 
 		updateTimer(sessionLength * 1000);
-		
-		if (malaSize == 1) { // blind mode
-			WindowManager.LayoutParams lp = getWindow().getAttributes();  
-			lp.dimAmount = 0.9f; 
-			
+
+		boolean dimAtNight = preferences.getBoolean(getString(R.string.prefDimNight), true);
+		int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+		boolean isNight = hour > 18 || hour < 9;
+
+		if (dimAtNight && isNight) { // blind'n'night mode
+			WindowManager.LayoutParams lp = getWindow().getAttributes();
 			lp.screenBrightness = 0.1f;
 			getWindow().setAttributes(lp);
 		}
+
+		oneBeadHeptic = malaSize == 1 && preferences.getBoolean(getString(R.string.prefOneBeadHeptic), true);
 	}
 
 	@Override
@@ -145,10 +143,8 @@ public class SessionActivity extends VerboseActivity {
 	}
 
 	private void updateResult() {
-		setResult(RESULT_OK,
-				new Intent().putExtra(ExtraKeys.MalaCount, malaCount));
-		((TextView) findViewById(R.id.textViewMalaCount)).setText(String
-				.valueOf(malaCount));
+		setResult(RESULT_OK, new Intent().putExtra(ExtraKeys.MalaCount, malaCount));
+		((TextView) findViewById(R.id.textViewMalaCount)).setText(String.valueOf(malaCount));
 	}
 
 	private void startTimer() {
@@ -227,7 +223,7 @@ public class SessionActivity extends VerboseActivity {
 			boolean is10 = (preMalaCount % 10) > (malaCount % 10);
 			boolean is50 = (preMalaCount % 50) > (malaCount % 50);
 
-			if (malaSize == 1 && (is10 || is50))
+			if (oneBeadHeptic && (is10 || is50))
 				vibrate(is50);
 			else
 				vibrate(50);
@@ -251,9 +247,8 @@ public class SessionActivity extends VerboseActivity {
 
 		return new AlertDialog.Builder(SessionActivity.this)
 				.setPositiveButton(android.R.string.ok, onEditMalaOkClick)
-				.setNegativeButton(android.R.string.cancel, null)
-				.setView(editTextMalaCount).setTitle(R.string.setMalaCount)
-				.create();
+				.setNegativeButton(android.R.string.cancel, null).setView(editTextMalaCount)
+				.setTitle(R.string.setMalaCount).create();
 	}
 
 	private android.content.DialogInterface.OnClickListener onEditMalaOkClick = new android.content.DialogInterface.OnClickListener() {
@@ -280,7 +275,7 @@ public class SessionActivity extends VerboseActivity {
 		vibrator.vibrate(duration);
 	}
 
-	long[] pattern10 = { 0, 30, 100, 100};
+	long[] pattern10 = { 0, 30, 100, 100 };
 	long[] pattern50 = { 0, 100, 100, 30, 100, 100 };
 
 	protected void vibrate(boolean is50) {

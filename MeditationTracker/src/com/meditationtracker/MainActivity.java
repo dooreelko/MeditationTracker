@@ -1,30 +1,32 @@
 package com.meditationtracker;
 
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.DialogInterface.OnClickListener;
+import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewParent;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
-public class MainActivity extends VerboseActivity
-{
+public class MainActivity extends VerboseActivity {
 	protected static final int SETTINGS_DONE = 0;
 	protected static final int NEW_OR_EDIT_PRACTICE_DONE = 1;
 	protected static final int PRACTICE_DONE = 2;
@@ -32,24 +34,65 @@ public class MainActivity extends VerboseActivity
 
 	/** Called when the activity is first created. */
 	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.main);
 
 		db = new PracticeDatabase(this);
 		ensureNgondroDefaultsOnFirstRun();
 
 		UpdateUI();
+
+		/*
+		 * String absolutePath =
+		 * Environment.getExternalStorageDirectory().getAbsolutePath();
+		 * Toast.makeText(this, absolutePath, Toast.LENGTH_LONG);
+		 */
+
+		try {
+			PackageManager pm = this.getPackageManager();
+			PackageInfo packageInfo = pm.getPackageInfo(this.getPackageName(), 0);
+
+			String currentVersion = packageInfo.versionCode + "\"" + packageInfo.versionName + "\"";
+
+			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+			String lastVersion = preferences.getString(getString(R.string.prefVersion), "");
+			
+			
+			if (lastVersion.compareTo(currentVersion) != 0) {
+				Editor editor = preferences.edit();
+				editor.putString(getString(R.string.prefVersion), currentVersion);
+				showDialog(-99);
+			}
+
+		} catch (Exception ignoreme) {
+		}
+	}
+	
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		//return super.onCreateDialog(id);
 		
-		String absolutePath = Environment.getExternalStorageDirectory().getAbsolutePath();
-		Toast.makeText(this, absolutePath, Toast.LENGTH_LONG);
+		AlertDialog.Builder builder = new Builder(this);
 		
+		View view = View.inflate(this, id, null);
+		AlertDialog dlg = builder.create();
+		dlg.setButton(AlertDialog.BUTTON_POSITIVE, getString(android.R.string.ok), new OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface arg0, int arg1) {
+				
+			}
+		});
+		dlg.setContentView(view);
+		
+		return dlg;
 	}
 
-	private void UpdateUI()
-	{
+
+
+	private void UpdateUI() {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
 		ListView lv = (ListView) findViewById(R.id.ngondroList);
@@ -62,11 +105,12 @@ public class MainActivity extends VerboseActivity
 		findViewById(R.id.customPracticesTitle).setVisibility(ngondroVisible);
 
 		SimpleCursorAdapter viewAdapter;
-		if (ngondroVisible != View.GONE)
-		{
-			viewAdapter = new SimpleCursorAdapter(this, R.layout.practice_list_item, db.getPracticesStatuses(true),
-					new String[] { PracticeDatabase.KEY_THUMBURL, PracticeDatabase.KEY_TITLE, PracticeDatabase.KEY_SCHEDULEDCOUNT, PracticeDatabase.KEY_DONE }, new int[] {
-							R.id.practiceImg, R.id.practiceTitle, R.id.scheduledText, R.id.completedText });
+		if (ngondroVisible != View.GONE) {
+			viewAdapter = new SimpleCursorAdapter(this, R.layout.practice_list_item,
+					db.getPracticesStatuses(true), new String[] { PracticeDatabase.KEY_THUMBURL,
+							PracticeDatabase.KEY_TITLE, PracticeDatabase.KEY_SCHEDULEDCOUNT,
+							PracticeDatabase.KEY_DONE }, new int[] { R.id.practiceImg, R.id.practiceTitle,
+							R.id.scheduledText, R.id.completedText });
 			viewAdapter.setViewBinder(new SmartViewBinder());
 
 			lv.setAdapter(viewAdapter);
@@ -76,38 +120,38 @@ public class MainActivity extends VerboseActivity
 
 		lv = (ListView) findViewById(R.id.customList);
 
-		viewAdapter = new SimpleCursorAdapter(this, R.layout.practice_list_item, db.getPracticesStatuses(false),
-				new String[] { PracticeDatabase.KEY_THUMBURL, PracticeDatabase.KEY_TITLE, PracticeDatabase.KEY_SCHEDULEDCOUNT, PracticeDatabase.KEY_DONE  }, new int[] {
-						R.id.practiceImg, R.id.practiceTitle, R.id.scheduledText, R.id.completedText });
+		viewAdapter = new SimpleCursorAdapter(this, R.layout.practice_list_item,
+				db.getPracticesStatuses(false), new String[] { PracticeDatabase.KEY_THUMBURL,
+						PracticeDatabase.KEY_TITLE, PracticeDatabase.KEY_SCHEDULEDCOUNT,
+						PracticeDatabase.KEY_DONE }, new int[] { R.id.practiceImg, R.id.practiceTitle,
+						R.id.scheduledText, R.id.completedText });
 		viewAdapter.setViewBinder(new SmartViewBinder());
 
 		lv.setAdapter(viewAdapter);
 		registerForContextMenu(lv);
 		lv.setOnItemClickListener(practiceClick);
 
-		//db.dumpNgondroStatus();
+		// db.dumpNgondroStatus();
 	}
 
-	
-	
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onPostCreate(savedInstanceState);
 	}
 
-	private void ensureNgondroDefaultsOnFirstRun()
-	{
+	private void ensureNgondroDefaultsOnFirstRun() {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-		if (preferences.getBoolean(getString(R.string.prefFirstRun), true) && !db.hasNgondroEntries(this))
-		{
-			db.insertPractice(true, 0, getResources().getString(R.string.refuge), R.drawable.refuge, R.drawable.icon_refuge, 111111);
-			db.insertPractice(true, 1, getResources().getString(R.string.diamondMind), R.drawable.diamond_mind_big, R.drawable.icon_diamond_mind, 
- 					111111);
+		if (preferences.getBoolean(getString(R.string.prefFirstRun), true) && !db.hasNgondroEntries(this)) {
+			db.insertPractice(true, 0, getResources().getString(R.string.refuge), R.drawable.refuge,
+					R.drawable.icon_refuge, 111111);
+			db.insertPractice(true, 1, getResources().getString(R.string.diamondMind),
+					R.drawable.diamond_mind_big, R.drawable.icon_diamond_mind, 111111);
 			db.insertPractice(true, 2, getResources().getString(R.string.mandalaOffering),
 					R.drawable.mandala_offering_big, R.drawable.icon_mandala_offering, 111111);
-			db.insertPractice(true, 3, getResources().getString(R.string.guruYoga), R.drawable.guru_yoga_big, R.drawable.icon_guru_yoga, 111111);
+			db.insertPractice(true, 3, getResources().getString(R.string.guruYoga), R.drawable.guru_yoga_big,
+					R.drawable.icon_guru_yoga, 111111);
 
 			SharedPreferences.Editor editor = preferences.edit();
 			editor.putBoolean(getString(R.string.prefFirstRun), false);
@@ -115,17 +159,14 @@ public class MainActivity extends VerboseActivity
 		}
 	}
 
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
+	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main_menu, menu);
 		return true;
 	}
 
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		switch (item.getItemId())
-		{
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
 		case R.id.settingsMenuItem:
 			startActivityForResult(new Intent(this, SettingsActivity.class), SETTINGS_DONE);
 
@@ -139,17 +180,14 @@ public class MainActivity extends VerboseActivity
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data)
-	{
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		
-		switch (requestCode)
-		{
+
+		switch (requestCode) {
 		case SETTINGS_DONE:
 			break;
 		case NEW_OR_EDIT_PRACTICE_DONE:
-			if (resultCode == RESULT_OK)
-			{
+			if (resultCode == RESULT_OK) {
 
 			}
 			break;
@@ -163,47 +201,39 @@ public class MainActivity extends VerboseActivity
 	}
 
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo)
-	{
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.practice_context_menu, menu);
 		menu.setHeaderTitle(R.string.chooseAction);
 	}
 
-	private void openPractice(long id)
-	{
+	private void openPractice(long id) {
 		startActivityForResult(new Intent(this, PracticeActivity.class).putExtra("id", id), PRACTICE_DONE);
 	}
 
-	private void editPractice(long id)
-	{
+	private void editPractice(long id) {
 		startActivityForResult(new Intent(this, NewOrEditPracticeDBActivity.class).putExtra("id", id),
 				NEW_OR_EDIT_PRACTICE_DONE);
 	}
 
-	private void deletePractice(long id)
-	{
+	private void deletePractice(long id) {
 		db.deletePractice(id);
 	}
 
-	private OnItemClickListener practiceClick = new OnItemClickListener()
-	{
+	private OnItemClickListener practiceClick = new OnItemClickListener() {
 
-		public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-		{
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			Log.d("MTRK", "selected: " + id);
 			openPractice(id);
 		}
 	};
 
 	@Override
-	public boolean onContextItemSelected(MenuItem item)
-	{
+	public boolean onContextItemSelected(MenuItem item) {
 		final AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo) item.getMenuInfo();
 
-		switch (item.getItemId())
-		{
+		switch (item.getItemId()) {
 		case R.id.openPractice:
 			openPractice(menuInfo.id);
 			break;
@@ -212,14 +242,12 @@ public class MainActivity extends VerboseActivity
 			editPractice(menuInfo.id);
 			break;
 		case R.id.deletePractice:
-			if (!isNgondroEditAction(menuInfo))
-			{
+			if (!isNgondroEditAction(menuInfo)) {
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setMessage(R.string.confirmDeletionMsg).setTitle(R.string.confirmDeletionTitle).setIcon(
-						android.R.drawable.ic_dialog_alert).setPositiveButton(android.R.string.yes, new OnClickListener()
-						{
-							public void onClick(DialogInterface dialog, int which)
-							{
+				builder.setMessage(R.string.confirmDeletionMsg).setTitle(R.string.confirmDeletionTitle)
+						.setIcon(android.R.drawable.ic_dialog_alert)
+						.setPositiveButton(android.R.string.yes, new OnClickListener() {
+							public void onClick(DialogInterface dialog, int which) {
 								deletePractice(menuInfo.id);
 								UpdateUI();
 							}
@@ -231,10 +259,8 @@ public class MainActivity extends VerboseActivity
 		return super.onContextItemSelected(item);
 	}
 
-	private boolean isNgondroEditAction(AdapterContextMenuInfo info)
-	{
-		if (isChildOf(info.targetView, R.id.ngondroList))
-		{
+	private boolean isNgondroEditAction(AdapterContextMenuInfo info) {
+		if (isChildOf(info.targetView, R.id.ngondroList)) {
 			ShowNoEditNgondroMessage();
 			return true;
 		} else
@@ -242,19 +268,17 @@ public class MainActivity extends VerboseActivity
 
 	}
 
-	private void ShowNoEditNgondroMessage()
-	{
+	private void ShowNoEditNgondroMessage() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(R.string.msgNoEditNgondro).setTitle(R.string.info).setIcon(
-				android.R.drawable.ic_dialog_info).setPositiveButton(android.R.string.ok, null).show();
+		builder.setMessage(R.string.msgNoEditNgondro).setTitle(R.string.info)
+				.setIcon(android.R.drawable.ic_dialog_info).setPositiveButton(android.R.string.ok, null)
+				.show();
 
 	}
 
-	private boolean isChildOf(View child, int parentId)
-	{
+	private boolean isChildOf(View child, int parentId) {
 		ViewParent cur = (ViewParent) child;
-		while (cur != null)
-		{
+		while (cur != null) {
 			if (cur instanceof View)
 				if (((View) cur).getId() == parentId)
 					return true;

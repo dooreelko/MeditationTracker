@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class ChattyEditTextPreference extends EditTextPreference {
+public class ChattyEditTextPreference extends EditTextPreference {
 
 	public ChattyEditTextPreference(Context context) {
 		this(context, null);
@@ -15,13 +15,6 @@ public abstract class ChattyEditTextPreference extends EditTextPreference {
 	public ChattyEditTextPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
-	
-	/*@Override
-	protected void onBindView(View view) {
-		super.onBindView(view);
-		
-		updateChattySummary();
-	}*/
 	
 	@Override
 	protected View onCreateView(ViewGroup parent)
@@ -40,5 +33,7 @@ public abstract class ChattyEditTextPreference extends EditTextPreference {
 		setSummary(getChattySummary());
 	}
 
-	protected abstract CharSequence getChattySummary();
+	protected CharSequence getChattySummary() {
+		return getText();
+	}
 }
