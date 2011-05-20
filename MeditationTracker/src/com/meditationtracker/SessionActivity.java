@@ -110,11 +110,13 @@ public class SessionActivity extends VerboseActivity {
 
 		updateTimer(sessionLength * 1000);
 		
-		/*if (malaSize == 1) { // blind mode
+		if (malaSize == 1) { // blind mode
 			WindowManager.LayoutParams lp = getWindow().getAttributes();  
 			lp.dimAmount = 0.9f; 
+			
+			lp.screenBrightness = 0.1f;
 			getWindow().setAttributes(lp);
-		}*/
+		}
 	}
 
 	@Override
