@@ -8,10 +8,6 @@ import android.view.ViewGroup;
 
 public class ChattyEditTextPreference extends EditTextPreference {
 
-	public ChattyEditTextPreference(Context context) {
-		this(context, null);
-	}
-
 	public ChattyEditTextPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}

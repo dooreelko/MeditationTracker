@@ -1,7 +1,6 @@
 package com.meditationtracker;
 
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -37,6 +36,8 @@ public class MainActivity extends VerboseActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
 		setContentView(R.layout.main);
 
 		db = new PracticeDatabase(this);
@@ -44,17 +45,11 @@ public class MainActivity extends VerboseActivity {
 
 		UpdateUI();
 
-		/*
-		 * String absolutePath =
-		 * Environment.getExternalStorageDirectory().getAbsolutePath();
-		 * Toast.makeText(this, absolutePath, Toast.LENGTH_LONG);
-		 */
-
 		try {
 			PackageManager pm = this.getPackageManager();
 			PackageInfo packageInfo = pm.getPackageInfo(this.getPackageName(), 0);
 
-			String currentVersion = packageInfo.versionCode + "\"" + packageInfo.versionName + "\"";
+			String currentVersion = packageInfo.versionCode + " \"" + packageInfo.versionName + "\"";
 
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 			String lastVersion = preferences.getString(getString(R.string.prefVersion), "");
@@ -63,7 +58,9 @@ public class MainActivity extends VerboseActivity {
 			if (lastVersion.compareTo(currentVersion) != 0) {
 				Editor editor = preferences.edit();
 				editor.putString(getString(R.string.prefVersion), currentVersion);
-				showDialog(-99);
+				editor.commit();
+
+				showDialog(R.layout.post_install);
 			}
 
 		} catch (Exception ignoreme) {
@@ -72,20 +69,10 @@ public class MainActivity extends VerboseActivity {
 	
 	@Override
 	protected Dialog onCreateDialog(int id) {
-		//return super.onCreateDialog(id);
-		
-		AlertDialog.Builder builder = new Builder(this);
-		
 		View view = View.inflate(this, id, null);
-		AlertDialog dlg = builder.create();
-		dlg.setButton(AlertDialog.BUTTON_POSITIVE, getString(android.R.string.ok), new OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface arg0, int arg1) {
-				
-			}
-		});
+		Dialog dlg = new Dialog(this);
 		dlg.setContentView(view);
+		dlg.setTitle(R.string.hi);
 		
 		return dlg;
 	}
@@ -132,12 +119,6 @@ public class MainActivity extends VerboseActivity {
 		lv.setOnItemClickListener(practiceClick);
 
 		// db.dumpNgondroStatus();
-	}
-
-	@Override
-	protected void onPostCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onPostCreate(savedInstanceState);
 	}
 
 	private void ensureNgondroDefaultsOnFirstRun() {

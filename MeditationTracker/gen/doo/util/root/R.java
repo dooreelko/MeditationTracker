@@ -163,13 +163,14 @@ containing a value of this type.
         public static final int dailyRepetitions=0x7f050032;
         public static final int delete=0x7f05000e;
         public static final int diamondMind=0x7f050023;
-        public static final int dimNight=0x7f050048;
-        public static final int dimNightSummary=0x7f050049;
+        public static final int dimNight=0x7f050049;
+        public static final int dimNightSummary=0x7f05004a;
         public static final int edit=0x7f05002d;
         public static final int editPractice=0x7f050015;
         public static final int error=0x7f050036;
         public static final int guruYoga=0x7f050021;
         public static final int hello=0x7f050000;
+        public static final int hi=0x7f050043;
         public static final int howMuch=0x7f05003c;
         public static final int imageSourceTitle=0x7f05002a;
         public static final int info=0x7f050037;
@@ -180,10 +181,10 @@ containing a value of this type.
         public static final int myMeditationsTitle=0x7f050020;
         public static final int newPractice=0x7f050014;
         public static final int ngondroTitle=0x7f05001f;
-        public static final int oneBeadHeptic=0x7f050046;
-        public static final int oneBeadHepticSummary=0x7f050047;
+        public static final int oneBeadHeptic=0x7f050047;
+        public static final int oneBeadHepticSummary=0x7f050048;
         public static final int open=0x7f05000f;
-        public static final int postInstallWelcome=0x7f05004b;
+        public static final int postInstallWelcome=0x7f05004c;
         public static final int practiceName=0x7f050025;
         public static final int prefBellSound=0x7f050006;
         public static final int prefDimNight=0x7f05000c;
@@ -215,8 +216,8 @@ containing a value of this type.
         public static final int startTimer=0x7f05003e;
         public static final int stopTimer=0x7f05003d;
         public static final int stopWatch=0x7f050017;
-        public static final int support=0x7f050044;
-        public static final int support_web_warning=0x7f050045;
+        public static final int support=0x7f050045;
+        public static final int support_web_warning=0x7f050046;
         public static final int takePicture=0x7f050010;
         public static final int tapImgToChoose=0x7f050029;
         /**  string name="clockType">Session clock</string 
@@ -225,8 +226,8 @@ containing a value of this type.
          */
         public static final int timerNotification=0x7f050019;
         public static final int useStopWatch=0x7f050018;
-        public static final int version=0x7f050043;
-        public static final int versionInfo=0x7f05004a;
+        public static final int version=0x7f050044;
+        public static final int versionInfo=0x7f05004b;
     }
     public static final class style {
         public static final int window=0x7f060000;

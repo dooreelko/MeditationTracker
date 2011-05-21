@@ -40,9 +40,9 @@ public class Practice {
 	@Column(name="MALASIZE", nullable = false, columnDefinition = "default 0")
 	private int malaSize;
 
-	@OneToMany
+	/*@OneToMany
 	@JoinColumn(name="PRACTICE_ID")
-	private Collection<PracticeHistory> history;
+	private Collection<PracticeHistory> history;*/
 	
 	public int getId() {
 		return id;
