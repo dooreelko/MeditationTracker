@@ -54,7 +54,7 @@ public class AlarmOperator
 	 * @param pastTime, start point for calculation, normally "now"
 	 * @return milliseconds between pastTime and nearest future at futureTime
 	 */
-	public static long GetMillisecondsAfter(Calendar pastTime, Calendar futureTime)
+	public static long getMillisecondsAfter(Calendar pastTime, Calendar futureTime)
 	{
 		Calendar future = Calendar.getInstance();
 		future.set(pastTime.get(Calendar.YEAR), pastTime.get(Calendar.MONTH), pastTime.get(Calendar.DAY_OF_MONTH), futureTime.get(Calendar.HOUR_OF_DAY), futureTime.get(Calendar.MINUTE), 0);

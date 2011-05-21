@@ -50,11 +50,10 @@ public class PracticeActivity extends VerboseActivity
 	private void updateView()
 	{
 		Bundle extras = getIntent().getExtras();
-		id = extras.getLong(ExtraKeys.ID);
 
 		if (extras != null && extras.containsKey(ExtraKeys.ID))
 		{
-			extras.getLong(ExtraKeys.ID);
+			id = extras.getLong(ExtraKeys.ID);
 			db = new PracticeDatabase(this);
 			practice = db.getPractice(id);
 

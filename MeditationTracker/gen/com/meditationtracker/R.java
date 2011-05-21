@@ -159,6 +159,9 @@ containing a value of this type.
         public static final int confirmDeletionMsg=0x7f050038;
         public static final int confirmDeletionTitle=0x7f050039;
         public static final int countDown=0x7f050016;
+        /**  ß can be replaced by ss
+ ß can be replaced by ss
+         */
         public static final int customMalaSize=0x7f05001c;
         public static final int dailyRepetitions=0x7f050032;
         public static final int delete=0x7f05000e;
@@ -204,7 +207,7 @@ containing a value of this type.
         public static final int schedule=0x7f05002c;
         public static final int scheduled=0x7f05003a;
         public static final int scheduledCompletionDate=0x7f050031;
-        /**  string name="edit">Редактировать</string
+        /**  string name="edit">Редактировать</string 
          */
         public static final int scheduledForToday=0x7f05002e;
         public static final int sessionEndNotification=0x7f050003;
@@ -221,6 +224,7 @@ containing a value of this type.
         public static final int takePicture=0x7f050010;
         public static final int tapImgToChoose=0x7f050029;
         /**  string name="clockType">Session clock</string 
+  string name="clockType">Session clock</string 
   string name="clockType">Session clock</string 
  string name="clockType">Session clock</string 
          */

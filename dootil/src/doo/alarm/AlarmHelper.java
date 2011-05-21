@@ -38,7 +38,7 @@ public class AlarmHelper
 	
 			futureTime.set(1, 1, 1, alarmTime / 60, alarmTime % 60);
 	
-			long millisecondsAfter = AlarmOperator.GetMillisecondsAfter(calNow,
+			long millisecondsAfter = AlarmOperator.getMillisecondsAfter(calNow,
 					futureTime);
 			operator.setAlarm(alarmReceiverClass, millisecondsAfter, Integer
 					.toString(alarmId));
