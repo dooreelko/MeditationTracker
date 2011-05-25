@@ -13,7 +13,7 @@
 	<!-- string name="clockType">Session clock</string -->
 	<string name="timerNotification">Мелодия</string>
 	<string name="sessionLength">Длинна сессии (мин).</string>
-	<string name="malaSize">Размер чёток</string>
+	<string name="malaSize">Размер малы</string>
 	<string name="customMalaSize">Размер чёток (оставьте пустым для стандартного)
 	</string>
 	<string name="showNgondro">Показывать нёндро</string>
@@ -28,10 +28,10 @@
 	<string name="diamondMind">Алмазный ум</string>
 	<string name="mandalaOffering">Дарение мандал</string>
 	<string name="practiceName">Название практики</string>
-	<string name="requiredRepetitions">Необходимое количество</string>
-	<string name="completedRepetitions">Выполненое количество</string>
+	<string name="requiredRepetitions">Необходимо</string>
+	<string name="completedRepetitions">Выполнено</string>
 	<string name="save">Сохранить</string>
-	<string name="tapImgToChoose">Нажмите изображение, чтоб изменить</string>
+	<string name="tapImgToChoose">Нажмите изображение, чтоб выбрать другое</string>
 	<string name="imageSourceTitle">Источник изображения</string>
 	<string name="start">Начать практику</string>
 	<string name="schedule">Расписание</string>
@@ -59,8 +59,7 @@
 
 	<string name="about">О программе...</string>
 	<string name="hi">Привет!</string>
-	<string name="version">v4 Mantra\n\nНаписана Doo Reelkow\nНемецкий и
-		испанский перевод\nФилиппа Роллингера\n\nКармапа ченно!</string>
+	<string name="version">v4 Mantra\n\nНаписана Doo Reelkow\nОгромное спасибо Филлипу Роллингеру и Камил Альбрыхт за переводы и Вике Онищенко за тестирование.\n\nКармапа ченно!</string>
 	<string name="support">Поддержка/обсуждение→</string>
 	<string name="support_web_warning">Блог программы</string>
 

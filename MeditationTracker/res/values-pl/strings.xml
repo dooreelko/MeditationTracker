@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+	<string name="delete">Usuń</string>
+	<string name="open">Otwórz</string>
+	<string name="takePicture">Zrób zdjęcie</string>
+	<string name="browseImage">Wybierz zdjęcie</string>
+	<string name="ringtone">Dźwięk</string>
+	<string name="buzz">Buzz</string>
+	<string name="newPractice">Dodaj medytacje</string>
+	<string name="editPractice">Edytuj medytacje</string>
+	<string name="countDown">Odliczaj</string>
+	<string name="stopWatch">Stoper</string>
+	<string name="useStopWatch">Stoper czy odliczanie?</string>
+	<!-- string name="clockType">Zegar sesji</string -->
+	<string name="timerNotification">Odtwórz dźwięk</string>
+	<string name="sessionLength">Długość sesji min.</string>
+	<string name="malaSize">Rozmiar mali</string>
+	<string name="customMalaSize">Rozmiar mali (puste = domyślnie)</string>
+	<string name="showNgondro">Pokaż Nyndro</string>
+	<string name="settings">Ustawiania</string>
+	<string name="app_name">Meditation Tracker</string>
+	<string name="ngondroTitle">Nyndro</string>
+	<string name="myMeditationsTitle">Moje medytacje</string>
+	<string name="guruYoga">Guru Yoga</string>
+	<string name="refuge">Schronienie</string>
+	<string name="diamondMind">Diamentowy Umysł</string>
+	<string name="mandalaOffering">Ofiarowanie mandali</string>
+	<string name="practiceName">Nazwa praktyki</string>
+	<string name="requiredRepetitions">Wymagane powtórzenia</string>
+	<string name="completedRepetitions">Zrobione</string>
+	<string name="save">Zapisz</string>
+	<string name="tapImgToChoose">Kliknij by wybrać obraz</string>
+	<string name="imageSourceTitle">Wybierz obraz</string>
+	<string name="start">Rozpocznij praktyke</string>
+	<string name="schedule">Plan</string>
+	<string name="edit">Edytuj</string>
+	<string name="scheduledForToday">Zaplanowane na dziś</string>
+	<string name="completedToday">Zrobione dziś</string>
+	<string name="lastPracticeDate">Data ostatniej praktyki</string>
+	<string name="scheduledCompletionDate">Planowania data zakończenia</string>
+	<string name="dailyRepetitions">Powtórzeń dziennie</string>
+	<string name="completionDate">Data zakończenia</string>
+	<string name="chooseAction">Wybierz akcje</string>
+	<string name="msgNoEditNgondro">Nie można usunąć wpisów Nyndro. Jeśli nie jesteś nimi zainteresowany, możesz schować je w ustawieniach.</string>
+	<string name="error">Błąd</string>
+	<string name="info">Informacje</string>
+	<string name="confirmDeletionMsg">Czy na pewno usunąć praktykę?	</string>
+	<string name="confirmDeletionTitle">Potwierdź usuwanie</string>
+	<string name="scheduled">Zaplanowane:</string>
+	<string name="completed">, Zrobione:</string>
+	<string name="howMuch">Ile dodać tym razem?</string>
+	<string name="stopTimer">Zatrzymaj odliczanie</string>
+	<string name="startTimer">Rozpocznij odliczanie</string>
+	<string name="addMala">Dodaj male</string>
+	<string name="setMalaCount">Ustaw ilość</string>
+	<string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html</string>
+	<string name="about">O programie...</string>
+	<string name="hi">Witaj!</string>
+	<string name="version">v4 Mantra\n\n
+	Autor: Doo Reelkow\n
+	Tłumaczenie: Philipp Rollinger i Kamil Albrycht\n
+	Testy: Vika Onischenko
+	\n\n
+	Karmapa chenno!</string>
+	<string name="support">Wsparcie/Dyskusja→</string>
+	<string name="support_web_warning">Idz do bloga aplikacji</string>
+	<string name="oneBeadHeptic">Brzęcz inaczej</string>
+	<string name="oneBeadHepticSummary">Uzywaj innych wzorów co 10 i 50	\"koralik\"</string>
+	<string name="dimNight">Przyciemnij w porze nocnej</string>
+	<string name="dimNightSummary">Przyciemnij ekran podczas późnych medytacji</string>
+	<string name="versionInfo">wersja</string>
+	<string name="postInstallWelcome">Witaj w nowym meditation tracker.\n\nNastępna wersja będzie zawierać
+		opcję synchronizacji z kontem Google documents. 
+		Wasza pomoc i komentarze są mile widziane. Poza tym każde wsparcie z waszej 
+		strony jest bardzo cenne. Będe wdziędzny za odwiedziny linka poniżej 
+		(umieszczony również w ustawieniach/o programie)
+		poszukujemy ludzi do testowania 
+		\n\nDoo Reelkow.</string>
+</resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+	<string name="delete">Вилучити</string>
+	<string name="open">Відкрити</string>
+	<string name="takePicture">Сфотографувати</string>
+	<string name="browseImage">Обрати фото</string>
+	<string name="ringtone">Звук</string>
+	<string name="buzz">Вібрація</string>
+	<string name="newPractice">Додати медитацію</string>
+	<string name="countDown">Зворотний відлік</string>
+	<string name="stopWatch">Секундомір</string>
+	<string name="useStopWatch">Секундомір або зворотний відлік?</string>
+	<string name="timerNotification">Мелодія</string>
+	<string name="sessionLength">Довжина сесії (мін).</string>
+	<string name="malaSize">Розмір мали</string>
+	<string name="customMalaSize">Розмір мали (облиште порожнім для стандартного)
+	</string>
+	<string name="showNgondro">Показувати ньондро</string>
+
+	<string name="settings">Влаштування</string>
+
+	<string name="app_name">Meditation Tracker</string>
+	<string name="ngondroTitle">Ньондро</string>
+	<string name="myMeditationsTitle">Мої медитації</string>
+	<string name="guruYoga">Гуру йога</string>
+	<string name="refuge">Прихисток</string>
+	<string name="diamondMind">Діамантовий ум</string>
+	<string name="mandalaOffering">Дарування мандал</string>
+	<string name="practiceName">Назва практики</string>
+	<string name="requiredRepetitions">потрібна кількість</string>
+	<string name="completedRepetitions">Виконано</string>
+	<string name="save">Зберегти</string>
+	<string name="tapImgToChoose">Натисніть зображення, щоб обрати інше</string>
+	<string name="imageSourceTitle">Джерело зображення</string>
+	<string name="start">Почати практику</string>
+	<string name="schedule">Розклад</string>
+	<string name="scheduledForToday">Заплановано на сьогодні</string>
+	<string name="completedToday">Виконано сьогодні</string>
+	<string name="lastPracticeDate">День минулої практики</string>
+	<string name="scheduledCompletionDate">Очікуваний день закінчення</string>
+	<string name="dailyRepetitions">Щоденних повторів</string>
+	<string name="completionDate">День закінчення</string>
+	<string name="chooseAction">Оберіть дію</string>
+	<string name="msgNoEditNgondro">Неможливо вилучити Ньондро. Якщо потрібно, її можна сховати в налаштуваннях.</string>
+	<string name="error">Помилка</string>
+	<string name="info">Інформація</string>
+	<string name="confirmDeletionMsg">Точно видалити практику?</string>
+	<string name="confirmDeletionTitle">Підтвердить</string>
+	<string name="scheduled">Заплановано:</string>
+	<string name="completed">, виконано:</string>
+	<string name="howMuch">Скільки додамо?</string>
+	<string name="stopTimer">Зупинити таймер</string>
+	<string name="startTimer">Запустити таймер</string>
+	<string name="addMala">Додати</string>
+	<string name="setMalaCount">Вказати кількість</string>
+
+	<string name="about">О програмі...</string>
+	<string name="hi">Привіт!</string>
+	<string name="version">v4 Mantra\n\n
+	Написана Doo Reelkow\n
+	Велика подяка Філіпу Роллінгеру та Каміл Альбрихт за переклади так Віке Оніщенко за тестування.\n\n
+	Кармапа чєнно!</string>
+	<string name="support">Підтримка/дискусії</string>
+	<string name="support_web_warning">Блог програми</string>
+
+	<string name="oneBeadHeptic">Дзижчати інакше</string>
+	<string name="oneBeadHepticSummary">Використовувати різне дзижчання для кожної 10 та 50 \"намистини\"</string>
+	<string name="dimNight">Притемнювати ввечері</string>
+	<string name="dimNightSummary">Притемнювати екран сесії ввечері</string>
+	<string name="versionInfo">Версія</string>
+	<string name="postInstallWelcome">Вітаю в новому трекері.\n
+	Наступна версія буде мати можливість синхронізуватись з Гугль документами і щоб впевнитись, що воно працює мені потрібні помічники.
+	Окрім того я завжди радий побажанням і коментарям. Тому буде дуже добре якщо ви час від часу будете заходити в 
+	блог трекера за адресою внизу (вона є в налаштування/підтримці)\n\n
+		Ваш, Doo Reelkow.</string>
+
+</resources>

@@ -226,6 +226,7 @@ containing a value of this type.
         /**  string name="clockType">Session clock</string 
   string name="clockType">Session clock</string 
   string name="clockType">Session clock</string 
+ string name="clockType">Zegar sesji</string 
  string name="clockType">Session clock</string 
          */
         public static final int timerNotification=0x7f050019;

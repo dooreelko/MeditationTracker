@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+	<string name="delete">Rimuovere</string>
+	<string name="open">Aprire</string>
+	<string name="takePicture">Fotografare</string>
+	<string name="browseImage">Scegliere l\'immagine</string>
+	<string name="ringtone">Suono</string>
+	<string name="buzz">Vibrazione</string>
+	<string name="newPractice">Aggiungere la meditazione</string>
+	<string name="editPractice">Modificare la meditazione</string>
+	<string name="countDown">Countdown</string>
+	<string name="stopWatch">Cronometro</string>
+	<string name="useStopWatch">Cronometro o countdown?</string>
+	<string name="timerNotification">Suonare</string>
+	<string name="sessionLength">Durata della sessione min.</string>
+	<string name="malaSize">Grandezza della mala</string>
+	<string name="customMalaSize">Grandezza di mala (lascia vuoto per normale)</string>
+	<string name="showNgondro">Mostra Ngondro</string>
+
+	<string name="settings">Impostazioni</string>
+
+	<string name="app_name">Meditation Tracker</string>
+	<string name="ngondroTitle">Ngondro</string>
+	<string name="myMeditationsTitle">I miei meditazioni</string>
+	<string name="guruYoga">Guru Yoga</string>
+	<string name="refuge">Rifugio</string>
+	<string name="diamondMind">Mente diamante</string>
+	<string name="mandalaOffering">Regolazione delle mandale</string>
+	<string name="practiceName">Nome della pratica</string>
+	<string name="requiredRepetitions">Ripetizioni richiesti</string>
+	<string name="completedRepetitions">Ripetizioni completate</string>
+	<string name="save">Salva</string>
+	<string name="tapImgToChoose">Batta l\'immagine per scegliere</string>
+	<string name="imageSourceTitle">Scegli origine del\'immagine</string>
+	<string name="start">Comincia la pratica</string>
+	<string name="schedule">Piano</string>
+	<string name="edit">Modifica</string>
+	<string name="scheduledForToday">Piano per oggi</string>
+	<string name="completedToday">Completato oggi</string>
+	<string name="lastPracticeDate">Data della pratica ultima</string>
+	<string name="scheduledCompletionDate">Data aspettata del fino</string>
+	<string name="dailyRepetitions">Ripetizioni giornanti</string>
+	<string name="completionDate">Giorno del completamento</string>
+	<string name="chooseAction">Scegli azione</string>
+	<string name="msgNoEditNgondro">Non si può rimuovere Ngondro. Se non c\'è l\'hai interesse - poi nasconderne nei impostazioni.</string>
+	<string name="error">Errore</string>
+	<string name="info">Informazione</string>
+	<string name="confirmDeletionMsg">Sei sicuro che vuoi rimuovere la pratica?</string>
+	<string name="confirmDeletionTitle">Conformare rimuovere</string>
+	<string name="scheduled">Pianto:</string>
+	<string name="completed">, completo:</string>
+	<string name="howMuch">Quanto aggiungiamo?</string>
+	<string name="stopTimer">Ferma il timer</string>
+	<string name="startTimer">Comincia il timer</string>
+	<string name="addMala">Aggiungi mala</string>
+	<string name="setMalaCount">Indica il numero</string>
+
+	<string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html</string>
+	<string name="about">Su...</string>
+	<string name="hi">Ciao!</string>
+	<string name="version">v4 Mantra\n\n
+	Scritta da Doo Reelkow\n
+	grazie mille a Philipp Rollinger e Kamyl Albrycht per i traduzioni e Vika Onischenko per testing.
+	\n\n
+	Karmapa chenno!</string>
+	<string name="support">Aiuto/discussione→</string>
+	<string name="support_web_warning">Va al blog di app</string>
+
+	<string name="oneBeadHeptic">Diversi vibrazioni</string>
+	<string name="oneBeadHepticSummary">Vibra nel modo diverso ogni 10 e 50
+		\"perlina\"</string>
+	<string name="dimNight">Scurire alla sera</string>
+	<string name="dimNightSummary">Scurisce il schermo del sessione durante i sessioni serate</string>
+	<string name="versionInfo">Versione</string>
+	<string name="postInstallWelcome">Bienvenutti al nuovo Meditation Tracker.\n\n
+	La versione prossima avrà sincronizzazione coi Google documenti e per farlo funzionare ho bisogno di vostro aiuto.
+	Anche mi interessa tante il vostro opinione. Quindi sarei felice se visitate a volte il indirizzo su e vi scritte per
+	beta-testing oppure semplice lasciate i vostri commenti.\n\n
+	Vostro, Doo Reelkow.</string>
+</resources>
