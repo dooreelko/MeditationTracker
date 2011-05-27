@@ -32,7 +32,6 @@ public class MainActivity extends BaseActivity {
 	protected static final int SETTINGS_DONE = 0;
 	protected static final int NEW_OR_EDIT_PRACTICE_DONE = 1;
 	protected static final int PRACTICE_DONE = 2;
-	private PracticeDatabase db;
 	private Cursor cursorNgondro;
 	private Cursor cursorCustoms;
 
@@ -43,10 +42,16 @@ public class MainActivity extends BaseActivity {
 
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
-		setContentView(R.layout.main);
-
 		db = new PracticeDatabase(this);
 		ensureNgondroDefaultsOnFirstRun();
+		
+		
+		setContentView(R.layout.main);
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
 
 		UpdateUI();
 
@@ -58,8 +63,7 @@ public class MainActivity extends BaseActivity {
 
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 			String lastVersion = preferences.getString(getString(R.string.prefVersion), "");
-			
-			
+
 			if (lastVersion.compareTo(currentVersion) != 0) {
 				Editor editor = preferences.edit();
 				editor.putString(getString(R.string.prefVersion), currentVersion);
@@ -70,22 +74,18 @@ public class MainActivity extends BaseActivity {
 
 		} catch (Exception ignoreme) {
 		}
-	}
-	
-	
-	
+	}	
+
 	@Override
-	protected void onDestroy() {
+	protected void onStop() {
 		if (cursorNgondro != null)
 			cursorNgondro.close();
-		
+
 		if (cursorCustoms != null)
 			cursorCustoms.close();
-		
+
 		super.onDestroy();
 	}
-
-
 
 	@Override
 	protected Dialog onCreateDialog(int id) {
@@ -93,15 +93,15 @@ public class MainActivity extends BaseActivity {
 		Dialog dlg = new Dialog(this);
 		dlg.setContentView(view);
 		dlg.setTitle(R.string.hi);
-		
+
 		return dlg;
 	}
-
-
 
 	private void UpdateUI() {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
+		db = new PracticeDatabase(this);
+		
 		ListView lv = (ListView) findViewById(R.id.ngondroList);
 
 		int ngondroVisible = preferences.getBoolean(getString(R.string.prefShowNgondro), true) ? View.VISIBLE
@@ -112,14 +112,13 @@ public class MainActivity extends BaseActivity {
 		findViewById(R.id.customPracticesTitle).setVisibility(ngondroVisible);
 
 		SimpleCursorAdapter viewAdapter;
-		
+
 		if (ngondroVisible != View.GONE) {
 			cursorNgondro = db.getPracticesStatuses(true);
-			viewAdapter = new SimpleCursorAdapter(this, R.layout.practice_list_item,
-					cursorNgondro, new String[] { PracticeDatabase.KEY_THUMBURL,
-							PracticeDatabase.KEY_TITLE, PracticeDatabase.KEY_SCHEDULEDCOUNT,
-							PracticeDatabase.KEY_DONE }, new int[] { R.id.practiceImg, R.id.practiceTitle,
-							R.id.scheduledText, R.id.completedText });
+			viewAdapter = new SimpleCursorAdapter(this, R.layout.practice_list_item, cursorNgondro,
+					new String[] { PracticeDatabase.KEY_THUMBURL, PracticeDatabase.KEY_TITLE,
+							PracticeDatabase.KEY_SCHEDULEDCOUNT, PracticeDatabase.KEY_DONE }, new int[] {
+							R.id.practiceImg, R.id.practiceTitle, R.id.scheduledText, R.id.completedText });
 			viewAdapter.setViewBinder(new SmartViewBinder());
 
 			lv.setAdapter(viewAdapter);
@@ -130,11 +129,10 @@ public class MainActivity extends BaseActivity {
 		lv = (ListView) findViewById(R.id.customList);
 
 		cursorCustoms = db.getPracticesStatuses(false);
-		viewAdapter = new SimpleCursorAdapter(this, R.layout.practice_list_item,
-				cursorCustoms, new String[] { PracticeDatabase.KEY_THUMBURL,
-						PracticeDatabase.KEY_TITLE, PracticeDatabase.KEY_SCHEDULEDCOUNT,
-						PracticeDatabase.KEY_DONE }, new int[] { R.id.practiceImg, R.id.practiceTitle,
-						R.id.scheduledText, R.id.completedText });
+		viewAdapter = new SimpleCursorAdapter(this, R.layout.practice_list_item, cursorCustoms, new String[] {
+				PracticeDatabase.KEY_THUMBURL, PracticeDatabase.KEY_TITLE,
+				PracticeDatabase.KEY_SCHEDULEDCOUNT, PracticeDatabase.KEY_DONE }, new int[] {
+				R.id.practiceImg, R.id.practiceTitle, R.id.scheduledText, R.id.completedText });
 		viewAdapter.setViewBinder(new SmartViewBinder());
 
 		lv.setAdapter(viewAdapter);

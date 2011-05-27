@@ -35,17 +35,13 @@ public class BaseActivity extends Activity
 		super.onCreate(savedInstanceState);
 	}
 	
-	
-	
 	@Override
-	protected void onDestroy() {
+	protected void onStop() {
 		super.onDestroy();
 		
 		if (db != null)
 			db.release();
 	}
-
-
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)

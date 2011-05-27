@@ -90,8 +90,6 @@ public class ImagePicker extends BaseActivity
 			if (uri == null && getTempFile().exists()) {
 				uri = getTempUri();
 			}
-	        //cropImage(uri);
-	        //break;
 		case SELECT_IMAGE:
 			generateCropFileName();
 	        cropImage(uri);
@@ -119,15 +117,13 @@ public class ImagePicker extends BaseActivity
 		}
 		
 		File cropFile = getCropFile();
-		getTempFile().renameTo(cropFile);
+//		new File(imgUri.toString()).renameTo(cropFile);
 		
-		imgUri = Uri.fromFile(cropFile);
+//		imgUri = Uri.fromFile(cropFile);
 		
         Intent intent = new Intent("com.android.camera.action.CROP", imgUri);
         intent.setDataAndType(imgUri, "image/*");
-/*        if (myIntent.getStringExtra("mimeType") != null) {
-            intent.setDataAndType(myIntent.getData(), myIntent.getStringExtra("mimeType"));
-        }*/
+
         intent.putExtra("crop", true);
         intent.putExtra("scale", true);
         intent.putExtra("noFaceDetection", true);

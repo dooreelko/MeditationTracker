@@ -5,7 +5,6 @@ import android.os.Bundle;
 public class DBActivity extends BaseActivity
 {
 	protected static final int DONE_EDITING = 0;
-	protected PracticeDatabase db;
 	protected PracticeEntry practice;
 	protected long id;
 

@@ -110,7 +110,7 @@ public class SessionActivity extends BaseActivity {
 
 		if (dimAtNight && isNight) { // blind'n'night mode
 			WindowManager.LayoutParams lp = getWindow().getAttributes();
-			lp.screenBrightness = 0.1f;
+			lp.screenBrightness = 0.03f;
 			getWindow().setAttributes(lp);
 		}
 

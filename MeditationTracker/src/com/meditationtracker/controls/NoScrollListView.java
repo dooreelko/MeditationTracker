@@ -1,8 +1,10 @@
 package com.meditationtracker.controls;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
 
@@ -36,20 +38,20 @@ public class NoScrollListView extends ListView
 		assumedMeasurements = false;
 		int newChildHeight = 0;
 		for (int x = 0; x<childCount; x++ ){
-			Log.d("MTRK", String.format("Try get child: %d", x));
+//			Log.d("MTRK", String.format("Try get child: %d", x));
 			View childAt = getChildAt(x);
 			
-			Log.d("MTRK", String.format("Child: %d is %s", x, childAt));
+//			Log.d("MTRK", String.format("Child: %d is %s", x, childAt));
 			if (childAt != null) {
 				int height = childAt.getHeight();
 				newChildHeight += height;
 
-				Log.d("MTRK", String.format("Measuring. Child: %d, childHeight: %d", x, height));
+//				Log.d("MTRK", String.format("Measuring. Child: %d, childHeight: %d", x, height));
 			}
 			else {
 				assumedMeasurements = true;
 				newChildHeight += childHeight;
-				Log.d("MTRK", String.format("!!!Assumed measuring. Child: %d, childHeight: %d", x, childHeight));
+//				Log.d("MTRK", String.format("!!!Assumed measuring. Child: %d, childHeight: %d", x, childHeight));
 				
 			}
 		}
@@ -61,12 +63,34 @@ public class NoScrollListView extends ListView
 		Log.d("MTRK", String.format("Measured. Cnt: %d, ChildCnt: %d, childHeight: %d, fullHeight: %d", getCount(), getChildCount(), childHeight, fullHeight));
 		setMeasuredDimension(getMeasuredWidth(), fullHeight);
 	}
+	
+	
+
+	@Override
+	public boolean requestChildRectangleOnScreen(View child, Rect rect, boolean immediate) {
+		Log.d("MTRK", "=====    requestChildRectangleOnScreen");
+		forceRelayoutIfNeeded();
+		return super.requestChildRectangleOnScreen(child, rect, immediate);
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent ev) {
+		Log.d("MTRK", "=====    onTouchEvent");
+		forceRelayoutIfNeeded();
+		return super.onTouchEvent(ev);
+	}
 
 	@Override
 	protected void layoutChildren() {
+		Log.d("MTRK", "=====    layoutChildren");
 		super.layoutChildren();
 		
+		forceRelayoutIfNeeded();
+	}
+
+	private void forceRelayoutIfNeeded() {
 		if (assumedMeasurements) {
+			Log.d("MTRK", "Forcing relayout");
 			requestLayout();
 		}
 	}
