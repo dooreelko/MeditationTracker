@@ -29,7 +29,7 @@ import android.widget.TextView;
 import doo.util.Pair;
 import doo.util.Util;
 
-public class SessionActivity extends VerboseActivity {
+public class SessionActivity extends BaseActivity {
 	private static final String CURRENT_COUNT = "CURRENT_COUNT";
 
 	protected static final int DIALOG_CHANGE_MALA_COUNT = 0;

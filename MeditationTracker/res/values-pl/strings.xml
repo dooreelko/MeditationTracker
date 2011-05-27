@@ -47,7 +47,7 @@
 	<string name="confirmDeletionMsg">Czy na pewno usunąć praktykę?	</string>
 	<string name="confirmDeletionTitle">Potwierdź usuwanie</string>
 	<string name="scheduled">Zaplanowane:</string>
-	<string name="completed">, Zrobione:</string>
+	<string name="completed">Zrobione:</string>
 	<string name="howMuch">Ile dodać tym razem?</string>
 	<string name="stopTimer">Zatrzymaj odliczanie</string>
 	<string name="startTimer">Rozpocznij odliczanie</string>

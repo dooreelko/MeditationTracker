@@ -28,7 +28,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class NewOrEditPracticeScreenActivity extends VerboseActivity
+public class NewOrEditPracticeScreenActivity extends BaseActivity
 {
 	private static final String THUMBNAIL_PREFIX = "th_";
 

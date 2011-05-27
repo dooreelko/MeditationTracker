@@ -11,7 +11,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
 
-public class ImagePicker extends VerboseActivity
+public class ImagePicker extends BaseActivity
 {
 	private final String SDCARD_PATH = "/sdcard/"; //TODO: make it sdcard independent
 	private final String TEMP_PATH = SDCARD_PATH + "temp_picture.jpeg"; 
@@ -81,9 +81,13 @@ public class ImagePicker extends VerboseActivity
 		}
 		
 		Uri uri = null;
+		
+		if (data != null)
+			uri = data.getData();
+		
 		switch (requestCode) {
 		case TAKE_PHOTO:
-			if ((data == null || (uri = data.getData()) == null) && getTempFile().exists()) {
+			if (uri == null && getTempFile().exists()) {
 				uri = getTempUri();
 			}
 	        //cropImage(uri);

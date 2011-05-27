@@ -17,12 +17,11 @@ import android.widget.TextView;
 import doo.util.Pair;
 import doo.util.Util;
 
-public class PracticeActivity extends VerboseActivity
+public class PracticeActivity extends BaseActivity
 {
 	protected static final int SCHEDULE_CHANGED = 0;
 	protected static final int PRACTICE_CHANGED = 1;
 	protected static final int SESSION_DONE = 2;
-	private PracticeDatabase db;
 	private PracticeEntry practice;
 
 	protected long id;
@@ -46,6 +45,8 @@ public class PracticeActivity extends VerboseActivity
 
 		updateView();
 	}
+	
+	
 
 	private void updateView()
 	{

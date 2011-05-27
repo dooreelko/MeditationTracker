@@ -51,7 +51,7 @@
 	</string>
 	<string name="confirmDeletionTitle">Confirm deletion</string>
 	<string name="scheduled">Scheduled:</string>
-	<string name="completed">, completed:</string>
+	<string name="completed">Completed:</string>
 	<string name="howMuch">How much shall we add this time?</string>
 	<string name="stopTimer">Stop timer</string>
 	<string name="startTimer">Start timer</string>
@@ -63,7 +63,7 @@
 	<string name="hi">Hi!</string>
 	<string name="version">v4 Mantra\n\n
 	Written by Doo Reelkow\n
-	many thanks to Philipp Rollinger and Kamyl Albrycht for translations and Vika Onischenko for testing.
+	many thanks to Philipp Rollinger and Kamil Albrycht for translations and Vika Onischenko for testing and great help.
 	\n\n
 	Karmapa chenno!</string>
 	<string name="support">Support/discussion→</string>

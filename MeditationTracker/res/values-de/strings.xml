@@ -48,7 +48,7 @@
 	<string name="confirmDeletionMsg">Möchten Sie wirklich diese Übung löschen?</string>
 	<string name="confirmDeletionTitle">Bestätigen</string>
 	<string name="scheduled">Geplant:</string>
-    <string name="completed">, Fertig:</string>
+    <string name="completed">Fertig:</string>
 	<string name="howMuch">Wie viel zugeben?</string>
 	<string name="stopTimer">Uhr stoppen</string>
     <string name="startTimer">Uhr starten</string>

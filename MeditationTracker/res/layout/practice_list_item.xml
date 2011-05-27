@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/RelativeLayout01" android:background="#ffffff"
 
-	android:layout_width="fill_parent" android:padding="6dip" android:layout_height="fill_parent">
+	android:layout_width="fill_parent" android:padding="6dip" android:layout_height="wrap_content">
 
 	<!--
 
@@ -57,20 +57,16 @@
 	<TextView android:textColor="#909090"
 		android:layout_toRightOf="@id/scheduledTitle" android:layout_below="@id/practiceTitle"
 		android:textSize="12sp" android:layout_width="wrap_content"
-		android:text="108"
-		android:paddingLeft="6dip" android:id="@+id/scheduledText" android:layout_height="wrap_content"></TextView>
+		android:paddingLeft="6dip" android:id="@+id/scheduledText" android:layout_height="wrap_content" android:text="1111111"></TextView>
 		
 	<TextView android:textColor="#909090"
-		android:layout_toRightOf="@id/scheduledText" android:layout_below="@id/practiceTitle"
 		android:textSize="12sp" android:layout_width="wrap_content"
 		android:id="@+id/completedTitle" android:text="@string/completed"
-		android:layout_height="wrap_content"></TextView>
+		android:layout_height="wrap_content" android:layout_below="@id/scheduledTitle" android:layout_toRightOf="@id/practiceImg" android:paddingLeft="6dip"></TextView>
 		
 	<TextView android:textColor="#909090"
-		android:layout_toRightOf="@id/completedTitle" android:layout_below="@id/practiceTitle"
-		android:textSize="12sp" android:layout_width="wrap_content"
-		android:id="@+id/completedText" android:text="0"
-		android:paddingLeft="6dip" android:layout_height="wrap_content"></TextView>
+		android:layout_toRightOf="@id/completedTitle" android:textSize="12sp" android:layout_width="wrap_content"
+		android:id="@+id/completedText" android:paddingLeft="6dip" android:layout_height="wrap_content" android:text="1111111" android:layout_below="@id/scheduledText"></TextView>
 		
 		
 </RelativeLayout>

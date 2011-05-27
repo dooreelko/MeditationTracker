@@ -1,4 +1,4 @@
-package com.meditationtracker;
+package com.meditationtracker.controls;
 
 import doo.util.Pair;
 import doo.util.Util;

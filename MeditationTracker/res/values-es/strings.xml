@@ -48,7 +48,7 @@
 	<string name="confirmDeletionMsg">¿Realmente quieres borrar esa practica?</string>
 	<string name="confirmDeletionTitle">Confirmar</string>
 	<string name="scheduled">Proyectado:</string>
-    <string name="completed">, Completado:</string>
+    <string name="completed">Completado:</string>
 	<string name="howMuch">¿Cuanto adjuntar?</string>
 	<string name="stopTimer">parar el reloj</string>
     <string name="startTimer">iniciar el reloj</string>

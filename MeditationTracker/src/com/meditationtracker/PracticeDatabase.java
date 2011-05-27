@@ -1,5 +1,6 @@
 package com.meditationtracker;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -130,25 +131,36 @@ public class PracticeDatabase
 	
 	private static HashMap<String, Set<String>> tableColumns;
 
+	private ArrayList<SQLiteStatement> queries = new ArrayList<SQLiteStatement>();
+	
 	public PracticeDatabase(Context ctx)
 	{
-		if (db == null)
+		if (db == null || !db.isOpen())
 		{
 			MySQLiteOpenHelper helper = new MySQLiteOpenHelper(ctx);
 			db = helper.getWritableDatabase();
 		}
 		
-		insertQueryPractice = db.compileStatement(INSERT_PRACTICE_QUERY);
-		queryNgondroPresence = db.compileStatement(NGONDRO_CHEK_QUERY);
-		insertQuerySession = db.compileStatement(INSERT_SESSION_QUERY);
-		insertTodayQuerySession = db.compileStatement(INSERT_TODAY_SESSION_QUERY);
-		queryNextSortOrder = db.compileStatement(NEXT_SORT_ORDER);
+		queries.add(insertQueryPractice = db.compileStatement(INSERT_PRACTICE_QUERY));
+		queries.add(queryNgondroPresence = db.compileStatement(NGONDRO_CHEK_QUERY));
+		queries.add(insertQuerySession = db.compileStatement(INSERT_SESSION_QUERY));
+		queries.add(insertTodayQuerySession = db.compileStatement(INSERT_TODAY_SESSION_QUERY));
+		queries.add(queryNextSortOrder = db.compileStatement(NEXT_SORT_ORDER));
 		
 		if (tableColumns == null){
 			tableColumns = new HashMap<String, Set<String>>();
 			
 			getTableColumnsNames(PRACTICE_TABLE_NAME);
 			getTableColumnsNames(PRACTICE_HISTORY_TABLE_NAME);
+		}
+	}
+	
+	public void release() {
+		if (db != null)
+			db.close();
+
+		for (SQLiteStatement stmt : queries) {
+			stmt.close();
 		}
 	}
 
@@ -179,11 +191,15 @@ public class PracticeDatabase
 		insertQueryPractice.bindLong(6, totalCount);
 
 		insertQueryPractice.executeInsert();
+		insertQueryPractice.close();
 	}
 
 	public boolean hasNgondroEntries(Context ctx)
 	{
-		return queryNgondroPresence.simpleQueryForLong() != 0;
+		boolean result = queryNgondroPresence.simpleQueryForLong() != 0;
+		queryNgondroPresence.close();
+		
+		return result;
 	}
 
 	/*
@@ -264,6 +280,7 @@ public class PracticeDatabase
 		insertTodayQuerySession.bindLong(2, count);
 		
 		insertTodayQuerySession.executeInsert();
+		insertTodayQuerySession.close();
 	}
 	
 	public void insertSession(int practiceId, String date, int count) {
@@ -273,6 +290,7 @@ public class PracticeDatabase
 		insertQuerySession.bindLong(3, count);
 		
 		insertQuerySession.executeInsert();
+		insertQuerySession.close();
 	}
 
 	public void insertPractice(PracticeEntry entry)
@@ -299,6 +317,7 @@ public class PracticeDatabase
 
 		if (!entry.getValues().containsKey(KEY_ORDER)){
 			entry.getValues().put(KEY_ORDER, queryNextSortOrder.simpleQueryForLong());
+			queryNextSortOrder.close();
 		}
 
 		/*if (!values.containsKey(KEY_SCHEDULEDCOMPLETION)){
@@ -320,26 +339,13 @@ public class PracticeDatabase
 
 	public Cursor getPracticesStatuses(boolean ngondroGroup)
 	{
-		return db.rawQuery(PRACTICES_STATUS.replaceFirst("\\?", ngondroGroup ? "1" : "0"), /*
-																							 * new
-																							 * String
-																							 * [
-																							 * ]
-																							 * {
-																							 * "1"
-																							 * }
-																							 */null);
+		return db.rawQuery(PRACTICES_STATUS.replaceFirst("\\?", ngondroGroup ? "1" : "0"), null);
 	}
 
 	//TODO: remove me
 	public Cursor dumpNgondroStatus()
 	{
-		Cursor q = db.rawQuery(PRACTICES_STATUS.replaceFirst("\\?", "1"), /*
-																		 * new
-																		 * String
-																		 * []
-																		 * {"1"}
-																		 */null);
+		Cursor q = db.rawQuery(PRACTICES_STATUS.replaceFirst("\\?", "1"), null);
 
 		if (q != null && q.moveToFirst())
 		{

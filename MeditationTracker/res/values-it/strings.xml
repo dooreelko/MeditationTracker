@@ -48,7 +48,7 @@
 	<string name="confirmDeletionMsg">Sei sicuro che vuoi rimuovere la pratica?</string>
 	<string name="confirmDeletionTitle">Conformare rimuovere</string>
 	<string name="scheduled">Pianto:</string>
-	<string name="completed">, completo:</string>
+	<string name="completed">Completo:</string>
 	<string name="howMuch">Quanto aggiungiamo?</string>
 	<string name="stopTimer">Ferma il timer</string>
 	<string name="startTimer">Comincia il timer</string>
@@ -60,7 +60,7 @@
 	<string name="hi">Ciao!</string>
 	<string name="version">v4 Mantra\n\n
 	Scritta da Doo Reelkow\n
-	grazie mille a Philipp Rollinger e Kamyl Albrycht per i traduzioni e Vika Onischenko per testing.
+	grazie mille a Philipp Rollinger e Kamil Albrycht per i traduzioni e Vika Onischenko per testing e aiuto.
 	\n\n
 	Karmapa chenno!</string>
 	<string name="support">Aiuto/discussione→</string>

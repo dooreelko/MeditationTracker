@@ -15,33 +15,35 @@
 
 
 	<ScrollView android:id="@+id/ScrollView01"
-		android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_margin="10dip">
+		android:layout_width="wrap_content" android:layout_height="fill_parent"
+		android:layout_margin="10dip">
 
 		<LinearLayout android:id="@+id/LinearLayout01"
-			android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent" android:addStatesFromChildren="true">
+			android:orientation="vertical" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:addStatesFromChildren="true">
 
-			<TextView android:layout_height="wrap_content" android:textStyle="bold"
-				android:textColor="#000000" android:text="@string/ngondroTitle"
-				android:textSize="23sp" android:id="@+id/ngondroTitle" android:paddingLeft="10dip" android:background="#ffffff" android:layout_width="fill_parent"></TextView>
+			<TextView android:layout_height="wrap_content"
+				android:textStyle="bold" android:textColor="#000000" android:text="@string/ngondroTitle"
+				android:textSize="23sp" android:id="@+id/ngondroTitle"
+				android:paddingLeft="10dip" android:background="#ffffff"
+				android:layout_width="fill_parent"></TextView>
+			<com.meditationtracker.controls.NoScrollListView
+				android:id="@+id/ngondroList" android:entries="@array/dummyListEntries"
+				android:layout_height="fill_parent" android:layout_width="wrap_content"
+				android:isScrollContainer="false" android:scrollbars="none"
+				android:background="#ffffff" />
 
-			<!--
-				ListView android:layout_width="wrap_content"
-				android:id="@+id/ngondroList"
-				android:entries="@array/dummyListEntries"
-				android:background="#000000" android:layout_below="@id/ngondroTitle"
-				android:layout_height="fill_parent"></ListView
-			-->
-
-			<com.meditationtracker.NoScrollListView
-				android:id="@+id/ngondroList"
-				android:entries="@array/dummyListEntries" android:layout_height="fill_parent" android:layout_width="wrap_content" android:isScrollContainer="false" android:scrollbars="none" android:background="#ffffff"></com.meditationtracker.NoScrollListView>
 
 			<TextView android:layout_height="wrap_content" android:text="@string/myMeditationsTitle"
 				android:textColor="#000000" android:textStyle="bold"
-				android:textSize="23sp"
-				android:id="@+id/customPracticesTitle" android:layout_below="@id/ngondroList" android:paddingLeft="10dip" android:layout_width="fill_parent" android:background="#ffffff" android:layout_marginTop="20dip"></TextView>
-			<com.meditationtracker.NoScrollListView android:id="@+id/customList" android:entries="@array/dummyListEntries" android:layout_height="fill_parent" android:layout_width="wrap_content" android:scrollbars="none" android:background="#ffffff">
-			</com.meditationtracker.NoScrollListView>
+				android:textSize="23sp" android:id="@+id/customPracticesTitle"
+				android:layout_below="@id/ngondroList" android:paddingLeft="10dip"
+				android:layout_width="fill_parent" android:background="#ffffff"
+				android:layout_marginTop="20dip"></TextView>
+			<com.meditationtracker.controls.NoScrollListView
+				android:id="@+id/customList" android:entries="@array/dummyListEntries"
+				android:layout_height="fill_parent" android:layout_width="wrap_content"
+				android:scrollbars="none" android:background="#ffffff" />
 
 		</LinearLayout>
 

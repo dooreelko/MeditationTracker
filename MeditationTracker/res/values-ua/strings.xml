@@ -47,7 +47,7 @@
 	<string name="confirmDeletionMsg">Точно видалити практику?</string>
 	<string name="confirmDeletionTitle">Підтвердить</string>
 	<string name="scheduled">Заплановано:</string>
-	<string name="completed">, виконано:</string>
+	<string name="completed">Виконано:</string>
 	<string name="howMuch">Скільки додамо?</string>
 	<string name="stopTimer">Зупинити таймер</string>
 	<string name="startTimer">Запустити таймер</string>
@@ -58,7 +58,7 @@
 	<string name="hi">Привіт!</string>
 	<string name="version">v4 Mantra\n\n
 	Написана Doo Reelkow\n
-	Велика подяка Філіпу Роллінгеру та Каміл Альбрихт за переклади так Віке Оніщенко за тестування.\n\n
+	Велика подяка Філіпу Роллінгеру та Камілу Альбрихту за переклади так Віке Оніщенко за тестування і взагалі велику допомогу.\n\n
 	Кармапа чєнно!</string>
 	<string name="support">Підтримка/дискусії</string>
 	<string name="support_web_warning">Блог програми</string>

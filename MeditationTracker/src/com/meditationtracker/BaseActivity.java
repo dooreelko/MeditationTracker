@@ -12,10 +12,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 
-public class VerboseActivity extends Activity
+public class BaseActivity extends Activity
 {
 	private static UncaughtExceptionHandler defaultUncaughtExceptionHandler;
 	private static ActivityHistory activityHistory;
+	
+	protected PracticeDatabase db;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -33,6 +35,18 @@ public class VerboseActivity extends Activity
 		super.onCreate(savedInstanceState);
 	}
 	
+	
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		
+		if (db != null)
+			db.release();
+	}
+
+
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{

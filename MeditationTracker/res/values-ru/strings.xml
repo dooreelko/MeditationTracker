@@ -43,14 +43,14 @@
 	<string name="dailyRepetitions">Ежедневных повторов</string>
 	<string name="completionDate">День окончания</string>
 	<string name="chooseAction">Выберите действие</string>
-	<string name="msgNoEditNgondro">Нельзя удалить нёндро. Если оно не нужно - его
+	<string name="msgNoEditNgondro">Нельзя удалить нёндро. Если она не нужна - её
 		можно скрыть в настройках.</string>
 	<string name="error">Ошибка</string>
 	<string name="info">Информация</string>
 	<string name="confirmDeletionMsg">Точно удалить практику?</string>
 	<string name="confirmDeletionTitle">Подтвердите</string>
 	<string name="scheduled">Запланировано:</string>
-	<string name="completed">, выполнено:</string>
+	<string name="completed">Выполнено:</string>
 	<string name="howMuch">Сколько добавим?</string>
 	<string name="stopTimer">Остановить таймер</string>
 	<string name="startTimer">Запустить таймер</string>
@@ -59,7 +59,7 @@
 
 	<string name="about">О программе...</string>
 	<string name="hi">Привет!</string>
-	<string name="version">v4 Mantra\n\nНаписана Doo Reelkow\nОгромное спасибо Филлипу Роллингеру и Камил Альбрыхт за переводы и Вике Онищенко за тестирование.\n\nКармапа ченно!</string>
+	<string name="version">v4 Mantra\n\nНаписана Doo Reelkow\nОгромное спасибо Филлипу Роллингеру и Камилу Альбрыхту за переводы и Вике Онищенко за тестирование и помощь.\n\nКармапа ченно!</string>
 	<string name="support">Поддержка/обсуждение→</string>
 	<string name="support_web_warning">Блог программы</string>
 

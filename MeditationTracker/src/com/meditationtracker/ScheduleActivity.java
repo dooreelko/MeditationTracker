@@ -14,7 +14,7 @@ import android.widget.DatePicker.OnDateChangedListener;
 import doo.util.Pair;
 import doo.util.Util;
 
-public class ScheduleActivity extends VerboseActivity
+public class ScheduleActivity extends BaseActivity
 {
 	private Long totalCount;
 	private Long currentCount;

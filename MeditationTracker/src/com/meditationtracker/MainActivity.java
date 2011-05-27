@@ -1,5 +1,7 @@
 package com.meditationtracker;
 
+import com.meditationtracker.controls.SmartViewBinder;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -9,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -25,11 +28,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-public class MainActivity extends VerboseActivity {
+public class MainActivity extends BaseActivity {
 	protected static final int SETTINGS_DONE = 0;
 	protected static final int NEW_OR_EDIT_PRACTICE_DONE = 1;
 	protected static final int PRACTICE_DONE = 2;
 	private PracticeDatabase db;
+	private Cursor cursorNgondro;
+	private Cursor cursorCustoms;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -67,6 +72,21 @@ public class MainActivity extends VerboseActivity {
 		}
 	}
 	
+	
+	
+	@Override
+	protected void onDestroy() {
+		if (cursorNgondro != null)
+			cursorNgondro.close();
+		
+		if (cursorCustoms != null)
+			cursorCustoms.close();
+		
+		super.onDestroy();
+	}
+
+
+
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		View view = View.inflate(this, id, null);
@@ -92,9 +112,11 @@ public class MainActivity extends VerboseActivity {
 		findViewById(R.id.customPracticesTitle).setVisibility(ngondroVisible);
 
 		SimpleCursorAdapter viewAdapter;
+		
 		if (ngondroVisible != View.GONE) {
+			cursorNgondro = db.getPracticesStatuses(true);
 			viewAdapter = new SimpleCursorAdapter(this, R.layout.practice_list_item,
-					db.getPracticesStatuses(true), new String[] { PracticeDatabase.KEY_THUMBURL,
+					cursorNgondro, new String[] { PracticeDatabase.KEY_THUMBURL,
 							PracticeDatabase.KEY_TITLE, PracticeDatabase.KEY_SCHEDULEDCOUNT,
 							PracticeDatabase.KEY_DONE }, new int[] { R.id.practiceImg, R.id.practiceTitle,
 							R.id.scheduledText, R.id.completedText });
@@ -107,8 +129,9 @@ public class MainActivity extends VerboseActivity {
 
 		lv = (ListView) findViewById(R.id.customList);
 
+		cursorCustoms = db.getPracticesStatuses(false);
 		viewAdapter = new SimpleCursorAdapter(this, R.layout.practice_list_item,
-				db.getPracticesStatuses(false), new String[] { PracticeDatabase.KEY_THUMBURL,
+				cursorCustoms, new String[] { PracticeDatabase.KEY_THUMBURL,
 						PracticeDatabase.KEY_TITLE, PracticeDatabase.KEY_SCHEDULEDCOUNT,
 						PracticeDatabase.KEY_DONE }, new int[] { R.id.practiceImg, R.id.practiceTitle,
 						R.id.scheduledText, R.id.completedText });
