@@ -42,9 +42,7 @@ public class MainActivity extends BaseActivity {
 
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
-		db = new PracticeDatabase(this);
 		ensureNgondroDefaultsOnFirstRun();
-		
 		
 		setContentView(R.layout.main);
 	}
@@ -100,8 +98,6 @@ public class MainActivity extends BaseActivity {
 	private void UpdateUI() {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-		db = new PracticeDatabase(this);
-		
 		ListView lv = (ListView) findViewById(R.id.ngondroList);
 
 		int ngondroVisible = preferences.getBoolean(getString(R.string.prefShowNgondro), true) ? View.VISIBLE
@@ -114,7 +110,7 @@ public class MainActivity extends BaseActivity {
 		SimpleCursorAdapter viewAdapter;
 
 		if (ngondroVisible != View.GONE) {
-			cursorNgondro = db.getPracticesStatuses(true);
+			cursorNgondro = db().getPracticesStatuses(true);
 			viewAdapter = new SimpleCursorAdapter(this, R.layout.practice_list_item, cursorNgondro,
 					new String[] { PracticeDatabase.KEY_THUMBURL, PracticeDatabase.KEY_TITLE,
 							PracticeDatabase.KEY_SCHEDULEDCOUNT, PracticeDatabase.KEY_DONE }, new int[] {
@@ -128,7 +124,7 @@ public class MainActivity extends BaseActivity {
 
 		lv = (ListView) findViewById(R.id.customList);
 
-		cursorCustoms = db.getPracticesStatuses(false);
+		cursorCustoms = db().getPracticesStatuses(false);
 		viewAdapter = new SimpleCursorAdapter(this, R.layout.practice_list_item, cursorCustoms, new String[] {
 				PracticeDatabase.KEY_THUMBURL, PracticeDatabase.KEY_TITLE,
 				PracticeDatabase.KEY_SCHEDULEDCOUNT, PracticeDatabase.KEY_DONE }, new int[] {
@@ -145,14 +141,14 @@ public class MainActivity extends BaseActivity {
 	private void ensureNgondroDefaultsOnFirstRun() {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-		if (preferences.getBoolean(getString(R.string.prefFirstRun), true) && !db.hasNgondroEntries(this)) {
-			db.insertPractice(true, 0, getResources().getString(R.string.refuge), R.drawable.refuge,
+		if (preferences.getBoolean(getString(R.string.prefFirstRun), true) && !db().hasNgondroEntries(this)) {
+			db().insertPractice(true, 0, getResources().getString(R.string.refuge), R.drawable.refuge,
 					R.drawable.icon_refuge, 111111);
-			db.insertPractice(true, 1, getResources().getString(R.string.diamondMind),
+			db().insertPractice(true, 1, getResources().getString(R.string.diamondMind),
 					R.drawable.diamond_mind_big, R.drawable.icon_diamond_mind, 111111);
-			db.insertPractice(true, 2, getResources().getString(R.string.mandalaOffering),
+			db().insertPractice(true, 2, getResources().getString(R.string.mandalaOffering),
 					R.drawable.mandala_offering_big, R.drawable.icon_mandala_offering, 111111);
-			db.insertPractice(true, 3, getResources().getString(R.string.guruYoga), R.drawable.guru_yoga_big,
+			db().insertPractice(true, 3, getResources().getString(R.string.guruYoga), R.drawable.guru_yoga_big,
 					R.drawable.icon_guru_yoga, 111111);
 
 			SharedPreferences.Editor editor = preferences.edit();
@@ -220,7 +216,7 @@ public class MainActivity extends BaseActivity {
 	}
 
 	private void deletePractice(long id) {
-		db.deletePractice(id);
+		db().deletePractice(id);
 	}
 
 	private OnItemClickListener practiceClick = new OnItemClickListener() {

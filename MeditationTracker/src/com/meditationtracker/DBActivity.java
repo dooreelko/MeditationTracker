@@ -13,9 +13,13 @@ public class DBActivity extends BaseActivity
 		super.onCreate(savedInstanceState);
 		id = getIntent().getLongExtra(ExtraKeys.ID, -1);
 		
-		db = new PracticeDatabase(this);
 		if (id != -1){
-			practice = db.getPractice(id);
+			practice = db().getPractice(id);
 		}
 	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+	}	
 }

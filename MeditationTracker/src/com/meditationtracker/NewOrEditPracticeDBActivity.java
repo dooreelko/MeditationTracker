@@ -26,6 +26,12 @@ public class NewOrEditPracticeDBActivity extends DBActivity
 		
 		startActivityForResult(screenIntent, DONE_EDITING);
 	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+	}	
+
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
@@ -52,9 +58,9 @@ public class NewOrEditPracticeDBActivity extends DBActivity
 			int malaSize = parsed._1 ? parsed._2.intValue() : 0;
 
 			if (isEdit)
-				db.updatePractice(new PracticeEntry((int)id, title, imgUrl, thumbUrl, totalCount, currentCount, malaSize));
+				db().updatePractice(new PracticeEntry((int)id, title, imgUrl, thumbUrl, totalCount, currentCount, malaSize));
 			else
-				db.insertPractice(new PracticeEntry(title, imgUrl, thumbUrl, totalCount, currentCount, malaSize));
+				db().insertPractice(new PracticeEntry(title, imgUrl, thumbUrl, totalCount, currentCount, malaSize));
 			
 			setResult(RESULT_OK);
 		}

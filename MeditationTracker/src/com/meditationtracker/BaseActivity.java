@@ -17,7 +17,7 @@ public class BaseActivity extends Activity
 	private static UncaughtExceptionHandler defaultUncaughtExceptionHandler;
 	private static ActivityHistory activityHistory;
 	
-	protected PracticeDatabase db;
+	private PracticeDatabase db;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -39,10 +39,19 @@ public class BaseActivity extends Activity
 	protected void onStop() {
 		super.onDestroy();
 		
-		if (db != null)
+		if (db != null) {
 			db.release();
+			db = null;
+		}
 	}
 
+	protected PracticeDatabase db() {
+		if (db == null)
+			db = new PracticeDatabase(this);
+		
+		return db;
+	}
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{

@@ -42,10 +42,14 @@ public class PracticeActivity extends BaseActivity
 		findViewById(R.id.scheduleButton).setOnClickListener(scheduleClicked);
 		findViewById(R.id.editPracticeButton).setOnClickListener(editClicked);
 		findViewById(R.id.startPracticeButton).setOnClickListener(startClicked);
-
-		updateView();
 	}
 	
+	@Override
+	protected void onStart() {
+		super.onStart();
+
+		updateView();
+	}	
 	
 
 	private void updateView()
@@ -55,8 +59,7 @@ public class PracticeActivity extends BaseActivity
 		if (extras != null && extras.containsKey(ExtraKeys.ID))
 		{
 			id = extras.getLong(ExtraKeys.ID);
-			db = new PracticeDatabase(this);
-			practice = db.getPractice(id);
+			practice = db().getPractice(id);
 
 			title = practice.getValues().getAsString(PracticeDatabase.KEY_TITLE);
 			((MenuBar)findViewById(R.id.menuBar)).setText(title);
@@ -193,7 +196,7 @@ public class PracticeActivity extends BaseActivity
 			{
 				practice.getValues().put(PracticeDatabase.KEY_SCHEDULEDCOUNT,
 						data.getLongExtra(ExtraKeys.ScheduledCount, 0));
-				db.updatePractice(practice);
+				db().updatePractice(practice);
 			}
 			break;
 		case PRACTICE_CHANGED:
@@ -208,7 +211,7 @@ public class PracticeActivity extends BaseActivity
 			
 			int addCount = data.getExtras().getInt(ExtraKeys.MalaCount);
 			if (addCount != 0) {
-				db.insertSession((int) id, addCount);
+				db().insertSession((int) id, addCount);
 			}
 		}
 
