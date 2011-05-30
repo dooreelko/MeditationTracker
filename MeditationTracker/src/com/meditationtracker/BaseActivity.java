@@ -46,8 +46,10 @@ public class BaseActivity extends Activity
 	}
 
 	protected PracticeDatabase db() {
-		if (db == null)
+		if (db == null || !db.isOpen()){
+			
 			db = new PracticeDatabase(this);
+		}
 		
 		return db;
 	}

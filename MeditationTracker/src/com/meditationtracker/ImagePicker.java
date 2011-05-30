@@ -10,11 +10,12 @@ import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 
 public class ImagePicker extends BaseActivity
 {
 	private final String SDCARD_PATH = "/sdcard/"; //TODO: make it sdcard independent
-	private final String TEMP_PATH = SDCARD_PATH + "temp_picture.jpeg"; 
+	//private final String TEMP_PATH = SDCARD_PATH + "temp_picture.jpeg"; 
 	public static final String TAKE_PICTURE = "take-picture";
 
 	private String cropFileName;
@@ -30,13 +31,16 @@ public class ImagePicker extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		
+		generateCropFileName();
+		
 		if (getIntent().getBooleanExtra(TAKE_PICTURE, false))
 		{
-			File tempFile = getTempFile();
+			File tempFile = getCropFile();
 			if (tempFile.exists()){
 				tempFile.delete();
+				Log.d("MTRK", "Temp file should be gone now.");
 			}
-			startActivityForResult(new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE).putExtra(android.provider.MediaStore.EXTRA_OUTPUT, getTempUri()/*android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI*/), TAKE_PHOTO);
+			startActivityForResult(new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE).putExtra(android.provider.MediaStore.EXTRA_OUTPUT, getCropUri()), TAKE_PHOTO);
 		}
 		else 
 		{
@@ -44,22 +48,31 @@ public class ImagePicker extends BaseActivity
 		}
 	}
 
-	private Uri getTempUri()
+	/*private Uri getTempUri()
 	{
-		return Uri.fromFile(getTempFile());
+		return Uri.fromFile(getCropFile());
 	}
 
 	private File getTempFile()
 	{
 		return new File(TEMP_PATH);
-	}
+	}*/
 	
 	private void generateCropFileName(){
 		cropFileName = Math.random() + ".jpg";
 	}
 	
 	private File getCropFile() {
-		return new File(SDCARD_PATH + cropFileName);
+		return new File(getCropFileName());
+	}
+	
+	private Uri getCropUri()
+	{
+		return Uri.fromFile(getCropFile());
+	}
+
+	private String getCropFileName() {
+		return SDCARD_PATH + cropFileName;
 	}
 	
 	@Override
@@ -67,12 +80,6 @@ public class ImagePicker extends BaseActivity
 	{
 		super.onActivityResult(requestCode, resultCode, data);
 		
-		File cropFile = getCropFile();
-		if (cropFile.exists())
-		{
-			cropFile.delete();
-		}
-
 		if (resultCode != RESULT_OK)
 		{
 			setResult(Activity.RESULT_CANCELED);
@@ -82,19 +89,38 @@ public class ImagePicker extends BaseActivity
 		
 		Uri uri = null;
 		
-		if (data != null)
-			uri = data.getData();
-		
 		switch (requestCode) {
 		case TAKE_PHOTO:
-			if (uri == null && getTempFile().exists()) {
-				uri = getTempUri();
+			if (getCropFile().exists()) {
+				uri = getCropUri();/*
+				Log.d("MTRK", "Got good photo file in temp " + uri);
+				
+				generateCropFileName();
+				cropFile = getCropFile();
+				File temp_crop = new File(uri.toString());
+				if (temp_crop.renameTo(cropFile)) {
+					uri = Uri.fromFile(cropFile);
+					Log.d("MTRK", "Renamed temp to crop " + uri);
+				}*/
 			}
+
+
 		case SELECT_IMAGE:
-			generateCropFileName();
+			if (uri == null && data != null) {
+				uri = data.getData();
+				Log.d("MTRK", "Using data from intent(pick or fallbackto thumb) " + uri);
+			}
+
 	        cropImage(uri);
 			break;
 		case REQUEST_CROP_PHOTO:
+			File cropFile = getCropFile();
+			if (cropFile != null && cropFile.exists())
+			{
+				cropFile.delete();
+				Log.d("MTRK", "Removed temp crop source file");
+			}
+			
 			setResult(Activity.RESULT_OK, new Intent(data));
 			finish();
 			break;
@@ -117,10 +143,8 @@ public class ImagePicker extends BaseActivity
 		}
 		
 		File cropFile = getCropFile();
-//		new File(imgUri.toString()).renameTo(cropFile);
 		
-//		imgUri = Uri.fromFile(cropFile);
-		
+		Log.d("MTRK", "Will crop " + imgUri);
         Intent intent = new Intent("com.android.camera.action.CROP", imgUri);
         intent.setDataAndType(imgUri, "image/*");
 

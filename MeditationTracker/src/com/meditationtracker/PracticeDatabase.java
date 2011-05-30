@@ -141,6 +141,10 @@ public class PracticeDatabase {
 		}
 	}
 
+	public boolean isOpen() {
+		return db != null && db.isOpen();
+	}
+	
 	public void release() {
 		if (db != null)
 			db.close();
