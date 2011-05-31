@@ -64,12 +64,7 @@ public class NewOrEditPracticeScreenActivity extends BaseActivity
 			thumbUrl = extras.getString(ExtraKeys.ThumbURL);
 			imgUrl = extras.getString(ExtraKeys.ImgURL);
 			
-			Pair<Boolean, Long> parsed = Util.tryParse(imgUrl);
-			if (parsed._1)
-				((ImageView)v).setImageResource(parsed._2.intValue());
-			else
-				if (imgUrl != null)
-					((ImageView)v).setImageURI(Uri.parse(imgUrl));
+			updatePracticeImage();
 			
 			((TextView)findViewById(R.id.textPracticeName)).setText(extras.getString(ExtraKeys.Title));
 			((TextView)findViewById(R.id.textRepetitionCount)).setText(String.valueOf(extras.getInt(ExtraKeys.TotalCount)));
@@ -84,6 +79,17 @@ public class NewOrEditPracticeScreenActivity extends BaseActivity
 		
 		findViewById(R.id.saveButton).setOnClickListener(saveClicked);
 		((MenuBar)findViewById(R.id.menuBar)).setText(title);
+	}
+
+	private void updatePracticeImage() {
+		View v = findViewById(R.id.practiceImage);
+
+		Pair<Boolean, Long> parsed = Util.tryParse(imgUrl);
+		if (parsed._1)
+			((ImageView)v).setImageResource(parsed._2.intValue());
+		else
+			if (imgUrl != null)
+				((ImageView)v).setImageURI(Uri.parse(imgUrl));
 	}
 	
 	@Override
@@ -100,7 +106,8 @@ public class NewOrEditPracticeScreenActivity extends BaseActivity
 
 		imgUrl = savedInstanceState.getString(IMAGE_URL);
 		thumbUrl = savedInstanceState.getString(THUMB_URL);
-		updateResult();
+
+		updatePracticeImage();
 	}
 	
 
@@ -110,10 +117,6 @@ public class NewOrEditPracticeScreenActivity extends BaseActivity
 		{
 			if (event.getAction() == MotionEvent.ACTION_UP){
 				
-				/*startActivityForResult(Intent.createChooser(
-						new Intent(Intent.ACTION_GET_CONTENT).
-							addCategory(Intent.CATEGORY_OPENABLE).
-							setType("image/*"), getString(R.string.imageSourceTitle)), SELECT_IMAGE);*/
 				openContextMenu(v);
 			}
 			return true;

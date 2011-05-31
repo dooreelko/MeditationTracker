@@ -141,14 +141,15 @@ public class MainActivity extends BaseActivity {
 	private void ensureNgondroDefaultsOnFirstRun() {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-		if (preferences.getBoolean(getString(R.string.prefFirstRun), true) && !db().hasNgondroEntries(this)) {
-			db().insertPractice(true, 0, getResources().getString(R.string.refuge), R.drawable.refuge,
+		PracticeDatabase db = db();
+		if (preferences.getBoolean(getString(R.string.prefFirstRun), true) && !db.hasNgondroEntries(this)) {
+			db.insertPractice(true, 0, getResources().getString(R.string.refuge), R.drawable.refuge,
 					R.drawable.icon_refuge, 111111);
-			db().insertPractice(true, 1, getResources().getString(R.string.diamondMind),
+			db.insertPractice(true, 1, getResources().getString(R.string.diamondMind),
 					R.drawable.diamond_mind_big, R.drawable.icon_diamond_mind, 111111);
-			db().insertPractice(true, 2, getResources().getString(R.string.mandalaOffering),
+			db.insertPractice(true, 2, getResources().getString(R.string.mandalaOffering),
 					R.drawable.mandala_offering_big, R.drawable.icon_mandala_offering, 111111);
-			db().insertPractice(true, 3, getResources().getString(R.string.guruYoga), R.drawable.guru_yoga_big,
+			db.insertPractice(true, 3, getResources().getString(R.string.guruYoga), R.drawable.guru_yoga_big,
 					R.drawable.icon_guru_yoga, 111111);
 
 			SharedPreferences.Editor editor = preferences.edit();

@@ -109,15 +109,7 @@ public class PracticeDatabase {
 
 	private static SQLiteDatabase db;
 
-	private SQLiteStatement insertQueryPractice;
-	private SQLiteStatement insertQuerySession;
-	private SQLiteStatement insertTodayQuerySession;
-	private SQLiteStatement queryNgondroPresence;
-	private SQLiteStatement queryNextSortOrder;
-
 	private static HashMap<String, Set<String>> tableColumns;
-
-	private ArrayList<SQLiteStatement> queries = new ArrayList<SQLiteStatement>();
 
 	public PracticeDatabase(Context ctx) {
 		if (db == null || !db.isOpen()) {
@@ -125,13 +117,6 @@ public class PracticeDatabase {
 			db = helper.getWritableDatabase();
 		}
 
-		if (queries.size() == 0) {
-			queries.add(insertQueryPractice = db.compileStatement(INSERT_PRACTICE_QUERY));
-			queries.add(queryNgondroPresence = db.compileStatement(NGONDRO_CHEK_QUERY));
-			queries.add(insertQuerySession = db.compileStatement(INSERT_SESSION_QUERY));
-			queries.add(insertTodayQuerySession = db.compileStatement(INSERT_TODAY_SESSION_QUERY));
-			queries.add(queryNextSortOrder = db.compileStatement(NEXT_SORT_ORDER));
-		}
 
 		if (tableColumns == null) {
 			tableColumns = new HashMap<String, Set<String>>();
@@ -148,12 +133,6 @@ public class PracticeDatabase {
 	public void release() {
 		if (db != null)
 			db.close();
-
-		for (SQLiteStatement stmt : queries) {
-			stmt.close();
-		}
-		
-		queries.clear();
 	}
 
 	private void getTableColumnsNames(String tableName) {
@@ -173,6 +152,8 @@ public class PracticeDatabase {
 
 	public void insertPractice(boolean isNgondro, int order, String title, String iconUrl, String thumbUrl,
 			int totalCount) {
+		SQLiteStatement insertQueryPractice = db.compileStatement(INSERT_PRACTICE_QUERY);
+		
 		insertQueryPractice.clearBindings();
 		insertQueryPractice.bindLong(1, isNgondro ? 1l : 0l);
 		insertQueryPractice.bindLong(2, order);
@@ -186,6 +167,7 @@ public class PracticeDatabase {
 	}
 
 	public boolean hasNgondroEntries(Context ctx) {
+		SQLiteStatement queryNgondroPresence = db.compileStatement(NGONDRO_CHEK_QUERY);
 		boolean result = queryNgondroPresence.simpleQueryForLong() != 0;
 		queryNgondroPresence.close();
 
@@ -276,6 +258,8 @@ public class PracticeDatabase {
 	}
 
 	public void insertSession(int practiceId, int count) {
+		SQLiteStatement insertTodayQuerySession = db.compileStatement(INSERT_TODAY_SESSION_QUERY);
+
 		insertTodayQuerySession.clearBindings();
 		insertTodayQuerySession.bindLong(1, practiceId);
 		insertTodayQuerySession.bindLong(2, count);
@@ -285,6 +269,8 @@ public class PracticeDatabase {
 	}
 
 	public void insertSession(int practiceId, String date, int count) {
+		SQLiteStatement insertQuerySession = db.compileStatement(INSERT_SESSION_QUERY);
+
 		insertQuerySession.clearBindings();
 		insertQuerySession.bindLong(1, practiceId);
 		insertQuerySession.bindString(2, date);
@@ -314,6 +300,7 @@ public class PracticeDatabase {
 		}
 
 		if (!entry.getValues().containsKey(KEY_ORDER)) {
+			SQLiteStatement queryNextSortOrder = db.compileStatement(NEXT_SORT_ORDER);
 			entry.getValues().put(KEY_ORDER, queryNextSortOrder.simpleQueryForLong());
 			queryNextSortOrder.close();
 		}
@@ -340,36 +327,6 @@ public class PracticeDatabase {
 		return db.rawQuery(PRACTICES_STATUS.replaceFirst("\\?", ngondroGroup ? "1" : "0"), null);
 	}
 
-	// TODO: remove me
-	public Cursor dumpNgondroStatus() {
-		Cursor q = db.rawQuery(PRACTICES_STATUS.replaceFirst("\\?", "1"), null);
-
-		if (q != null && q.moveToFirst()) {
-			String row = "";
-
-			for (String s : q.getColumnNames())
-				row += s + " |\t";
-
-			Log.d(MTRK_LOG_KEY, row);
-			do {
-				// result.add(new PracticeEntry(q));
-
-				row = "";
-				for (int x = 0; x < q.getColumnCount(); x++) {
-					row += q.getString(x) + " |\t";
-				}
-
-				Log.d(MTRK_LOG_KEY, row);
-
-			} while (q.moveToNext());
-		} else
-			Log.d(MTRK_LOG_KEY, "no data returned from query");
-
-		q.requery();
-
-		return q;
-	}
-
 	private static class MySQLiteOpenHelper extends SQLiteOpenHelper {
 		public MySQLiteOpenHelper(Context context) {
 			super(context, DBNAME, null, DBVERSION);
@@ -384,7 +341,6 @@ public class PracticeDatabase {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			// TODO Auto-generated method stub
 
 		}
 	}

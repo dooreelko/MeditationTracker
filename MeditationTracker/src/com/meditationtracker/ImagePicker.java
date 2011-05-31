@@ -142,8 +142,6 @@ public class ImagePicker extends BaseActivity
 			return;
 		}
 		
-		File cropFile = getCropFile();
-		
 		Log.d("MTRK", "Will crop " + imgUri);
         Intent intent = new Intent("com.android.camera.action.CROP", imgUri);
         intent.setDataAndType(imgUri, "image/*");
