@@ -118,18 +118,18 @@ public class SessionActivity extends BaseActivity {
 	}
 
 	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+
+		outState.putInt(CURRENT_COUNT, malaCount);
+	}
+
+	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
 
 		malaCount = savedInstanceState.getInt(CURRENT_COUNT);
 		updateResult();
-	}
-
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-
-		outState.putInt(CURRENT_COUNT, malaCount);
 	}
 
 	private void updateTimer(long time) {

@@ -59,7 +59,7 @@
 	<string name="version">v4 Mantra\n\n
 	Autor: Doo Reelkow\n
 	Tłumaczenie: Philipp Rollinger i Kamil Albrycht\n
-	Testy: Vika Onischenko
+	Testy, tłumaczenie: Vika Onischenko
 	\n\n
 	Karmapa chenno!</string>
 	<string name="support">Wsparcie/Dyskusja→</string>
@@ -74,6 +74,6 @@
 		Wasza pomoc i komentarze są mile widziane. Poza tym każde wsparcie z waszej 
 		strony jest bardzo cenne. Będe wdziędzny za odwiedziny linka poniżej 
 		(umieszczony również w ustawieniach/o programie)
-		poszukujemy ludzi do testowania 
+		poszukujemy ludzi do testowania. 
 		\n\nDoo Reelkow.</string>
 </resources>

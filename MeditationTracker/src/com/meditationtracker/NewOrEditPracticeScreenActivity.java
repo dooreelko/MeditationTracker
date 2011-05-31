@@ -33,6 +33,9 @@ public class NewOrEditPracticeScreenActivity extends BaseActivity
 	private static final String THUMBNAIL_PREFIX = "th_";
 
 	private static final int SELECT_IMAGE = 0;
+
+	private static final String IMAGE_URL = "ImageUrl";
+	private static final String THUMB_URL = "ThumbUrl";
 	
 	private String imgUrl;
 	private String thumbUrl;
@@ -82,6 +85,24 @@ public class NewOrEditPracticeScreenActivity extends BaseActivity
 		findViewById(R.id.saveButton).setOnClickListener(saveClicked);
 		((MenuBar)findViewById(R.id.menuBar)).setText(title);
 	}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+
+		outState.putString(IMAGE_URL, imgUrl);
+		outState.putString(THUMB_URL, thumbUrl);
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+
+		imgUrl = savedInstanceState.getString(IMAGE_URL);
+		thumbUrl = savedInstanceState.getString(THUMB_URL);
+		updateResult();
+	}
+	
 
 	private OnTouchListener imgTouchListener = new OnTouchListener()
 	{

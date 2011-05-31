@@ -59,11 +59,11 @@ containing a value of this type.
     }
     public static final class id {
         public static final int ImageView01=0x7f090001;
-        public static final int LinearLayout01=0x7f090006;
-        public static final int LinearLayout02=0x7f090013;
-        public static final int LinearLayout03=0x7f090010;
+        public static final int LinearLayout01=0x7f090005;
+        public static final int LinearLayout02=0x7f090012;
+        public static final int LinearLayout03=0x7f09000f;
         public static final int RelativeLayout01=0x7f09002b;
-        public static final int ScrollView01=0x7f090005;
+        public static final int ScrollView01=0x7f090004;
         public static final int TableLayout01=0x7f090020;
         public static final int TableLayout02=0x7f090024;
         public static final int addMalaButton=0x7f090037;
@@ -72,8 +72,8 @@ containing a value of this type.
         public static final int browseImage=0x7f090039;
         public static final int completedText=0x7f090032;
         public static final int completedTitle=0x7f090031;
-        public static final int customList=0x7f09000a;
-        public static final int customPracticesTitle=0x7f090009;
+        public static final int customList=0x7f090009;
+        public static final int customPracticesTitle=0x7f090008;
         public static final int deletePractice=0x7f090040;
         public static final int editMalaButton=0x7f090036;
         public static final int editPractice=0x7f09003f;
@@ -83,46 +83,46 @@ containing a value of this type.
         public static final int imgMore=0x7f09002d;
         public static final int imgPractice=0x7f09001f;
         public static final int linearLayout1=0x7f090002;
-        public static final int menuBar=0x7f09000c;
-        public static final int ngondroList=0x7f090008;
-        public static final int ngondroTitle=0x7f090007;
+        public static final int menuBar=0x7f09000b;
+        public static final int ngondroList=0x7f090007;
+        public static final int ngondroTitle=0x7f090006;
         public static final int openPractice=0x7f09003e;
         public static final int pickerScheduledEndDate=0x7f090033;
-        public static final int practiceImage=0x7f09000d;
+        public static final int practiceImage=0x7f09000c;
         public static final int practiceImg=0x7f09002c;
         public static final int practiceProgressBar=0x7f090023;
         public static final int practiceTitle=0x7f09002e;
         public static final int prefTimePicker=0x7f090038;
         public static final int rowScheduledCompletion=0x7f090029;
-        public static final int saveButton=0x7f090018;
+        public static final int saveButton=0x7f090017;
         public static final int scheduleButton=0x7f09001d;
         public static final int scheduledText=0x7f090030;
         public static final int scheduledTitle=0x7f09002f;
-        public static final int scrollView1=0x7f090019;
+        public static final int scrollView1=0x7f090018;
         public static final int settingsMenuItem=0x7f09003c;
         public static final int startPracticeButton=0x7f09001c;
         public static final int startTimerMenuItem=0x7f090041;
         public static final int stopTimerMenuItem=0x7f090042;
         public static final int takePhoto=0x7f09003a;
-        public static final int textCompletedRepetitions=0x7f090015;
+        public static final int textCompletedRepetitions=0x7f090014;
         public static final int textCompletedToday=0x7f090027;
         public static final int textLastPracticeDate=0x7f090028;
-        public static final int textMalaSize=0x7f090017;
-        public static final int textPracticeName=0x7f09000f;
-        public static final int textRepetitionCount=0x7f090012;
+        public static final int textMalaSize=0x7f090016;
+        public static final int textPracticeName=0x7f09000e;
+        public static final int textRepetitionCount=0x7f090011;
         public static final int textScheduledEndDate=0x7f09002a;
         public static final int textScheduledForToday=0x7f090025;
         public static final int textTimer=0x7f090034;
         public static final int textVersion=0x7f090003;
-        public static final int textView1=0x7f090004;
+        public static final int textView1=0x7f090019;
         public static final int textView2=0x7f09001a;
         public static final int textViewMalaCount=0x7f090035;
-        public static final int textWindowTitle=0x7f09000b;
-        public static final int titleCompletedCount=0x7f090014;
+        public static final int textWindowTitle=0x7f09000a;
+        public static final int titleCompletedCount=0x7f090013;
         public static final int titleDoneRepetitions=0x7f090022;
-        public static final int titleMalaSize=0x7f090016;
-        public static final int titlePracticeName=0x7f09000e;
-        public static final int titleRepetitionCount=0x7f090011;
+        public static final int titleMalaSize=0x7f090015;
+        public static final int titlePracticeName=0x7f09000d;
+        public static final int titleRepetitionCount=0x7f090010;
         public static final int titleReqRepetitions=0x7f090021;
         public static final int titleScheduledForToday=0x7f090026;
     }
@@ -160,7 +160,6 @@ containing a value of this type.
         public static final int confirmDeletionTitle=0x7f050039;
         public static final int countDown=0x7f050016;
         /**  ß can be replaced by ss
- ß can be replaced by ss
          */
         public static final int customMalaSize=0x7f05001c;
         public static final int dailyRepetitions=0x7f050032;
@@ -224,7 +223,6 @@ containing a value of this type.
         public static final int takePicture=0x7f050010;
         public static final int tapImgToChoose=0x7f050029;
         /**  string name="clockType">Session clock</string 
-  string name="clockType">Session clock</string 
   string name="clockType">Session clock</string 
  string name="clockType">Zegar sesji</string 
  string name="clockType">Session clock</string 
