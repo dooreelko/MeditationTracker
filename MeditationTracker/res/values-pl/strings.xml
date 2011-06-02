@@ -11,7 +11,6 @@
 	<string name="countDown">Odliczaj</string>
 	<string name="stopWatch">Stoper</string>
 	<string name="useStopWatch">Stoper czy odliczanie?</string>
-	<!-- string name="clockType">Zegar sesji</string -->
 	<string name="timerNotification">Odtwórz dźwięk</string>
 	<string name="sessionLength">Długość sesji min.</string>
 	<string name="malaSize">Rozmiar mali</string>
@@ -56,12 +55,11 @@
 	<string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html</string>
 	<string name="about">O programie...</string>
 	<string name="hi">Witaj!</string>
-	<string name="version">v4 Mantra\n\n
-	Autor: Doo Reelkow\n
-	Tłumaczenie: Philipp Rollinger i Kamil Albrycht\n
-	Testy, tłumaczenie: Vika Onischenko
-	\n\n
-	Karmapa chenno!</string>
+	<string name="version">v4 Mantra
+	\n\nAutor: Doo Reelkow
+	\nTłumaczenie: Philipp Rollinger i Kamil Albrycht
+	\nTesty, tłumaczenie: Vika Onischenko
+	\n\nKarmapa chenno!</string>
 	<string name="support">Wsparcie/Dyskusja→</string>
 	<string name="support_web_warning">Idz do bloga aplikacji</string>
 	<string name="oneBeadHeptic">Brzęcz inaczej</string>

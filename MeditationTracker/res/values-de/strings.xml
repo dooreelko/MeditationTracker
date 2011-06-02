@@ -41,35 +41,44 @@
 	<string name="dailyRepetitions">Tägliche Wiederholungen</string>
 	<string name="completionDate">Abschlussdatum</string>
 	<string name="chooseAction">Aktion auswählen</string>
-	<string name="msgNoEditNgondro">Sie könenn das Ngöndro nicht löschen. Falls nicht gebraucht, kann es unter Einstellungen ausgeblendet werden.</string>
+	<string name="msgNoEditNgondro">Sie könenn das Ngöndro nicht löschen. Falls nicht
+		gebraucht, kann es unter Einstellungen ausgeblendet werden.</string>
 	<string name="error">Fehler</string>
 	<string name="info">Information</string>
 	<string name="confirmDeletionMsg">Möchten Sie wirklich diese Übung löschen?</string>
 	<string name="confirmDeletionTitle">Bestätigen</string>
 	<string name="scheduled">Geplant:</string>
-    <string name="completed">Fertig:</string>
+	<string name="completed">Fertig:</string>
 	<string name="howMuch">Wie viel zugeben?</string>
 	<string name="stopTimer">Uhr stoppen</string>
-    <string name="startTimer">Uhr starten</string>
+	<string name="startTimer">Uhr starten</string>
 	<string name="addMala">Mala hinzugeben</string>
 	<string name="setMalaCount">Neue Malagröße</string>
-	
-	<string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html</string>
+
+	<string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html
+	</string>
 	<string name="about">Über...</string>
-    <string name="hi">Hi!</string>
-    <string name="version">v4 Mantra
-\n\nProgrammierung von Doo Reelkow
-\n Übersetzung auf Deutsch und Spanisch 
-von Philipp Rollinger, Polnisch: Kamil Albrycht. Ukrainisch, Testing und riesige Hilfe: Vika Onischenko.
-\n\nKarmapa Tschenno!</string>
-    <string name="support">Support/Diskussion→</string>
-    <string name="support_web_warning">Zum Blog der App </string>
-    <string name="oneBeadHeptic">Andere Vibrationsart</string>
-    <string name="oneBeadHepticSummary">Verwende anderes Muster bei jeder 10ten und 50ten \"Perle\"</string>
-    <string name="dimNight">Abblenden bei Nacht</string>
-    <string name="dimNightSummary">Sitzungsfenster wird während später Meditationen abgeblendet</string>
-    <string name="versionInfo">Version</string>
-    <string name="postInstallWelcome">Willkommen zum neuen Meditations Tracker.
-\n\nDie nächste Version wird eine Synchronisierungsfunktion mit \"Google Documents\" beinhalten. Damit es für uns alle richtig funktioniert, bitte ich euch um eure Hilfe. Bitte helft uns mit mehr Feedback von euch. Bitte besucht den unten stehenden Link (auch unter Einstellung/Über...) und meldet euch freiwillig zum Beta-Test oder schreibt einen Kommentar.
-\n\nEuer, Doo Reelkow.</string>
+	<string name="hi">Hi!</string>
+	<string name="version">v4 Mantra
+		\n\nProgrammierung von Doo Reelkow.
+		\nÜbersetzung auf Deutsch und Spanisch von Philipp Rollinger, Polnisch: Kamil
+		Albrycht. Ukrainisch, Testing und riesige Hilfe: Vika Onischenko.
+		\n\nKarmapa Tschenno!</string>
+	<string name="support">Support/Diskussion→</string>
+	<string name="support_web_warning">Zum Blog der App </string>
+	<string name="oneBeadHeptic">Andere Vibrationsart</string>
+	<string name="oneBeadHepticSummary">Verwende anderes Muster bei jeder 10ten und 50ten
+		\"Perle\"</string>
+	<string name="dimNight">Abblenden bei Nacht</string>
+	<string name="dimNightSummary">Sitzungsfenster wird während später Meditationen
+		abgeblendet</string>
+	<string name="versionInfo">Version</string>
+	<string name="postInstallWelcome">Willkommen zum neuen Meditations Tracker.
+		\n\nDie nächste Version wird eine Synchronisierungsfunktion mit \"Google
+		Documents\" beinhalten. Damit es für uns alle richtig funktioniert,
+		bitte ich euch um eure Hilfe. Bitte helft uns mit mehr Feedback von
+		euch. Bitte besucht den unten stehenden Link (auch unter
+		Einstellung/Über...) und meldet euch freiwillig zum Beta-Test oder
+		schreibt einen Kommentar.
+		\n\nEuer, Doo Reelkow.</string>
 </resources>

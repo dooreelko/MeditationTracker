@@ -11,7 +11,6 @@
 	<string name="countDown">Countdown</string>
 	<string name="stopWatch">Stopwatch</string>
 	<string name="useStopWatch">Stop watch or countdown?</string>
-	<!-- string name="clockType">Session clock</string -->
 	<string name="timerNotification">Play sound</string>
 	<string name="sessionLength">Session length min.</string>
 	<string name="malaSize">Mala size</string>
@@ -58,14 +57,16 @@
 	<string name="addMala">Add mala</string>
 	<string name="setMalaCount">Set count</string>
 
-	<string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html</string>
+	<string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html
+	</string>
 	<string name="about">About...</string>
 	<string name="hi">Hi!</string>
 	<string name="version">v4 Mantra\n\n
-	Written by Doo Reelkow\n
-	many thanks to Philipp Rollinger and Kamil Albrycht for translations and Vika Onischenko for testing, advises, translations and great help.
-	\n\n
-	Karmapa chenno!</string>
+		Written by Doo Reelkow.\n
+		many thanks to Philipp Rollinger and Kamil Albrycht for translations and
+		Vika Onischenko for testing, advises, translations and great help.
+		\n\n
+		Karmapa chenno!</string>
 	<string name="support">Support/discussion→</string>
 	<string name="support_web_warning">Go to app\'s blog</string>
 

@@ -34,6 +34,7 @@
 	<string name="imageSourceTitle">Джерело зображення</string>
 	<string name="start">Почати практику</string>
 	<string name="schedule">Розклад</string>
+	<string name="edit">Редагувати</string>
 	<string name="scheduledForToday">Заплановано на сьогодні</string>
 	<string name="completedToday">Зроблено сьогодні</string>
 	<string name="lastPracticeDate">Останній день практики</string>
@@ -41,7 +42,8 @@
 	<string name="dailyRepetitions">Щоденних повторювань</string>
 	<string name="completionDate">День завершення</string>
 	<string name="chooseAction">Оберіть дію</string>
-	<string name="msgNoEditNgondro">Неможливо вилучити Ньондро. Якщо потрібно, його можна сховати в налаштуваннях.</string>
+	<string name="msgNoEditNgondro">Неможливо вилучити Ньондро. Якщо потрібно, його
+		можна сховати в налаштуваннях.</string>
 	<string name="error">Помилка</string>
 	<string name="info">Інформація</string>
 	<string name="confirmDeletionMsg">Точно вилучити практику?</string>
@@ -57,20 +59,26 @@
 	<string name="about">Про програму...</string>
 	<string name="hi">Вітання!</string>
 	<string name="version">v4 Mantra\n\n
-	Написана Doo Reelkow\n
-	Велика подяка Філіпу Роллінгеру та Камілу Альбрихту за переклади та Вікє Онищенко за тестування, поради, переклад і взагалі велику допомогу.\n\n
-	Кармапа чєнно!</string>
+		Написана Doo Reelkow\n
+		Велика подяка Філіпу Роллінгеру та Камілу Альбрихту за переклади та Вікє
+		Онищенко за тестування, поради, переклад і взагалі велику
+		допомогу.\n\n
+		Кармапа чєнно!</string>
 	<string name="support">Підтримка/дискусії</string>
 	<string name="support_web_warning">Блог програми</string>
 
 	<string name="oneBeadHeptic">Дзижчати інакше</string>
-	<string name="oneBeadHepticSummary">Використовувати різне дзижчання для кожної 10 та 50 \"намистини\"</string>
+	<string name="oneBeadHepticSummary">Використовувати різне дзижчання для кожної 10 та 50
+		\"намистини\"</string>
 	<string name="dimNight">Затемнювати ввечері</string>
 	<string name="dimNightSummary">Затемнювати екран сесії ввечері</string>
 	<string name="versionInfo">Версія</string>
 	<string name="postInstallWelcome">Вітаю в новому трекері.\n
-	Наступна версія буде мати можливість синхронізуватись з Гугль-документами, і щоб впевнитись, що вона працює мені потрібні помічники.
-	Окрім того, я завжди радий побажанням і коментарям, і буду дуже вдячний, якщо ви час від часу будете заходити в 
-	блог трекера за адресою внизу (вона є в налаштуваннях/підтримці)\n\n
-		Ваш, Doo Reelkow.</string>
+		Наступна версія буде мати можливість синхронізуватись з Гугль-документами, і
+		щоб впевнитись, що вона працює мені потрібні помічники.
+		Окрім того, я завжди радий побажанням і коментарям, і буду дуже вдячний,
+		якщо ви час від часу будете заходити в
+		блог трекера за адресою внизу (вона є в налаштуваннях/підтримці)\n\n
+		Ваш,
+		Doo Reelkow.</string>
 </resources>

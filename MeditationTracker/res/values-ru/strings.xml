@@ -35,7 +35,7 @@
 	<string name="imageSourceTitle">Источник изображения</string>
 	<string name="start">Начать практику</string>
 	<string name="schedule">Расписание</string>
-	<!-- string name="edit">Редактировать</string -->
+	<string name="edit">Изменить</string>
 	<string name="scheduledForToday">Запланировано на сегодня</string>
 	<string name="completedToday">Выполнено сегодня</string>
 	<string name="lastPracticeDate">День прошлой практики</string>
@@ -43,9 +43,7 @@
 	<string name="dailyRepetitions">Ежедневных повторов</string>
 	<string name="completionDate">День окончания</string>
 	<string name="chooseAction">Выберите действие</string>
-	<string name="msgNoEditNgondro">Нельзя удалить нёндро. Если она не нужна - её
-		можно
-		скрыть в настройках.</string>
+	<string name="msgNoEditNgondro">Нельзя удалить нёндро. Если она не нужна - её можно скрыть в настройках.</string>
 	<string name="error">Ошибка</string>
 	<string name="info">Информация</string>
 	<string name="confirmDeletionMsg">Точно удалить практику?</string>
@@ -60,13 +58,11 @@
 
 	<string name="about">О программе...</string>
 	<string name="hi">Привет!</string>
-	<string name="version">v4 Mantra\n\n
-		Написана Doo Reelkow\n
-		Огромное спасибо
-		Филлипу Роллингеру и Камилу Альбрыхту за переводы и Вике
-		Онищенко за
-		тестирование, переводы, советы и огромную помощь.\n\n
-		Кармапа ченно!
+	<string name="version">v4 Mantra
+		\n\nНаписана Doo Reelkow
+		\nОгромное спасибо Филлипу Роллингеру и Камилу Альбрыхту за переводы и Вике
+		Онищенко за тестирование, переводы, советы и огромную помощь.
+		\n\nКармапа ченно!
 	</string>
 	<string name="support">Поддержка/обсуждение→</string>
 	<string name="support_web_warning">Блог программы</string>

@@ -206,8 +206,6 @@ containing a value of this type.
         public static final int schedule=0x7f05002c;
         public static final int scheduled=0x7f05003a;
         public static final int scheduledCompletionDate=0x7f050031;
-        /**  string name="edit">Редактировать</string 
-         */
         public static final int scheduledForToday=0x7f05002e;
         public static final int sessionEndNotification=0x7f050003;
         public static final int sessionLength=0x7f05001a;
@@ -222,9 +220,7 @@ containing a value of this type.
         public static final int support_web_warning=0x7f050046;
         public static final int takePicture=0x7f050010;
         public static final int tapImgToChoose=0x7f050029;
-        /**  string name="clockType">Session clock</string 
-  string name="clockType">Session clock</string 
- string name="clockType">Zegar sesji</string 
+        /**   string name="clockType">Session clock</string 
  string name="clockType">Session clock</string 
          */
         public static final int timerNotification=0x7f050019;

@@ -58,7 +58,11 @@
 	<string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html</string>
 	<string name="about">Sobre...</string>
     <string name="hi">Hola!</string>
-    <string name="version">v4 Mantra\n\nProgramación de Doo Reelkow\n Traducción a alemán y español \nde Philipp Rollinger\n\nKarmapa Chenno!</string>
+    <string name="version">v4 Mantra
+    \n\nProgramación de Doo Reelkow.
+    \nTraducción a alemán y español de Philipp Rollinger,
+    a polaco: Kamil Albrycht, a ucrania, pruebas y gran ayuda: Vika Onischenko.
+    \n\nKarmapa Chenno!</string>
     <string name="support">Soporte/Discussión→</string>
     <string name="support_web_warning">Ir al blog del app</string>
     <string name="oneBeadHeptic">Diferente Vibración</string>
