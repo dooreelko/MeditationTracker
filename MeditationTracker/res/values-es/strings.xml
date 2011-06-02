@@ -2,7 +2,7 @@
 <resources>
 	<string name="delete">Borrar</string>
 	<string name="open">Abrir</string>
-	<string name="takePicture">Tomar photo</string>
+	<string name="takePicture">Tomar foto</string>
 	<string name="browseImage">Elegir imagen</string>
 	<string name="ringtone">Sonido</string>
 	<string name="buzz">Vibrar</string>
@@ -11,11 +11,11 @@
 	<string name="stopWatch">Cronómetro</string>
 	<string name="useStopWatch">¿Cronómetro o Cuenta atrás?</string>
 	<!--  string name="clockType">Session clock</string -->
-	<string name="timerNotification">Ton abspielen</string>
-	<string name="sessionLength">Largura de la sesión (min.)</string>
+	<string name="timerNotification">sonar tono</string>
+	<string name="sessionLength">duración de la sesión (min.)</string>
 	<string name="malaSize">Tamaño de Mala</string><!-- ß can be replaced by ss-->
 	<string name="customMalaSize">Tamaño de Mala (nada para estándar)</string>
-	<string name="showNgondro">Muestrar Ngondro</string>
+	<string name="showNgondro">Mostrar Ngondro</string>
 
 	<string name="settings">Configuración</string>
 
@@ -23,35 +23,50 @@
 	<string name="ngondroTitle">Ngondro</string>
 	<string name="myMeditationsTitle">Mis Meditaciónes</string>
 	<string name="guruYoga">Guru Yoga</string>
-	<string name="refuge">Prostraciones</string>
+	<string name="refuge">Refugio</string>
 	<string name="diamondMind">Mente del Diamante</string>
 	<string name="mandalaOffering">Ofrecimiento de Mandala</string>
 	<string name="practiceName">Nombre de la Meditación</string>
-	<string name="requiredRepetitions">Cuantía necesario</string>
-	<string name="completedRepetitions">Cuantía terminada</string>
+	<string name="requiredRepetitions">Cantidad necesaria</string>
+	<string name="completedRepetitions">Cantidad terminada</string>
 	<string name="save">Guardar</string>
 	<string name="tapImgToChoose">Pulsar para elegir imagen</string>
 	<string name="imageSourceTitle">Elegir fuente de imagen</string>
-	<string name="start">Empezar</string>
+	<string name="start">Comenzar</string>
 	<string name="schedule">Horario</string>
 	<string name="edit">Editar</string>
-	<string name="scheduledForToday">Proyectada para hoy</string>
-	<string name="completedToday">Hoy realizada</string>
+	<string name="scheduledForToday">Planeado para hoy</string>
+	<string name="completedToday">Realizadas hoy</string>
 	<string name="lastPracticeDate">Dia de la última practica</string>
-	<string name="scheduledCompletionDate">Fecha de remate proyectada</string>
-	<string name="dailyRepetitions">Repeticiónes diarias</string>
-	<string name="completionDate">Fecha de remate</string>
+	<string name="scheduledCompletionDate">Fecha de término proyectada</string>
+	<string name="dailyRepetitions">Repeticiones diarias</string>
+	<string name="completionDate">Fecha de término</string>
 	<string name="chooseAction">Elegir acción</string>
-	<string name="msgNoEditNgondro">No se puede borrar el ngondro. Si no lo usas, puedes dehabilitarlo en la configuración.</string>
+	<string name="msgNoEditNgondro">No se puede borrar el ngondro. Si no lo usas, puedes deshabilitarlo en la configuración.</string>
 	<string name="error">Error</string>
 	<string name="info">Información</string>
-	<string name="confirmDeletionMsg">¿Realmente quieres borrar esa practica?</string>
+	<string name="confirmDeletionMsg">¿Realmente quiere borrar esa practica?</string>
 	<string name="confirmDeletionTitle">Confirmar</string>
-	<string name="scheduled">Proyectado:</string>
-    <string name="completed">Completado:</string>
-	<string name="howMuch">¿Cuanto adjuntar?</string>
+	<string name="scheduled">Planeado:</string>
+    <string name="completed">, Completado:</string>
+	<string name="howMuch">¿Adjuntar cuántos?</string>
 	<string name="stopTimer">parar el reloj</string>
     <string name="startTimer">iniciar el reloj</string>
-	<string name="addMala">Adjuntar una Mala</string>
+	<string name="addMala">Adjuntar un Mala</string>
 	<string name="setMalaCount">Nuevo tamaño de mala</string>
+	
+	<string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html</string>
+	<string name="about">Sobre...</string>
+    <string name="hi">Hola!</string>
+    <string name="version">v4 Mantra\n\nProgramación de Doo Reelkow\n Traducción a alemán y español \nde Philipp Rollinger\n\nKarmapa Chenno!</string>
+    <string name="support">Soporte/Discussión→</string>
+    <string name="support_web_warning">Ir al blog del app</string>
+    <string name="oneBeadHeptic">Diferente Vibración</string>
+    <string name="oneBeadHepticSummary">Usa diferente estampado en cada 10° y 50° \"perla\"</string>
+    <string name="dimNight">Bajar las luces al anochecer</string>
+    <string name="dimNightSummary">en Ventana de sesión se disminuirán las luces durante la meditación tardía</string>
+    <string name="versionInfo">Versión</string>
+    <string name="postInstallWelcome">Bienvenido al nuevo \"Rastreador de Meditación\".
+    \n\nLa proxima versión va a incluir una función de sincronización con \"Documentos de Google\". Para que todo funcione bien les pido su ayuda. Por favor, ayudenos con más retroalimentación de su parte. Visiten el enlace abajo (también en Configuración/Sobre...) y apliquen a la prueba beta o escrébanos un comentario.
+    \n\nVuestro, Doo Reelkow.</string>
 </resources>
