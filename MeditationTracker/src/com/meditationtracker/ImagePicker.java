@@ -44,7 +44,8 @@ public class ImagePicker extends BaseActivity
 		}
 		else 
 		{
-			startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), SELECT_IMAGE);
+			//startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), SELECT_IMAGE);
+			startActivityForResult(new Intent(Intent.ACTION_PICK).setType("image/*"), SELECT_IMAGE);
 		}
 	}
 

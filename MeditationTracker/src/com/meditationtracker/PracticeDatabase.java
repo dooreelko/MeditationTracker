@@ -1,6 +1,5 @@
 package com.meditationtracker;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,10 +13,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.provider.BaseColumns;
-import android.util.Log;
 
 public class PracticeDatabase {
-	private static final String MTRK_LOG_KEY = "MTRK";
+//	private static final String MTRK_LOG_KEY = "MTRK";
 	private static final String DBNAME = "MediTracker";
 	private static final int DBVERSION = 1;
 
