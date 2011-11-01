@@ -58,7 +58,7 @@
 	<string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html</string>
 	<string name="about">Sobre...</string>
     <string name="hi">Hola!</string>
-    <string name="version">v4 Mantra
+    <string name="version">v5 \'108\'
     \n\nProgramación de Doo Reelkow.
     \nTraducción a alemán y español de Philipp Rollinger,
     a polaco: Kamil Albrycht, a ucrania, pruebas y gran ayuda: Vika Onischenko.
@@ -70,7 +70,7 @@
     <string name="dimNight">Bajar las luces al anochecer</string>
     <string name="dimNightSummary">en Ventana de sesión se disminuirán las luces durante la meditación tardía</string>
     <string name="versionInfo">Versión</string>
-    <string name="postInstallWelcome">Bienvenido al nuevo \"Rastreador de Meditación\".
+    <!-- string name="postInstallWelcome">Bienvenido al nuevo \"Rastreador de Meditación\".
     \n\nLa proxima versión va a incluir una función de sincronización con \"Documentos de Google\". Para que todo funcione bien les pido su ayuda. Por favor, ayudenos con más retroalimentación de su parte. Visiten el enlace abajo (también en Configuración/Sobre...) y apliquen a la prueba beta o escrébanos un comentario.
-    \n\nVuestro, Doo Reelkow.</string>
+    \n\nVuestro, Doo Reelkow.</string-->
 </resources>

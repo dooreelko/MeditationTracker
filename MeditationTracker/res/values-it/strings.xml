@@ -61,8 +61,8 @@
 	</string>
 	<string name="about">Su...</string>
 	<string name="hi">Ciao!</string>
-	<string name="version">v4 Mantra\n\n
-		Scritta da Doo Reelkow.\n
+	<string name="version">v5 \'108\'
+	    \n\nScritta da Doo Reelkow.\n
 		grazie mille a Philipp Rollinger e Kamil Albrycht per i traduzioni, e a Vika
 		Onischenko per testing, tradizione ed aiuto enorme.
 		\n\n
@@ -78,11 +78,11 @@
 	<string name="dimNightSummary">Scurisce il schermo del sessione durante i sessioni
 		serate</string>
 	<string name="versionInfo">Versione</string>
-	<string name="postInstallWelcome">Bienvenutti al nuovo Meditation Tracker.\n\n
+	<!-- string name="postInstallWelcome">Bienvenutti al nuovo Meditation Tracker.\n\n
 		La versione prossima avrà sincronizzazione coi Google documenti e per
 		farlo funzionare ho bisogno di vostro aiuto.
 		Anche mi interessa tante il vostro opinione. Quindi sarei felice se
 		visitate a volte il indirizzo su e vi scritte per
 		beta-testing oppure semplice lasciate i vostri commenti.\n\n
-		Vostro, Doo Reelkow.</string>
+		Vostro, Doo Reelkow.</string-->
 </resources>

@@ -59,7 +59,7 @@
 	</string>
 	<string name="about">Über...</string>
 	<string name="hi">Hi!</string>
-	<string name="version">v4 Mantra
+	<string name="version">v5 \'108\'
 		\n\nProgrammierung von Doo Reelkow.
 		\nÜbersetzung auf Deutsch und Spanisch von Philipp Rollinger, Polnisch: Kamil
 		Albrycht. Ukrainisch, Testing und riesige Hilfe: Vika Onischenko.
@@ -74,11 +74,8 @@
 		abgeblendet</string>
 	<string name="versionInfo">Version</string>
 	<string name="postInstallWelcome">Willkommen zum neuen Meditations Tracker.
-		\n\nDie nächste Version wird eine Synchronisierungsfunktion mit \"Google
-		Documents\" beinhalten. Damit es für uns alle richtig funktioniert,
-		bitte ich euch um eure Hilfe. Bitte helft uns mit mehr Feedback von
-		euch. Bitte besucht den unten stehenden Link (auch unter
-		Einstellung/Über...) und meldet euch freiwillig zum Beta-Test oder
-		schreibt einen Kommentar.
-		\n\nEuer, Doo Reelkow.</string>
+		\n\nDas ist immer noch nicht die \"Google
+		Documents\" version. Das einzelne was geändert wird ist besseres support für
+		den übungsbildwahl. Und dass ist die letzte mit support für android 1.5.
+		\n\nGrüss, Doo Reelkow.</string>
 </resources>

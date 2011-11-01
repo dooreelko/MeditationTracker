@@ -55,7 +55,7 @@
 	<string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html</string>
 	<string name="about">O programie...</string>
 	<string name="hi">Witaj!</string>
-	<string name="version">v4 Mantra
+	<string name="version">v5 \'108\'
 	\n\nAutor: Doo Reelkow
 	\nTłumaczenie: Philipp Rollinger i Kamil Albrycht
 	\nTesty, tłumaczenie: Vika Onischenko
@@ -67,11 +67,11 @@
 	<string name="dimNight">Przyciemnij w porze nocnej</string>
 	<string name="dimNightSummary">Przyciemnij ekran podczas późnych medytacji</string>
 	<string name="versionInfo">wersja</string>
-	<string name="postInstallWelcome">Witaj w nowym meditation tracker.\n\nNastępna wersja będzie zawierać
+	<!-- string name="postInstallWelcome">Witaj w nowym meditation tracker.\n\nNastępna wersja będzie zawierać
 		opcję synchronizacji z kontem Google documents. 
 		Wasza pomoc i komentarze są mile widziane. Poza tym każde wsparcie z waszej 
 		strony jest bardzo cenne. Będe wdziędzny za odwiedziny linka poniżej 
 		(umieszczony również w ustawieniach/o programie)
 		poszukujemy ludzi do testowania. 
-		\n\nDoo Reelkow.</string>
+		\n\nDoo Reelkow.</string-->
 </resources>
