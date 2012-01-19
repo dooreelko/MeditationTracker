@@ -13,7 +13,7 @@ import android.os.ParcelFileDescriptor;
 public class PracticeImageProvider extends ContentProvider
 {
 	private static final String NOT_SUPPORTED_BY_THIS_PROVIDER = "Not supported by this provider";
-	static final String URI_PREFIX = "content://com.meditationtracker.imageProvider";
+	public static final String URI_PREFIX = "content://com.meditationtracker.imageProvider";
 
 	public static String constructUri(String url)
 	{
@@ -31,33 +31,6 @@ public class PracticeImageProvider extends ContentProvider
 		{
 			file = new File(context.getFilesDir() + File.separator + file.getAbsolutePath());
 		}
-
-		/*
-		//TODO: DO I WANT THIS AT ALL?
-		 * NO
-		
-		String fileName = file.getName();
-		if (!fileName.startsWith("img") || !fileName.endsWith(".jpeg") && !file.exists())
-		{
-
-			if (context != null)
-			{
-				try
-				{
-					Field f = R.drawable.class.getField(fileName);
-
-					BitmapDrawable bitDrawable = (BitmapDrawable) context.getResources().getDrawable((Integer) f.get(null));
-					FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
-					bitDrawable.getBitmap().compress(Bitmap.CompressFormat.JPEG, 95, fos);
-					fos.close();
-				} catch (Exception e)
-				{
-					e.printStackTrace();
-					throw new FileNotFoundException("You dare not accessing file " + uri);
-				}
-			} else
-				throw new FileNotFoundException("You dare not accessing file " + uri);
-		}*/
 
 		ParcelFileDescriptor parcel = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY);
 		return parcel;

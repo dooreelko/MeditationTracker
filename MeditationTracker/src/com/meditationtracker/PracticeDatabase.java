@@ -16,7 +16,7 @@ import android.provider.BaseColumns;
 
 public class PracticeDatabase {
 //	private static final String MTRK_LOG_KEY = "MTRK";
-	private static final String DBNAME = "MediTracker";
+	public static final String DBNAME = "MediTracker";
 	private static final int DBVERSION = 1;
 
 	private static final String PRACTICE_TABLE_NAME = "Practices";

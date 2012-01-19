@@ -3,6 +3,7 @@ package com.meditationtracker;
 import java.util.Calendar;
 
 import com.meditationtracker.controls.MenuBar;
+import com.meditationtracker.sync.backup.BackupManagerWrapper;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -215,6 +216,7 @@ public class PracticeActivity extends BaseActivity
 			}
 		}
 
+		new BackupManagerWrapper(this).dataChanged();
 		updateView();
 	}
 
