@@ -13,15 +13,15 @@
 		android:layout_height="fill_parent" android:orientation="horizontal">
 
 		<ScrollView android:id="@+id/ScrollView01"
-			android:background="#ffffff" android:keepScreenOn="true"
-			android:layout_height="wrap_content" android:layout_width="wrap_content">
-			<LinearLayout android:layout_height="fill_parent"
+			android:keepScreenOn="true"
+			android:layout_height="wrap_content" android:layout_width="wrap_content" android:paddingRight="10dp">
+			<LinearLayout android:layout_height="wrap_content"
 				android:background="#ffffff" android:orientation="vertical"
-				android:layout_width="fill_parent" android:padding="10px">
+				android:layout_width="fill_parent">
 
 				<ImageView android:layout_height="wrap_content"
-					android:src="@drawable/karmapa" android:padding="10dip" android:id="@+id/imgPractice"
-					android:layout_width="wrap_content" android:layout_gravity="center"></ImageView>
+					android:src="@drawable/karmapa" android:id="@+id/imgPractice"
+					android:layout_width="wrap_content" android:layout_gravity="center" android:paddingLeft="10dp"></ImageView>
 				<TextView android:layout_width="wrap_content"
 					android:layout_height="wrap_content" android:layout_gravity="center"
 					android:text="10:00:00" android:textSize="35sp" android:id="@+id/textTimer"

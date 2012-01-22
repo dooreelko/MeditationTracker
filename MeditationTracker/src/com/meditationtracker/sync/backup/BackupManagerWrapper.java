@@ -10,6 +10,7 @@ public class BackupManagerWrapper {
 	public BackupManagerWrapper(Context context) {
 		try {
 			instance = new RealBackupManager(context);
+			Log.d("MTRK", "Can do backup ops");
 		}catch (VerifyError e) {
 			Log.d("MTRK", "Will skip backup ops");
 			instance = new DummyBackupManager(context);

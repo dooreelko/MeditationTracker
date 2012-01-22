@@ -4,49 +4,22 @@
 
 	android:layout_width="fill_parent" android:padding="6dip" android:layout_height="wrap_content">
 
-	<!--
-
-		?android:attr/listPreferredItemHeight <ImageView
-		android:id="@+id/icon" android:src="@drawable/icon_refuge"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"/> <ImageView
-		android:id="@+id/ImageView01" android:layout_height="wrap_content"
-		android:src="@drawable/more" android:layout_alignParentRight="true"
-		android:layout_alignParentTop="true"
-		android:layout_width="wrap_content"
-		android:layout_centerVertical="true"></ImageView> <TextView
-		android:id="@+id/secondLine" android:singleLine="true"
-		android:text="Simple application that shows how to use RelativeLayout
-		and let's make it longer than usual"
-		android:layout_width="wrap_content"
-		android:layout_alignParentBottom="true" android:layout_height="26dip"
-		android:layout_toRightOf="@id/icon" android:ellipsize="marquee"/>
-
-		<TextView android:layout_height="wrap_content"
-
-		android:layout_alignParentRight="true"
-		android:layout_alignParentTop="true"
-		android:layout_above="@id/secondLine"
-		android:gravity="center_vertical" android:text="My Application"
-		android:layout_alignWithParentIfMissing="true"
-		android:layout_toRightOf="@id/icon"
-		android:layout_width="wrap_content"/>
-	-->
-
 	<ImageView android:layout_width="wrap_content" android:src="@drawable/icon_refuge"
 		android:layout_height="wrap_content" android:id="@+id/practiceImg"
 		android:scaleType="center"></ImageView>
 
-	<ImageView android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:src="@drawable/more"
-		android:layout_alignParentRight="true" android:id="@+id/imgMore"></ImageView>
-
-	<TextView android:layout_alignParentTop="true"
-		android:layout_height="wrap_content" android:paddingLeft="6dip"
-		android:textStyle="bold" android:textColor="#000000" android:textSize="25sp"
-		android:layout_toRightOf="@id/practiceImg" android:id="@+id/practiceTitle"
-		android:text="Refuge" android:layout_width="fill_parent"
-		android:layout_toLeftOf="@id/imgMore"></TextView>
+	<TextView
+	    android:id="@+id/practiceTitle"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentTop="true"
+	    android:layout_toRightOf="@id/practiceImg"
+	    android:paddingLeft="6dip"
+	    android:text="Refuge"
+	    android:textColor="#000000"
+	    android:textSize="25sp"
+	    android:textStyle="bold" >
+</TextView>
 
 
 	<TextView android:paddingLeft="6dip" android:textColor="#909090"

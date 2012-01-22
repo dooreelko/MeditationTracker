@@ -3,7 +3,6 @@ package com.meditationtracker.controls;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
@@ -60,7 +59,7 @@ public class NoScrollListView extends ListView
 		if (newChildHeight != 0)
 			fullHeight = getListPaddingTop() + getListPaddingBottom() +  /*getVerticalFadingEdgeLength() * 2*/ + newChildHeight;
 
-		Log.d("MTRK", String.format("Measured. Cnt: %d, ChildCnt: %d, childHeight: %d, fullHeight: %d", getCount(), getChildCount(), childHeight, fullHeight));
+//		Log.d("MTRK", String.format("Measured. Cnt: %d, ChildCnt: %d, childHeight: %d, fullHeight: %d", getCount(), getChildCount(), childHeight, fullHeight));
 		setMeasuredDimension(getMeasuredWidth(), fullHeight);
 	}
 	
@@ -68,21 +67,21 @@ public class NoScrollListView extends ListView
 
 	@Override
 	public boolean requestChildRectangleOnScreen(View child, Rect rect, boolean immediate) {
-		Log.d("MTRK", "=====    requestChildRectangleOnScreen");
+//		Log.d("MTRK", "=====    requestChildRectangleOnScreen");
 		forceRelayoutIfNeeded();
 		return super.requestChildRectangleOnScreen(child, rect, immediate);
 	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
-		Log.d("MTRK", "=====    onTouchEvent");
+//		Log.d("MTRK", "=====    onTouchEvent");
 		forceRelayoutIfNeeded();
 		return super.onTouchEvent(ev);
 	}
 
 	@Override
 	protected void layoutChildren() {
-		Log.d("MTRK", "=====    layoutChildren");
+//		Log.d("MTRK", "=====    layoutChildren");
 		super.layoutChildren();
 		
 		forceRelayoutIfNeeded();
@@ -90,7 +89,7 @@ public class NoScrollListView extends ListView
 
 	private void forceRelayoutIfNeeded() {
 		if (assumedMeasurements) {
-			Log.d("MTRK", "Forcing relayout");
+//			Log.d("MTRK", "Forcing relayout");
 			requestLayout();
 		}
 	}

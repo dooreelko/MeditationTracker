@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/LinearLayout01" android:background="#ffffff" android:layout_width="fill_parent" android:orientation="vertical" android:layout_height="fill_parent">
+	android:id="@+id/LinearLayout01" android:layout_width="fill_parent" android:orientation="vertical" android:layout_height="fill_parent">
 
 	<com.meditationtracker.controls.MenuBar
 		android:layout_height="wrap_content" android:layout_width="fill_parent"
 		android:id="@+id/menuBar" />
 
 	<ScrollView android:id="@+id/ScrollView01"
-		android:layout_width="fill_parent" android:background="#ffffff" android:keepScreenOn="true" android:layout_height="wrap_content">
-		<LinearLayout android:layout_height="fill_parent"
-			android:layout_width="fill_parent" android:background="#ffffff"
+		android:layout_width="fill_parent" android:keepScreenOn="true" android:layout_height="wrap_content">
+		<LinearLayout android:layout_height="wrap_content"
+			android:layout_width="fill_parent" 
 			android:orientation="vertical">
 
 			<ImageView android:layout_height="wrap_content"

@@ -57,7 +57,7 @@
 
 	<string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html
 	</string>
-	<string name="about">Über...</string>
+	<string name="about">Über&#8230;</string>
 	<string name="hi">Hi!</string>
 	<string name="version">v5 \'108\'
 		\n\nProgrammierung von Doo Reelkow.
@@ -73,9 +73,11 @@
 	<string name="dimNightSummary">Sitzungsfenster wird während später Meditationen
 		abgeblendet</string>
 	<string name="versionInfo">Version</string>
-	<string name="postInstallWelcome">Willkommen zum neuen Meditations Tracker.
+	<string name="postInstallWelcome">Grüezi und willkommen zum neuen Meditations Tracker.
 		\n\nDas ist immer noch nicht die \"Google
-		Documents\" version. Das einzelne was geändert wird ist besseres support für
-		den übungsbildwahl. Und dass ist die letzte mit support für android 1.5.
-		\n\nGrüss, Doo Reelkow.</string>
+		Documents\" version. Besser. Ab jetzt Meditationen und deren Stand wird automatisch synchroniziert in neuen
+		Geräten durch google cloud. Dass heisst dass Datenexport für Analyse ist jetzt etwa unnötig aber vielleicht
+		mache ich es trotzdem. Später.
+		\n\nMeditiern!
+		\n\nGrüsse, Doo Reelkow.</string>
 </resources>

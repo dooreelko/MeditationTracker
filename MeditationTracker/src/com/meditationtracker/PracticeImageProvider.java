@@ -37,13 +37,25 @@ public class PracticeImageProvider extends ContentProvider
 	}
 
 	@Override
-	public int delete(Uri uri, String selection, String[] selectionArgs)
+	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)
 	{
 		throw new UnsupportedOperationException(NOT_SUPPORTED_BY_THIS_PROVIDER);
 	}
 
 	@Override
 	public String getType(Uri uri)
+	{
+		return android.provider.MediaStore.Images.Media.CONTENT_TYPE;
+	}
+
+	@Override
+	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs)
+	{
+		throw new UnsupportedOperationException(NOT_SUPPORTED_BY_THIS_PROVIDER);
+	}
+
+	@Override
+	public int delete(Uri uri, String selection, String[] selectionArgs)
 	{
 		throw new UnsupportedOperationException(NOT_SUPPORTED_BY_THIS_PROVIDER);
 	}
@@ -59,17 +71,4 @@ public class PracticeImageProvider extends ContentProvider
 	{
 		return true;
 	}
-
-	@Override
-	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)
-	{
-		throw new UnsupportedOperationException(NOT_SUPPORTED_BY_THIS_PROVIDER);
-	}
-
-	@Override
-	public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs)
-	{
-		throw new UnsupportedOperationException(NOT_SUPPORTED_BY_THIS_PROVIDER);
-	}
-
 }

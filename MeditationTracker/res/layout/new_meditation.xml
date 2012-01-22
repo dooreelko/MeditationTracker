@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:doo="http://schemas.durilka.com/doo"
-	android:layout_height="fill_parent" android:background="#ffffff"
+	android:layout_height="fill_parent" 
 	android:layout_width="fill_parent">
-	<LinearLayout android:background="#ffffff"
+	<LinearLayout 
 		android:layout_width="fill_parent" android:orientation="vertical"
-		android:layout_height="fill_parent">
+		android:layout_height="wrap_content">
 
 		<com.meditationtracker.controls.MenuBar
 			android:layout_height="wrap_content" android:layout_width="fill_parent"
@@ -18,30 +18,27 @@
 			android:scaleType="fitCenter"></ImageView>
 
 		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:layout_below="@id/practiceImage"
+			android:layout_height="wrap_content" 
 			android:id="@+id/titlePracticeName" android:text="@string/practiceName"
 			android:layout_marginLeft="10dip" android:textColor="#000000"></TextView>
 		<EditText android:text="" android:id="@+id/textPracticeName"
 			android:layout_height="wrap_content" android:layout_width="fill_parent"
-			android:layout_below="@id/titlePracticeName"
-			android:layout_marginLeft="10dip" android:layout_marginRight="10dip"></EditText>
+			android:layout_marginLeft="10dip" android:layout_marginRight="10dip" android:inputType="text|textCapSentences|textAutoCorrect"></EditText>
 
 		<LinearLayout android:id="@+id/LinearLayout03"
-			android:layout_height="wrap_content" android:layout_width="fill_parent">
+			android:layout_height="wrap_content" android:layout_width="fill_parent" android:baselineAligned="false">
 			<LinearLayout android:id="@+id/LinearLayout01"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:orientation="vertical" android:layout_weight="1">
 				<TextView android:layout_width="wrap_content"
-					android:layout_height="wrap_content" android:layout_below="@id/textPracticeName"
+					android:layout_height="wrap_content" 
 					android:id="@+id/titleRepetitionCount" android:text="@string/requiredRepetitions"
-					android:layout_marginLeft="10dip" android:layout_weight="1"
+					android:layout_marginLeft="10dip" 
 					android:textColor="#000000"></TextView>
 
 
 				<EditText android:text="" android:id="@+id/textRepetitionCount"
-					android:layout_height="wrap_content" android:layout_below="@id/titleRepetitionCount"
-					android:layout_alignRight="@id/titleRepetitionCount"
-					android:layout_alignLeft="@id/titleRepetitionCount"
+					android:layout_height="wrap_content" 
 					android:layout_width="fill_parent" android:layout_marginLeft="10dip"
 					android:inputType="number"></EditText>
 			</LinearLayout>
@@ -50,25 +47,21 @@
 				android:layout_width="wrap_content" android:layout_height="wrap_content"
 				android:orientation="vertical" android:layout_weight="1">
 				<TextView android:layout_width="wrap_content"
-					android:layout_height="wrap_content" android:layout_below="@id/textPracticeName"
+					android:layout_height="wrap_content" 
 					android:id="@+id/titleCompletedCount" android:text="@string/completedRepetitions"
-					android:layout_toLeftOf="@id/titleRepetitionCount"
-					android:layout_alignParentRight="true" android:layout_marginRight="10dip"
-					android:layout_weight="1" android:textColor="#000000"></TextView>
+					android:layout_marginRight="10dip"
+					android:textColor="#000000"></TextView>
 
 				<EditText android:text="" android:id="@+id/textCompletedRepetitions"
-					android:layout_height="wrap_content" android:layout_below="@id/titleCompletedCount"
-					android:layout_alignParentRight="true" android:layout_toRightOf="@id/textRepetitionCount"
-					android:layout_alignLeft="@id/titleCompletedCount"
-					android:layout_alignRight="@id/titleCompletedCount"
+					android:layout_height="wrap_content" 
 					android:layout_width="fill_parent" android:layout_marginRight="10dip"
-					android:layout_weight="0.5" android:inputType="number"></EditText>
+					android:inputType="number"></EditText>
 			</LinearLayout>
 
 		</LinearLayout>
 
 		<TextView android:layout_width="wrap_content"
-			android:layout_height="wrap_content" android:layout_marginLeft="10dip" android:layout_weight="1"
+			android:layout_height="0dip" android:layout_marginLeft="10dip" android:layout_weight="1"
 			android:textColor="#000000" android:id="@+id/titleMalaSize" android:text="@string/customMalaSize"></TextView>
 
 

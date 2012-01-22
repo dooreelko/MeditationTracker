@@ -62,7 +62,7 @@ containing a value of this type.
         public static final int LinearLayout01=0x7f090005;
         public static final int LinearLayout02=0x7f090012;
         public static final int LinearLayout03=0x7f09000f;
-        public static final int RelativeLayout01=0x7f09002b;
+        public static final int RelativeLayout01=0x7f09002c;
         public static final int ScrollView01=0x7f090004;
         public static final int TableLayout01=0x7f090020;
         public static final int TableLayout02=0x7f090024;
@@ -80,7 +80,6 @@ containing a value of this type.
         public static final int editPracticeButton=0x7f09001e;
         public static final int headerLayout=0x7f090000;
         public static final int imageSourceGroup=0x7f09003b;
-        public static final int imgMore=0x7f09002d;
         public static final int imgPractice=0x7f09001f;
         public static final int linearLayout1=0x7f090002;
         public static final int menuBar=0x7f09000b;
@@ -89,7 +88,7 @@ containing a value of this type.
         public static final int openPractice=0x7f09003e;
         public static final int pickerScheduledEndDate=0x7f090033;
         public static final int practiceImage=0x7f09000c;
-        public static final int practiceImg=0x7f09002c;
+        public static final int practiceImg=0x7f09002d;
         public static final int practiceProgressBar=0x7f090023;
         public static final int practiceTitle=0x7f09002e;
         public static final int prefTimePicker=0x7f090038;
@@ -110,7 +109,7 @@ containing a value of this type.
         public static final int textMalaSize=0x7f090016;
         public static final int textPracticeName=0x7f09000e;
         public static final int textRepetitionCount=0x7f090011;
-        public static final int textScheduledEndDate=0x7f09002a;
+        public static final int textScheduledEndDate=0x7f09002b;
         public static final int textScheduledForToday=0x7f090025;
         public static final int textTimer=0x7f090034;
         public static final int textVersion=0x7f090003;
@@ -124,6 +123,7 @@ containing a value of this type.
         public static final int titlePracticeName=0x7f09000d;
         public static final int titleRepetitionCount=0x7f090010;
         public static final int titleReqRepetitions=0x7f090021;
+        public static final int titleScheduledCompletionDate=0x7f09002a;
         public static final int titleScheduledForToday=0x7f090026;
     }
     public static final class layout {

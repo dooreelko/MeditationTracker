@@ -11,7 +11,7 @@
     <string name="editPractice">Edit meditation</string>
     <string name="countDown">Countdown</string>
     <string name="stopWatch">Stopwatch</string>
-    <string name="useStopWatch">Stop watch or countdown?</string>
+    <string name="useStopWatch">Stopwatch or countdown?</string>
     <string name="timerNotification">Play sound</string>
     <string name="sessionLength">Session length min.</string>
     <string name="malaSize">Mala size</string>
@@ -57,7 +57,7 @@
     <string name="setMalaCount">Set count</string>
     <string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html
 	</string>
-    <string name="about">About...</string>
+    <string name="about">About&#8230;</string>
     <string name="hi">Hi!</string>
     <string name="version">v5 \'108\'
         \n\nWritten by Doo Reelkow.\n
@@ -74,10 +74,12 @@
     <string name="dimNightSummary">Dim session screen during late meditations</string>
     <string name="versionInfo">Version</string>
     <string name="postInstallWelcome">Welcome to the new meditation tracker.
-        \n\nThis is not the promised big google-synchronising release. In fact the only change is 
-	    hopefully final fix for image picking(please check if it still works) and 
-	    decision that this is the last release supporting android 1.5.
-	    \nKeep up your practices!
+        \n\nThis is not the promised big google-synchronising release. 
+        It\'s better. It\'s a small google-synchronizing release. For devices running 2.2 and up 
+        Meditation Tracker will now keep its state in android settings cloud. This means that
+        when you download this app to the new phone it\'ll automatically synchronize your practices and progress.
+        \nExporting practice entries for reporting and graphs is postponed and I guess is somewhat irrelevant now.
+	    \n\nKeep up your practices!
 	    \n\nYours, Doo Reelkow.</string>
 
 </resources>
