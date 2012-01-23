@@ -6,7 +6,7 @@
 
 	<ImageView android:layout_width="wrap_content" android:src="@drawable/icon_refuge"
 		android:layout_height="wrap_content" android:id="@+id/practiceImg"
-		android:scaleType="center"></ImageView>
+		android:scaleType="fitCenter" android:minWidth="35dp" android:minHeight="46dp"></ImageView>
 
 	<TextView
 	    android:id="@+id/practiceTitle"
