@@ -339,7 +339,20 @@ public class PracticeDatabase {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+/*			R.drawable.refuge, R.drawable.icon_refuge,
+			R.drawable.diamond_mind_big, R.drawable.icon_diamond_mind,
+			R.drawable.mandala_offering_big, R.drawable.icon_mandala_offering,
+			R.drawable.guru_yoga_big, R.drawable.icon_guru_yoga,
+			R.drawable.karmapa, R.drawable.icon_karmapa*/
 
+			//TODO
 		}
+	}
+
+	public void patchBuiltInPictures(int refuge, int iconRefuge, int diamondMindBig, int iconDiamondMind,
+			int mandalaOfferingBig, int iconMandalaOffering, int guruYogaBig, int iconGuruYoga, int karmapa,
+			int iconKarmapa) {
+		// TODO Auto-generated method stub
+		
 	}
 }

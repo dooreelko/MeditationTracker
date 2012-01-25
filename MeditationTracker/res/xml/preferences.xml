@@ -21,7 +21,10 @@
 
 	<CheckBoxPreference android:key="@string/prefDimNight"
 		android:title="@string/dimNight" android:defaultValue="true"
-		android:summary="@string/dimNightSummary"></CheckBoxPreference>
+		android:summary="@string/dimNightSummary" android:shouldDisableView="true"></CheckBoxPreference>
+	<com.meditationtracker.preferences.SliderPreference android:key="@string/prefDimNightValue"
+	    android:dependency="@string/prefDimNight" android:disableDependentsState="true"
+		android:defaultValue="20" doo:min="3" doo:max="100"></com.meditationtracker.preferences.SliderPreference>
 
 	<PreferenceCategory android:title="@string/sessionEndNotification">
 		<CheckBoxPreference android:title="@string/timerNotification"

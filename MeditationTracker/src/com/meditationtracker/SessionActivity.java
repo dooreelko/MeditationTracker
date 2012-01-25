@@ -106,11 +106,13 @@ public class SessionActivity extends BaseActivity {
 
 		boolean dimAtNight = preferences.getBoolean(getString(R.string.prefDimNight), true);
 		int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-		boolean isNight = hour > 18 || hour < 9;
+		boolean isNight = hour >= 18 || hour < 9;
 
 		if (dimAtNight && isNight) { // blind'n'night mode
 			WindowManager.LayoutParams lp = getWindow().getAttributes();
-			lp.screenBrightness = 0.03f;
+			float dimAtNightValue = preferences.getInt(getString(R.string.prefDimNightValue), 3);
+			
+			lp.screenBrightness = dimAtNightValue/100;
 			getWindow().setAttributes(lp);
 		}
 
