@@ -1,50 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:doo="http://schemas.android.com/apk/res/com.meditationtracker">
+    xmlns:doo="http://schemas.android.com/apk/res/com.meditationtracker" >
 
-	<CheckBoxPreference android:title="@string/showNgondro"
-		android:key="@string/prefShowNgondro" android:defaultValue="true"></CheckBoxPreference>
-	<com.meditationtracker.preferences.ChattyIntPreference
-		android:defaultValue="108" android:title="@string/malaSize"
-		android:key="@string/prefMalaSize" android:inputType="number"
-		android:dialogTitle="@string/malaSize" />
-	<com.meditationtracker.preferences.ChattyIntPreference
-		android:title="@string/sessionLength" android:inputType="number"
-		android:key="@string/prefSessionLength" android:defaultValue="10" />
-	<CheckBoxPreference android:summaryOn="@string/stopWatch"
-		android:title="@string/useStopWatch" android:summaryOff="@string/countDown"
-		android:key="@string/prefUseStopWatch" android:defaultValue="true"></CheckBoxPreference>
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="@string/prefShowNgondro"
+        android:title="@string/showNgondro" >
+    </CheckBoxPreference>
 
-	<CheckBoxPreference android:key="@string/prefOneBeadHeptic"
-		android:title="@string/oneBeadHeptic" android:defaultValue="true"
-		android:summary="@string/oneBeadHepticSummary"></CheckBoxPreference>
+    <com.meditationtracker.preferences.ChattyIntPreference
+        android:defaultValue="108"
+        android:dialogTitle="@string/malaSize"
+        android:inputType="number"
+        android:key="@string/prefMalaSize"
+        android:title="@string/malaSize" />
+    <com.meditationtracker.preferences.ChattyIntPreference
+        android:defaultValue="10"
+        android:inputType="number"
+        android:key="@string/prefSessionLength"
+        android:title="@string/sessionLength" />
 
-	<CheckBoxPreference android:key="@string/prefDimNight"
-		android:title="@string/dimNight" android:defaultValue="true"
-		android:summary="@string/dimNightSummary" android:shouldDisableView="true"></CheckBoxPreference>
-	<com.meditationtracker.preferences.SliderPreference android:key="@string/prefDimNightValue"
-	    android:dependency="@string/prefDimNight" android:disableDependentsState="true"
-		android:defaultValue="20" doo:min="3" doo:max="100"></com.meditationtracker.preferences.SliderPreference>
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="@string/prefUseStopWatch"
+        android:summaryOff="@string/countDown"
+        android:summaryOn="@string/stopWatch"
+        android:title="@string/useStopWatch" >
+    </CheckBoxPreference>
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="@string/prefOneBeadHeptic"
+        android:summary="@string/oneBeadHepticSummary"
+        android:title="@string/oneBeadHeptic" >
+    </CheckBoxPreference>
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="@string/prefDimNight"
+        android:shouldDisableView="true"
+        android:summary="@string/dimNightSummary"
+        android:title="@string/dimNight" >
+    </CheckBoxPreference>
 
-	<PreferenceCategory android:title="@string/sessionEndNotification">
-		<CheckBoxPreference android:title="@string/timerNotification"
-			android:key="@string/prefTimerSound" android:shouldDisableView="true"
-			android:disableDependentsState="false" android:defaultValue="false"></CheckBoxPreference>
-		<com.meditationtracker.preferences.ChattyRingtonePreference
-			android:showDefault="true" android:key="@string/prefBellSound"
-			android:ringtoneType="all" android:dependency="@string/prefTimerSound"
-			android:title="@string/ringtone" android:showSilent="true" />
-		<CheckBoxPreference android:key="@string/prefTimerBuzz"
-			android:title="@string/buzz" android:defaultValue="false"></CheckBoxPreference>
-	</PreferenceCategory>
-	<PreferenceCategory android:title="@string/info">
-		<com.meditationtracker.preferences.ActionPreference
-			doo:actor="com.meditationtracker.SupportActor" doo:param="@string/appUrl"
-			android:summary="@string/support_web_warning" android:title="@string/support" />
-		<com.meditationtracker.preferences.ShowDialogPreference
-			android:title="@string/about" android:dialogLayout="@layout/about" />
-		<com.meditationtracker.preferences.ChattyEditTextPreference
-			android:title="@string/versionInfo" android:key="@string/prefVersion"
-			android:summary="blabla" android:enabled="false" />
-	</PreferenceCategory>
+    <com.meditationtracker.preferences.SliderPreference
+        doo:actor="com.meditationtracker.preferences.Dimmer"
+        android:defaultValue="10"
+        android:dependency="@string/prefDimNight"
+        android:disableDependentsState="true"
+        android:key="@string/prefDimNightValue"
+        doo:max="50"
+        doo:min="3" >
+    </com.meditationtracker.preferences.SliderPreference>
+
+    <PreferenceCategory android:title="@string/sessionEndNotification" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:disableDependentsState="false"
+            android:key="@string/prefTimerSound"
+            android:shouldDisableView="true"
+            android:title="@string/timerNotification" >
+        </CheckBoxPreference>
+
+        <com.meditationtracker.preferences.ChattyRingtonePreference
+            android:dependency="@string/prefTimerSound"
+            android:key="@string/prefBellSound"
+            android:ringtoneType="all"
+            android:showDefault="true"
+            android:showSilent="true"
+            android:title="@string/ringtone" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/prefTimerBuzz"
+            android:title="@string/buzz" >
+        </CheckBoxPreference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/info" >
+        <com.meditationtracker.preferences.ActionPreference
+            doo:actor="com.meditationtracker.preferences.SupportActor"
+            doo:param="@string/appUrl"
+            android:summary="@string/support_web_warning"
+            android:title="@string/support" />
+
+        <com.meditationtracker.preferences.ShowDialogPreference
+            android:dialogLayout="@layout/about"
+            android:title="@string/about" />
+
+        <com.meditationtracker.preferences.ChattyEditTextPreference
+            android:enabled="false"
+            android:key="@string/prefVersion"
+            android:summary="blabla"
+            android:title="@string/versionInfo" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

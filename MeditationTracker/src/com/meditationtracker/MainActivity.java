@@ -43,15 +43,15 @@ public class MainActivity extends BaseActivity {
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
 		ensureNgondroDefaultsOnFirstRun();
-		
+
 		setContentView(R.layout.main);
 	}
-	
+
 	@Override
 	protected void onStart() {
 		super.onStart();
 
-		UpdateUI();
+		updateUI();
 
 		try {
 			PackageManager pm = this.getPackageManager();
@@ -63,6 +63,9 @@ public class MainActivity extends BaseActivity {
 			String lastVersion = preferences.getString(getString(R.string.prefVersion), "");
 
 			if (lastVersion.compareTo(currentVersion) != 0) {
+				ensureProperIconsPostInstall();
+				updateUI();
+				
 				Editor editor = preferences.edit();
 				editor.putString(getString(R.string.prefVersion), currentVersion);
 				editor.commit();
@@ -70,9 +73,10 @@ public class MainActivity extends BaseActivity {
 				showDialog(R.layout.post_install);
 			}
 
-		} catch (Exception ignoreme) {
+		} catch (Exception e) {
+			Log.e("MTRK", "Error while migrating", e);
 		}
-	}	
+	}
 
 	@Override
 	protected void onStop() {
@@ -95,7 +99,7 @@ public class MainActivity extends BaseActivity {
 		return dlg;
 	}
 
-	private void UpdateUI() {
+	private void updateUI() {
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
 		ListView lv = (ListView) findViewById(R.id.ngondroList);
@@ -158,6 +162,10 @@ public class MainActivity extends BaseActivity {
 		}
 	}
 
+	private void ensureProperIconsPostInstall() {
+		db().patchIcons();
+	}
+	
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main_menu, menu);
@@ -196,7 +204,7 @@ public class MainActivity extends BaseActivity {
 			break;
 		}
 
-		UpdateUI();
+		updateUI();
 	}
 
 	@Override
@@ -248,7 +256,7 @@ public class MainActivity extends BaseActivity {
 						.setPositiveButton(android.R.string.yes, new OnClickListener() {
 							public void onClick(DialogInterface dialog, int which) {
 								deletePractice(menuInfo.id);
-								UpdateUI();
+								updateUI();
 							}
 						}).setNegativeButton(android.R.string.no, null).show();
 

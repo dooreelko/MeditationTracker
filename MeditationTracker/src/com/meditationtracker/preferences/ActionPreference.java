@@ -19,9 +19,9 @@ public class ActionPreference extends Preference {
 	public ActionPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
-		TypedArray a=getContext().obtainStyledAttributes(attrs,R.styleable.ActionPreference);
-		actorClass = a.getString(R.styleable.ActionPreference_actor);
-		actionParam = a.getString(R.styleable.ActionPreference_param);
+		TypedArray a=getContext().obtainStyledAttributes(attrs,R.styleable.Attributes);
+		actorClass = a.getString(R.styleable.Attributes_actor);
+		actionParam = a.getString(R.styleable.Attributes_param);
 	}
 
 	@Override

@@ -258,24 +258,31 @@ containing a value of this type.
         public static final int preferences=0x7f040000;
     }
     public static final class styleable {
-        /** Attributes that can be used with a ActionPreference.
+        /** Attributes that can be used with a Attributes.
            <p>Includes the following attributes:</p>
            <table>
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #ActionPreference_actor com.meditationtracker:actor}</code></td><td></td></tr>
-           <tr><td><code>{@link #ActionPreference_param com.meditationtracker:param}</code></td><td></td></tr>
+           <tr><td><code>{@link #Attributes_actor com.meditationtracker:actor}</code></td><td></td></tr>
+           <tr><td><code>{@link #Attributes_max com.meditationtracker:max}</code></td><td></td></tr>
+           <tr><td><code>{@link #Attributes_min com.meditationtracker:min}</code></td><td></td></tr>
+           <tr><td><code>{@link #Attributes_param com.meditationtracker:param}</code></td><td></td></tr>
+           <tr><td><code>{@link #Attributes_text com.meditationtracker:text}</code></td><td></td></tr>
            </table>
-           @see #ActionPreference_actor
-           @see #ActionPreference_param
+           @see #Attributes_actor
+           @see #Attributes_max
+           @see #Attributes_min
+           @see #Attributes_param
+           @see #Attributes_text
          */
-        public static final int[] ActionPreference = {
-            0x7f010001, 0x7f010002
+        public static final int[] Attributes = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004
         };
         /**
           <p>This symbol is the offset where the {@link com.meditationtracker.R.attr#actor}
-          attribute's value can be found in the {@link #ActionPreference} array.
+          attribute's value can be found in the {@link #Attributes} array.
 
 
           <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
@@ -286,71 +293,10 @@ theme attribute (in the form
 containing a value of this type.
           @attr name android:actor
         */
-        public static final int ActionPreference_actor = 0;
-        /**
-          <p>This symbol is the offset where the {@link com.meditationtracker.R.attr#param}
-          attribute's value can be found in the {@link #ActionPreference} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name android:param
-        */
-        public static final int ActionPreference_param = 1;
-        /** Attributes that can be used with a MenuBar.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #MenuBar_text com.meditationtracker:text}</code></td><td></td></tr>
-           </table>
-           @see #MenuBar_text
-         */
-        public static final int[] MenuBar = {
-            0x7f010000
-        };
-        /**
-          <p>This symbol is the offset where the {@link com.meditationtracker.R.attr#text}
-          attribute's value can be found in the {@link #MenuBar} array.
-
-
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name android:text
-        */
-        public static final int MenuBar_text = 0;
-        /** Attributes that can be used with a ShowDialogPreferece.
-         */
-        public static final int[] ShowDialogPreferece = {
-            
-        };
-        /** Attributes that can be used with a SliderPreference.
-           <p>Includes the following attributes:</p>
-           <table>
-           <colgroup align="left" />
-           <colgroup align="left" />
-           <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #SliderPreference_max com.meditationtracker:max}</code></td><td></td></tr>
-           <tr><td><code>{@link #SliderPreference_min com.meditationtracker:min}</code></td><td></td></tr>
-           </table>
-           @see #SliderPreference_max
-           @see #SliderPreference_min
-         */
-        public static final int[] SliderPreference = {
-            0x7f010003, 0x7f010004
-        };
+        public static final int Attributes_actor = 1;
         /**
           <p>This symbol is the offset where the {@link com.meditationtracker.R.attr#max}
-          attribute's value can be found in the {@link #SliderPreference} array.
+          attribute's value can be found in the {@link #Attributes} array.
 
 
           <p>Must be an integer value, such as "<code>100</code>".
@@ -361,10 +307,10 @@ theme attribute (in the form
 containing a value of this type.
           @attr name android:max
         */
-        public static final int SliderPreference_max = 1;
+        public static final int Attributes_max = 4;
         /**
           <p>This symbol is the offset where the {@link com.meditationtracker.R.attr#min}
-          attribute's value can be found in the {@link #SliderPreference} array.
+          attribute's value can be found in the {@link #Attributes} array.
 
 
           <p>Must be an integer value, such as "<code>100</code>".
@@ -375,6 +321,34 @@ theme attribute (in the form
 containing a value of this type.
           @attr name android:min
         */
-        public static final int SliderPreference_min = 0;
+        public static final int Attributes_min = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.meditationtracker.R.attr#param}
+          attribute's value can be found in the {@link #Attributes} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:param
+        */
+        public static final int Attributes_param = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.meditationtracker.R.attr#text}
+          attribute's value can be found in the {@link #Attributes} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:text
+        */
+        public static final int Attributes_text = 0;
     };
 }

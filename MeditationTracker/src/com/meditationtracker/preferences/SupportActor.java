@@ -1,10 +1,9 @@
-package com.meditationtracker;
+package com.meditationtracker.preferences;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.preference.Preference;
 
-import com.meditationtracker.preferences.ActionPreference;
 
 public class SupportActor implements ActionPreference.IActor {
 

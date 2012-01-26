@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="MenuBar">
-        <attr name="text" format="string"/>
-    </declare-styleable>
-    
-    <declare-styleable name="ActionPreference">
-        <attr name="actor" format="string"/>
-        <attr name="param" format="string"/>
-    </declare-styleable>
-    
-    <declare-styleable name="ShowDialogPreferece">
+
+    <declare-styleable name="Attributes">
+        <attr name="text" format="string" />
+        <attr name="actor" format="string" />
+        <attr name="param" format="string" />
+        <attr name="min" format="integer" />
+        <attr name="max" format="integer" />
     </declare-styleable>
 
-    <declare-styleable name="SliderPreference">
-        <attr name="min" format="integer"/>
-        <attr name="max" format="integer"/>
-    </declare-styleable>
 </resources>

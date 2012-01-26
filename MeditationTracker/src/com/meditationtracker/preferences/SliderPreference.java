@@ -6,22 +6,44 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.preference.Preference;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class SliderPreference extends Preference {
-
+	public interface IScrollReactor {
+		void onScroll(int val);
+		void onStopTracking();
+		void onStartTracking(Context context);
+	}
+	
+	
 	private static final int DEFAULT = 3;
 	private int max;
+	private int min;
 	private int cur;
-
+	private String actorClass;
+	private IScrollReactor reactor = dummyReactor;
+	
 	public SliderPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		
-		TypedArray a=getContext().obtainStyledAttributes(attrs,R.styleable.ActionPreference);
-		max = a.getInteger(R.styleable.SliderPreference_max, 100);
+		TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.Attributes);
+		max = a.getInteger(R.styleable.Attributes_max, 100);
+		actorClass = a.getString(R.styleable.Attributes_actor);
+		
+		
+		if (actorClass!=null) {
+			Class<?> actor;
+			try {
+				actor = Class.forName(actorClass);
+				reactor = (IScrollReactor) actor.getConstructor((Class[])null).newInstance((Object[])null);
+			} catch (Exception e) {
+				Log.e("MTRK", "Failed creating reactor class", e);
+			}
+		} else Log.w("MTRK", "No actor for SliderPreference");
 	}
 
 	@Override
@@ -35,7 +57,7 @@ public class SliderPreference extends Preference {
 		
 		View result = super.onCreateView(parent);
 		SeekBar sb = (SeekBar) result.findViewById(R.id.prefSeekBar);
-		sb.setMax(max);
+		sb.setMax(max - min);
 		sb.setProgress(cur);
 		sb.setOnSeekBarChangeListener(seekChanged);
 
@@ -46,18 +68,34 @@ public class SliderPreference extends Preference {
 		
 		@Override
 		public void onStopTrackingTouch(SeekBar seekBar) {
-			
+			reactor.onStopTracking();
 		}
 		
 		@Override
 		public void onStartTrackingTouch(SeekBar seekBar) {
-			
+			reactor.onStartTracking(SliderPreference.this.getContext());
 		}
 		
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-			SliderPreference.this.persistInt(progress);
+			reactor.onScroll(progress+min);
+			SliderPreference.this.persistInt(progress+min);
 		}
 	};
 	
+	private final static IScrollReactor dummyReactor = new IScrollReactor() {
+		
+		@Override
+		public void onScroll(int val) {
+		}
+		
+		@Override
+		public void onStopTracking() {
+		}
+
+		@Override
+		public void onStartTracking(Context ctx) {
+			
+		}
+	};
 }

@@ -22,8 +22,8 @@ public class MenuBar extends LinearLayout {
 		
 		addView(view);
 		
-		TypedArray a=getContext().obtainStyledAttributes(attrs,R.styleable.MenuBar);
-		setText(a.getString(R.styleable.MenuBar_text));
+		TypedArray a=getContext().obtainStyledAttributes(attrs,R.styleable.Attributes);
+		setText(a.getString(R.styleable.Attributes_text));
 	}
 
 	public void setText(String text) {

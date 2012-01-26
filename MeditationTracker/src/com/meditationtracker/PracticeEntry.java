@@ -65,4 +65,16 @@ public class PracticeEntry
 //		return currentCount;
 	}
 
+	public String get(String columnId) {
+		return values.getAsString(columnId);
+	}
+	
+	/**
+	 * Careful with this axe, Eugene
+	 * @param columnId
+	 * @param value
+	 */
+	public void set(String columnId, String value) {
+		values.put(columnId, value);
+	}
 }

@@ -13,9 +13,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.provider.BaseColumns;
+import android.util.Log;
 
 public class PracticeDatabase {
-//	private static final String MTRK_LOG_KEY = "MTRK";
+	// private static final String MTRK_LOG_KEY = "MTRK";
 	public static final String DBNAME = "MediTracker";
 	private static final int DBVERSION = 1;
 
@@ -115,7 +116,6 @@ public class PracticeDatabase {
 			db = helper.getWritableDatabase();
 		}
 
-
 		if (tableColumns == null) {
 			tableColumns = new HashMap<String, Set<String>>();
 
@@ -127,7 +127,7 @@ public class PracticeDatabase {
 	public boolean isOpen() {
 		return db != null && db.isOpen();
 	}
-	
+
 	public void release() {
 		if (db != null)
 			db.close();
@@ -151,7 +151,7 @@ public class PracticeDatabase {
 	public void insertPractice(boolean isNgondro, int order, String title, String iconUrl, String thumbUrl,
 			int totalCount) {
 		SQLiteStatement insertQueryPractice = db.compileStatement(INSERT_PRACTICE_QUERY);
-		
+
 		insertQueryPractice.clearBindings();
 		insertQueryPractice.bindLong(1, isNgondro ? 1l : 0l);
 		insertQueryPractice.bindLong(2, order);
@@ -324,8 +324,12 @@ public class PracticeDatabase {
 	public Cursor getPracticesStatuses(boolean ngondroGroup) {
 		return db.rawQuery(PRACTICES_STATUS.replaceFirst("\\?", ngondroGroup ? "1" : "0"), null);
 	}
+	
+	public static SQLiteDatabase getDb() {
+		return db;
+	}
 
-	private static class MySQLiteOpenHelper extends SQLiteOpenHelper {
+	public static class MySQLiteOpenHelper extends SQLiteOpenHelper {
 		public MySQLiteOpenHelper(Context context) {
 			super(context, DBNAME, null, DBVERSION);
 		}
@@ -339,20 +343,33 @@ public class PracticeDatabase {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-/*			R.drawable.refuge, R.drawable.icon_refuge,
-			R.drawable.diamond_mind_big, R.drawable.icon_diamond_mind,
-			R.drawable.mandala_offering_big, R.drawable.icon_mandala_offering,
-			R.drawable.guru_yoga_big, R.drawable.icon_guru_yoga,
-			R.drawable.karmapa, R.drawable.icon_karmapa*/
+			patchIcons(db);
+		}
 
-			//TODO
+		public static void patchIcons(SQLiteDatabase db) {
+			Log.d("MTRK", "Patching icons for " + db);
+			
+			updateNgondroIcons(db, 1, R.drawable.refuge, R.drawable.icon_refuge);
+			updateNgondroIcons(db, 2, R.drawable.diamond_mind_big, R.drawable.icon_diamond_mind);
+			updateNgondroIcons(db, 3, R.drawable.mandala_offering_big, R.drawable.icon_mandala_offering);
+			updateNgondroIcons(db, 4, R.drawable.guru_yoga_big, R.drawable.icon_guru_yoga);
+
+			updateOtherIcons(db, R.drawable.karmapa, R.drawable.icon_karmapa);
+		}
+
+		public static void updateNgondroIcons(SQLiteDatabase db, int id, int iconId, int thumbId) {
+			db.execSQL("UPDATE " + PRACTICE_TABLE_NAME + " SET " + KEY_ICONURL + " = '" + iconId + "', "
+					+ KEY_THUMBURL + " = '" + thumbId + "' WHERE " + KEY_ICONURL + " NOT LIKE 'content%' AND " + BaseColumns._ID + " = " + id);
+		}
+
+		public static void updateOtherIcons(SQLiteDatabase db, int iconId, int thumbId) {
+			db.execSQL("UPDATE " + PRACTICE_TABLE_NAME + " SET " + KEY_ICONURL + " = '" + iconId + "', "
+					+ KEY_THUMBURL + " = '" + thumbId + "' WHERE " + KEY_ICONURL + " NOT LIKE 'content%' AND " + KEY_ISNGONDRO + " = 0");
 		}
 	}
 
-	public void patchBuiltInPictures(int refuge, int iconRefuge, int diamondMindBig, int iconDiamondMind,
-			int mandalaOfferingBig, int iconMandalaOffering, int guruYogaBig, int iconGuruYoga, int karmapa,
-			int iconKarmapa) {
-		// TODO Auto-generated method stub
-		
+
+	public void patchIcons() {
+		MySQLiteOpenHelper.patchIcons(db);
 	}
 }

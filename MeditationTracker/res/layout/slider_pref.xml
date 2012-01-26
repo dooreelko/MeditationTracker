@@ -8,7 +8,7 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_moon" android:paddingLeft="10dip" android:adjustViewBounds="true" android:layout_marginTop="3dp"/>
+        android:src="@drawable/ic_moon" android:paddingLeft="10dip" android:adjustViewBounds="true" android:layout_marginTop="3dp" android:duplicateParentState="true"/>
 
     <SeekBar
         android:id="@+id/prefSeekBar"
@@ -20,6 +20,6 @@
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_sun" android:layout_marginTop="3dp"/>
+        android:src="@drawable/ic_sun" android:layout_marginTop="3dp" android:duplicateParentState="true"/>
 
 </LinearLayout>
