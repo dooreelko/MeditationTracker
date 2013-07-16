@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000" >
+    
+    <ImageView
+        android:id="@+id/practice_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="1dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sixteenth_karmapa" />
+    
+    <TextView
+        android:id="@+id/practice_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/text_bg_meditracker"
+        android:padding="8dp"
+        android:text="@string/diamondMind"
+        android:textAppearance="@style/textAppearanceHuge"
+        android:textColor="@color/text_fg_meditracker"
+        android:width="280dp" />
+
+    <TextView
+        android:id="@+id/bottom_anchor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/practice_image"
+        android:layout_alignRight="@+id/practice_image"
+        android:layout_marginTop="50dp" />
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_anchor"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="50dp"
+        android:background="@color/text_bg_meditracker"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+		    <TextView
+		        android:id="@+id/total_title"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:padding="8dp"
+		        android:text="@string/scheduled"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:textColor="@color/text_fg_meditracker" />
+
+		    <TextView
+		        android:id="@+id/completed_title"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:padding="8dp"
+		        android:text="@string/completed"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:textColor="@color/text_fg_meditracker" />
+		    		    
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+		    <TextView
+		        android:id="@+id/total_count"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:padding="8dp"
+		        android:text="111111"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:textColor="@color/text_fg_meditracker" />
+            
+		    <TextView
+		        android:id="@+id/completed_count"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:padding="8dp"
+		        android:text="12345"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:textColor="@color/text_fg_meditracker" />
+
+		    
+            
+        </LinearLayout>
+        
+        
+    </LinearLayout>
+
+</RelativeLayout>

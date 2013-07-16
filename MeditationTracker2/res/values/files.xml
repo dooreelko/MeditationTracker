@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="file_refuge">content://com.meditationtracker.imageProvider/sys/refuge_tree.png</string>
+    <string name="file_diamond_mind">content://com.meditationtracker.imageProvider/sys/vajrasattva.png</string>
+    <string name="file_mandala">content://com.meditationtracker.imageProvider/sys/mandala.png</string>
+    <string name="file_guru_yoga">content://com.meditationtracker.imageProvider/sys/8th_karmapa.png</string>
+    <string name="file_karmapa">content://com.meditationtracker.imageProvider/sys/16th_karmapa.png</string>
+</resources>

@@ -1,0 +1,13 @@
+.metadata
+.settings
+
+*.class
+*.apk
+*.dex
+
+bin/
+
+# Package Files #
+#*.jar
+*.war
+*.ear
