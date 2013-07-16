@@ -1,9 +1,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
+        android:id="@+id/menu_start"
+        android:icon="@drawable/ic_av_play"
+        android:orderInCategory="10"
+        android:showAsAction="always|withText"
+        android:title="Meditate!"/>
+    <item
+        android:id="@+id/menu_edit"
+        android:orderInCategory="20"
+        android:showAsAction="ifRoom"
+        android:title="Edit"
+        android:icon="@drawable/ic_content_edit"/>
+    <item
+        android:id="@+id/menu_delete"
+        android:orderInCategory="40"
+        android:showAsAction="never|withText"
+        android:title="Delete"
+        android:icon="@drawable/ic_content_remove"/>
+    <item
         android:id="@+id/menu_settings"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/menu_settings"/>
+        android:title="@string/menu_settings"
+        android:icon="@drawable/ic_action_settings"/>
 
 </menu>

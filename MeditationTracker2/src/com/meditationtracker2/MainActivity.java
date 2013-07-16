@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.meditationtracker2.content.CanFillView;
 import com.meditationtracker2.content.ComplexViewArrayAdapter;
 import com.meditationtracker2.content.MockContent;
@@ -19,6 +20,7 @@ import com.meditationtracker2.content.MockContent.Practice;
 public class MainActivity extends SherlockActivity {
 
 	protected static final int PRACTICE_DONE = 0;
+	private static final int PRACTICE_EDIT_DONE = 1;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -64,4 +66,16 @@ public class MainActivity extends SherlockActivity {
 		return true;
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		if (item.getItemId() == R.id.menu_edit) {
+			startActivityForResult(new Intent(MainActivity.this, PracticeEditActivity.class).putExtra("id", 0/*TODO*/), PRACTICE_EDIT_DONE);
+			
+		}
+		
+		return true;
+	}
+
+	
 }

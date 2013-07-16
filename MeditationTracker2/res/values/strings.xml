@@ -91,5 +91,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_practice_detail">PracticeDetailActivity</string>
     <string name="title_activity_practice_do">PracticeDoActivity</string>
+    <string name="title_activity_edit_practice">EditPracticeActivity</string>
 
 </resources>

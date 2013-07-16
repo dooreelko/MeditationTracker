@@ -9,12 +9,14 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
 import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.meditationtracker2.content.MockContent;
 import com.meditationtracker2.content.MockContent.Practice;
 
 public class PracticeDetailActivity extends SherlockActivity {
 
 	protected static final int PRACTICE_DONE = 0;
+	private static final int PRACTICE_EDIT_DONE = 1;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -55,4 +57,14 @@ public class PracticeDetailActivity extends SherlockActivity {
 		return true;
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		if (item.getItemId() == R.id.menu_edit) {
+			startActivityForResult(new Intent(PracticeDetailActivity.this, PracticeEditActivity.class).putExtra("id", 0/*TODO*/), PRACTICE_EDIT_DONE);
+			
+		}
+		
+		return true;
+	}
 }

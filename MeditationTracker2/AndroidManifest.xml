@@ -30,7 +30,12 @@
         </activity>
         <activity
             android:name="com.meditationtracker2.PracticeDoActivity"
-            android:label="@string/title_activity_practice_do" 
+            android:label="@string/title_activity_practice_do"
+            android:screenOrientation="sensorPortrait" >
+        </activity>
+        <activity
+            android:name="com.meditationtracker2.PracticeEditActivity"
+            android:label="@string/title_activity_edit_practice" 
             android:screenOrientation="sensorPortrait" >
         </activity>
     </application>
