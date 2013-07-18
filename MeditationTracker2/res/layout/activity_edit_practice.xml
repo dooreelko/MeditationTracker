@@ -1,53 +1,73 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".PracticeEditActivity" >
+    android:fillViewport="true"
+    tools:context=".PracticeDetailActivity" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Meditation name"
-        android:textStyle="italic" />
-
-    <EditText
-        android:id="@+id/editText1"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:text="Guru yoga" >
-
-        <requestFocus />
-    </EditText>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_height="match_parent" >
 
         <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="163dp"
-            android:layout_height="155dp"
-            android:adjustViewBounds="true"
-            android:maxWidth="200dp"
+            android:id="@+id/practice_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="1dp"
+            android:adjustViewBounds="false"
+            android:alpha="0.2"
             android:scaleType="centerCrop"
-            android:src="@drawable/guru_yoga" />
+            android:src="@drawable/sixteenth_karmapa" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="Meditation name"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/editText01"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="16dp" >
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/textView01"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="Guru yoga" >
+
+            <requestFocus />
+        </EditText>
+
+        <LinearLayout
+            android:id="@+id/layout_stats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/editText01"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/TextView01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Scheduled total"
+                android:maxEms="10"
+                android:maxLines="2"
+                android:text="Scheduled total but very loong"
                 android:textStyle="italic" />
 
             <EditText
@@ -61,7 +81,9 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Completed total"
+                android:maxEms="10"
+                android:maxLines="2"
+                android:text="Completed total also long one but not insanely"
                 android:textStyle="italic" />
 
             <EditText
@@ -76,6 +98,8 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxEms="10"
+                android:maxLines="2"
                 android:text="Daily repetitions"
                 android:textStyle="italic" />
 
@@ -87,21 +111,52 @@
                 android:minEms="6"
                 android:text="643" />
         </LinearLayout>
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:paddingTop="16dp"
-        android:text="Completion date"
-        android:textStyle="italic" />
+        <ImageButton
+            android:id="@+id/imageButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="false"
+            android:layout_below="@+id/editText01"
+            android:layout_toLeftOf="@+id/layout_stats"
+            android:adjustViewBounds="true"
+            android:background="@color/transparent"
+            android:padding="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/sixteenth_karmapa" />
 
-    <DatePicker
-        android:id="@+id/datePicker1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:calendarViewShown="false" />
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageButton1"
+            android:layout_alignLeft="@+id/practice_image"
+            android:layout_alignRight="@+id/imageButton1"
+            android:gravity="center_horizontal"
+            android:paddingBottom="16dp"
+            android:text="Tap image to change"
+            android:textStyle="italic" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView11"
+            android:gravity="center"
+            android:paddingTop="16dp"
+            android:text="Completion date"
+            android:textStyle="italic" />
+        
+        <DatePicker
+            android:id="@+id/datePicker1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView4"
+            android:calendarViewShown="false" />
+        
+        
+    </RelativeLayout>
+
+</ScrollView>

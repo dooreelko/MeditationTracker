@@ -164,10 +164,11 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageButton1"
         android:layout_alignLeft="@+id/practice_image"
         android:layout_alignRight="@+id/imageButton1"
-        android:layout_below="@+id/imageButton1"
         android:gravity="center_horizontal"
+        android:paddingBottom="16dp"
         android:text="Tap image to start"
         android:textStyle="italic" />
 
