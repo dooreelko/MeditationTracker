@@ -13,7 +13,8 @@
         android:layout_margin="1dp"
         android:alpha="0.2"
         android:scaleType="centerCrop"
-        android:src="@drawable/sixteenth_karmapa" />
+        android:src="@drawable/sixteenth_karmapa" 
+        android:contentDescription="@string/practiceImage"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -31,29 +32,29 @@
             android:orientation="horizontal" >
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/textCurrentCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="bottom"
-                android:text="60000"
+                android:text="@string/dummy_practice_current_count2"
                 android:textAppearance="@style/textAppearanceHuge" />
             
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/textView1x"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="bottom"
                 android:paddingLeft="8dp"
-                android:text="of"
+                android:text="@string/of"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textStyle="italic" />
             
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textTotalCount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right|bottom"
-                android:text="111111"
+                android:text="@string/dummy_practice_total_count"
                 android:textAppearance="@style/textAppearanceHuge" />
 
         </LinearLayout>
@@ -61,7 +62,7 @@
         <!-- style="?android:attr/progressBarStyleHorizontal" -->
         
         <ProgressBar
-            android:id="@+id/progressBar1"
+            android:id="@+id/progressBarPractice"
             style="@style/meditracker_ProgressBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,68 +83,69 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Scheduled today"
+            android:text="@string/scheduled_for_today"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="italic"  />
+            android:textStyle="italic" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textScheduledForToday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="108"
+            android:text="@string/dummy_practice_scheduled_count"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="bold"  />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"
-            android:text="Completed today"
+            android:text="@string/completed_today"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="italic"  />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textCompletedToday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="216"
+            android:text="@string/dummy_practice_done_today"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="bold"  />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"
-            android:text="Last practice"
+            android:text="@string/last_practice"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="italic"  />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/textLastPracticeDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12/07/2013"
+            android:text="@string/dummy_practice_last_practice_date"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="bold"  />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"
-            android:text="Scheduled completion"
+            android:text="@string/scheduled_completion"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="italic"  />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/textScheduledCompletion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="17/07/2016"
+            android:text="@string/dummy_practice_scheduled_completion_date"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="bold"  />
+            android:textStyle="bold" />
+
     </LinearLayout>
 
     <ImageButton
@@ -158,7 +160,8 @@
         android:background="@color/transparent"
         android:padding="8dp"
         android:scaleType="fitXY"
-        android:src="@drawable/sixteenth_karmapa" />
+        android:src="@drawable/sixteenth_karmapa" 
+        android:contentDescription="@string/change_image"/>
 
     <TextView
         android:id="@+id/textView11"
@@ -169,7 +172,7 @@
         android:layout_alignRight="@+id/imageButton1"
         android:gravity="center_horizontal"
         android:paddingBottom="16dp"
-        android:text="Tap image to start"
+        android:text="@string/tap_image_to_start_meditation"
         android:textStyle="italic" />
 
 </RelativeLayout>

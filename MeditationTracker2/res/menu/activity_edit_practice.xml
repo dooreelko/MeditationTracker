@@ -4,21 +4,21 @@
         android:id="@+id/menu_accept"
         android:orderInCategory="100"
         android:showAsAction="always|withText"
-        android:title="Accept"
+        android:title="@string/accept"
         android:icon="@drawable/ic_navigation_accept"/>
 
     <item
         android:id="@+id/menu_picture"
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText"
-        android:title="Change image"
+        android:title="@string/change_image"
         android:icon="@drawable/ic_content_picture"/>
 
     <item
         android:id="@+id/menu_discard"
         android:orderInCategory="200"
         android:showAsAction="ifRoom|withText"
-        android:title="Discard"
+        android:title="@string/discard"
         android:icon="@drawable/ic_navigation_cancel"/>
 
 </menu>

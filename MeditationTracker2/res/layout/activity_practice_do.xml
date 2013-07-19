@@ -19,13 +19,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minEms="3"
-            android:text="2" />
+            android:text="@string/dummy_practice_current_mala_count" />
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/textCurrentCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="x"
+            android:text="@string/times"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
@@ -33,20 +33,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minEms="4"
-            android:text="108" />
+            android:text="@string/dummy_practice_scheduled_count" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="="
+            android:text="@string/equals"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
             android:id="@+id/editText3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="206" />
+            android:text="@string/dummy_practice_done_today" />
     </LinearLayout>
 
     <ImageButton
@@ -55,21 +55,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="false"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/textTotalCount"
         android:layout_centerHorizontal="true"
         android:background="@color/transparent"
         android:scaleType="centerInside"
-        android:src="@drawable/sixteenth_karmapa" />
+        android:src="@drawable/sixteenth_karmapa" 
+        android:contentDescription="@string/practiceImage"/>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textTotalCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/linearLayout1"
         android:gravity="center"
         android:paddingTop="16dp"
-        android:text="Tap the image to add mala"
+        android:text="@string/tap_the_image_to_add_mala"
         android:textStyle="italic" />
 
 </RelativeLayout>

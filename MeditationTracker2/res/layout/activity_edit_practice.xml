@@ -78,7 +78,7 @@
                 android:text="111111" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textTotalCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxEms="10"
@@ -140,7 +140,7 @@
             android:textStyle="italic" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textScheduledForToday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView11"
@@ -153,7 +153,7 @@
             android:id="@+id/datePicker1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView4"
+            android:layout_below="@+id/textScheduledForToday"
             android:calendarViewShown="false" />
         
         

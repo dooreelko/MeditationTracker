@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+ 
+	<string name="app_name">Meditation Tracker</string>
 
+	<string name="dummy_practice_name">Diamond Mind and some more text to make it surely multiline and then some more just to be sure you know</string>
+	<string name="dummy_practice_total_count">111111</string>
+	<string name="dummy_practice_scheduled_count">108</string>
+	<string name="dummy_practice_current_count1">12315 (80%)</string>
+	<string name="dummy_practice_current_count2">5614</string>
+	<string name="dummy_practice_done_today">216</string>
+    <string name="dummy_practice_last_practice_date">12/07/2013</string>
+    <string name="dummy_practice_scheduled_completion_date">17/07/2016</string>
+    
+    <string name="dummy_practice_current_mala_count">2</string>
+    
+    			
+    <string name="refuge">Refuge</string>
+    <string name="diamondMind">Diamond Mind</string>
+    <string name="mandalaOffering">Mandala Offering</string>
+	<string name="guruYoga">Guru Yoga</string>
+    	
+	<string name="scheduled">Scheduled</string>
+	<string name="scheduled">Completed</string>
+
+	<string name="practiceImage">Practice image</string>
+
+	<string name="startMeditation">Meditate!</string>
+	<string name="details">Details</string>
+	<string name="edit">Edit</string>
+	<string name="remove">Remove</string>
+
+    <string name="accept">Accept</string>
+    <string name="discard">Discard</string>
+
+    <string name="change_image">Change image</string>
+    <string name="of">of</string> <!-- that's the little of in "2345 _of_ 111111" above the progress bar -->
+    <string name="scheduled_for_today">Scheduled for today</string>
+    <string name="completed_today">Completed today</string>
+    <string name="last_practice">Last practice</string>
+    <string name="scheduled_completion">Scheduled completion</string>
+    <string name="tap_image_to_start_meditation">Tap image to start</string>
+    
+    
+    <string name="times">x</string> 
+    <string name="equals">=</string> 
+    
+    
+    <!-- old stuff -->
+	
     <string name="delete">Delete</string>
     <string name="open">Open</string>
     <string name="takePicture">Take photo</string>
@@ -91,6 +138,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_practice_detail">PracticeDetailActivity</string>
     <string name="title_activity_practice_do">PracticeDoActivity</string>
-    <string name="title_activity_edit_practice">EditPracticeActivity</string>
-
+    <string name="title_activity_edit_practice">EditPracticeActivity</string>	
+	
+    <!-- end old stuff -->
+    <string name="tap_the_image_to_add_mala">Tap the image to add mala</string>
+    
 </resources>

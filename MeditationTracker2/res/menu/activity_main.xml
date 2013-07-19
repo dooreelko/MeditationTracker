@@ -4,28 +4,28 @@
         android:id="@+id/menu_start"
         android:orderInCategory="10"
         android:showAsAction="always|withText"
-        android:title="Meditate!"
+        android:title="@string/startMeditation"
         android:icon="@drawable/ic_av_play"/>
     
     <item
         android:id="@+id/menu_details"
         android:orderInCategory="20"
         android:showAsAction="ifRoom|withText"
-        android:title="Details"
+        android:title="@string/details"
         android:icon="@drawable/ic_collections_view_as_list"/>
     
     <item
         android:id="@+id/menu_edit"
         android:orderInCategory="25"
         android:showAsAction="ifRoom"
-        android:title="Edit"
+        android:title="@string/edit"
         android:icon="@drawable/ic_content_edit"/>
     
     <item
         android:id="@+id/menu_delete"
         android:orderInCategory="30"
         android:showAsAction="never|withText"
-        android:title="Remove"
+        android:title="@string/remove"
         android:icon="@drawable/ic_content_remove"/>
     
     <item

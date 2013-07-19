@@ -1,29 +1,42 @@
 package com.meditationtracker2;
 
-import com.actionbarsherlock.app.SherlockActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import butterknife.InjectView;
+import butterknife.Views;
 
+import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.meditationtracker2.content.MockContent;
-import com.meditationtracker2.content.MockContent.Practice;
+import com.meditationtracker2.content.Practice;
+import com.meditationtracker2.content.PracticeProviderFactory;
 
 public class PracticeDetailActivity extends SherlockActivity {
-
-	protected static final int PRACTICE_DONE = 0;
-	private static final int PRACTICE_EDIT_DONE = 1;
-
+	@InjectView(R.id.practice_image) ImageView practiceImage;
+	@InjectView(R.id.textScheduledForToday) TextView textScheduledToday;
+	@InjectView(R.id.textCompletedToday) TextView textCompletedToday;
+	@InjectView(R.id.textLastPracticeDate) TextView textLastPracticeDate;
+	@InjectView(R.id.textScheduledCompletion) TextView textScheduledCompletionDate;
+	@InjectView(R.id.textCurrentCount) TextView textCurrentCount;
+	@InjectView(R.id.textTotalCount) TextView textTotalCount;
+	@InjectView(R.id.progressBarPractice) ProgressBar progressBar;
+	
+	private Practice practice;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_practice_detail);
+		Views.inject(this);
 	
-		Practice practice = new MockContent(this).ITEMS.get(0);
+		int practiceId = getIntent().getIntExtra(Constants.PRACTICE_ID, -1);
+		practice = PracticeProviderFactory.getMeAProvider(this).getPractice(practiceId);
 		
 		getSupportActionBar().setTitle(practice.title);
 		updateImage(practice);
@@ -36,17 +49,15 @@ public class PracticeDetailActivity extends SherlockActivity {
 		
 		@Override
 		public void onClick(View v) {
-			startActivityForResult(new Intent(PracticeDetailActivity.this, PracticeDoActivity.class).putExtra("id", 0 /*TODO*/), PRACTICE_DONE);
+			startActivityForResult(new Intent(PracticeDetailActivity.this, PracticeDoActivity.class).putExtra("id", 0 /*TODO*/), Constants.PRACTICE_DONE);
 		}
 	};
 
 	private void updateImage(Practice practice) {
-		findViewById(R.id.practice_image);
-		
+//		practiceImage.setImageURI(practice.imageUrl);
 	}
 
 	private void updateStats(Practice practice) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -61,7 +72,7 @@ public class PracticeDetailActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
 		if (item.getItemId() == R.id.menu_edit) {
-			startActivityForResult(new Intent(PracticeDetailActivity.this, PracticeEditActivity.class).putExtra("id", 0/*TODO*/), PRACTICE_EDIT_DONE);
+			startActivityForResult(new Intent(PracticeDetailActivity.this, PracticeEditActivity.class).putExtra("id", 0/*TODO*/), Constants.PRACTICE_EDIT_DONE);
 			
 		}
 		

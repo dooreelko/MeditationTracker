@@ -11,6 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_margin="1dp"
+        android:contentDescription="@string/practiceImage"
         android:scaleType="centerCrop"
         android:src="@drawable/sixteenth_karmapa" />
     
@@ -25,7 +26,7 @@
         android:layout_marginTop="40dp"
         android:background="@color/text_bg_meditracker"
         android:padding="8dp"
-        android:text="@string/diamondMind"
+        android:text="@string/dummy_practice_name"
         android:textAppearance="@style/textAppearanceHuge"
         android:textColor="@color/text_fg_meditracker"
         android:width="280dp" />
@@ -81,7 +82,7 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:padding="8dp"
-		        android:text="111111"
+		        android:text="@string/dummy_practice_scheduled_count"
 		        android:textAppearance="?android:attr/textAppearanceLarge"
 		        android:textColor="@color/text_fg_meditracker" />
             
@@ -90,7 +91,7 @@
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:padding="8dp"
-		        android:text="12345"
+		        android:text="@string/dummy_practice_current_count1"
 		        android:textAppearance="?android:attr/textAppearanceLarge"
 		        android:textColor="@color/text_fg_meditracker" />
 

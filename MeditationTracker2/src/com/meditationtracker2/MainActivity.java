@@ -1,5 +1,6 @@
 package com.meditationtracker2;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,32 +9,32 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.StackView;
 import android.widget.TextView;
+import butterknife.InjectView;
+import butterknife.Views;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.meditationtracker2.content.CanFillView;
 import com.meditationtracker2.content.ComplexViewArrayAdapter;
-import com.meditationtracker2.content.MockContent;
-import com.meditationtracker2.content.MockContent.Practice;
+import com.meditationtracker2.content.IPracticeProvider;
+import com.meditationtracker2.content.Practice;
+import com.meditationtracker2.content.PracticeProviderFactory;
 
 public class MainActivity extends SherlockActivity {
-
-	protected static final int PRACTICE_DONE = 0;
-	private static final int PRACTICE_EDIT_DONE = 1;
-
+	@InjectView(R.id.flipper) StackView flipper;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		Views.inject(this);
 		
-        final StackView flipper = (StackView) findViewById(R.id.flipper);
-
-        flipper.setAdapter(new ComplexViewArrayAdapter<MockContent.Practice>(
+        flipper.setAdapter(new ComplexViewArrayAdapter<Practice>(
                 this,
                 R.layout.fragment_practice_intro,
                 R.id.practice_title,
-                new MockContent(this).ITEMS, new CanFillView<MockContent.Practice>() {
+                getPracticeProvider().getPractices(), new CanFillView<Practice>() {
 
 					@Override
 					public void fill(View view, Practice with) {
@@ -50,31 +51,59 @@ public class MainActivity extends SherlockActivity {
         flipper.setOnItemClickListener(itemSelected);
 	}
 
+	private IPracticeProvider getPracticeProvider() {
+		return PracticeProviderFactory.getMeAProvider(this);
+	}
+
 	private OnItemClickListener itemSelected = new OnItemClickListener() {
 
 		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			startActivityForResult(new Intent(MainActivity.this, PracticeDetailActivity.class).putExtra("id", position), PRACTICE_DONE);
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			startActivityForResult(new Intent(MainActivity.this, PracticeDetailActivity.class).putExtra("id", getPracticeProvider().getPractice(position).id), Constants.PRACTICE_VIEW_DONE);
 		}
 	};
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getSupportMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		
-		if (item.getItemId() == R.id.menu_edit) {
-			startActivityForResult(new Intent(MainActivity.this, PracticeEditActivity.class).putExtra("id", 0/*TODO*/), PRACTICE_EDIT_DONE);
-			
+		int practiceId = getPracticeProvider().getPractice(flipper.getDisplayedChild()).id;
+
+		switch (item.getItemId()) {
+			case R.id.menu_details:
+				startActivityForPractice(practiceId, PracticeDetailActivity.class, Constants.PRACTICE_VIEW_DONE);
+				break;
+
+			case R.id.menu_edit:
+				startActivityForPractice(practiceId, PracticeEditActivity.class, Constants.PRACTICE_EDIT_DONE);
+				break;
+
+			case R.id.menu_start:
+				startActivityForPractice(practiceId, PracticeDoActivity.class, Constants.PRACTICE_DONE);
+				break;
+
+			case R.id.menu_settings:
+				startActivityForPractice(practiceId, SettingsActivity.class, Constants.SETTINGS_DONE);
+				break;
+				
+			case R.id.menu_delete:
+				deletePractice(practiceId);
+				break;
 		}
 		
+		
 		return true;
+	}
+
+	private void startActivityForPractice(int practiceId, Class<? extends Activity> activityClass, int resultId) {
+		startActivityForResult(new Intent(MainActivity.this, activityClass).putExtra(Constants.PRACTICE_ID, practiceId), resultId);
+	}
+
+	private void deletePractice(int practiceId) {
 	}
 
 	
