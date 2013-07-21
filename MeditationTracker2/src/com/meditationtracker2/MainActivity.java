@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.StackView;
 import android.widget.TextView;
@@ -38,13 +39,15 @@ public class MainActivity extends SherlockActivity {
 
 					@Override
 					public void fill(View view, Practice with) {
-						ImageView image = (ImageView) view.findViewById(R.id.practice_image);
-						TextView totalCountText = (TextView) view.findViewById(R.id.total_count);
-						TextView currentCountText = (TextView) view.findViewById(R.id.completed_count);
+						ImageView image = Views.findById(view, R.id.practice_image);
+						TextView totalCountText = Views.findById(view, R.id.total_count);
+						TextView currentCountText = Views.findById(view, R.id.completed_count);
 						
 						image.setImageResource(with.imageResId);
 						totalCountText.setText(String.valueOf(with.totalCount));
 						currentCountText.setText(String.valueOf(with.currentCount));
+						
+						view.setTag((Integer)with.id);
 					}
 				}));
         
@@ -59,9 +62,18 @@ public class MainActivity extends SherlockActivity {
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			startActivityForResult(new Intent(MainActivity.this, PracticeDetailActivity.class).putExtra("id", getPracticeProvider().getPractice(position).id), Constants.PRACTICE_VIEW_DONE);
+			Integer practiceId = getPracticeIdFromTag(view);
+			Practice practice = getPracticeProvider().getPractice(practiceId);
+			startActivityForResult(new Intent(MainActivity.this, PracticeDetailActivity.class).putExtra(Constants.PRACTICE_ID, practice.id), Constants.PRACTICE_VIEW_DONE);
 		}
+
 	};
+
+	private Integer getPracticeIdFromTag(View view) {
+		FrameLayout vv = ((FrameLayout)view);
+		Integer practiceId = (Integer) (vv.getChildAt(0)).getTag();
+		return practiceId;
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -71,17 +83,9 @@ public class MainActivity extends SherlockActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		int practiceId = getPracticeProvider().getPractice(flipper.getDisplayedChild()).id;
+		Integer practiceId = getPracticeIdFromTag(flipper.getCurrentView());
 
 		switch (item.getItemId()) {
-			case R.id.menu_details:
-				startActivityForPractice(practiceId, PracticeDetailActivity.class, Constants.PRACTICE_VIEW_DONE);
-				break;
-
-			case R.id.menu_edit:
-				startActivityForPractice(practiceId, PracticeEditActivity.class, Constants.PRACTICE_EDIT_DONE);
-				break;
-
 			case R.id.menu_start:
 				startActivityForPractice(practiceId, PracticeDoActivity.class, Constants.PRACTICE_DONE);
 				break;
@@ -89,22 +93,12 @@ public class MainActivity extends SherlockActivity {
 			case R.id.menu_settings:
 				startActivityForPractice(practiceId, SettingsActivity.class, Constants.SETTINGS_DONE);
 				break;
-				
-			case R.id.menu_delete:
-				deletePractice(practiceId);
-				break;
 		}
-		
 		
 		return true;
 	}
 
 	private void startActivityForPractice(int practiceId, Class<? extends Activity> activityClass, int resultId) {
-		startActivityForResult(new Intent(MainActivity.this, activityClass).putExtra(Constants.PRACTICE_ID, practiceId), resultId);
+		startActivityForResult(new Intent(this, activityClass).putExtra(Constants.PRACTICE_ID, practiceId), resultId);
 	}
-
-	private void deletePractice(int practiceId) {
-	}
-
-	
 }

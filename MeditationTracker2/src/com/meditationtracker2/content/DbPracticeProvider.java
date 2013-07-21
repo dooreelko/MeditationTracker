@@ -12,4 +12,10 @@ public class DbPracticeProvider implements IPracticeProvider {
 	public Practice getPractice(int id) {
 		return null;
 	}
+
+	@Override
+	public void savePractice(Practice practice) {
+		// TODO Auto-generated method stub
+		
+	}
 }

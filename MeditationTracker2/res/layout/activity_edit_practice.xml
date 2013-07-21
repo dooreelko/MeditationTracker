@@ -71,7 +71,7 @@
                 android:textStyle="italic" />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/editMalaSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minEms="6"
@@ -87,7 +87,7 @@
                 android:textStyle="italic" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/editSessionTotalCount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -113,7 +113,7 @@
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/imageButton1"
+            android:id="@+id/buttonAddMala"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="false"
@@ -131,9 +131,9 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/imageButton1"
+            android:layout_alignBottom="@+id/buttonAddMala"
             android:layout_alignLeft="@+id/practice_image"
-            android:layout_alignRight="@+id/imageButton1"
+            android:layout_alignRight="@+id/buttonAddMala"
             android:gravity="center_horizontal"
             android:paddingBottom="16dp"
             android:text="Tap image to change"

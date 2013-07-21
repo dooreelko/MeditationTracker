@@ -8,4 +8,5 @@ public interface IPracticeProvider {
 
 	public abstract Practice getPractice(int id);
 
+	public abstract void savePractice(Practice practice);
 }

@@ -15,9 +15,10 @@
         android:orientation="horizontal" >
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/editMalaCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:minEms="3"
             android:text="@string/dummy_practice_current_mala_count" />
 
@@ -29,9 +30,10 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/editMalaSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:minEms="4"
             android:text="@string/dummy_practice_scheduled_count" />
 
@@ -43,14 +45,16 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/editSessionTotalCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:text="@string/dummy_practice_done_today" />
+
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/imageButton1"
+        android:id="@+id/buttonAddMala"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -58,9 +62,9 @@
         android:layout_below="@+id/textTotalCount"
         android:layout_centerHorizontal="true"
         android:background="@color/transparent"
+        android:contentDescription="@string/practiceImage"
         android:scaleType="centerInside"
-        android:src="@drawable/sixteenth_karmapa" 
-        android:contentDescription="@string/practiceImage"/>
+        android:src="@drawable/sixteenth_karmapa" />
 
     <TextView
         android:id="@+id/textTotalCount"

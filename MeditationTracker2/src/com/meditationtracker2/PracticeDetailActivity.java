@@ -3,12 +3,12 @@ package com.meditationtracker2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import butterknife.Views;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -39,31 +39,30 @@ public class PracticeDetailActivity extends SherlockActivity {
 		practice = PracticeProviderFactory.getMeAProvider(this).getPractice(practiceId);
 		
 		getSupportActionBar().setTitle(practice.title);
-		updateImage(practice);
-		updateStats(practice);
-		
-		((ImageButton)findViewById(R.id.imageButton1)).setOnClickListener(onStartPractice);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		updateFields(practice);
 	}
 
-	private OnClickListener onStartPractice = new OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			startActivityForResult(new Intent(PracticeDetailActivity.this, PracticeDoActivity.class).putExtra("id", 0 /*TODO*/), Constants.PRACTICE_DONE);
-		}
-	};
-
-	private void updateImage(Practice practice) {
-//		practiceImage.setImageURI(practice.imageUrl);
+	@OnClick(R.id.buttonStart)
+	void onClickStartPractice(View v) {
+		startPractice();
 	}
 
-	private void updateStats(Practice practice) {
+	private void updateFields(Practice practice) {
+		//TODO: image provider		practiceImage.setImageURI(practice.imageUrl);
 		
+		textScheduledToday.setText(String.valueOf(practice.scheduledForToday));
+		textCompletedToday.setText(String.valueOf(practice.completedToday));
+		textLastPracticeDate.setText(String.valueOf(practice.lastPracticeDate)); //TODO: format
+		textScheduledCompletionDate.setText(String.valueOf(practice.scheduledCompletion));
+		textCurrentCount.setText(String.valueOf(practice.currentCount));
+		textTotalCount.setText(String.valueOf(practice.totalCount));
+		progressBar.setMax(practice.totalCount);
+		progressBar.setProgress(practice.currentCount);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getSupportMenuInflater().inflate(R.menu.activity_practice_detail, menu);
 		return true;
 	}
@@ -71,11 +70,26 @@ public class PracticeDetailActivity extends SherlockActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
-		if (item.getItemId() == R.id.menu_edit) {
-			startActivityForResult(new Intent(PracticeDetailActivity.this, PracticeEditActivity.class).putExtra("id", 0/*TODO*/), Constants.PRACTICE_EDIT_DONE);
-			
+		switch (item.getItemId()) {
+		case(android.R.id.home): 
+			this.finish();
+			break;
+		
+		case(R.id.menu_edit): 
+			startActivityForResult(new Intent(this, PracticeEditActivity.class)
+				.putExtra(Constants.PRACTICE_ID, practice.id), Constants.PRACTICE_EDIT_DONE);
+			break;
+		case R.id.menu_start:
+			startPractice();
+			break;
+
 		}
 		
 		return true;
+	}
+
+	private void startPractice() {
+		startActivityForResult(new Intent(this, PracticeDoActivity.class)
+			.putExtra(Constants.PRACTICE_ID, practice.id), Constants.PRACTICE_DONE);
 	}
 }
