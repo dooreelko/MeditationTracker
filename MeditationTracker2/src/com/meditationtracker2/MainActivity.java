@@ -64,7 +64,8 @@ public class MainActivity extends SherlockActivity {
 		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 			Integer practiceId = getPracticeIdFromTag(view);
 			Practice practice = getPracticeProvider().getPractice(practiceId);
-			startActivityForResult(new Intent(MainActivity.this, PracticeDetailActivity.class).putExtra(Constants.PRACTICE_ID, practice.id), Constants.PRACTICE_VIEW_DONE);
+			startActivityForResult(new Intent(MainActivity.this, PracticeDetailActivity.class).putExtra(Constants.PRACTICE_ID, practice.id), 
+									Constants.PRACTICE_VIEW_DONE);
 		}
 
 	};
@@ -88,6 +89,10 @@ public class MainActivity extends SherlockActivity {
 		switch (item.getItemId()) {
 			case R.id.menu_start:
 				startActivityForPractice(practiceId, PracticeDoActivity.class, Constants.PRACTICE_DONE);
+				break;
+
+			case R.id.menu_add:
+				startActivityForPractice(-1, PracticeEditActivity.class, Constants.PRACTICE_EDIT_DONE);
 				break;
 
 			case R.id.menu_settings:

@@ -2,6 +2,8 @@ package com.meditationtracker2;
 
 import java.util.Calendar;
 
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.text.TextWatcher;
 import android.view.View;
@@ -10,9 +12,12 @@ import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.EditText;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import butterknife.Views;
 
 import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.meditationtracker2.content.Practice;
+import com.meditationtracker2.content.PracticeProviderFactory;
 import com.meditationtracker2.helper.SimpleTextWatcher;
 
 public class PracticeEditActivity extends PracticeActivity {
@@ -21,13 +26,19 @@ public class PracticeEditActivity extends PracticeActivity {
 	@InjectView(R.id.editPracticeCompletedCount) EditText editPracticeCompletedCount;
 	@InjectView(R.id.editScheduledPerSession) EditText editScheduledPerSession;
 	@InjectView(R.id.datePickerScheduledEnd) DatePicker datePickerScheduledEnd;
-	private Practice practice;
+
+	private Practice practice = new Practice();
+	private boolean dirty;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_practice);
-		practice = getPractice();
+		Views.inject(this);
+		
+		if (getPracticeIdFromIntent() != -1) {
+			practice = getPractice();
+		}
 		
 		getSupportActionBar().setTitle(practice.title);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -52,6 +63,7 @@ public class PracticeEditActivity extends PracticeActivity {
 	private TextWatcher onScheduledCountChanged = new SimpleTextWatcher() {
 		@Override
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			dirty = true;
 			recalculatePicker();
 		}
 	};
@@ -71,12 +83,66 @@ public class PracticeEditActivity extends PracticeActivity {
 			Calendar cal = Calendar.getInstance();
 			cal.set(year, monthOfYear, dayOfMonth);
 			practice.setScheduledCompletion(cal);
+			dirty = true;
 		}
 	};
 	
 	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		switch (item.getItemId()) {
+			case (android.R.id.home): 
+				askIfToSaveAndMaybeDo();
+				break;
+			case (R.id.menu_discard):
+				finish();
+				break;
+			case (R.id.menu_picture):
+				pickPicture();
+				break;
+			case (R.id.menu_accept):
+				saveAndClose();
+		}
+		
+		return true;
+	}
+	
+	private void saveAndClose() {
+		if (dirty) {	
+			PracticeProviderFactory.getMeAProvider(this).savePractice(practice);
+		}
+		
+		finish();
+	}
+
+	private void pickPicture() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void askIfToSaveAndMaybeDo() {
+		if (!dirty) {
+			finish();
+		}
+		doTheYesNoDialog(R.string.save_changes_title, R.string.save_practice_changes_message, 
+			new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					saveAndClose();
+				}
+			}, new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					finish();
+				}
+			});
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getSupportMenuInflater().inflate(R.menu.activity_edit_practice, menu);
+		getSupportMenuInflater().inflate(R.menu.activity_practice_edit, menu);
 		return true;
 	}
 }

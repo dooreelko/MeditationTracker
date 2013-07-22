@@ -26,6 +26,7 @@
 	<string name="practiceImage">Practice image</string>
 
 	<string name="startMeditation">Meditate!</string>
+	<string name="addMeditation">Add</string>
 	<string name="details">Details</string>
 	<string name="edit">Edit</string>
 	<string name="remove">Remove</string>
@@ -46,8 +47,9 @@
     <string name="equals">=</string> 
     
     <string name="save_changes_title">Save?</string>
-    <string name="save_changes_message">Do you want to save this session?</string>
-
+    <string name="save_session_changes_message">Do you want to save this session?</string>
+    <string name="save_practice_changes_message">Do you want to save changes to this practice?</string>
+    
     <string name="tap_the_image_to_add_mala">Tap the image to add mala</string>
     <string name="meditation_name">Meditation name</string>
     <string name="scheduled_total">Scheduled total but very loong</string>

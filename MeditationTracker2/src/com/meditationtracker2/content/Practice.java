@@ -2,6 +2,8 @@ package com.meditationtracker2.content;
 
 import java.util.Calendar;
 
+import com.meditationtracker2.R;
+
 public class Practice {
     public int id;
     public String title;
@@ -35,6 +37,10 @@ public class Practice {
 		this.setScheduledForToday(scheduledForToday);
 		this.completedToday = completedToday;
 		this.lastPracticeDate = lastPracticeDate;
+	}
+
+	public Practice() {
+		this.imageResId = R.drawable.sixteenth_karmapa;
 	}
 
 	@Override
