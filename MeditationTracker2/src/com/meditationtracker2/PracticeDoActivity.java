@@ -1,30 +1,29 @@
 package com.meditationtracker2;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.os.Bundle;
+import android.text.TextWatcher;
+import android.view.View;
+import android.widget.EditText;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import butterknife.Views;
 
 import com.actionbarsherlock.app.SherlockActivity;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
-
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.meditationtracker2.content.Practice;
 import com.meditationtracker2.content.PracticeProviderFactory;
+import com.meditationtracker2.helper.SimpleTextWatcher;
 
 public class PracticeDoActivity extends SherlockActivity {
 	
 	@InjectView(R.id.editMalaCount) EditText editMalaCount;
-	@InjectView(R.id.editMalaSize) EditText editMalaSize;
-	@InjectView(R.id.editSessionTotalCount) EditText editSessionTotalSize;
+	@InjectView(R.id.editPracticeTotal) EditText editMalaSize;
+	@InjectView(R.id.editPracticeCompletedCount) EditText editSessionTotalSize;
 	
 	private Practice practice;
 	
@@ -44,9 +43,8 @@ public class PracticeDoActivity extends SherlockActivity {
 		getSupportActionBar().setTitle(practice.title);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
-		editMalaCount.setOnEditorActionListener(onMalaCountOrSizeChanged);
-		editMalaSize.setOnEditorActionListener(onMalaCountOrSizeChanged);
-		editSessionTotalSize.setOnEditorActionListener(onSessionTotalSizeChanged);
+		editMalaCount.addTextChangedListener(onMalaCountOrSizeTextChanged);
+		editSessionTotalSize.addTextChangedListener(onSessionTotalTextChanged);
 		
 		totalCount = 0;
 		malaCount = 0;
@@ -55,10 +53,10 @@ public class PracticeDoActivity extends SherlockActivity {
 		updateFields();
 	}
 
-	private OnEditorActionListener onMalaCountOrSizeChanged = new OnEditorActionListener() {
+	private TextWatcher onMalaCountOrSizeTextChanged = new SimpleTextWatcher() {
 		
 		@Override
-		public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
 			Integer newMalaCount;
 			Integer newMalaSize;
 			
@@ -71,30 +69,24 @@ public class PracticeDoActivity extends SherlockActivity {
 				totalCount = newMalaCount*newMalaSize;
 				
 				updateFields();
-			} catch(Exception e) {
-				
-			}
-			
-			return false;
+			} catch(Exception e) { }
 		}
 	};
 
-	private OnEditorActionListener onSessionTotalSizeChanged = new OnEditorActionListener() {
+	private TextWatcher onSessionTotalTextChanged = new SimpleTextWatcher() {
 		
 		@Override
-		public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
 			try {
-				totalCount = Integer.parseInt(editSessionTotalSize.getText().toString());
+				totalCount = Integer.parseInt(s.toString());
 				
 				boolean enableOthers = totalCount == malaCount*malaSize;
 				editMalaCount.setEnabled(enableOthers);
 				editMalaSize.setEnabled(enableOthers);
 			} catch (Exception e) {}
-			
-			return false;
 		}
 	};
-
+	
 	@OnClick(R.id.buttonAddMala)
 	void onClickAddMala(View v) {
 		malaCount++;
@@ -127,7 +119,26 @@ public class PracticeDoActivity extends SherlockActivity {
 	}
 	
 	private void askIfToSaveAndMaybeDo() {
-		
+		AlertDialog.Builder builder = new Builder(this);
+		builder
+			.setTitle(R.string.save_changes_title)
+			.setMessage(R.string.save_changes_message)
+			.setPositiveButton(android.R.string.yes, new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					saveAndClose();
+				}
+			})
+			.setNegativeButton(android.R.string.no, new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					PracticeDoActivity.this.finish();
+				}
+			})
+			.setIcon(android.R.drawable.ic_dialog_alert)
+			.show();
 	}
 
 	private void saveAndClose() {

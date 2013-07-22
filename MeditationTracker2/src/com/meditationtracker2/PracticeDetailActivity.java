@@ -3,7 +3,6 @@ package com.meditationtracker2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -11,13 +10,11 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import butterknife.Views;
 
-import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.meditationtracker2.content.Practice;
-import com.meditationtracker2.content.PracticeProviderFactory;
 
-public class PracticeDetailActivity extends SherlockActivity {
+public class PracticeDetailActivity extends PracticeActivity {
 	@InjectView(R.id.practice_image) ImageView practiceImage;
 	@InjectView(R.id.textScheduledForToday) TextView textScheduledToday;
 	@InjectView(R.id.textCompletedToday) TextView textCompletedToday;
@@ -27,16 +24,13 @@ public class PracticeDetailActivity extends SherlockActivity {
 	@InjectView(R.id.textTotalCount) TextView textTotalCount;
 	@InjectView(R.id.progressBarPractice) ProgressBar progressBar;
 	
-	private Practice practice;
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_practice_detail);
 		Views.inject(this);
 	
-		int practiceId = getIntent().getIntExtra(Constants.PRACTICE_ID, -1);
-		practice = PracticeProviderFactory.getMeAProvider(this).getPractice(practiceId);
+		Practice practice = getPractice();
 		
 		getSupportActionBar().setTitle(practice.title);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -51,10 +45,10 @@ public class PracticeDetailActivity extends SherlockActivity {
 	private void updateFields(Practice practice) {
 		//TODO: image provider		practiceImage.setImageURI(practice.imageUrl);
 		
-		textScheduledToday.setText(String.valueOf(practice.scheduledForToday));
+		textScheduledToday.setText(String.valueOf(practice.getScheduledForToday()));
 		textCompletedToday.setText(String.valueOf(practice.completedToday));
 		textLastPracticeDate.setText(String.valueOf(practice.lastPracticeDate)); //TODO: format
-		textScheduledCompletionDate.setText(String.valueOf(practice.scheduledCompletion));
+		textScheduledCompletionDate.setText(String.valueOf(practice.getScheduledCompletion()));
 		textCurrentCount.setText(String.valueOf(practice.currentCount));
 		textTotalCount.setText(String.valueOf(practice.totalCount));
 		progressBar.setMax(practice.totalCount);
@@ -77,7 +71,7 @@ public class PracticeDetailActivity extends SherlockActivity {
 		
 		case(R.id.menu_edit): 
 			startActivityForResult(new Intent(this, PracticeEditActivity.class)
-				.putExtra(Constants.PRACTICE_ID, practice.id), Constants.PRACTICE_EDIT_DONE);
+				.putExtra(Constants.PRACTICE_ID, getPracticeId()), Constants.PRACTICE_EDIT_DONE);
 			break;
 		case R.id.menu_start:
 			startPractice();
@@ -90,6 +84,6 @@ public class PracticeDetailActivity extends SherlockActivity {
 
 	private void startPractice() {
 		startActivityForResult(new Intent(this, PracticeDoActivity.class)
-			.putExtra(Constants.PRACTICE_ID, practice.id), Constants.PRACTICE_DONE);
+			.putExtra(Constants.PRACTICE_ID, getPracticeId()), Constants.PRACTICE_DONE);
 	}
 }

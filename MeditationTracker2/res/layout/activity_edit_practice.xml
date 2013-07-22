@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content" >
 
         <ImageView
             android:id="@+id/practice_image"
@@ -20,7 +20,8 @@
             android:adjustViewBounds="false"
             android:alpha="0.2"
             android:scaleType="centerCrop"
-            android:src="@drawable/sixteenth_karmapa" />
+            android:src="@drawable/sixteenth_karmapa" 
+            android:contentDescription="@string/practiceImage"/>
 
         <TextView
             android:id="@+id/textView01"
@@ -32,11 +33,11 @@
             android:layout_marginLeft="8dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:text="Meditation name"
+            android:text="@string/meditation_name"
             android:textStyle="italic" />
 
         <EditText
-            android:id="@+id/editText01"
+            android:id="@+id/editPracticeName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -44,9 +45,10 @@
             android:layout_below="@+id/textView01"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:inputType="textCapWords"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:text="Guru yoga" >
+            android:text="@string/guruYoga" >
 
             <requestFocus />
         </EditText>
@@ -56,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/editText01"
+            android:layout_below="@+id/editPracticeName"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
             android:orientation="vertical" >
@@ -67,15 +69,16 @@
                 android:layout_height="wrap_content"
                 android:maxEms="10"
                 android:maxLines="2"
-                android:text="Scheduled total but very loong"
+                android:text="@string/scheduled_total"
                 android:textStyle="italic" />
 
             <EditText
-                android:id="@+id/editMalaSize"
+                android:id="@+id/editPracticeTotal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:minEms="6"
-                android:text="111111" />
+                android:text="@string/dummy_practice_total_count" />
 
             <TextView
                 android:id="@+id/textTotalCount"
@@ -83,16 +86,17 @@
                 android:layout_height="wrap_content"
                 android:maxEms="10"
                 android:maxLines="2"
-                android:text="Completed total also long one but not insanely"
+                android:text="@string/completed_total"
                 android:textStyle="italic" />
 
             <EditText
-                android:id="@+id/editSessionTotalCount"
+                android:id="@+id/editPracticeCompletedCount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:inputType="number"
                 android:minEms="6"
-                android:text="23456" />
+                android:text="@string/dummy_practice_current_count2" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -100,60 +104,63 @@
                 android:layout_height="wrap_content"
                 android:maxEms="10"
                 android:maxLines="2"
-                android:text="Daily repetitions"
+                android:text="@string/daily_repetitions"
                 android:textStyle="italic" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/editScheduledPerSession"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:inputType="number"
                 android:minEms="6"
-                android:text="643" />
+                android:text="@string/dummy_practice_scheduled_count" />
+
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/buttonAddMala"
+            android:id="@+id/buttonPracticeImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="false"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="false"
-            android:layout_below="@+id/editText01"
+            android:layout_below="@+id/editPracticeName"
             android:layout_toLeftOf="@+id/layout_stats"
             android:adjustViewBounds="true"
             android:background="@color/transparent"
             android:padding="8dp"
             android:scaleType="fitXY"
-            android:src="@drawable/sixteenth_karmapa" />
+            android:src="@drawable/sixteenth_karmapa" 
+            android:contentDescription="@string/practiceImage"/>
 
         <TextView
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/buttonAddMala"
+            android:layout_alignBottom="@+id/buttonPracticeImage"
             android:layout_alignLeft="@+id/practice_image"
-            android:layout_alignRight="@+id/buttonAddMala"
+            android:layout_alignRight="@+id/buttonPracticeImage"
             android:gravity="center_horizontal"
             android:paddingBottom="16dp"
-            android:text="Tap image to change"
+            android:text="@string/tap_image_to_change"
             android:textStyle="italic" />
 
         <TextView
-            android:id="@+id/textScheduledForToday"
+            android:id="@+id/textScheduledCompletion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView11"
             android:gravity="center"
             android:paddingTop="16dp"
-            android:text="Completion date"
+            android:text="@string/completion_date"
             android:textStyle="italic" />
         
         <DatePicker
-            android:id="@+id/datePicker1"
+            android:id="@+id/datePickerScheduledEnd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textScheduledForToday"
+            android:layout_below="@+id/textScheduledCompletion"
             android:calendarViewShown="false" />
         
         

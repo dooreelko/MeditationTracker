@@ -45,6 +45,17 @@
     <string name="times">x</string> 
     <string name="equals">=</string> 
     
+    <string name="save_changes_title">Save?</string>
+    <string name="save_changes_message">Do you want to save this session?</string>
+
+    <string name="tap_the_image_to_add_mala">Tap the image to add mala</string>
+    <string name="meditation_name">Meditation name</string>
+    <string name="scheduled_total">Scheduled total but very loong</string>
+    <string name="completed_total">Completed total also long one but not insanely</string>
+    <string name="daily_repetitions">Daily repetitions</string>
+    <string name="tap_image_to_change">Tap image to change</string>
+    <string name="completion_date">(Maybe) completion date</string>
+    
     
     <!-- old stuff -->
 	
@@ -141,6 +152,5 @@
     <string name="title_activity_edit_practice">EditPracticeActivity</string>	
 	
     <!-- end old stuff -->
-    <string name="tap_the_image_to_add_mala">Tap the image to add mala</string>
     
 </resources>

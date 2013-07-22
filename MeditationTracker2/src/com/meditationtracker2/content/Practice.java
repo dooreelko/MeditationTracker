@@ -1,6 +1,6 @@
 package com.meditationtracker2.content;
 
-import java.sql.Date;
+import java.util.Calendar;
 
 public class Practice {
     public int id;
@@ -9,10 +9,9 @@ public class Practice {
 	public String imageUrl;
 	public int totalCount;
 	public int currentCount;
-	public int scheduledForToday;
+	private int scheduledForToday;
 	public int completedToday;
-	public Date lastPracticeDate;
-	public Date scheduledCompletion;
+	public Calendar lastPracticeDate;
 	public int malaSize;
 
     public Practice(int id, String title, int totalCount, int currentCount, int resId) {
@@ -25,7 +24,7 @@ public class Practice {
 
 	public Practice(int id, String title, int imageResId, String imageUrl,
 			int totalCount, int currentCount, int scheduledForToday,
-			int completedToday, Date lastPracticeDate, Date scheduledCompletion) {
+			int completedToday, Calendar lastPracticeDate) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -33,14 +32,10 @@ public class Practice {
 		this.imageUrl = imageUrl;
 		this.totalCount = totalCount;
 		this.currentCount = currentCount;
-		this.scheduledForToday = scheduledForToday;
+		this.setScheduledForToday(scheduledForToday);
 		this.completedToday = completedToday;
 		this.lastPracticeDate = lastPracticeDate;
-		this.scheduledCompletion = scheduledCompletion;
 	}
-
-
-
 
 	@Override
     public String toString() {
@@ -50,5 +45,29 @@ public class Practice {
 	public void addSession(int totalCount2) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public Calendar getScheduledCompletion() {
+		Calendar cal = Calendar.getInstance();
+		if (scheduledForToday != 0) {
+			cal.add(Calendar.DAY_OF_YEAR, totalCount / scheduledForToday + 1);
+		}
+		
+		return cal;
+	}
+
+	public void setScheduledCompletion(Calendar when) {
+		Calendar cal = Calendar.getInstance();
+		long daysLeft = (when.getTimeInMillis() - cal.getTimeInMillis()) / 1000*60*60*24;
+		
+		setScheduledForToday((int) (daysLeft <= 0 ? 0 : (totalCount - currentCount) / daysLeft));
+	}
+	
+	public int getScheduledForToday() {
+		return scheduledForToday;
+	}
+
+	public void setScheduledForToday(int scheduledForToday) {
+		this.scheduledForToday = scheduledForToday;
 	}
 }
