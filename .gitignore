@@ -6,6 +6,7 @@
 *.dex
 
 bin/
+Online images/
 
 # Package Files #
 #*.jar
