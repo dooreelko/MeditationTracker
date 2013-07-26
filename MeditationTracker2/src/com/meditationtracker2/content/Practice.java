@@ -1,6 +1,7 @@
 package com.meditationtracker2.content;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import com.meditationtracker2.R;
 
@@ -13,7 +14,7 @@ public class Practice {
 	public int currentCount;
 	private int scheduledForToday;
 	public int completedToday;
-	public Calendar lastPracticeDate;
+	public Date lastPracticeDate;
 	public int malaSize;
 
     public Practice(int id, String title, int totalCount, int currentCount, int resId) {
@@ -26,7 +27,7 @@ public class Practice {
 
 	public Practice(int id, String title, int imageResId, String imageUrl,
 			int totalCount, int currentCount, int scheduledForToday,
-			int completedToday, Calendar lastPracticeDate) {
+			int completedToday, Date lastPracticeDate) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -53,13 +54,13 @@ public class Practice {
 		
 	}
 
-	public Calendar getScheduledCompletion() {
+	public Date getScheduledCompletion() {
 		Calendar cal = Calendar.getInstance();
 		if (scheduledForToday != 0) {
 			cal.add(Calendar.DAY_OF_YEAR, totalCount / scheduledForToday + 1);
 		}
 		
-		return cal;
+		return new Date(cal.getTimeInMillis());
 	}
 
 	public void setScheduledCompletion(Calendar when) {

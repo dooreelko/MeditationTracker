@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.meditationtracker2"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0" xmlns:tools="http://schemas.android.com/tools">
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -42,6 +42,16 @@
             android:name="com.meditationtracker2.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
+        
+        <provider
+            android:name="com.meditationtracker2.content.PracticeImageProvider"
+            android:authorities="com.meditationtracker2.images" 
+            android:exported="true"
+            android:icon="@drawable/ic_launcher"
+            android:label="Various visualisation images used in Buddhist meditations" 
+            tools:ignore="ExportedContentProvider">
+        </provider>
+        
     </application>
 
 </manifest>

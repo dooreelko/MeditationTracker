@@ -2,10 +2,12 @@ package com.meditationtracker2;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import butterknife.Views;
@@ -18,11 +20,10 @@ import com.meditationtracker2.helper.SimpleTextWatcher;
 
 public class PracticeDoActivity extends PracticeActivity {
 
+	@InjectView(R.id.buttonAddMala) ImageButton buttonAddMala;
 	@InjectView(R.id.editMalaCount)	EditText editMalaCount;
 	@InjectView(R.id.editPracticeTotal) EditText editMalaSize;
 	@InjectView(R.id.editPracticeCompletedCount) EditText editSessionTotalSize;
-
-	private Practice practice;
 
 	private boolean dirty;
 	private int malaCount;
@@ -35,7 +36,7 @@ public class PracticeDoActivity extends PracticeActivity {
 		setContentView(R.layout.activity_practice_do);
 		Views.inject(this);
 
-		practice = getPractice();
+		Practice practice = getPractice();
 
 		getSupportActionBar().setTitle(practice.title);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -98,6 +99,9 @@ public class PracticeDoActivity extends PracticeActivity {
 	}
 
 	private void updateFields() {
+		Uri uri = Uri.parse(getPractice().imageUrl);
+		buttonAddMala.setImageURI(uri);
+
 		editMalaCount.setTag(String.valueOf(malaCount));
 		editMalaSize.setTag(String.valueOf(malaSize));
 		editSessionTotalSize.setTag(String.valueOf(totalCount));
@@ -147,6 +151,7 @@ public class PracticeDoActivity extends PracticeActivity {
 
 	private void saveAndClose() {
 		if (dirty) {
+			Practice practice = getPractice();
 			practice.addSession(totalCount);
 			PracticeProviderFactory.getMeAProvider(this).savePractice(practice);
 		}

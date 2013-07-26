@@ -1,8 +1,13 @@
 package com.meditationtracker2;
 
+import java.util.Date;
+
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -16,12 +21,14 @@ import com.meditationtracker2.content.Practice;
 
 public class PracticeDetailActivity extends PracticeActivity {
 	@InjectView(R.id.practice_image) ImageView practiceImage;
+	@InjectView(R.id.buttonStart) ImageButton buttonStart;
 	@InjectView(R.id.textScheduledForToday) TextView textScheduledToday;
 	@InjectView(R.id.textCompletedToday) TextView textCompletedToday;
 	@InjectView(R.id.textLastPracticeDate) TextView textLastPracticeDate;
 	@InjectView(R.id.textScheduledCompletion) TextView textScheduledCompletionDate;
 	@InjectView(R.id.textCurrentCount) TextView textCurrentCount;
 	@InjectView(R.id.textTotalCount) TextView textTotalCount;
+	@InjectView(R.id.textOf) TextView textOf;
 	@InjectView(R.id.progressBarPractice) ProgressBar progressBar;
 	
 	@Override
@@ -43,16 +50,30 @@ public class PracticeDetailActivity extends PracticeActivity {
 	}
 
 	private void updateFields(Practice practice) {
-		//TODO: image provider		practiceImage.setImageURI(practice.imageUrl);
+		java.text.DateFormat dateFormatter = DateFormat.getDateFormat(this);
+
+		Uri uri = Uri.parse(practice.imageUrl);
+		practiceImage.setImageURI(uri);
+		buttonStart.setImageURI(uri);
 		
-		textScheduledToday.setText(String.valueOf(practice.getScheduledForToday()));
-		textCompletedToday.setText(String.valueOf(practice.completedToday));
-		textLastPracticeDate.setText(String.valueOf(practice.lastPracticeDate)); //TODO: format
-		textScheduledCompletionDate.setText(String.valueOf(practice.getScheduledCompletion()));
+		int scheduledForToday = practice.getScheduledForToday();
+		textScheduledToday.setText(scheduledForToday > 0 ? String.valueOf(scheduledForToday) : "-");
+		
+		textCompletedToday.setText(practice.completedToday > 0 ? String.valueOf(practice.completedToday) : "-");
+		textLastPracticeDate.setText(practice.lastPracticeDate.getTime() > 5 ? dateFormatter.format(practice.lastPracticeDate) : "-"); 
+		textScheduledCompletionDate.setText(scheduledForToday > 0 && practice.totalCount > 0 ? dateFormatter.format(practice.getScheduledCompletion()) : "-");
 		textCurrentCount.setText(String.valueOf(practice.currentCount));
-		textTotalCount.setText(String.valueOf(practice.totalCount));
-		progressBar.setMax(practice.totalCount);
-		progressBar.setProgress(practice.currentCount);
+		
+		if (practice.totalCount > 0) {
+			textTotalCount.setText(String.valueOf(practice.totalCount));
+			progressBar.setMax(practice.totalCount);
+			progressBar.setProgress(practice.currentCount);
+		}
+		else {
+			progressBar.setVisibility(View.INVISIBLE);
+			textTotalCount.setVisibility(View.INVISIBLE);
+			textOf.setVisibility(View.INVISIBLE);
+		}
 	}
 
 	@Override

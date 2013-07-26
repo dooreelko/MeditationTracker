@@ -55,15 +55,18 @@
 
     <ImageButton
         android:id="@+id/buttonAddMala"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="false"
         android:layout_below="@+id/textTotalCount"
         android:layout_centerHorizontal="true"
+        android:adjustViewBounds="false"
         android:background="@color/transparent"
         android:contentDescription="@string/practiceImage"
-        android:scaleType="centerInside"
+        android:cropToPadding="true"
+        android:padding="8dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/sixteenth_karmapa" />
 
     <TextView

@@ -21,7 +21,7 @@
 	<string name="guruYoga">Guru Yoga</string>
     	
 	<string name="scheduled">Scheduled</string>
-	<string name="scheduled">Completed</string>
+	<string name="completed">Completed</string>
 
 	<string name="practiceImage">Practice image</string>
 
@@ -52,8 +52,8 @@
     
     <string name="tap_the_image_to_add_mala">Tap the image to add mala</string>
     <string name="meditation_name">Meditation name</string>
-    <string name="scheduled_total">Scheduled total but very loong</string>
-    <string name="completed_total">Completed total also long one but not insanely</string>
+    <string name="scheduled_total">Practice total (but very loong)</string>
+    <string name="completed_total">Completed total (also long one but not insanely)</string>
     <string name="daily_repetitions">Daily repetitions</string>
     <string name="tap_image_to_change">Tap image to change</string>
     <string name="completion_date">(Maybe) completion date</string>
@@ -109,8 +109,6 @@
     <string name="info">Information</string>
     <string name="confirmDeletionMsg">Are you sure you want to delete this practice?</string>
     <string name="confirmDeletionTitle">Confirm deletion</string>
-    <string name="scheduled">Scheduled:</string>
-    <string name="completed">Completed:</string>
     <string name="howMuch">How much shall we add this time?</string>
     <string name="stopTimer">Stop timer</string>
     <string name="startTimer">Start timer</string>

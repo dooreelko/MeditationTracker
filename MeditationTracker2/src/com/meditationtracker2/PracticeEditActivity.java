@@ -4,10 +4,13 @@ import java.util.Calendar;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.EditText;
 import butterknife.InjectView;
@@ -21,6 +24,8 @@ import com.meditationtracker2.content.PracticeProviderFactory;
 import com.meditationtracker2.helper.SimpleTextWatcher;
 
 public class PracticeEditActivity extends PracticeActivity {
+	@InjectView(R.id.practice_image) ImageView practiceImage;
+	@InjectView(R.id.buttonPracticeImage) ImageButton buttonPracticeImage;
 	@InjectView(R.id.editPracticeName) EditText editPracticeName;
 	@InjectView(R.id.editPracticeTotal) EditText editPracticeTotal;
 	@InjectView(R.id.editPracticeCompletedCount) EditText editPracticeCompletedCount;
@@ -49,6 +54,11 @@ public class PracticeEditActivity extends PracticeActivity {
 	}
 
 	private void updateFields() {
+		Uri uri = Uri.parse(practice.imageUrl);
+		practiceImage.setImageURI(uri);
+		buttonPracticeImage.setImageURI(uri);
+		
+		
 		editPracticeName.setText(practice.title);
 		editPracticeTotal.setText(String.valueOf(practice.totalCount));
 		editScheduledPerSession.setText(String.valueOf(practice.getScheduledForToday()));
@@ -70,7 +80,8 @@ public class PracticeEditActivity extends PracticeActivity {
 
 	protected void recalculatePicker() {
 		practice.setScheduledForToday(Integer.valueOf(editScheduledPerSession.getText().toString()));
-		Calendar cal = practice.getScheduledCompletion();
+		Calendar cal = Calendar.getInstance();
+		cal.setTimeInMillis(practice.getScheduledCompletion().getTime());
 		
 		datePickerScheduledEnd.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
 	}
@@ -87,6 +98,13 @@ public class PracticeEditActivity extends PracticeActivity {
 		}
 	};
 	
+	@Override
+	public void onBackPressed() {
+		askIfToSaveAndMaybeDo();
+
+		super.onBackPressed();
+	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
@@ -124,6 +142,7 @@ public class PracticeEditActivity extends PracticeActivity {
 		if (!dirty) {
 			finish();
 		}
+		
 		doTheYesNoDialog(R.string.save_changes_title, R.string.save_practice_changes_message, 
 			new OnClickListener() {
 				

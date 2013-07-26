@@ -122,17 +122,21 @@
             android:id="@+id/buttonPracticeImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/layout_stats"
             android:layout_alignParentBottom="false"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="false"
             android:layout_below="@+id/editPracticeName"
             android:layout_toLeftOf="@+id/layout_stats"
-            android:adjustViewBounds="true"
+            android:adjustViewBounds="false"
             android:background="@color/transparent"
-            android:padding="8dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/sixteenth_karmapa" 
-            android:contentDescription="@string/practiceImage"/>
+            android:contentDescription="@string/practiceImage"
+            android:cropToPadding="true"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/refuge" />
 
         <TextView
             android:id="@+id/textView11"
@@ -141,9 +145,13 @@
             android:layout_alignBottom="@+id/buttonPracticeImage"
             android:layout_alignLeft="@+id/practice_image"
             android:layout_alignRight="@+id/buttonPracticeImage"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/text_bg_meditracker"
             android:gravity="center_horizontal"
-            android:paddingBottom="16dp"
             android:text="@string/tap_image_to_change"
+            android:textColor="@color/text_fg_meditracker"
             android:textStyle="italic" />
 
         <TextView
