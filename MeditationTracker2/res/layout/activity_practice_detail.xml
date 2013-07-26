@@ -17,6 +17,7 @@
         android:contentDescription="@string/practiceImage"/>
 
     <LinearLayout
+        android:id="@+id/layout_bottom"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/practice_image"
@@ -149,7 +150,7 @@
         android:id="@+id/buttonStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/layout_stats"
+        android:layout_above="@+id/layout_bottom"
         android:layout_alignParentBottom="false"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -158,9 +159,7 @@
         android:background="@color/transparent"
         android:contentDescription="@string/change_image"
         android:cropToPadding="true"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="8dp"
+        android:padding="8dp"
         android:scaleType="centerCrop"
         android:src="@drawable/sixteenth_karmapa" />
 

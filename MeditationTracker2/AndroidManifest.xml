@@ -36,7 +36,7 @@
         <activity
             android:name="com.meditationtracker2.PracticeEditActivity"
             android:label="@string/title_activity_edit_practice"
-            android:screenOrientation="sensorPortrait" >
+            android:screenOrientation="sensorPortrait">
         </activity>
         <activity
             android:name="com.meditationtracker2.SettingsActivity"

@@ -1,177 +1,192 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/outer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context=".PracticeDetailActivity" >
+    android:focusableInTouchMode="true" >
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/practice_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:adjustViewBounds="false"
+        android:alpha="0.2"
+        android:contentDescription="@string/practiceImage"
+        android:scaleType="centerCrop"
+        android:src="@drawable/refuge" />
 
-        <ImageView
-            android:id="@+id/practice_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="1dp"
-            android:adjustViewBounds="false"
-            android:alpha="0.2"
-            android:scaleType="centerCrop"
-            android:src="@drawable/sixteenth_karmapa" 
-            android:contentDescription="@string/practiceImage"/>
-
-        <TextView
-            android:id="@+id/textView01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="8dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:text="@string/meditation_name"
-            android:textStyle="italic" />
-
-        <EditText
-            android:id="@+id/editPracticeName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/textView01"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:inputType="textCapWords"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:text="@string/guruYoga" >
-
-            <requestFocus />
-        </EditText>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:fillViewport="true"
+        tools:context=".PracticeDetailActivity" >
 
         <LinearLayout
-            android:id="@+id/layout_stats"
-            android:layout_width="wrap_content"
+            android:id="@+id/LinearLayout1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/editPracticeName"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/TextView01"
+                android:id="@+id/textView01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxEms="10"
-                android:maxLines="2"
-                android:text="@string/scheduled_total"
+                android:layout_marginLeft="8dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/meditation_name"
                 android:textStyle="italic" />
 
             <EditText
-                android:id="@+id/editPracticeTotal"
+                android:id="@+id/editPracticeName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:minEms="6"
-                android:text="@string/dummy_practice_total_count" />
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:inputType="textCapWords"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/guruYoga" >
+            </EditText>
+
+            <LinearLayout
+                android:id="@+id/button_stats_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <RelativeLayout
+                    android:id="@+id/button_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2" >
+
+                    <ImageButton
+                        android:id="@+id/buttonPracticeImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:adjustViewBounds="false"
+                        android:background="@color/transparent"
+                        android:contentDescription="@string/practiceImage"
+                        android:cropToPadding="true"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="8dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/refuge" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/buttonPracticeImage"
+                        android:layout_alignLeft="@+id/buttonPracticeImage"
+                        android:layout_alignRight="@+id/buttonPracticeImage"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@color/text_bg_meditracker"
+                        android:gravity="center_horizontal"
+                        android:text="@string/tap_image_to_change"
+                        android:textColor="@color/text_fg_meditracker"
+                        android:textStyle="italic" />
+                </RelativeLayout>
+                
+                <LinearLayout
+                    android:id="@+id/layout_stats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/TextView01"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxEms="10"
+                        android:maxLines="2"
+                        android:text="@string/scheduled_total"
+                        android:textStyle="italic" />
+
+                    <EditText
+                        android:id="@+id/editPracticeTotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:minEms="6"
+                        android:text="@string/dummy_practice_total_count" />
+
+                    <TextView
+                        android:id="@+id/textTotalCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxEms="10"
+                        android:maxLines="2"
+                        android:text="@string/completed_total"
+                        android:textStyle="italic" />
+
+                    <EditText
+                        android:id="@+id/editPracticeCompletedCount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:minEms="6"
+                        android:text="@string/dummy_practice_current_count2" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxEms="10"
+                        android:maxLines="2"
+                        android:text="@string/daily_repetitions"
+                        android:textStyle="italic" />
+
+                    <EditText
+                        android:id="@+id/editScheduledPerSession"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:minEms="6"
+                        android:text="@string/dummy_practice_scheduled_count" />
+                </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/textTotalCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxEms="10"
-                android:maxLines="2"
-                android:text="@string/completed_total"
-                android:textStyle="italic" />
-
-            <EditText
-                android:id="@+id/editPracticeCompletedCount"
+                android:id="@+id/textScheduledCompletion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:minEms="6"
-                android:text="@string/dummy_practice_current_count2" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxEms="10"
-                android:maxLines="2"
-                android:text="@string/daily_repetitions"
+                android:gravity="center"
+                android:paddingTop="16dp"
+                android:text="@string/completion_date"
                 android:textStyle="italic" />
 
-            <EditText
-                android:id="@+id/editScheduledPerSession"
+            <DatePicker
+                android:id="@+id/datePickerScheduledEnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number"
-                android:minEms="6"
-                android:text="@string/dummy_practice_scheduled_count" />
-
+                android:calendarViewShown="false" />
         </LinearLayout>
+    </ScrollView>
 
-        <ImageButton
-            android:id="@+id/buttonPracticeImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/layout_stats"
-            android:layout_alignParentBottom="false"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="false"
-            android:layout_below="@+id/editPracticeName"
-            android:layout_toLeftOf="@+id/layout_stats"
-            android:adjustViewBounds="false"
-            android:background="@color/transparent"
-            android:contentDescription="@string/practiceImage"
-            android:cropToPadding="true"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingTop="8dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/refuge" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/buttonPracticeImage"
-            android:layout_alignLeft="@+id/practice_image"
-            android:layout_alignRight="@+id/buttonPracticeImage"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@color/text_bg_meditracker"
-            android:gravity="center_horizontal"
-            android:text="@string/tap_image_to_change"
-            android:textColor="@color/text_fg_meditracker"
-            android:textStyle="italic" />
-
-        <TextView
-            android:id="@+id/textScheduledCompletion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView11"
-            android:gravity="center"
-            android:paddingTop="16dp"
-            android:text="@string/completion_date"
-            android:textStyle="italic" />
-        
-        <DatePicker
-            android:id="@+id/datePickerScheduledEnd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textScheduledCompletion"
-            android:calendarViewShown="false" />
-        
-        
-    </RelativeLayout>
-
-</ScrollView>
+</RelativeLayout>
