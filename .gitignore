@@ -7,6 +7,9 @@
 
 bin/
 Online images/
+ignore/
+gen/
+.apt_generated/
 
 # Package Files #
 #*.jar

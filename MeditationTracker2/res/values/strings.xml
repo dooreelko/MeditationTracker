@@ -58,6 +58,8 @@
     <string name="tap_image_to_change">Tap image to change</string>
     <string name="completion_date">(Maybe) completion date</string>
     
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     
     <!-- old stuff -->
 	

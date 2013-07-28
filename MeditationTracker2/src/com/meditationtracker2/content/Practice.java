@@ -3,26 +3,22 @@ package com.meditationtracker2.content;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.meditationtracker2.R;
-
 public class Practice {
     public int id;
     public String title;
-	public int imageResId;
-	public String imageUrl;
-	public int totalCount;
+	public String imageUrl = "content://com.meditationtracker2.images/sixteenth_karmapa";
+	public int totalCount = 111111;
 	public int currentCount;
 	private int scheduledForToday;
 	public int completedToday;
 	public Date lastPracticeDate;
-	public int malaSize;
+	public int malaSize = 108;
 
     public Practice(int id, String title, int totalCount, int currentCount, int resId) {
         this.id = id;
         this.title = title;
 		this.totalCount = totalCount;
 		this.currentCount = currentCount;
-		this.imageResId = resId;
     }
 
 	public Practice(int id, String title, int imageResId, String imageUrl,
@@ -31,7 +27,6 @@ public class Practice {
 		super();
 		this.id = id;
 		this.title = title;
-		this.imageResId = imageResId;
 		this.imageUrl = imageUrl;
 		this.totalCount = totalCount;
 		this.currentCount = currentCount;
@@ -41,7 +36,6 @@ public class Practice {
 	}
 
 	public Practice() {
-		this.imageResId = R.drawable.sixteenth_karmapa;
 	}
 
 	@Override

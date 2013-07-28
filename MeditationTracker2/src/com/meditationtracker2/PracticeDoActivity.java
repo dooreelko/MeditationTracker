@@ -1,11 +1,14 @@
 package com.meditationtracker2;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import butterknife.InjectView;
@@ -23,8 +26,9 @@ public class PracticeDoActivity extends PracticeActivity {
 	@InjectView(R.id.buttonAddMala) ImageButton buttonAddMala;
 	@InjectView(R.id.editMalaCount)	EditText editMalaCount;
 	@InjectView(R.id.editPracticeTotal) EditText editMalaSize;
-	@InjectView(R.id.editPracticeCompletedCount) EditText editSessionTotalSize;
+	@InjectView(R.id.editPracticeCompletedCount) EditText editSessionTotalCount;
 
+	private boolean softUpdate;
 	private boolean dirty;
 	private int malaCount;
 	private int malaSize;
@@ -41,44 +45,117 @@ public class PracticeDoActivity extends PracticeActivity {
 		getSupportActionBar().setTitle(practice.title);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-		editMalaCount.addTextChangedListener(onMalaCountOrSizeTextChanged);
-		editSessionTotalSize.addTextChangedListener(onSessionTotalTextChanged);
+		editMalaCount.addTextChangedListener(onMalaCountTextChanged);
+		editMalaSize.addTextChangedListener(onMalaSizeTextChanged);
+		editSessionTotalCount.addTextChangedListener(onSessionTotalTextChanged);
 
+		editMalaCount.setOnFocusChangeListener(onFocusChanged);
+		editMalaSize.setOnFocusChangeListener(onFocusChanged);
+		editSessionTotalCount.setOnFocusChangeListener(onFocusChanged);
+		
 		totalCount = 0;
 		malaCount = 0;
 		malaSize = practice.malaSize;
 
+		updatePracticeImage(practice.imageUrl);
 		updateFields();
 	}
 
-	private TextWatcher onMalaCountOrSizeTextChanged = new SimpleTextWatcher() {
+	protected void updatePracticeImage(String url) {
+		Uri uri = Uri.parse(url);
+		buttonAddMala.setImageURI(uri);
+	}
 
+	private void updateFields() {
+		softUpdate = true;
+		editMalaCount.setText(String.valueOf(malaCount));
+		editMalaSize.setText(String.valueOf(malaSize));
+		updateTotalCount();
+		softUpdate = false;
+	}
 
+	protected void updateTotalCount() {
+		editSessionTotalCount.setText(String.valueOf(totalCount));
+	}
+	
+	private OnFocusChangeListener onFocusChanged = new OnFocusChangeListener() {
+		@Override
+		public void onFocusChange(View v, boolean hasFocus) {
+			View currentFocus = getCurrentFocus();
+			if (currentFocus instanceof EditText) {
+				return;
+			}
+
+			buttonAddMala.requestFocus();
+			InputMethodManager im = (InputMethodManager)PracticeDoActivity.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+			im.hideSoftInputFromWindow(v.getWindowToken(), 0);
+		}
+	};
+	
+	
+	private TextWatcher onMalaCountTextChanged = new SimpleTextWatcher() {
 		@Override
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			if (softUpdate) {
+				return;
+			}
+			
+			softUpdate = true;
+			
 			Integer newMalaCount;
-			Integer newMalaSize;
 
 			try {
 				newMalaCount = Integer.valueOf(editMalaCount.getText().toString());
-				newMalaSize = Integer.valueOf(editMalaSize.getText().toString());
 
 				malaCount = newMalaCount;
-				malaSize = newMalaSize;
-				totalCount = newMalaCount * newMalaSize;
+				totalCount = newMalaCount * malaSize;
 
-				updateFields();
+				updateTotalCount();
 				dirty = true;
 			} catch (Exception e) {
 			}
+
+			softUpdate = false;
 		}
 	};
 
+	private TextWatcher onMalaSizeTextChanged = new SimpleTextWatcher() {
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			if (softUpdate) {
+				return;
+			}
+			
+			softUpdate = true;
+			
+			Integer newMalaSize;
+
+			try {
+				newMalaSize = Integer.valueOf(editMalaSize.getText().toString());
+
+				malaSize = newMalaSize;
+				totalCount = malaCount * newMalaSize;
+
+				updateTotalCount();
+				dirty = true;
+			} catch (Exception e) {
+			}
+
+			softUpdate = false;
+		}
+	};
+
+	
 	private TextWatcher onSessionTotalTextChanged = new SimpleTextWatcher() {
 
 		@Override
-		public void onTextChanged(CharSequence s, int start, int before,
-				int count) {
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			if (softUpdate) {
+				return;
+			}
+			
+			softUpdate = true;
+			
 			try {
 				totalCount = Integer.parseInt(s.toString());
 
@@ -88,23 +165,17 @@ public class PracticeDoActivity extends PracticeActivity {
 				dirty = true;
 			} catch (Exception e) {
 			}
+
+			softUpdate = false;
 		}
 	};
 
 	@OnClick(R.id.buttonAddMala)
 	void onClickAddMala(View v) {
 		malaCount++;
+		totalCount = malaCount*malaSize;
 		dirty = true;
 		updateFields();
-	}
-
-	private void updateFields() {
-		Uri uri = Uri.parse(getPractice().imageUrl);
-		buttonAddMala.setImageURI(uri);
-
-		editMalaCount.setTag(String.valueOf(malaCount));
-		editMalaSize.setTag(String.valueOf(malaSize));
-		editSessionTotalSize.setTag(String.valueOf(totalCount));
 	}
 
 	@Override
@@ -124,6 +195,11 @@ public class PracticeDoActivity extends PracticeActivity {
 		}
 
 		return true;
+	}
+	
+	@Override
+	public void onBackPressed() {
+		askIfToSaveAndMaybeDo();
 	}
 
 	private void askIfToSaveAndMaybeDo() {

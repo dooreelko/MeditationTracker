@@ -101,8 +101,6 @@ public class PracticeEditActivity extends PracticeActivity {
 	@Override
 	public void onBackPressed() {
 		askIfToSaveAndMaybeDo();
-
-		super.onBackPressed();
 	}
 
 	@Override
