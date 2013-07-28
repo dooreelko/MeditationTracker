@@ -65,9 +65,12 @@
         android:background="@color/transparent"
         android:contentDescription="@string/practiceImage"
         android:cropToPadding="true"
+        android:focusableInTouchMode="true"
         android:padding="8dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/sixteenth_karmapa" />
+        android:src="@drawable/sixteenth_karmapa" >
+        <requestFocus />
+    </ImageButton>
 
     <TextView
         android:id="@+id/textTotalCount"

@@ -28,8 +28,8 @@ public class PracticeActivity extends SherlockActivity {
 			OnClickListener yesListener, OnClickListener noListener) {
 		AlertDialog.Builder builder = new Builder(this);
 		builder.setTitle(titleResId).setMessage(messageResId)
-				.setPositiveButton(android.R.string.yes, yesListener)
-				.setNegativeButton(android.R.string.no, noListener)
+				.setPositiveButton(R.string.yes, yesListener)
+				.setNegativeButton(R.string.no, noListener)
 				.setIcon(android.R.drawable.ic_dialog_alert).show();
 	}
 }

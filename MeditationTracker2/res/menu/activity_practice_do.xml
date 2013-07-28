@@ -10,7 +10,7 @@
     <item
         android:id="@+id/menu_discard"
         android:orderInCategory="200"
-        android:showAsAction="ifRoom|withText"
+        android:showAsAction="never|withText"
         android:title="@string/discard"
         android:icon="@drawable/ic_navigation_cancel"/>
 </menu>
