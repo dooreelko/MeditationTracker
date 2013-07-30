@@ -33,6 +33,7 @@ public class PracticeEditActivity extends PracticeActivity {
 	@InjectView(R.id.datePickerScheduledEnd) DatePicker datePickerScheduledEnd;
 
 	private Practice practice = new Practice();
+	private boolean softUpdate;
 	private boolean dirty;
 
 	@Override
@@ -41,7 +42,7 @@ public class PracticeEditActivity extends PracticeActivity {
 		setContentView(R.layout.activity_edit_practice);
 		Views.inject(this);
 		
-		if (getPracticeIdFromIntent() != -1) {
+		if (getPracticeIdFromIntent() != Constants.NO_PRACTICE_ID) {
 			practice = getPractice();
 		}
 		
@@ -49,51 +50,102 @@ public class PracticeEditActivity extends PracticeActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		updateFields();
 		
+		editPracticeName.addTextChangedListener(onPracticeNameChanged);
+		
+		editPracticeTotal.addTextChangedListener(onScheduledCountChanged);
+		editPracticeCompletedCount.addTextChangedListener(onScheduledCountChanged);
 		editScheduledPerSession.addTextChangedListener(onScheduledCountChanged);
 		datePickerScheduledEnd.init(2013, 5, 28, onScheduledDateChanged);
 	}
 
 	private void updateFields() {
-		Uri uri = Uri.parse(practice.imageUrl);
-		practiceImage.setImageURI(uri);
-		buttonPracticeImage.setImageURI(uri);
+		softUpdate = true;
 		
+		updatePictures();
 		
 		editPracticeName.setText(practice.title);
 		editPracticeTotal.setText(String.valueOf(practice.totalCount));
-		editScheduledPerSession.setText(String.valueOf(practice.getScheduledForToday()));
+		updateScheduledCount();
 		
-		recalculatePicker();		
+		recalculatePicker();
+		
+		softUpdate = false;
+	}
+
+	protected void updateScheduledCount() {
+		editScheduledPerSession.setText(String.valueOf(practice.getScheduledForToday()));
+	}
+
+	protected void updatePictures() {
+		Uri uri = Uri.parse(practice.imageUrl);
+		practiceImage.setImageURI(uri);
+		buttonPracticeImage.setImageURI(uri);
 	}
 
 	@OnClick(R.id.buttonPracticeImage)
 	void onClickChangePicture(View v) {
 	}
 
+	private TextWatcher onPracticeNameChanged = new SimpleTextWatcher() {
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			practice.title = s.toString();
+			dirty = true;
+		}
+	};
+	
 	private TextWatcher onScheduledCountChanged = new SimpleTextWatcher() {
 		@Override
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			dirty = true;
-			recalculatePicker();
+			if (softUpdate) {
+				return;
+			}
+			try {
+				practice.totalCount = Integer.valueOf(editPracticeTotal.getText().toString());
+				practice.currentCount = Integer.valueOf(editPracticeCompletedCount.getText().toString());
+				practice.setScheduledForToday(Integer.valueOf(editScheduledPerSession.getText().toString()));
+				
+				recalculatePicker();
+
+				dirty = true;
+			} catch (Exception e) {}
+			
 		}
 	};
 
 	protected void recalculatePicker() {
-		practice.setScheduledForToday(Integer.valueOf(editScheduledPerSession.getText().toString()));
-		Calendar cal = Calendar.getInstance();
-		cal.setTimeInMillis(practice.getScheduledCompletion().getTime());
+		if (softUpdate) {
+			return;
+		}
 		
-		datePickerScheduledEnd.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+		softUpdate = true;
+		
+		try {
+			if (practice.getScheduledForToday() > 0) {
+				Calendar cal = Calendar.getInstance();
+				cal.setTimeInMillis(practice.getScheduledCompletion().getTime());
+				
+				datePickerScheduledEnd.updateDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+			}
+		} catch (Exception e) {}
+		softUpdate = false;
 	}
 	
 	private OnDateChangedListener onScheduledDateChanged = new OnDateChangedListener() {
 		
 		@Override
-		public void onDateChanged(DatePicker view, int year, int monthOfYear,
-				int dayOfMonth) {
+		public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+			if (softUpdate) {
+				return;
+			}
+
 			Calendar cal = Calendar.getInstance();
 			cal.set(year, monthOfYear, dayOfMonth);
 			practice.setScheduledCompletion(cal);
+			
+			softUpdate = true;
+			updateScheduledCount();
+			softUpdate = false;
 			dirty = true;
 		}
 	};
@@ -157,6 +209,24 @@ public class PracticeEditActivity extends PracticeActivity {
 			});
 	}
 
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+
+		outState.putString(Constants.IMAGE_URL, practice.imageUrl);
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+
+		practice.imageUrl = savedInstanceState.getString(Constants.IMAGE_URL);
+
+		updatePictures();
+		recalculatePicker();
+	}
+	
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getSupportMenuInflater().inflate(R.menu.activity_practice_edit, menu);

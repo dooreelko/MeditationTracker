@@ -107,7 +107,7 @@ public class MainActivity extends SherlockActivity {
 				break;
 
 			case R.id.menu_add:
-				startActivityForPractice(-1, PracticeEditActivity.class, Constants.PRACTICE_EDIT_DONE);
+				startActivityForPractice(Constants.NO_PRACTICE_ID, PracticeEditActivity.class, Constants.PRACTICE_EDIT_DONE);
 				break;
 
 			case R.id.menu_settings:

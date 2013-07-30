@@ -59,7 +59,7 @@ public class Practice {
 
 	public void setScheduledCompletion(Calendar when) {
 		Calendar cal = Calendar.getInstance();
-		long daysLeft = (when.getTimeInMillis() - cal.getTimeInMillis()) / 1000*60*60*24;
+		long daysLeft = (when.getTimeInMillis() - cal.getTimeInMillis()) / (1000*60*60*24);
 		
 		setScheduledForToday((int) (daysLeft <= 0 ? 0 : (totalCount - currentCount) / daysLeft));
 	}
