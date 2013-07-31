@@ -1,5 +1,6 @@
 package com.meditationtracker2.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import android.net.Uri;
@@ -28,6 +29,19 @@ public class PracticeEditModel extends BaseModel<Practice> {
 		scheduledCompletion = originalModel.getScheduledCompletion();
 	}
 
+	public void updatePractice(Practice practice) {
+		practice.imageUrl = imageUri.toString();
+		practice.title = title;
+		practice.totalCount = totalCount;
+		practice.currentCount = currentCount;
+		practice.setScheduledForToday(scheduledForToday);
+		
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(scheduledCompletion);
+		practice.setScheduledCompletion(cal); //TODO: there's no need for setScheduledCompletion, just getter
+	}
+	
+	
 	@Bind({ R.id.practice_image, R.id.buttonPracticeImage })
 	public Uri getImageUri() {
 		return imageUri;
@@ -55,6 +69,16 @@ public class PracticeEditModel extends BaseModel<Practice> {
 	@Bind(R.id.editPracticeTotal)
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
+		
+		recalculateScheduledEnd();
+	}
+
+	private void recalculateScheduledEnd() {
+		Calendar cal = Calendar.getInstance();
+		if (scheduledForToday != 0) {
+			cal.add(Calendar.DAY_OF_YEAR, (totalCount - currentCount) / scheduledForToday + 1);
+			scheduledCompletion = new Date(cal.getTimeInMillis());
+		}
 	}
 
 	@Bind(R.id.editPracticeCompletedCount)
@@ -65,6 +89,8 @@ public class PracticeEditModel extends BaseModel<Practice> {
 	@Bind(R.id.editPracticeCompletedCount)
 	public void setCurrentCount(int currentCount) {
 		this.currentCount = currentCount;
+		
+		recalculateScheduledEnd();
 	}
 
 	@Bind(R.id.editScheduledPerSession)
@@ -75,6 +101,8 @@ public class PracticeEditModel extends BaseModel<Practice> {
 	@Bind(R.id.editScheduledPerSession)
 	public void setScheduledForToday(int scheduledForToday) {
 		this.scheduledForToday = scheduledForToday;
+		
+		recalculateScheduledEnd();
 	}
 
 	@Bind(R.id.datePickerScheduledEnd)
@@ -85,5 +113,11 @@ public class PracticeEditModel extends BaseModel<Practice> {
 	@Bind(R.id.datePickerScheduledEnd)
 	public void setScheduledCompletion(Date scheduledCompletion) {
 		this.scheduledCompletion = scheduledCompletion;
+
+		Calendar cal = Calendar.getInstance();
+		long daysLeft = (scheduledCompletion.getTime() - cal.getTimeInMillis()) / (1000*60*60*24);
+		
+		scheduledForToday = (int) (daysLeft <= 0 ? 0 : (totalCount - currentCount) / daysLeft);
 	}
+
 }

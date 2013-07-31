@@ -22,6 +22,9 @@ import com.actionbarsherlock.view.MenuItem;
 import com.meditationtracker2.content.Practice;
 import com.meditationtracker2.content.PracticeProviderFactory;
 import com.meditationtracker2.helper.SimpleTextWatcher;
+import com.meditationtracker2.model.PracticeEditModel;
+import com.meditationtracker2.model.PracticeEditModelNormalizer;
+import com.meditationtracker2.model.binder.ModelBinder;
 
 public class PracticeEditActivity extends PracticeActivity {
 	@InjectView(R.id.practice_image) ImageView practiceImage;
@@ -35,6 +38,8 @@ public class PracticeEditActivity extends PracticeActivity {
 	private Practice practice = new Practice();
 	private boolean softUpdate;
 	private boolean dirty;
+	private ModelBinder binder;
+	private PracticeEditModel model;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -48,7 +53,22 @@ public class PracticeEditActivity extends PracticeActivity {
 		
 		getSupportActionBar().setTitle(practice.title);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		updateFields();
+		
+		model = new PracticeEditModel(practice);
+		
+		
+		//TODO: this should be like Models.Bind(this, model) 
+		binder = new ModelBinder(new PracticeEditModelNormalizer(model), new View[] {
+			editPracticeCompletedCount,
+			editScheduledPerSession,
+			editPracticeTotal,
+			practiceImage,
+			buttonPracticeImage,
+			datePickerScheduledEnd,
+			editPracticeName
+		});
+
+		/*updateFields();
 		
 		editPracticeName.addTextChangedListener(onPracticeNameChanged);
 		
@@ -56,9 +76,14 @@ public class PracticeEditActivity extends PracticeActivity {
 		editPracticeCompletedCount.addTextChangedListener(onScheduledCountChanged);
 		editScheduledPerSession.addTextChangedListener(onScheduledCountChanged);
 		datePickerScheduledEnd.init(2013, 5, 28, onScheduledDateChanged);
+		*/
 	}
 
-	private void updateFields() {
+	@OnClick(R.id.buttonPracticeImage)
+	void onClickChangePicture(View v) {
+	}
+
+/*	private void updateFields() {
 		softUpdate = true;
 		
 		updatePictures();
@@ -80,10 +105,6 @@ public class PracticeEditActivity extends PracticeActivity {
 		Uri uri = Uri.parse(practice.imageUrl);
 		practiceImage.setImageURI(uri);
 		buttonPracticeImage.setImageURI(uri);
-	}
-
-	@OnClick(R.id.buttonPracticeImage)
-	void onClickChangePicture(View v) {
 	}
 
 	private TextWatcher onPracticeNameChanged = new SimpleTextWatcher() {
@@ -148,7 +169,7 @@ public class PracticeEditActivity extends PracticeActivity {
 			softUpdate = false;
 			dirty = true;
 		}
-	};
+	};*/
 	
 	@Override
 	public void onBackPressed() {
@@ -177,6 +198,8 @@ public class PracticeEditActivity extends PracticeActivity {
 	
 	private void saveAndClose() {
 		if (dirty) {	
+			model.updatePractice(practice);
+			
 			PracticeProviderFactory.getMeAProvider(this).savePractice(practice);
 		}
 		
@@ -222,8 +245,8 @@ public class PracticeEditActivity extends PracticeActivity {
 
 		practice.imageUrl = savedInstanceState.getString(Constants.IMAGE_URL);
 
-		updatePictures();
-		recalculatePicker();
+/*TODO		updatePictures();
+		recalculatePicker();*/
 	}
 	
 	

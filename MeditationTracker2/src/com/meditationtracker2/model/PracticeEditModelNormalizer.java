@@ -24,7 +24,8 @@ public class PracticeEditModelNormalizer implements ModelNormalizer {
 		result.add(model.getCurrentCount());
 		result.add(model.getScheduledForToday());
 		result.add(model.getTotalCount());
-		result.add(model.getImageUri());
+		result.add(model.getImageUri()); // image
+		result.add(model.getImageUri()); // button
 		result.add(model.getScheduledCompletion());
 		result.add(model.getTitle());
 		
@@ -45,16 +46,20 @@ public class PracticeEditModelNormalizer implements ModelNormalizer {
 			model.setTotalCount(Parsers.SafeParse(newValue, model.getTotalCount()));
 			break;
 		case 3:
-			break;
 		case 4:
+			break;
+		case 5:
 			// target setter is Date, mapped to DatePicker - cast
 			model.setScheduledCompletion((Date)newValue);
 			break;
-		case 5:
+		case 6:
 			// target setter is string, mapped to textfield - cast
 			model.setTitle((String) newValue);
 			break;
 		}
 	}
 
+	public PracticeEditModel getModel() {
+		return model;
+	}
 }
