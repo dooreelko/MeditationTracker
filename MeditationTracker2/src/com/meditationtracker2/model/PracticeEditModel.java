@@ -76,7 +76,7 @@ public class PracticeEditModel extends BaseModel<Practice> {
 	private void recalculateScheduledEnd() {
 		Calendar cal = Calendar.getInstance();
 		if (scheduledForToday != 0) {
-			cal.add(Calendar.DAY_OF_YEAR, (totalCount - currentCount) / scheduledForToday + 1);
+			cal.add(Calendar.DAY_OF_YEAR, (totalCount - currentCount) / scheduledForToday);
 			scheduledCompletion = new Date(cal.getTimeInMillis());
 		}
 	}

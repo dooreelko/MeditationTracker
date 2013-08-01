@@ -1,9 +1,10 @@
-package com.meditationtracker2.model;
+package com.meditationtracker2.model.generated;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.meditationtracker2.model.PracticeEditModel;
 import com.meditationtracker2.model.binder.ModelNormalizer;
 import com.meditationtracker2.model.binder.Parsers;
 

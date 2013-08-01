@@ -79,8 +79,10 @@ public class ModelBinder {
 
 		// One pass only - no circular dependencies
 		Object[] newValues = normalizer.getModelValues();
+		preValues[pos] = newValues[pos];
+
 		for (int i=0; i<newValues.length; i++) {
-			if (preValues[i].equals(newValues[i])) {
+			if (!preValues[i].equals(newValues[i])) {
 				preValues[i] = newValues[i];
 				bindOneViewValue(views[i], i);
 			}

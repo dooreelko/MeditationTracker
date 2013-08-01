@@ -61,6 +61,10 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     
+    <string name="choose_existing_picture">Choose existing picture</string>
+    <string name="take_a_picture">Take a picture</string>
+    <string name="image_source_title">Choose source</string>
+    
     <!-- old stuff -->
 	
     <string name="delete">Delete</string>
