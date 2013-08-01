@@ -2,7 +2,7 @@ package com.meditationtracker2.model.generated;
 
 import com.meditationtracker2.R;
 import com.meditationtracker2.model.PracticeEditModel;
-import com.meditationtracker2.model.binder.ModelBinder;
+import com.meditationtracker2.model.bandera.ModelBinder;
 
 import android.app.Activity;
 import android.view.View;

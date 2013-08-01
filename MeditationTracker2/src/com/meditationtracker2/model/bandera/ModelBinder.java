@@ -1,4 +1,4 @@
-package com.meditationtracker2.model.binder;
+package com.meditationtracker2.model.bandera;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -75,11 +75,17 @@ public class ModelBinder {
 	protected void notifyViewChanged(final Object newValue, final int pos) {
 		normalizer.setModelValue(newValue, pos);
 
+		Object[] newValues = normalizer.getModelValues();
+		preValues[pos] = newValues[pos];
+
+		updateDirtyValues();
+	}
+
+	public void updateDirtyValues() {
 		softUpdate = true;
 
 		// One pass only - no circular dependencies
 		Object[] newValues = normalizer.getModelValues();
-		preValues[pos] = newValues[pos];
 
 		for (int i=0; i<newValues.length; i++) {
 			if (!preValues[i].equals(newValues[i])) {

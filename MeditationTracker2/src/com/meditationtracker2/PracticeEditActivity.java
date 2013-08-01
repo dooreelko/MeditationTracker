@@ -2,6 +2,7 @@ package com.meditationtracker2;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -14,6 +15,7 @@ import com.actionbarsherlock.view.MenuItem;
 import com.meditationtracker2.content.Practice;
 import com.meditationtracker2.content.PracticeProviderFactory;
 import com.meditationtracker2.model.PracticeEditModel;
+import com.meditationtracker2.model.bandera.ModelBinder;
 import com.meditationtracker2.model.generated.Models;
 
 public class PracticeEditActivity extends PracticeActivity implements PictureSourceDialog.IChoosePicture {
@@ -22,6 +24,8 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 	private Practice practice = new Practice();
 	private boolean dirty;
 	private PracticeEditModel model;
+
+	private ModelBinder binder;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +41,7 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		model = new PracticeEditModel(practice);
-		Models.Bind(this, model);
+		binder = Models.Bind(this, model);
 	}
 
 	@OnClick(R.id.buttonPracticeImage)
@@ -86,7 +90,9 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 
 	@Override
 	public void onPictureSourceChosen(int result) {
-		
+		//TODO: get the image
+		model.setImageUri(Uri.parse("content://com.meditationtracker2.images/sixteenth_karmapa"));
+		binder.updateDirtyValues();
 	}
 	
 	private void askIfToSaveAndMaybeDo() {

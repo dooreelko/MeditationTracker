@@ -1,4 +1,4 @@
-package com.meditationtracker2.model.binder;
+package com.meditationtracker2.model.bandera;
 
 public class Parsers {
 	public static int SafeParse(String what, int def) {

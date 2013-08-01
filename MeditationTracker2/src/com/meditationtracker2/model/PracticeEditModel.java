@@ -8,7 +8,7 @@ import android.net.Uri;
 import com.meditationtracker2.R;
 import com.meditationtracker2.content.Practice;
 
-import doo.bundle.annotations.Bind;
+import doo.bandera.annotations.Bind;
 
 public class PracticeEditModel extends BaseModel<Practice> {
 	private Uri imageUri;
