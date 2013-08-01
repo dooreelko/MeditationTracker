@@ -3,6 +3,8 @@
 	<name>MeditationTracker2</name>
 	<comment></comment>
 	<projects>
+		<project>actionbarsherlock</project>
+		<project>bandera-runtime</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -11,5 +11,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/bandera-compile"/>
+	<classpathentry exported="true" kind="src" path="/bandera-runtime"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

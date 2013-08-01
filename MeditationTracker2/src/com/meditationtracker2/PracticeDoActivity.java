@@ -19,7 +19,8 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.meditationtracker2.content.Practice;
 import com.meditationtracker2.content.PracticeProviderFactory;
-import com.meditationtracker2.helper.SimpleTextWatcher;
+
+import doo.bandera.helper.SimpleTextWatcher;
 
 public class PracticeDoActivity extends PracticeActivity {
 

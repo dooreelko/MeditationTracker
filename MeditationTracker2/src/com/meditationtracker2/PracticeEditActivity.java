@@ -15,14 +15,14 @@ import com.actionbarsherlock.view.MenuItem;
 import com.meditationtracker2.content.Practice;
 import com.meditationtracker2.content.PracticeProviderFactory;
 import com.meditationtracker2.model.PracticeEditModel;
-import com.meditationtracker2.model.bandera.ModelBinder;
 import com.meditationtracker2.model.generated.Models;
+
+import doo.bandera.ModelBinder;
 
 public class PracticeEditActivity extends PracticeActivity implements PictureSourceDialog.IChoosePicture {
 	@InjectView(R.id.buttonPracticeImage) ImageButton buttonPracticeImage;
 
 	private Practice practice = new Practice();
-	private boolean dirty;
 	private PracticeEditModel model;
 
 	private ModelBinder binder;
@@ -75,7 +75,7 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 	}
 	
 	private void saveAndClose() {
-		if (dirty) {	
+		if (binder.isDirty()) {	
 			model.updatePractice(practice);
 			
 			PracticeProviderFactory.getMeAProvider(this).savePractice(practice);
@@ -96,7 +96,7 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 	}
 	
 	private void askIfToSaveAndMaybeDo() {
-		if (!dirty) {
+		if (!binder.isDirty()) {
 			finish();
 		}
 		
