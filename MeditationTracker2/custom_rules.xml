@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MeditationTracker2_custom" default="help">
+
+	<property name="generated.dir" value=".apt_generated" />
+	<property name="generated.absolute.dir" location="${generated.dir}" />
+	<property name="java.compilerargs" value="-s &apos;${generated.absolute.dir}&apos;" />
+
+</project>
+

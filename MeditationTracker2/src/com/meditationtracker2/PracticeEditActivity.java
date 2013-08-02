@@ -15,9 +15,9 @@ import com.actionbarsherlock.view.MenuItem;
 import com.meditationtracker2.content.Practice;
 import com.meditationtracker2.content.PracticeProviderFactory;
 import com.meditationtracker2.model.PracticeEditModel;
-import com.meditationtracker2.model.generated.Models;
 
 import doo.bandera.ModelBinder;
+import doo.bandera.Models;
 
 public class PracticeEditActivity extends PracticeActivity implements PictureSourceDialog.IChoosePicture {
 	@InjectView(R.id.buttonPracticeImage) ImageButton buttonPracticeImage;
