@@ -47,7 +47,7 @@ public class PracticeDoActivity extends PracticeActivity {
 		editMalaSize.setOnFocusChangeListener(onFocusChanged);
 		editSessionTotalCount.setOnFocusChangeListener(onFocusChanged);
 
-		model = new PracticeDoModel(practice);
+		model = new PracticeDoModel(practice, this);
 		binder = doo.bandera.Models.Bind(this, model);
 	}
 

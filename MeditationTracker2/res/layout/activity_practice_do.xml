@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="false"
-        android:layout_below="@+id/textTotalCount"
+        android:layout_below="@+id/textTapToAddMala"
         android:layout_centerHorizontal="true"
         android:adjustViewBounds="false"
         android:background="@color/transparent"
@@ -73,12 +73,13 @@
     </ImageButton>
 
     <TextView
-        android:id="@+id/textTotalCount"
+        android:id="@+id/textTapToAddMala"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/linearLayout1"
         android:gravity="center"
+        android:maxLines="2"
         android:paddingTop="16dp"
         android:text="@string/tap_the_image_to_add_mala"
         android:textStyle="italic" />

@@ -8,7 +8,9 @@ import android.net.Uri;
 import com.meditationtracker2.R;
 import com.meditationtracker2.content.Practice;
 
+import doo.bandera.ModelNormalizer.ViewState;
 import doo.bandera.annotations.BindModel;
+import doo.bandera.annotations.BindState;
 
 public class PracticeEditModel extends BaseModel<Practice> {
 	private Uri imageUri;
@@ -110,6 +112,12 @@ public class PracticeEditModel extends BaseModel<Practice> {
 		return scheduledCompletion;
 	}
 
+	@BindState({R.id.datePickerScheduledEnd, R.id.textScheduledCompletion})
+	public ViewState getScheduledCompletionVisibility() {
+		return totalCount > 0 ? ViewState.Normal : ViewState.Gone;
+	}
+	
+	
 	@BindModel(R.id.datePickerScheduledEnd)
 	public void setScheduledCompletion(Date scheduledCompletion) {
 		this.scheduledCompletion = scheduledCompletion;

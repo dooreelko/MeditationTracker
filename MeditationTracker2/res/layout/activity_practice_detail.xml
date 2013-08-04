@@ -82,6 +82,7 @@
         android:orientation="vertical" >
 
         <TextView
+            android:id="@+id/titleScheduledForToday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/scheduled_for_today"
@@ -97,12 +98,13 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/titleCompletedToday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"
             android:text="@string/completed_today"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="italic"  />
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/textCompletedToday"
@@ -113,12 +115,13 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/titleLastPractice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"
             android:text="@string/last_practice"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="italic"  />
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/textLastPracticeDate"
@@ -129,12 +132,13 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/titleScheduledCompletion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"
             android:text="@string/scheduled_completion"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textStyle="italic"  />
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/textScheduledCompletion"

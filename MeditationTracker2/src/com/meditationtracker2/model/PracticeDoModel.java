@@ -1,5 +1,8 @@
 package com.meditationtracker2.model;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+
 import com.meditationtracker2.R;
 import com.meditationtracker2.content.Practice;
 
@@ -13,9 +16,11 @@ public class PracticeDoModel extends BaseModel<Practice> {
 	private int totalCount;
 
 	private ViewState malaCountState = ViewState.NotSet;
+	private final Context ctx;
 	
-	public PracticeDoModel(Practice originalModel) {
+	public PracticeDoModel(Practice originalModel, Context ctx) {
 		super(originalModel);
+		this.ctx = ctx;
 		malaSize = originalModel.malaSize;
 	}
 
@@ -60,6 +65,13 @@ public class PracticeDoModel extends BaseModel<Practice> {
 			malaCountState = ViewState.Normal;
 		}
 	}
+
+	@SuppressLint("DefaultLocale")
+	@BindModel(R.id.textTapToAddMala)
+	public String getHintTapToAddMala() {
+		return String.format("%s (%d)", ctx.getString(R.string.tap_the_image_to_add_mala), malaSize);
+	}
+	
 	
 	@BindState({R.id.editMalaCount, R.id.editMalaSize})
 	public ViewState getMalaCountStates() {

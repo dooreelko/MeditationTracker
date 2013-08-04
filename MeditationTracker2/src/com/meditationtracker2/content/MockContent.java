@@ -48,7 +48,7 @@ public class MockContent implements IPracticeProvider {
         
         addItem(new Practice(4, "My very custom practice", 
         		R.drawable.sixteenth_karmapa, "content://com.meditationtracker2.images/sixteenth_karmapa", 
-        		-1, 54321, 80, 99,
+        		0, 54321, 80, 99,
         		buildCalendar(2013, 11, 15)));
     }
 
