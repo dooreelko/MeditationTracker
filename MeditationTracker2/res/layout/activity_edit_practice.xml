@@ -63,7 +63,8 @@
             <LinearLayout
                 android:id="@+id/button_stats_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"
+                android:baselineAligned="true" >
 
                 <RelativeLayout
                     android:id="@+id/button_layout"
@@ -126,7 +127,7 @@
                         android:textStyle="italic" />
 
                     <EditText
-                        android:id="@+id/editPracticeTotal"
+                        android:id="@+id/editPracticeTotalCount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"

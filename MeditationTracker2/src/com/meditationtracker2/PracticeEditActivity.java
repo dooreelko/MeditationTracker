@@ -17,7 +17,6 @@ import com.meditationtracker2.content.PracticeProviderFactory;
 import com.meditationtracker2.model.PracticeEditModel;
 
 import doo.bandera.ModelBinder;
-import doo.bandera.Models;
 
 public class PracticeEditActivity extends PracticeActivity implements PictureSourceDialog.IChoosePicture {
 	@InjectView(R.id.buttonPracticeImage) ImageButton buttonPracticeImage;
@@ -41,7 +40,7 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		model = new PracticeEditModel(practice);
-		binder = Models.Bind(this, model);
+		binder = doo.bandera.Models.Bind(this, model);
 	}
 
 	@OnClick(R.id.buttonPracticeImage)

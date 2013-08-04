@@ -8,7 +8,7 @@ import android.net.Uri;
 import com.meditationtracker2.R;
 import com.meditationtracker2.content.Practice;
 
-import doo.bandera.annotations.Bind;
+import doo.bandera.annotations.BindModel;
 
 public class PracticeEditModel extends BaseModel<Practice> {
 	private Uri imageUri;
@@ -42,7 +42,7 @@ public class PracticeEditModel extends BaseModel<Practice> {
 	}
 	
 	
-	@Bind({ R.id.practice_image, R.id.buttonPracticeImage })
+	@BindModel({ R.id.practice_image, R.id.buttonPracticeImage })
 	public Uri getImageUri() {
 		return imageUri;
 	}
@@ -51,22 +51,22 @@ public class PracticeEditModel extends BaseModel<Practice> {
 		this.imageUri = imageUri;
 	}
 
-	@Bind(R.id.editPracticeName)
+	@BindModel(R.id.editPracticeName)
 	public String getTitle() {
 		return title;
 	}
 
-	@Bind(R.id.editPracticeName)
+	@BindModel(R.id.editPracticeName)
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	@Bind(R.id.editPracticeTotal)
+	@BindModel(R.id.editPracticeTotalCount)
 	public int getTotalCount() {
 		return totalCount;
 	}
 
-	@Bind(R.id.editPracticeTotal)
+	@BindModel(R.id.editPracticeTotalCount)
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 		
@@ -81,36 +81,36 @@ public class PracticeEditModel extends BaseModel<Practice> {
 		}
 	}
 
-	@Bind(R.id.editPracticeCompletedCount)
+	@BindModel(R.id.editPracticeCompletedCount)
 	public int getCurrentCount() {
 		return currentCount;
 	}
 
-	@Bind(R.id.editPracticeCompletedCount)
+	@BindModel(R.id.editPracticeCompletedCount)
 	public void setCurrentCount(int currentCount) {
 		this.currentCount = currentCount;
 		
 		recalculateScheduledEnd();
 	}
 
-	@Bind(R.id.editScheduledPerSession)
+	@BindModel(R.id.editScheduledPerSession)
 	public int getScheduledForToday() {
 		return scheduledForToday;
 	}
 
-	@Bind(R.id.editScheduledPerSession)
+	@BindModel(R.id.editScheduledPerSession)
 	public void setScheduledForToday(int scheduledForToday) {
 		this.scheduledForToday = scheduledForToday;
 		
 		recalculateScheduledEnd();
 	}
 
-	@Bind(R.id.datePickerScheduledEnd)
+	@BindModel(R.id.datePickerScheduledEnd)
 	public Date getScheduledCompletion() {
 		return scheduledCompletion;
 	}
 
-	@Bind(R.id.datePickerScheduledEnd)
+	@BindModel(R.id.datePickerScheduledEnd)
 	public void setScheduledCompletion(Date scheduledCompletion) {
 		this.scheduledCompletion = scheduledCompletion;
 
