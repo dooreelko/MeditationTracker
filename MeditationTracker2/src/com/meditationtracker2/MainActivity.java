@@ -46,7 +46,7 @@ public class MainActivity extends SherlockActivity {
 						
 						image.setImageURI(Uri.parse(with.imageUrl));
 						
-						int scheduledForToday = with.getScheduledForToday();
+						int scheduledForToday = with.scheduledForToday;
 						if (scheduledForToday > 0) {
 							scheduledCountText.setText(String.valueOf(scheduledForToday));
 						}

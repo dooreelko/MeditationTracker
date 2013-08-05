@@ -1,5 +1,6 @@
 package com.meditationtracker2.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import com.meditationtracker2.R;
@@ -22,7 +23,7 @@ public class PracticeDetailModel extends BaseModel<Practice> {
 
 	@BindModel(R.id.textScheduledForToday)
 	public int getScheduledToday() {
-		return getModel().getScheduledForToday();
+		return getModel().scheduledForToday;
 	}
 
 	@BindModel(R.id.textCompletedToday)
@@ -37,7 +38,12 @@ public class PracticeDetailModel extends BaseModel<Practice> {
 
 	@BindModel(R.id.textScheduledCompletion)
 	public Date getScheduledCompletionDate() {
-		return getModel().getScheduledCompletion();
+		Calendar cal = Calendar.getInstance();
+		if (getModel().scheduledForToday != 0) {
+			cal.add(Calendar.DAY_OF_YEAR, getModel().totalCount / getModel().scheduledForToday + 1);
+		}
+		
+		return new Date(cal.getTimeInMillis());
 	}
 
 	@BindModel(R.id.textCurrentCount)
@@ -69,7 +75,7 @@ public class PracticeDetailModel extends BaseModel<Practice> {
 	}
 
 	protected boolean hasSchedule() {
-		return getModel().totalCount > 0 && getModel().getScheduledForToday() > 0;
+		return getModel().totalCount > 0 && getModel().scheduledForToday > 0;
 	}
 
 	@BindState({ R.id.textScheduledCompletion, R.id.titleScheduledCompletion })

@@ -27,8 +27,8 @@ public class PracticeEditModel extends BaseModel<Practice> {
 		title = originalModel.title;
 		totalCount = originalModel.totalCount;
 		currentCount = originalModel.currentCount;
-		scheduledForToday = originalModel.getScheduledForToday();
-		scheduledCompletion = originalModel.getScheduledCompletion();
+		scheduledForToday = originalModel.scheduledForToday;
+		recalculateScheduledEnd();
 	}
 
 	public void updatePractice(Practice practice) {
@@ -36,11 +36,7 @@ public class PracticeEditModel extends BaseModel<Practice> {
 		practice.title = title;
 		practice.totalCount = totalCount;
 		practice.currentCount = currentCount;
-		practice.setScheduledForToday(scheduledForToday);
-		
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(scheduledCompletion);
-		practice.setScheduledCompletion(cal); //TODO: there's no need for setScheduledCompletion, just getter
+		practice.scheduledForToday = scheduledForToday;
 	}
 	
 	
