@@ -4,7 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.meditationtracker2.R;
-import com.meditationtracker2.content.Practice;
+import com.meditationtracker2.content.data.Practice;
 
 import doo.bandera.ModelNormalizer.ViewState;
 import doo.bandera.annotations.BindModel;

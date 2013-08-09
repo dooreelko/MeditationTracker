@@ -1,4 +1,4 @@
-package com.meditationtracker2.content;
+package com.meditationtracker2.content.data.mock;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,20 +11,22 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.meditationtracker2.R;
+import com.meditationtracker2.content.data.IPracticeProvider;
+import com.meditationtracker2.content.data.Practice;
 
 /**
  * Helper class for providing sample content for user interfaces created by
  * Android template wizards.
  * <p>
  */
-public class MockContent implements IPracticeProvider {
+public class MockContentProvider implements IPracticeProvider {
     /**
      * A map of sample (dummy) items, by ID.
      */
     @SuppressLint("UseSparseArrays")
 	public Map<Integer, Practice> ITEM_MAP = new HashMap<Integer, Practice>();
 
-	public MockContent(Context where) {
+	public MockContentProvider(Context where) {
         // Add 3 sample items.
         addItem(new Practice(0, where.getString(R.string.refuge), 
         		R.drawable.refuge, "content://com.meditationtracker2.images/refuge", 
@@ -76,5 +78,11 @@ public class MockContent implements IPracticeProvider {
 	@Override
 	public void savePractice(Practice practice) {
 		ITEM_MAP.put(practice.id, practice);
+	}
+
+	@Override
+	public void addSession(Practice practice, int count) {
+		// TODO Auto-generated method stub
+		
 	}
 }

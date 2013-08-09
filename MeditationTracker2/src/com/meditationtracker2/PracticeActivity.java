@@ -5,8 +5,8 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface.OnClickListener;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.meditationtracker2.content.Practice;
-import com.meditationtracker2.content.PracticeProviderFactory;
+import com.meditationtracker2.content.data.Practice;
+import com.meditationtracker2.content.data.PracticeProviderFactory;
 
 public class PracticeActivity extends SherlockFragmentActivity {
 	private Practice practice;

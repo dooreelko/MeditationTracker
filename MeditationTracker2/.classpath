@@ -12,5 +12,9 @@
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/bandera-compile"/>
 	<classpathentry exported="true" kind="src" path="/bandera-runtime"/>
+	<classpathentry exported="true" kind="lib" path="lib/butterknife-2.0.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ormlite-android-4.46.jar" sourcepath="lib/ormlite-android-4.46-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ormlite-core-4.46.jar" sourcepath="lib/ormlite-core-4.46-sources.jar"/>
+	<classpathentry kind="lib" path="lib/bandera-compile.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

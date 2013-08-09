@@ -16,8 +16,8 @@ import butterknife.Views;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.meditationtracker2.content.Practice;
-import com.meditationtracker2.content.PracticeProviderFactory;
+import com.meditationtracker2.content.data.Practice;
+import com.meditationtracker2.content.data.PracticeProviderFactory;
 import com.meditationtracker2.model.PracticeDoModel;
 
 import doo.bandera.ModelBinder;
@@ -125,9 +125,7 @@ public class PracticeDoActivity extends PracticeActivity {
 
 	private void saveAndClose() {
 		if (binder.isDirty()) {
-			Practice practice = getPractice();
-			practice.addSession(model.getTotalCount());
-			PracticeProviderFactory.getMeAProvider(this).savePractice(practice);
+			PracticeProviderFactory.getMeAProvider(this).addSession(getPractice(), model.getTotalCount());
 		}
 
 		finish();

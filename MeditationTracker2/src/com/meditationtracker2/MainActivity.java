@@ -19,9 +19,9 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.meditationtracker2.content.CanFillView;
 import com.meditationtracker2.content.ComplexViewArrayAdapter;
-import com.meditationtracker2.content.IPracticeProvider;
-import com.meditationtracker2.content.Practice;
-import com.meditationtracker2.content.PracticeProviderFactory;
+import com.meditationtracker2.content.data.IPracticeProvider;
+import com.meditationtracker2.content.data.Practice;
+import com.meditationtracker2.content.data.PracticeProviderFactory;
 
 public class MainActivity extends SherlockActivity {
 	@InjectView(R.id.flipper) StackView flipper;

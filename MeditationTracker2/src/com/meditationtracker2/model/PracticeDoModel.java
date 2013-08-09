@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.meditationtracker2.R;
-import com.meditationtracker2.content.Practice;
+import com.meditationtracker2.content.data.Practice;
 
 import doo.bandera.ModelNormalizer.ViewState;
 import doo.bandera.annotations.BindModel;

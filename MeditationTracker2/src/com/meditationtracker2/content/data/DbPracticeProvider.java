@@ -1,6 +1,7 @@
-package com.meditationtracker2.content;
+package com.meditationtracker2.content.data;
 
 import java.util.List;
+
 
 public class DbPracticeProvider implements IPracticeProvider {
 	@Override
@@ -15,6 +16,12 @@ public class DbPracticeProvider implements IPracticeProvider {
 
 	@Override
 	public void savePractice(Practice practice) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addSession(Practice practice, int count) {
 		// TODO Auto-generated method stub
 		
 	}
