@@ -34,7 +34,7 @@ public class Practice {
 	public String imageUrl = "content://com.meditationtracker2.images/sixteenth_karmapa";
 	
 	@DatabaseField(canBeNull = false, columnName = "TOTALCOUNT", defaultValue = "111111")
-	public int totalCount = 111111;
+	public long totalCount = 111111;
 
 	@DatabaseField(canBeNull = false, columnName = "SCHEDULEDCOUNT", defaultValue = "0")
 	public int scheduledForToday;
@@ -45,8 +45,8 @@ public class Practice {
 	@ForeignCollectionField(eager = false)
 	public ForeignCollection<PracticeHistory> history;
 	
-	public int currentCount;
-	public int completedToday;
+	public long currentCount;
+	public long completedToday;
 	public Date lastPracticeDate;
 
 	public Practice() {
@@ -75,5 +75,10 @@ public class Practice {
 	public Practice setId(int id) {
 		this.id = id;
 		return this;
+	}
+	
+	@Override
+	public String toString() {
+		return title;
 	}
 }

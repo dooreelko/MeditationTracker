@@ -10,4 +10,6 @@ public class Constants {
 	public static final int NO_PRACTICE_ID = -1;
 	public static final String IMAGE_URL = "ImageUrl";
 
+	public static final int RESULT_DATA_CHANGED = 0;
+
 }

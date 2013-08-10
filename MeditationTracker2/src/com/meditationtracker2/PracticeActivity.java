@@ -9,11 +9,11 @@ import com.meditationtracker2.content.data.Practice;
 import com.meditationtracker2.content.data.PracticeProviderFactory;
 
 public class PracticeActivity extends SherlockFragmentActivity {
-	private Practice practice;
+//	private Practice practice;
 	
 	protected Practice getPractice() {
-		return practice != null ? practice : (practice = PracticeProviderFactory
-				.getMeAProvider(this).getPractice(getPracticeIdFromIntent()));
+		return PracticeProviderFactory
+				.getMeAProvider(this).getPractice(getPracticeIdFromIntent());
 	}
 
 	protected int getPracticeIdFromIntent() {

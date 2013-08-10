@@ -18,6 +18,10 @@ public class PracticeDetailActivity extends PracticeActivity {
 		setContentView(R.layout.activity_practice_detail);
 		Views.inject(this);
 	
+		bindData();
+	}
+
+	protected void bindData() {
 		Practice practice = getPractice();
 		
 		getSupportActionBar().setTitle(practice.title);
@@ -62,4 +66,15 @@ public class PracticeDetailActivity extends PracticeActivity {
 		startActivityForResult(new Intent(this, PracticeDoActivity.class)
 			.putExtra(Constants.PRACTICE_ID, getPracticeId()), Constants.PRACTICE_DONE);
 	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if (resultCode == Constants.RESULT_DATA_CHANGED) {
+			bindData();
+		}
+	}
+	
+	
 }

@@ -38,14 +38,18 @@ public class PracticeDoActivity extends PracticeActivity {
 		setContentView(R.layout.activity_practice_do);
 		Views.inject(this);
 
+		editMalaCount.setOnFocusChangeListener(onFocusChanged);
+		editMalaSize.setOnFocusChangeListener(onFocusChanged);
+		editSessionTotalCount.setOnFocusChangeListener(onFocusChanged);
+
+		bindData();
+	}
+
+	protected void bindData() {
 		Practice practice = getPractice();
 
 		getSupportActionBar().setTitle(practice.title);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-		editMalaCount.setOnFocusChangeListener(onFocusChanged);
-		editMalaSize.setOnFocusChangeListener(onFocusChanged);
-		editSessionTotalCount.setOnFocusChangeListener(onFocusChanged);
 
 		model = new PracticeDoModel(practice, this);
 		binder = doo.bandera.Models.Bind(this, model);
@@ -128,6 +132,7 @@ public class PracticeDoActivity extends PracticeActivity {
 			PracticeProviderFactory.getMeAProvider(this).addSession(getPractice(), model.getTotalCount());
 		}
 
+		setResult(Constants.RESULT_DATA_CHANGED);
 		finish();
 	}
 

@@ -15,15 +15,25 @@ public class PracticeHistory {
  * DONE_COUNT INTEGER NOT NULL
  * */
 	
+	public PracticeHistory() {
+		
+	}
+	
+	public PracticeHistory(final Practice practice, final int count) {
+		this.practice = practice;
+		doneCount = count;
+		practiceDate = new Date();
+	}
+
 	@DatabaseField(generatedId = true, allowGeneratedIdInsert = true, columnName = "_id")
     public int id;
 
 	@DatabaseField(canBeNull = false, columnName = "PRACTICE_ID", foreign = true)
-	public Practice Practice;
+	public Practice practice;
 	
 	@DatabaseField(columnName = "PRACTICE_DATE")
-    public Date PracticeDate;
+    public Date practiceDate;
 	
 	@DatabaseField(columnName = "DONE_COUNT")
-    public int DoneCount;
+    public int doneCount;
 }

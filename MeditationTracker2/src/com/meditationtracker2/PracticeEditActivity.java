@@ -80,6 +80,7 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 			PracticeProviderFactory.getMeAProvider(this).savePractice(practice);
 		}
 		
+		setResult(Constants.RESULT_DATA_CHANGED);
 		finish();
 	}
 

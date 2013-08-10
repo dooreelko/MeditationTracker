@@ -31,44 +31,54 @@ public class MainActivity extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Views.inject(this);
+
+		flipper.setOnItemClickListener(itemSelected);
 		
-        flipper.setAdapter(new ComplexViewArrayAdapter<Practice>(
+		bindData();
+	}
+
+	protected void bindData() {
+		ComplexViewArrayAdapter<Practice> adapter = new ComplexViewArrayAdapter<Practice>(
                 this,
                 R.layout.fragment_practice_intro,
                 R.id.practice_title,
-                getPracticeProvider().getPractices(), new CanFillView<Practice>() {
+                getPracticeProvider().getPractices(), viewFiller);
 
-					@Override
-					public void fill(View view, Practice with) {
-						ImageView image = Views.findById(view, R.id.practice_image);
-						TextView scheduledCountText = Views.findById(view, R.id.scheduled_count);
-						TextView currentCountText = Views.findById(view, R.id.completed_count);
-						
-						image.setImageURI(Uri.parse(with.imageUrl));
-						
-						int scheduledForToday = with.scheduledForToday;
-						if (scheduledForToday > 0) {
-							scheduledCountText.setText(String.valueOf(scheduledForToday));
-						}
-						else {
-							Views.findById(view, R.id.scheduled_title).setVisibility(View.INVISIBLE);
-							scheduledCountText.setVisibility(View.INVISIBLE);
-						}
-						
-						if (with.currentCount != 0 && with.totalCount > 0) {
-							currentCountText.setText(String.format("%d (%d%%)", with.currentCount, with.currentCount * 100 / with.totalCount));
-						}
-						else {
-							currentCountText.setText(String.valueOf(with.currentCount));
-						}
-						
-						view.setTag((Integer)with.id);
-					}
-				}));
-        
-        flipper.setOnItemClickListener(itemSelected);
+		flipper.setAdapter(adapter);
 	}
 
+	private CanFillView<Practice> viewFiller = new CanFillView<Practice>() {
+
+		@Override
+		public void fill(View view, Practice with) {
+			ImageView image = Views.findById(view, R.id.practice_image);
+			TextView scheduledCountText = Views.findById(view, R.id.scheduled_count);
+			TextView currentCountText = Views.findById(view, R.id.completed_count);
+			
+			image.setImageURI(Uri.parse(with.imageUrl));
+			
+			int scheduledForToday = with.scheduledForToday;
+			if (scheduledForToday > 0) {
+				scheduledCountText.setText(String.valueOf(scheduledForToday));
+			}
+			else {
+				Views.findById(view, R.id.scheduled_title).setVisibility(View.INVISIBLE);
+				scheduledCountText.setVisibility(View.INVISIBLE);
+			}
+			
+			if (with.currentCount != 0 && with.totalCount > 0) {
+				currentCountText.setText(String.format("%d (%d%%)", with.currentCount, with.currentCount * 100 / with.totalCount));
+			}
+			else {
+				currentCountText.setText(String.valueOf(with.currentCount));
+			}
+			
+			view.setTag((Integer)with.id);
+		}
+	};
+
+	
+	
 	private IPracticeProvider getPracticeProvider() {
 		return PracticeProviderFactory.getMeAProvider(this);
 	}
@@ -120,5 +130,13 @@ public class MainActivity extends SherlockActivity {
 
 	private void startActivityForPractice(int practiceId, Class<? extends Activity> activityClass, int resultId) {
 		startActivityForResult(new Intent(this, activityClass).putExtra(Constants.PRACTICE_ID, practiceId), resultId);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		bindData();
+		((ComplexViewArrayAdapter<?>)flipper.getAdapter()).notifyDataSetChanged();
 	}
 }

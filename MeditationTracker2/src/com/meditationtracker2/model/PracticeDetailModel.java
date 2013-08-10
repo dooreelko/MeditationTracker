@@ -27,7 +27,7 @@ public class PracticeDetailModel extends BaseModel<Practice> {
 	}
 
 	@BindModel(R.id.textCompletedToday)
-	public int getCompletedToday() {
+	public long getCompletedToday() {
 		return getModel().completedToday;
 	}
 
@@ -40,25 +40,25 @@ public class PracticeDetailModel extends BaseModel<Practice> {
 	public Date getScheduledCompletionDate() {
 		Calendar cal = Calendar.getInstance();
 		if (getModel().scheduledForToday != 0) {
-			cal.add(Calendar.DAY_OF_YEAR, getModel().totalCount / getModel().scheduledForToday + 1);
+			cal.add(Calendar.DAY_OF_YEAR, (int)getModel().totalCount / getModel().scheduledForToday + 1);
 		}
 		
 		return new Date(cal.getTimeInMillis());
 	}
 
 	@BindModel(R.id.textCurrentCount)
-	public int getCurrentCount() {
+	public long getCurrentCount() {
 		return getModel().currentCount;
 	}
 
 	@BindModel(R.id.textTotalCount)
-	public int getTotalCount() {
+	public long getTotalCount() {
 		return getModel().totalCount;
 	}
 
 	@BindModel(R.id.progressBarPractice)
-	public int getProgressPercent() {
-		int totalCount = getModel().totalCount;
+	public long getProgressPercent() {
+		long totalCount = getModel().totalCount;
 		return totalCount != 0 ? getModel().currentCount * 100 / totalCount : 0;
 	}
 

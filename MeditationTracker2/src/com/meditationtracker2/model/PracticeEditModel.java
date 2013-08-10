@@ -15,8 +15,8 @@ import doo.bandera.annotations.BindState;
 public class PracticeEditModel extends BaseModel<Practice> {
 	private Uri imageUri;
 	private String title;
-	private int totalCount;
-	private int currentCount;
+	private long totalCount;
+	private long currentCount;
 	private int scheduledForToday;
 	private Date scheduledCompletion;
 
@@ -60,12 +60,12 @@ public class PracticeEditModel extends BaseModel<Practice> {
 	}
 
 	@BindModel(R.id.editPracticeTotalCount)
-	public int getTotalCount() {
+	public long getTotalCount() {
 		return totalCount;
 	}
 
 	@BindModel(R.id.editPracticeTotalCount)
-	public void setTotalCount(int totalCount) {
+	public void setTotalCount(long totalCount) {
 		this.totalCount = totalCount;
 		
 		recalculateScheduledEnd();
@@ -74,18 +74,18 @@ public class PracticeEditModel extends BaseModel<Practice> {
 	private void recalculateScheduledEnd() {
 		Calendar cal = Calendar.getInstance();
 		if (scheduledForToday != 0) {
-			cal.add(Calendar.DAY_OF_YEAR, (totalCount - currentCount) / scheduledForToday);
+			cal.add(Calendar.DAY_OF_YEAR, (int)(totalCount - currentCount) / scheduledForToday);
 			scheduledCompletion = new Date(cal.getTimeInMillis());
 		}
 	}
 
 	@BindModel(R.id.editPracticeCompletedCount)
-	public int getCurrentCount() {
+	public long getCurrentCount() {
 		return currentCount;
 	}
 
 	@BindModel(R.id.editPracticeCompletedCount)
-	public void setCurrentCount(int currentCount) {
+	public void setCurrentCount(long currentCount) {
 		this.currentCount = currentCount;
 		
 		recalculateScheduledEnd();

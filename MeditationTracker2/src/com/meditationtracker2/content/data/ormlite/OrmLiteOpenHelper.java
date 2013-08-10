@@ -97,9 +97,10 @@ public class OrmLiteOpenHelper extends OrmLiteSqliteOpenHelper {
 			
 			List<Practice> aboveNgondro = dao.queryBuilder().where().gt("_id", 4).query();
 			
+			String karmapaUrl = getResourceString(R.string.url_sixteenthKarmapa);
 			for (Practice p : aboveNgondro) {
 				if (p.imageUrl.length() < int_len) {
-					upgradePracticeImage(dao, getResourceString(R.string.url_sixteenthKarmapa), p);
+					upgradePracticeImage(dao, karmapaUrl, p);
 				}
 			}
 			
