@@ -9,8 +9,6 @@ import com.meditationtracker2.content.data.Practice;
 import com.meditationtracker2.content.data.PracticeProviderFactory;
 
 public class PracticeActivity extends SherlockFragmentActivity {
-//	private Practice practice;
-	
 	protected Practice getPractice() {
 		return PracticeProviderFactory
 				.getMeAProvider(this).getPractice(getPracticeIdFromIntent());
@@ -24,8 +22,7 @@ public class PracticeActivity extends SherlockFragmentActivity {
 		return getPractice().id;
 	}
 	
-	protected void doTheYesNoDialog(int titleResId, int messageResId,
-			OnClickListener yesListener, OnClickListener noListener) {
+	protected void doTheYesNoDialog(int titleResId, int messageResId, OnClickListener yesListener, OnClickListener noListener) {
 		AlertDialog.Builder builder = new Builder(this);
 		builder.setTitle(titleResId).setMessage(messageResId)
 				.setPositiveButton(R.string.yes, yesListener)

@@ -1,5 +1,7 @@
 package com.meditationtracker2;
 
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -56,6 +58,9 @@ public class PracticeDetailActivity extends PracticeActivity {
 		case R.id.menu_start:
 			startPractice();
 			break;
+		case R.id.menu_delete:
+			maybeDeletePractice();
+			break;
 
 		}
 		
@@ -75,6 +80,18 @@ public class PracticeDetailActivity extends PracticeActivity {
 			bindData();
 		}
 	}
-	
+
+	private void maybeDeletePractice() {
+		Practice practice = getPractice();
+		if (practice.isNgondro) {
+			doTheYesNoDialog(R.string.title_delete_ngondro, R.string.message_delete_ngondro, new OnClickListener() {
+				
+				@Override public void onClick(DialogInterface dialog, int which) {
+//TODO					PracticeDetailActivity.this.getSharedPreferences("", 1).edit().putBoolean(key, value);
+				}
+			}, null);
+			return;
+		}
+	}
 	
 }

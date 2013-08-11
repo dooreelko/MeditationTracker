@@ -28,7 +28,7 @@ public class Practice {
 	public boolean isNgondro;
 	
 	@DatabaseField(canBeNull = false, columnName = "TITLE")
-    public String title;
+    public String title = "";
 	
 	@DatabaseField(canBeNull = false, columnName = "ICONURL")
 	public String imageUrl = "content://com.meditationtracker2.images/sixteenth_karmapa";

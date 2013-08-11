@@ -10,7 +10,7 @@
     <item
         android:id="@+id/menu_add"
         android:orderInCategory="10"
-        android:showAsAction="always|withText"
+        android:showAsAction="ifRoom|withText"
         android:title="@string/addMeditation"
         android:icon="@drawable/ic_content_new"/>
     

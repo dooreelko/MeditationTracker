@@ -2,6 +2,7 @@ package com.meditationtracker2.model;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.net.Uri;
 
 import com.meditationtracker2.R;
 import com.meditationtracker2.content.data.Practice;
@@ -14,6 +15,7 @@ public class PracticeDoModel extends BaseModel<Practice> {
 	private int malaCount;
 	private int malaSize;
 	private int totalCount;
+	private Uri imageUri;
 
 	private ViewState malaCountState = ViewState.NotSet;
 	private final Context ctx;
@@ -22,6 +24,7 @@ public class PracticeDoModel extends BaseModel<Practice> {
 		super(originalModel);
 		this.ctx = ctx;
 		malaSize = originalModel.malaSize;
+		imageUri = Uri.parse(originalModel.imageUrl);
 	}
 
 	@BindModel(R.id.editMalaCount)
@@ -78,6 +81,16 @@ public class PracticeDoModel extends BaseModel<Practice> {
 		return malaCountState;
 	}
 
+	@BindModel(R.id.buttonAddMala)
+	public Uri getImageUri() {
+		return imageUri;
+	}
+	
+	public void setImageUri(Uri imageUri) {
+		this.imageUri = imageUri;
+	}
+	
+	
 	public void addMala() {
 		malaCount++;
 		recalculateTotal();

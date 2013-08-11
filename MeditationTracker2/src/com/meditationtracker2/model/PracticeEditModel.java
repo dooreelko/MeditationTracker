@@ -113,7 +113,6 @@ public class PracticeEditModel extends BaseModel<Practice> {
 		return totalCount > 0 ? ViewState.Normal : ViewState.Gone;
 	}
 	
-	
 	@BindModel(R.id.datePickerScheduledEnd)
 	public void setScheduledCompletion(Date scheduledCompletion) {
 		this.scheduledCompletion = scheduledCompletion;

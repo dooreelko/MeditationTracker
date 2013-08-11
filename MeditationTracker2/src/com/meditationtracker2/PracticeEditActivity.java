@@ -29,14 +29,16 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_edit_practice);
+		setContentView(R.layout.activity_practice_edit);
 		Views.inject(this);
 		
 		if (getPracticeIdFromIntent() != Constants.NO_PRACTICE_ID) {
 			practice = getPractice();
+			getSupportActionBar().setTitle(practice.title);
+		} else {
+			getSupportActionBar().setTitle(R.string.new_practice);
 		}
 		
-		getSupportActionBar().setTitle(practice.title);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		model = new PracticeEditModel(practice);
