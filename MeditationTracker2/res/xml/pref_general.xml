@@ -1,35 +1,52 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:doo="http://schemas.android.com/apk/res/com.meditationtracker2">
 
     <CheckBoxPreference
         android:defaultValue="true"
-        android:key="example_checkbox"
-        android:summary="@string/pref_description_social_recommendations"
-        android:title="@string/pref_title_social_recommendations" />
+        android:key="@string/prefShowNgondro"
+        android:title="@string/showNgondro" >
+    </CheckBoxPreference>
 
-    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
-    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
-    <EditTextPreference
-        android:capitalize="words"
-        android:defaultValue="@string/pref_default_display_name"
-        android:inputType="textCapWords"
-        android:key="example_text"
-        android:maxLines="1"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:title="@string/pref_title_display_name" />
+    <com.meditationtracker2.preferences.ChattyIntPreference
+        android:defaultValue="108"
+        android:dialogTitle="@string/malaSize"
+        android:inputType="number"
+        android:key="@string/prefMalaSize"
+        android:title="@string/malaSize" />
+    <com.meditationtracker2.preferences.ChattyIntPreference
+        android:defaultValue="10"
+        android:inputType="number"
+        android:key="@string/prefSessionLength"
+        android:title="@string/sessionLength" />
 
-    <!--
-         NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
-         dismiss it.
-    -->
-    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
-    <ListPreference
-        android:defaultValue="-1"
-        android:entries="@array/pref_example_list_titles"
-        android:entryValues="@array/pref_example_list_values"
-        android:key="example_list"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/pref_title_add_friends_to_messages" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="@string/prefUseStopWatch"
+        android:summaryOff="@string/countDown"
+        android:summaryOn="@string/stopWatch"
+        android:title="@string/useStopWatch" >
+    </CheckBoxPreference>
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="@string/prefOneBeadHeptic"
+        android:summary="@string/oneBeadHepticSummary"
+        android:title="@string/oneBeadHeptic" >
+    </CheckBoxPreference>
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="@string/prefDimNight"
+        android:shouldDisableView="true"
+        android:summary="@string/dimNightSummary"
+        android:title="@string/dimNight" >
+    </CheckBoxPreference>
+
+    <com.meditationtracker2.preferences.SliderPreference
+        doo:actor="com.meditationtracker2.preferences.Dimmer"
+        android:defaultValue="10"
+        android:dependency="@string/prefDimNight"
+        android:disableDependentsState="true"
+        android:key="@string/prefDimNightValue"
+        doo:max="50"
+        doo:min="3" />
 
 </PreferenceScreen>

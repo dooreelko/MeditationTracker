@@ -1,10 +1,18 @@
 package com.meditationtracker2;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.FrameLayout;
@@ -12,42 +20,106 @@ import android.widget.ImageView;
 import android.widget.StackView;
 import android.widget.TextView;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import butterknife.Views;
 
-import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.meditationtracker2.content.CanFillView;
 import com.meditationtracker2.content.ComplexViewArrayAdapter;
+import com.meditationtracker2.content.ICanFillView;
 import com.meditationtracker2.content.data.IPracticeProvider;
 import com.meditationtracker2.content.data.Practice;
 import com.meditationtracker2.content.data.PracticeProviderFactory;
+import com.meditationtracker2.preferences.Settinger;
 
-public class MainActivity extends SherlockActivity {
+public class MainActivity extends PracticeActivity {
 	@InjectView(R.id.flipper) StackView flipper;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		PreferenceManager.setDefaultValues(this, R.xml.pref_general, true);
+		PreferenceManager.setDefaultValues(this, R.xml.pref_notification, true);
+
+		doMaybeFirstRun();
+		
 		setContentView(R.layout.activity_main);
 		Views.inject(this);
 
 		flipper.setOnItemClickListener(itemSelected);
+		flipper.setEmptyView(Views.findById(this, R.id.layoutEmptyPracticeList));
 		
 		bindData();
 	}
 
+	protected void doMaybeFirstRun() {
+		Settinger settinger = new Settinger(this);
+		
+		PackageManager pm = this.getPackageManager();
+		PackageInfo packageInfo;
+		try {
+			packageInfo = pm.getPackageInfo(this.getPackageName(), 0);
+			String currentVersion = packageInfo.versionCode + " \"" + packageInfo.versionName + "\"";
+
+			String version = settinger.getString(R.string.prefVersion, "");
+			
+			if (!version.equals(currentVersion)) {
+				settinger.putString(R.string.prefVersion, currentVersion);
+
+				new SherlockDialogFragment(){
+					@Override
+					public View onCreateView(LayoutInflater inflater, ViewGroup container,
+							Bundle savedInstanceState) {
+						View view = inflater.inflate(R.layout.fragment_post_install, container);
+						
+				        getDialog().setTitle(R.string.hi);
+
+				        return view;
+				    }
+					
+				}.show(getSupportFragmentManager(), "");
+			}
+		} catch (NameNotFoundException e) {
+		}
+	}
+
 	protected void bindData() {
+		List<Practice> filteredPractices = filterPractices(getPracticeProvider().getPractices());
+
+		if (filteredPractices.size() == 0) {
+			flipper.setAdapter(null);
+			return;
+		}
+		
 		ComplexViewArrayAdapter<Practice> adapter = new ComplexViewArrayAdapter<Practice>(
                 this,
                 R.layout.fragment_practice_intro,
                 R.id.practice_title,
-                getPracticeProvider().getPractices(), viewFiller);
+                filteredPractices, viewFiller);
 
 		flipper.setAdapter(adapter);
+		((ComplexViewArrayAdapter<?>)flipper.getAdapter()).notifyDataSetChanged();
 	}
 
-	private CanFillView<Practice> viewFiller = new CanFillView<Practice>() {
+	private List<Practice> filterPractices(final List<Practice> practices) {
+		boolean showNgondro = new Settinger(this).getBoolean(R.string.prefShowNgondro, true);
+		
+		if (showNgondro) {
+			return practices;
+		}
+		
+		for (int x=practices.size()-1; x>=0; x--) {
+			if (practices.get(x).isNgondro) {
+				practices.remove(x);
+			}
+		}
+		
+		return practices;
+	}
+
+	private ICanFillView<Practice> viewFiller = new ICanFillView<Practice>() {
 
 		@Override
 		public void fill(View view, Practice with) {
@@ -77,8 +149,6 @@ public class MainActivity extends SherlockActivity {
 		}
 	};
 
-	
-	
 	private IPracticeProvider getPracticeProvider() {
 		return PracticeProviderFactory.getMeAProvider(this);
 	}
@@ -97,6 +167,11 @@ public class MainActivity extends SherlockActivity {
 
 	private Integer getPracticeIdFromTag(View view) {
 		FrameLayout vv = ((FrameLayout)view);
+		
+		if (vv == null || vv.getChildCount() == 0) {
+			return -1;
+		}
+		
 		Integer practiceId = (Integer) (vv.getChildAt(0)).getTag();
 		return practiceId;
 	}
@@ -117,7 +192,7 @@ public class MainActivity extends SherlockActivity {
 				break;
 
 			case R.id.menu_add:
-				startActivityForPractice(Constants.NO_PRACTICE_ID, PracticeEditActivity.class, Constants.PRACTICE_EDIT_DONE);
+				initiateAddPractice();
 				break;
 
 			case R.id.menu_settings:
@@ -126,6 +201,11 @@ public class MainActivity extends SherlockActivity {
 		}
 		
 		return true;
+	}
+
+	@OnClick(R.id.buttonAddPractice)
+	void initiateAddPractice() {
+		startActivityForPractice(Constants.NO_PRACTICE_ID, PracticeEditActivity.class, Constants.PRACTICE_EDIT_DONE);
 	}
 
 	private void startActivityForPractice(int practiceId, Class<? extends Activity> activityClass, int resultId) {
@@ -137,6 +217,5 @@ public class MainActivity extends SherlockActivity {
 		super.onActivityResult(requestCode, resultCode, data);
 		
 		bindData();
-		((ComplexViewArrayAdapter<?>)flipper.getAdapter()).notifyDataSetChanged();
 	}
 }

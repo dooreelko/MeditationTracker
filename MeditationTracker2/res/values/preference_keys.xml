@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="prefTimerBuzz">prefTimerBuzz</string>
+    <string name="sessionEndNotification">Session end notification</string>
+    <string name="prefTimerSound">prefTimerSound</string>
+    <string name="prefUseStopWatch">prefUseStopWatch</string>
+    <string name="prefBellSound">prefBellSound</string>
+    <string name="prefSessionLength">prefSessionLength</string>
+    <string name="prefMalaSize">prefMalaSize</string>
+    <string name="prefShowNgondro">prefShowNgondro</string>
+    <string name="prefFirstRun">prefFirstRun</string>
+    <string name="prefOneBeadHeptic">prefOneBeadHeptic</string>
+    <string name="prefDimNight">prefDimNight</string>
+    <string name="prefDimNightValue">prefDimNightValue</string>
+    <string name="prefVersion">prefVersion</string>
+
+</resources>

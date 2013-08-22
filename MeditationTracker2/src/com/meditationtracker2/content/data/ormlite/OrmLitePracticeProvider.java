@@ -40,8 +40,6 @@ public class OrmLitePracticeProvider implements IPracticeProvider {
 			//TODO
 			throw new RuntimeException(e);
 		}
-		
-//		return null;
 	}
 
 	@Override
@@ -134,7 +132,22 @@ public class OrmLitePracticeProvider implements IPracticeProvider {
 			throw new RuntimeException(e);
 		}
 	}
-
+	
+	@Override
+	public void deletePractice(final Practice practice) {
+		try {
+			new DoWithDao<Practice, Integer, Practice>() {
+				@Override protected Practice theCall(Dao<Practice, Integer> dao) throws SQLException {
+					dao.delete(practice);
+					return null;
+				}
+			}.doIt(Practice.class);
+		} catch (SQLException e) {
+			//TODO
+			throw new RuntimeException(e);
+		}
+	}
+	
 	private abstract class DoWithDao<DaoClass, ID, TResult> {
 		public TResult doIt(Class<?> clazz) throws SQLException {
 			OrmLiteOpenHelper helper = null;

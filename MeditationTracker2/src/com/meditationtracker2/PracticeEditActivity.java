@@ -19,7 +19,8 @@ import com.meditationtracker2.model.PracticeEditModel;
 import doo.bandera.ModelBinder;
 
 public class PracticeEditActivity extends PracticeActivity implements PictureSourceDialog.IChoosePicture {
-	@InjectView(R.id.buttonPracticeImage) ImageButton buttonPracticeImage;
+	@InjectView(R.id.buttonPracticeImage)
+	ImageButton buttonPracticeImage;
 
 	private Practice practice = new Practice();
 	private PracticeEditModel model;
@@ -31,16 +32,16 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_practice_edit);
 		Views.inject(this);
-		
+
 		if (getPracticeIdFromIntent() != Constants.NO_PRACTICE_ID) {
 			practice = getPractice();
 			getSupportActionBar().setTitle(practice.title);
 		} else {
 			getSupportActionBar().setTitle(R.string.new_practice);
 		}
-		
+
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		
+
 		model = new PracticeEditModel(practice);
 		binder = doo.bandera.Models.Bind(this, model);
 	}
@@ -57,31 +58,31 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		
+
 		switch (item.getItemId()) {
-			case (android.R.id.home): 
-				askIfToSaveAndMaybeDo();
-				break;
-			case (R.id.menu_discard):
-				finish();
-				break;
-			case (R.id.menu_picture):
-				pickPicture();
-				break;
-			case (R.id.menu_accept):
-				saveAndClose();
+		case (android.R.id.home):
+			askIfToSaveAndMaybeDo();
+			break;
+		case (R.id.menu_discard):
+			finish();
+			break;
+		case (R.id.menu_picture):
+			pickPicture();
+			break;
+		case (R.id.menu_accept):
+			saveAndClose();
 		}
-		
+
 		return true;
 	}
-	
+
 	private void saveAndClose() {
-		if (binder.isDirty()) {	
+		if (binder.isDirty()) {
 			model.updatePractice(practice);
-			
+
 			PracticeProviderFactory.getMeAProvider(this).savePractice(practice);
 		}
-		
+
 		setResult(Constants.RESULT_DATA_CHANGED);
 		finish();
 	}
@@ -92,30 +93,30 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 
 	@Override
 	public void onPictureSourceChosen(int result) {
-		//TODO: get the image
+		// TODO: get the image
 		model.setImageUri(Uri.parse("content://com.meditationtracker2.images/sixteenth_karmapa"));
 		binder.updateDirtyValues();
 	}
-	
+
 	private void askIfToSaveAndMaybeDo() {
 		if (!binder.isDirty()) {
 			finish();
+			return;
 		}
-		
-		doTheYesNoDialog(R.string.save_changes_title, R.string.save_practice_changes_message, 
-			new OnClickListener() {
-				
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					saveAndClose();
-				}
-			}, new OnClickListener() {
-				
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					finish();
-				}
-			});
+
+		doTheYesNoDialog(R.string.save_changes_title, R.string.save_practice_changes_message, new OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				saveAndClose();
+			}
+		}, new OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				finish();
+			}
+		});
 	}
 
 	@Override
@@ -131,11 +132,11 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 
 		practice.imageUrl = savedInstanceState.getString(Constants.IMAGE_URL);
 
-/*TODO		updatePictures();
-		recalculatePicker();*/
+		/*
+		 * TODO updatePictures(); recalculatePicker();
+		 */
 	}
-	
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getSupportMenuInflater().inflate(R.menu.activity_practice_edit, menu);

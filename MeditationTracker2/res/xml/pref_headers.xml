@@ -10,6 +10,6 @@
         android:title="@string/pref_header_notifications" />
     <header
         android:fragment="com.meditationtracker2.SettingsActivity$DataSyncPreferenceFragment"
-        android:title="@string/pref_header_data_sync" />
+        android:title="@string/pref_header_help" />
 
 </preference-headers>

@@ -9,10 +9,10 @@ import android.widget.ArrayAdapter;
 
 public class ComplexViewArrayAdapter<T> extends ArrayAdapter<T> {
 	private List<T> objects;
-	private final CanFillView<T> viewFiller;
+	private final ICanFillView<T> viewFiller;
 
-	public ComplexViewArrayAdapter(Context context, int titleTextId, int resource, List<T> objects, CanFillView<T> viewFiller) {
-		super(context, titleTextId, resource, objects);
+	public ComplexViewArrayAdapter(Context context, int layoutId, int titleTextId, List<T> objects, ICanFillView<T> viewFiller) {
+		super(context, layoutId, titleTextId, objects);
 
         this.objects = objects;
 		this.viewFiller = viewFiller;

@@ -1,0 +1,20 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:doo="http://schemas.android.com/apk/res/com.meditationtracker2">
+
+        <com.meditationtracker2.preferences.ActionPreference
+            doo:actor="com.meditationtracker.preferences.SupportActor"
+            doo:param="@string/appUrl"
+            android:summary="@string/support_web_warning"
+            android:title="@string/support" />
+
+        <com.meditationtracker2.preferences.ShowDialogPreference
+            android:dialogLayout="@layout/about"
+            android:title="@string/about" />
+
+        <com.meditationtracker2.preferences.ChattyEditTextPreference
+            android:enabled="false"
+            android:key="@string/prefVersion"
+            android:summary="blabla"
+            android:title="@string/versionInfo" />
+        
+</PreferenceScreen>

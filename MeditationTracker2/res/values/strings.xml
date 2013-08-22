@@ -75,6 +75,28 @@
     
     <string name="title_delete_ngondro">Cannot delete Ngondro</string>
     <string name="message_delete_ngondro">For 111111 reasons this app cannot delete Ngondro. But we can hide them. Shall we?</string>
+
+    <string name="no_practices_add_one">No practices.\nAdd one.</string>
+    
+    <!-- Migrateds -->
+    
+    <string name="light">Lighter</string>
+    <string name="dark">Darker</string>
+
+    <string name="version">v6 \'Paramita\'
+        \n\nWritten by Doo Reelkow.\n
+Designed by Oxanna.\n\n
+Many thanks to all supporters for translations, testing, advises, and simply being there.\n\n
+Karmapa chenno!</string>
+    
+    <string name="hi">Hi!</string>
+    <string name="postInstallWelcome">Welcome to the new meditation tracker.
+        \n\nYadda yadda
+        Big bada boom!
+	    \n\nKeep up your practices!
+	    \n\nYours, Doo Reelkow.</string>
+    <string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html</string>
+    
     
     <!-- old stuff -->
 	
@@ -94,7 +116,7 @@
     <string name="malaSize">Mala size</string>
     <string name="customMalaSize">Mala size (leave empty for default)</string>
     <string name="showNgondro">Show Ngondro</string>
-    <string name="showAll">Show all...</string>
+    <string name="showAll">Show all&#8230;</string>
     <string name="settings">Settings</string>
     <string name="app_name">Meditation Tracker</string>
     <string name="ngondroTitle">Ngondro</string>
@@ -131,15 +153,7 @@
     <string name="startTimer">Start timer</string>
     <string name="addMala">Add mala</string>
     <string name="setMalaCount">Set count</string>
-    <string name="appUrl">http://dooreelkow.blogspot.com/2011/05/iv-ii.html</string>
     <string name="about">About&#8230;</string>
-    <string name="hi">Hi!</string>
-    <string name="version">v5 \'108\'
-        \n\nWritten by Doo Reelkow.\n
-		many thanks to Philipp Rollinger and Kamil Albrycht for translations and
-		Vika Onischenko for testing, advises, translations and great help.
-		\n\n
-		Karmapa chenno!</string>
     <string name="support">Support/discussion→</string>
     <string name="support_web_warning">Go to app\'s blog</string>
     <string name="oneBeadHeptic">Buzz differently</string>
@@ -148,14 +162,6 @@
     <string name="dimNight">Dim at night time</string>
     <string name="dimNightSummary">Dim session screen during late meditations</string>
     <string name="versionInfo">Version</string>
-    <string name="postInstallWelcome">Welcome to the new meditation tracker.
-        \n\nThis is not the promised big google-synchronising release. 
-        It\'s better. It\'s a small google-synchronizing release. For devices running 2.2 and up 
-        Meditation Tracker will now keep its state in android settings cloud. This means that
-        when you download this app to the new phone it\'ll automatically synchronize your practices and progress.
-        \nExporting practice entries for reporting and graphs is postponed and I guess is somewhat irrelevant now.
-	    \n\nKeep up your practices!
-	    \n\nYours, Doo Reelkow.</string>
     <string name="titleLast">Recent</string>
     <string name="titleAll">All</string>
     <string name="practiceImage">Practice image</string>

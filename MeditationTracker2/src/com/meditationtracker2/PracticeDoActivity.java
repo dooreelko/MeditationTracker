@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -35,6 +36,10 @@ public class PracticeDoActivity extends PracticeActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		int windowFlagsToSet = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+		getWindow().setFlags(windowFlagsToSet, windowFlagsToSet);
+		
 		setContentView(R.layout.activity_practice_do);
 		Views.inject(this);
 
@@ -107,6 +112,7 @@ public class PracticeDoActivity extends PracticeActivity {
 	private void askIfToSaveAndMaybeDo() {
 		if (!binder.isDirty()) {
 			finish();
+			return;
 		}
 		
 		doTheYesNoDialog(R.string.save_changes_title,

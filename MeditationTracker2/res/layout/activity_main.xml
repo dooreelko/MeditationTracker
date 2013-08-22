@@ -1,9 +1,50 @@
-<StackView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/flipper"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:loopViews="true"
-    tools:context=".MainActivity" >
+    android:orientation="vertical" >
 
-</StackView>
+    <StackView
+        android:id="@+id/flipper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateFirstView="true"
+        android:loopViews="true"
+        tools:context=".MainActivity" >
+
+    </StackView>
+
+    <RelativeLayout
+        android:id="@+id/layoutEmptyPracticeList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" >
+
+        <ImageButton
+            android:id="@+id/buttonAddPractice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@color/transparent"
+            android:contentDescription="@string/addMeditation"
+            android:src="@drawable/ic_content_new" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/buttonAddPractice"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="35dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:lines="2"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/no_practices_add_one"
+            android:textAppearance="@style/textAppearanceHuge"
+            android:textColor="@color/text_bg_meditracker" />
+    </RelativeLayout>
+
+</LinearLayout>

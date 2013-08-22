@@ -85,4 +85,10 @@ public class MockContentProvider implements IPracticeProvider {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void deletePractice(Practice practice) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_height="wrap_content"
+	android:layout_width="fill_parent" android:background="#f0f0f0">
+
+	<LinearLayout android:id="@+id/linearLayout1"
+		android:layout_height="wrap_content" android:layout_width="fill_parent"
+		android:orientation="vertical" android:background="#ffffff"
+		android:layout_margin="10dip">
+		<TextView android:id="@+id/textVersion" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_gravity="center"
+			android:text="@string/version" android:gravity="center"
+			android:layout_margin="10dip"></TextView>
+		<!-- TextView android:text="@string/appUrl" android:id="@+id/textView1"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:autoLink="web" android:layout_gravity="center"
+			android:layout_margin="10dip"/ -->
+
+	</LinearLayout>
+
+
+</LinearLayout>

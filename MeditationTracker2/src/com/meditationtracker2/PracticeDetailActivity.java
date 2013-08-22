@@ -11,7 +11,9 @@ import butterknife.Views;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.meditationtracker2.content.data.Practice;
+import com.meditationtracker2.content.data.PracticeProviderFactory;
 import com.meditationtracker2.model.PracticeDetailModel;
+import com.meditationtracker2.preferences.Settinger;
 
 public class PracticeDetailActivity extends PracticeActivity {
 	@Override
@@ -87,11 +89,14 @@ public class PracticeDetailActivity extends PracticeActivity {
 			doTheYesNoDialog(R.string.title_delete_ngondro, R.string.message_delete_ngondro, new OnClickListener() {
 				
 				@Override public void onClick(DialogInterface dialog, int which) {
-//TODO					PracticeDetailActivity.this.getSharedPreferences("", 1).edit().putBoolean(key, value);
+					new Settinger(PracticeDetailActivity.this).putBoolean(R.string.prefShowNgondro, false);
+					PracticeDetailActivity.this.finish();
 				}
 			}, null);
 			return;
 		}
+		
+		PracticeProviderFactory.getMeAProvider(this).deletePractice(getPractice());
 	}
 	
 }

@@ -12,4 +12,6 @@ public interface IPracticeProvider {
 	public void savePractice(Practice practice);
 	
 	public void addSession(Practice practice, int count);
+
+	public void deletePractice(Practice practice);
 }

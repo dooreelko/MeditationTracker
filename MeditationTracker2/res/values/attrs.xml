@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Attributes">
+        <attr name="text" format="string" />
+        <attr name="actor" format="string" />
+        <attr name="param" format="string" />
+        <attr name="min" format="integer" />
+        <attr name="max" format="integer" />
+    </declare-styleable>
+
+</resources>
