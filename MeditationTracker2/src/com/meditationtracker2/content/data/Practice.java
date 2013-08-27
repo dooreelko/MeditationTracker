@@ -6,6 +6,7 @@ import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.meditationtracker2.Constants;
 
 @DatabaseTable(tableName = "Practices")
 public class Practice {
@@ -31,7 +32,7 @@ public class Practice {
     public String title = "";
 	
 	@DatabaseField(canBeNull = false, columnName = "ICONURL")
-	public String imageUrl = "content://com.meditationtracker2.images/sixteenth_karmapa";
+	public String imageUrl = Constants.SIXTEENTH_KARMAPA_PNG;
 	
 	@DatabaseField(canBeNull = false, columnName = "TOTALCOUNT", defaultValue = "111111")
 	public long totalCount = 111111;

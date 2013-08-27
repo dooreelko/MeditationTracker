@@ -3,10 +3,9 @@ package com.meditationtracker2.content;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.HashMap;
+import java.util.Random;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -16,20 +15,22 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
+import android.widget.Toast;
 
+import com.meditationtracker2.Constants;
 import com.meditationtracker2.R;
 
 public final class PracticeImageProvider extends ContentProvider {
-	public static final String URI_PREFIX = "content://com.meditationtracker2.images";
-
+	private static final String MEDITATION_TRACKER_FOLDER = "MeditationTracker";
 	private static HashMap<String, Integer> sysPaths = new HashMap<String, Integer>(){
 		private static final long serialVersionUID = -4477167023060363542L;
 		{
-			put("content://com.meditationtracker2.images/refuge", R.drawable.refuge); 
-			put("content://com.meditationtracker2.images/diamondMind", R.drawable.diamond_mind);
-			put("content://com.meditationtracker2.images/mandalaOffering", R.drawable.mandala_offering);
-			put("content://com.meditationtracker2.images/guruYoga", R.drawable.guru_yoga);
-			put("content://com.meditationtracker2.images/sixteenth_karmapa", R.drawable.sixteenth_karmapa); 
+			//TODO: get that from application strings
+			put(Constants.REFUGE_PNG, R.drawable.refuge); 
+			put(Constants.DIAMOND_MIND_PNG, R.drawable.diamond_mind);
+			put(Constants.MANDALA_OFFERING_PNG, R.drawable.mandala_offering);
+			put(Constants.GURU_YOGA_PNG, R.drawable.guru_yoga);
+			put(Constants.SIXTEENTH_KARMAPA_PNG, R.drawable.sixteenth_karmapa); 
 		}
 	};
 
@@ -50,53 +51,60 @@ public final class PracticeImageProvider extends ContentProvider {
 	{
 		File file = buildFileFromUri(uri);
 
+		if (!file.exists()) { // fallback if file not found
+			file = buildFileFromUri(Uri.parse(Constants.SIXTEENTH_KARMAPA_PNG));
+		}
+		
 		ParcelFileDescriptor parcel = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY);
 		return parcel;
 	}
 	
 	private File buildFileFromUri(Uri uri) {
-		File file = new File(uri.getPath());
-		Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-		File result = new File(getContext().getFilesDir() + File.separator + file.getAbsolutePath());
+		File result = convertContentUriToFile(uri);
 
-		if (sysPaths.containsKey(uri.toString()) && !file.exists()) {
+		if (sysPaths.containsKey(uri.toString()) && !result.exists()) {
+			getPicturesFolder().mkdirs();
 			ensureSystemFile(uri, result);
 		}
 		
 		return result;
 	}
 
+	protected File convertContentUriToFile(Uri uri) {
+		File file = new File(uri.getPath());
+		File result = new File(getPicturesFolder(), file.getAbsolutePath());
+		return result;
+	}
+
+	private static File getPicturesFolder() {
+		return new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), MEDITATION_TRACKER_FOLDER);
+	}
+
 	protected void ensureSystemFile(Uri uri, File file) {
 		int resId = sysPaths.get(uri.toString()); //TODO: security. no content://blabla/../../../some.file
 		InputStream inputRawResource = this.getContext().getResources().openRawResource(resId);
 		
+		copyFile(file, inputRawResource);
+	}
+
+	protected void copyFile(File file, InputStream inputStream) {
 		try {
 			FileOutputStream fs = new FileOutputStream(file);
 
-			copyLarge(inputRawResource, fs);
-			inputRawResource.close();
+			byte[] data = new byte[inputStream.available()];
+
+			inputStream.read(data);
+	        fs.write(data);
+
+			inputStream.close();
 			fs.close();
 
-		} catch (IOException e) {
+		} catch (Exception e) {
+			Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
 			//TODO: reporter.error("Error extracting system resource.", e);
 		}
 	}
 	
-	private static final int DEFAULT_BUFFER_SIZE = 1024 * 4;
-
-	private static long copyLarge(InputStream input, OutputStream output)
-			throws IOException {
-		byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
-		long count = 0;
-		int n = 0;
-		while (-1 != (n = input.read(buffer))) {
-			output.write(buffer, 0, n);
-			count += n;
-		}
-		return count;
-	}
-	
-
 	@Override
 	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
 			String sortOrder) {
@@ -144,7 +152,30 @@ public final class PracticeImageProvider extends ContentProvider {
 
 	@Override
 	public Uri insert(Uri uri, ContentValues values) {
-		return null;
+		File result = getUniqueNewFile(convertContentUriToFile(uri));
+		
+		try {
+			Uri sourceUri = Uri.parse(values.getAsString(Constants.SOURCE_URL));
+			InputStream stream = getContext().getContentResolver().openInputStream(sourceUri);
+			copyFile(result, stream);
+			return Uri.parse(Constants.MEDIA_PROVIDER_ROOT + result.getName());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
+		}
+
+		return Uri.parse(Constants.SIXTEENTH_KARMAPA_PNG);
+	}
+
+	private File getUniqueNewFile(File result) {
+		Random rnd = new Random();
+
+		File folder = getPicturesFolder();
+		while (result.exists()) {
+			result = new File(folder, String.valueOf(rnd.nextInt(50000)));
+		}
+		return result;
 	}
 
 	@Override

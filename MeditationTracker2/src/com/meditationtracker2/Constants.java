@@ -11,5 +11,13 @@ public class Constants {
 	public static final String IMAGE_URL = "ImageUrl";
 
 	public static final int RESULT_DATA_CHANGED = 0;
+	
+	public static final String MEDIA_PROVIDER_ROOT = "content://com.meditationtracker2.images/";
+	public static final String SIXTEENTH_KARMAPA_PNG = MEDIA_PROVIDER_ROOT + "sixteenth_karmapa.png";
+	public static final String GURU_YOGA_PNG = MEDIA_PROVIDER_ROOT + "guruYoga.png";
+	public static final String MANDALA_OFFERING_PNG = MEDIA_PROVIDER_ROOT + "mandalaOffering.png";
+	public static final String DIAMOND_MIND_PNG = MEDIA_PROVIDER_ROOT + "diamondMind.png";
+	public static final String REFUGE_PNG = MEDIA_PROVIDER_ROOT + "refuge.png";
+	public static final String SOURCE_URL = "sourceUrl";
 
 }

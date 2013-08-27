@@ -1,9 +1,14 @@
 package com.meditationtracker2;
 
+import java.io.File;
+
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageButton;
 import butterknife.InjectView;
@@ -12,6 +17,9 @@ import butterknife.Views;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.dmitriy.tarasov.android.intents.IntentUtils;
+import com.meditationtracker2.PictureSourceDialog.IChoosePicture;
+import com.meditationtracker2.content.PracticeImageProvider;
 import com.meditationtracker2.content.data.Practice;
 import com.meditationtracker2.content.data.PracticeProviderFactory;
 import com.meditationtracker2.model.PracticeEditModel;
@@ -19,12 +27,14 @@ import com.meditationtracker2.model.PracticeEditModel;
 import doo.bandera.ModelBinder;
 
 public class PracticeEditActivity extends PracticeActivity implements PictureSourceDialog.IChoosePicture {
+	private static final int IMAGE_CHOOSEN = 0;
+	private static final int PICTURE_TAKEN = 1;
+
 	@InjectView(R.id.buttonPracticeImage)
 	ImageButton buttonPracticeImage;
 
 	private Practice practice = new Practice();
 	private PracticeEditModel model;
-
 	private ModelBinder binder;
 
 	@Override
@@ -93,9 +103,21 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 
 	@Override
 	public void onPictureSourceChosen(int result) {
-		// TODO: get the image
-		model.setImageUri(Uri.parse("content://com.meditationtracker2.images/sixteenth_karmapa"));
-		binder.updateDirtyValues();
+
+		if (result == IChoosePicture.CHOOSE_EXISTING) {
+			startActivityForResult(IntentUtils.pickImage(), IMAGE_CHOOSEN);
+		} else {
+			Uri uri = Uri.fromFile(getCaptureFileName());
+			Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//			intent.setData(uri);
+			intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+
+			startActivityForResult(intent, PICTURE_TAKEN);
+		}
+	}
+
+	protected File getCaptureFileName() {
+		return new File(getExternalCacheDir(), "mtrk.png");
 	}
 
 	private void askIfToSaveAndMaybeDo() {
@@ -131,10 +153,38 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 		super.onRestoreInstanceState(savedInstanceState);
 
 		practice.imageUrl = savedInstanceState.getString(Constants.IMAGE_URL);
+//TODO		binder.updateDirtyValues();
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode != RESULT_OK) {
+			return;
+		}
+		
+		Uri source = Uri.parse(Constants.SIXTEENTH_KARMAPA_PNG);
+		switch (requestCode) {
+		case IMAGE_CHOOSEN:
+			source = data.getData();
+			
+			break;
+		case PICTURE_TAKEN:
+			source = Uri.fromFile(getCaptureFileName());
+			
+			break;
+		}
 
-		/*
-		 * TODO updatePictures(); recalculatePicker();
-		 */
+		ContentValues sourcePaths = new ContentValues();
+		sourcePaths.put(Constants.SOURCE_URL, source.toString());
+		
+		String fileName = model.getTitle();
+		if (fileName == null || fileName.length() == 0) {
+			fileName = "practice.png";
+		}
+
+		model.setImageUri(getContentResolver().insert(Uri.parse(Constants.MEDIA_PROVIDER_ROOT + fileName), 
+								sourcePaths));
+		binder.updateDirtyValues();
 	}
 
 	@Override

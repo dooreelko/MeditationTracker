@@ -67,12 +67,6 @@
     
     <string name="new_practice">New practice</string>
     
-    <string name="url_refuge">content://com.meditationtracker2.images/refuge</string>
-    <string name="url_diamondMind">content://com.meditationtracker2.images/diamondMind</string>
-    <string name="url_mandalaOffering">content://com.meditationtracker2.images/mandalaOffering</string>
-    <string name="url_guruYoga">content://com.meditationtracker2.images/guruYoga</string>
-    <string name="url_sixteenthKarmapa">content://com.meditationtracker2.images/sixteenth_karmapa</string>
-    
     <string name="title_delete_ngondro">Cannot delete Ngondro</string>
     <string name="message_delete_ngondro">For 111111 reasons this app cannot delete Ngondro. But we can hide them. Shall we?</string>
 
