@@ -3,6 +3,9 @@ package com.meditationtracker2.model;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.net.Uri;
+
+import com.meditationtracker2.Constants;
 import com.meditationtracker2.R;
 import com.meditationtracker2.content.data.Practice;
 
@@ -17,8 +20,8 @@ public class PracticeDetailModel extends BaseModel<Practice> {
 	}
 
 	@BindModel({ R.id.practice_image, R.id.buttonStart })
-	public String getPracticeImage() {
-		return getModel().imageUrl;
+	public Uri getPracticeImage() {
+		return Constants.buildScreenUri(getModel().imageUrl);
 	}
 
 	@BindModel(R.id.textScheduledForToday)

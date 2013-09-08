@@ -19,7 +19,6 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.dmitriy.tarasov.android.intents.IntentUtils;
 import com.meditationtracker2.PictureSourceDialog.IChoosePicture;
-import com.meditationtracker2.content.PracticeImageProvider;
 import com.meditationtracker2.content.data.Practice;
 import com.meditationtracker2.content.data.PracticeProviderFactory;
 import com.meditationtracker2.model.PracticeEditModel;

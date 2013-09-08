@@ -5,6 +5,7 @@ import java.util.Date;
 
 import android.net.Uri;
 
+import com.meditationtracker2.Constants;
 import com.meditationtracker2.R;
 import com.meditationtracker2.content.data.Practice;
 
@@ -23,7 +24,7 @@ public class PracticeEditModel extends BaseModel<Practice> {
 	public PracticeEditModel(Practice originalModel) {
 		super(originalModel);
 
-		imageUri = Uri.parse(originalModel.imageUrl);
+		setImageUri(Uri.parse(originalModel.imageUrl));
 		title = originalModel.title;
 		totalCount = originalModel.totalCount;
 		currentCount = originalModel.currentCount;
@@ -32,7 +33,7 @@ public class PracticeEditModel extends BaseModel<Practice> {
 	}
 
 	public void updatePractice(Practice practice) {
-		practice.imageUrl = imageUri.toString();
+		practice.imageUrl = Constants.getCleanImageUri(imageUri).toString();
 		practice.title = title;
 		practice.totalCount = totalCount;
 		practice.currentCount = currentCount;
@@ -46,7 +47,7 @@ public class PracticeEditModel extends BaseModel<Practice> {
 	}
 	
 	public void setImageUri(Uri imageUri) {
-		this.imageUri = imageUri;
+		this.imageUri = Constants.buildScreenUri(imageUri);
 	}
 
 	@BindModel(R.id.editPracticeName)

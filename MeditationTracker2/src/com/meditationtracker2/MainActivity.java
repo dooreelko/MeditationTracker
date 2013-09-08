@@ -10,6 +10,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -127,7 +128,9 @@ public class MainActivity extends PracticeActivity {
 			TextView scheduledCountText = Views.findById(view, R.id.scheduled_count);
 			TextView currentCountText = Views.findById(view, R.id.completed_count);
 			
-			image.setImageURI(Uri.parse(with.imageUrl));
+			Uri screenUri = Constants.buildScreenUri(with.imageUrl);
+			Log.d("MTRK", "Adding image to flipper: " + screenUri);
+			image.setImageURI(screenUri);
 			
 			int scheduledForToday = with.scheduledForToday;
 			if (scheduledForToday > 0) {
@@ -215,10 +218,6 @@ public class MainActivity extends PracticeActivity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-//		if (resultCode != RESULT_OK)
-//		{
-//			return;
-//		}
 		
 		bindData();
 	}

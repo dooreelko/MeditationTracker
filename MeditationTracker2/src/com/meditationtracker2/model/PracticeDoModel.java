@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 
+import com.meditationtracker2.Constants;
 import com.meditationtracker2.R;
 import com.meditationtracker2.content.data.Practice;
 
@@ -83,7 +84,7 @@ public class PracticeDoModel extends BaseModel<Practice> {
 
 	@BindModel(R.id.buttonAddMala)
 	public Uri getImageUri() {
-		return imageUri;
+		return Constants.buildScreenUri(imageUri);
 	}
 	
 	public void setImageUri(Uri imageUri) {

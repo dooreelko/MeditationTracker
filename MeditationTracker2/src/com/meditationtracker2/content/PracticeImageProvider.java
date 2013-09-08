@@ -52,7 +52,7 @@ public final class PracticeImageProvider extends ContentProvider {
 		File file = buildFileFromUri(uri);
 
 		if (!file.exists()) { // fallback if file not found
-			file = buildFileFromUri(Uri.parse(Constants.SIXTEENTH_KARMAPA_PNG));
+			file = buildFileFromUri(Constants.buildScreenUri(Constants.SIXTEENTH_KARMAPA_PNG));
 		}
 		
 		ParcelFileDescriptor parcel = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY);
@@ -62,9 +62,16 @@ public final class PracticeImageProvider extends ContentProvider {
 	private File buildFileFromUri(Uri uri) {
 		File result = convertContentUriToFile(uri);
 
-		if (sysPaths.containsKey(uri.toString()) && !result.exists()) {
+		Uri originalUri = uri.buildUpon().clearQuery().build();
+		File originalFile = convertContentUriToFile(originalUri);
+		
+		if (sysPaths.containsKey(originalUri.getLastPathSegment()) && !originalFile.exists()) {
 			getPicturesFolder().mkdirs();
-			ensureSystemFile(uri, result);
+			ensureSystemFile(originalUri, originalFile);
+		}
+		
+		if (isQueryWithResize(uri)) {
+			ImageCache.ensureResizedImage(getContext(), originalFile, result);
 		}
 		
 		return result;
@@ -72,8 +79,24 @@ public final class PracticeImageProvider extends ContentProvider {
 
 	protected File convertContentUriToFile(Uri uri) {
 		File file = new File(uri.getPath());
-		File result = new File(getPicturesFolder(), file.getAbsolutePath());
+		File picturesFolder;
+		
+		if (isQueryWithResize(uri)) {
+			picturesFolder = getCacheFolder();
+		} else {
+			picturesFolder = getPicturesFolder();
+		}
+		
+		File result = new File(picturesFolder, file.getAbsolutePath());
 		return result;
+	}
+
+	protected boolean isQueryWithResize(Uri uri) {
+		return uri.getQueryParameter(Constants.SIZEHINT_KEY) != null;
+	}
+
+	private File getCacheFolder() {
+		return getContext().getCacheDir();
 	}
 
 	private static File getPicturesFolder() {
@@ -81,7 +104,7 @@ public final class PracticeImageProvider extends ContentProvider {
 	}
 
 	protected void ensureSystemFile(Uri uri, File file) {
-		int resId = sysPaths.get(uri.toString()); //TODO: security. no content://blabla/../../../some.file
+		int resId = sysPaths.get(uri.getLastPathSegment()); //TODO: security. no content://blabla/../../../some.file
 		InputStream inputRawResource = this.getContext().getResources().openRawResource(resId);
 		
 		copyFile(file, inputRawResource);
@@ -108,7 +131,7 @@ public final class PracticeImageProvider extends ContentProvider {
 	@Override
 	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
 			String sortOrder) {
-		return getCursorForFiles(uri.getPath());
+		return getCursorForFiles(getPicturesFolder().getPath());
 	}
 
 	/* Return a cursor for files in the specified path */
@@ -118,7 +141,8 @@ public final class PracticeImageProvider extends ContentProvider {
 				"_id",
 				OpenableColumns.DISPLAY_NAME,
 				OpenableColumns.SIZE,
-				"_data"
+				"_data",
+				"mime_type"
 		};
 
 		MatrixCursor c = new MatrixCursor(columns);
@@ -142,7 +166,8 @@ public final class PracticeImageProvider extends ContentProvider {
 	private void addRow(MatrixCursor cursor, File file, int id, String path) {
 		String fileName = file.getName();
 		int fileSize = (int) file.length();
-		cursor.addRow(new Object[] { id, fileName, fileSize, path });
+		
+		cursor.addRow(new Object[] { id, fileName, fileSize, path, "image/png" });
 	}
 	
 	@Override
