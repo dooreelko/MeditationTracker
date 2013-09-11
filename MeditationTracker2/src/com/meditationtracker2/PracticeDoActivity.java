@@ -17,6 +17,7 @@ import butterknife.Views;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.meditationtracker2.content.PracticeViewUpdater;
 import com.meditationtracker2.content.data.Practice;
 import com.meditationtracker2.content.data.PracticeProviderFactory;
 import com.meditationtracker2.model.PracticeDoModel;
@@ -57,7 +58,7 @@ public class PracticeDoActivity extends PracticeActivity {
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		model = new PracticeDoModel(practice, this);
-		binder = doo.bandera.Models.Bind(this, model);
+		binder = doo.bandera.Models.Bind(this, model, new PracticeViewUpdater());
 	}
 
 	protected void updatePracticeImage(String url) {

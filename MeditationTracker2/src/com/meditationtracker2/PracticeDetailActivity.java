@@ -10,6 +10,7 @@ import butterknife.Views;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.meditationtracker2.content.PracticeViewUpdater;
 import com.meditationtracker2.content.data.Practice;
 import com.meditationtracker2.content.data.PracticeProviderFactory;
 import com.meditationtracker2.model.PracticeDetailModel;
@@ -31,7 +32,7 @@ public class PracticeDetailActivity extends PracticeActivity {
 		getSupportActionBar().setTitle(practice.title);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
-		doo.bandera.Models.Bind(this, new PracticeDetailModel(practice));
+		doo.bandera.Models.Bind(this, new PracticeDetailModel(practice), new PracticeViewUpdater());
 	}
 
 	@OnClick(R.id.buttonStart)

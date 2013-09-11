@@ -19,6 +19,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.dmitriy.tarasov.android.intents.IntentUtils;
 import com.meditationtracker2.PictureSourceDialog.IChoosePicture;
+import com.meditationtracker2.content.PracticeViewUpdater;
 import com.meditationtracker2.content.data.Practice;
 import com.meditationtracker2.content.data.PracticeProviderFactory;
 import com.meditationtracker2.model.PracticeEditModel;
@@ -52,7 +53,7 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		model = new PracticeEditModel(practice);
-		binder = doo.bandera.Models.Bind(this, model);
+		binder = doo.bandera.Models.Bind(this, model, new PracticeViewUpdater());
 	}
 
 	@OnClick(R.id.buttonPracticeImage)

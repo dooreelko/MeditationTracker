@@ -7,10 +7,8 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +31,7 @@ import com.meditationtracker2.content.data.IPracticeProvider;
 import com.meditationtracker2.content.data.Practice;
 import com.meditationtracker2.content.data.PracticeProviderFactory;
 import com.meditationtracker2.preferences.Settinger;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class MainActivity extends PracticeActivity {
 	@InjectView(R.id.flipper) StackView flipper;
@@ -121,16 +120,15 @@ public class MainActivity extends PracticeActivity {
 	}
 
 	private ICanFillView<Practice> viewFiller = new ICanFillView<Practice>() {
-
+		private ImageLoader imageLoader = ImageLoader.getInstance();
+		
 		@Override
 		public void fill(View view, Practice with) {
 			ImageView image = Views.findById(view, R.id.practice_image);
 			TextView scheduledCountText = Views.findById(view, R.id.scheduled_count);
 			TextView currentCountText = Views.findById(view, R.id.completed_count);
 			
-			Uri screenUri = Constants.buildScreenUri(with.imageUrl);
-			Log.d("MTRK", "Adding image to flipper: " + screenUri);
-			image.setImageURI(screenUri);
+			imageLoader.displayImage(with.imageUrl, image);
 			
 			int scheduledForToday = with.scheduledForToday;
 			if (scheduledForToday > 0) {

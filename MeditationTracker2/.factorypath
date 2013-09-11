@@ -1,4 +1,4 @@
 <factorypath>
-    <factorypathentry kind="WKSPJAR" id="/MeditationTracker2/lib/bandera-compile.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="WKSPJAR" id="/MeditationTracker2/lib/butterknife-2.0.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="WKSPJAR" id="/MeditationTracker2/lib/bandera-compile.jar" enabled="true" runInBatchMode="false"/>
 </factorypath>

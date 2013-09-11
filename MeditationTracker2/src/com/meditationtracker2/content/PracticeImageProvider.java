@@ -3,6 +3,7 @@ package com.meditationtracker2.content;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Random;
@@ -69,11 +70,6 @@ public final class PracticeImageProvider extends ContentProvider {
 			getPicturesFolder().mkdirs();
 			ensureSystemFile(originalUri, originalFile);
 		}
-		
-		if (isQueryWithResize(uri)) {
-			ImageCache.ensureResizedImage(getContext(), originalFile, result);
-		}
-		
 		return result;
 	}
 
@@ -81,22 +77,10 @@ public final class PracticeImageProvider extends ContentProvider {
 		File file = new File(uri.getPath());
 		File picturesFolder;
 		
-		if (isQueryWithResize(uri)) {
-			picturesFolder = getCacheFolder();
-		} else {
-			picturesFolder = getPicturesFolder();
-		}
+		picturesFolder = getPicturesFolder();
 		
 		File result = new File(picturesFolder, file.getAbsolutePath());
 		return result;
-	}
-
-	protected boolean isQueryWithResize(Uri uri) {
-		return uri.getQueryParameter(Constants.SIZEHINT_KEY) != null;
-	}
-
-	private File getCacheFolder() {
-		return getContext().getCacheDir();
 	}
 
 	private static File getPicturesFolder() {
@@ -107,27 +91,27 @@ public final class PracticeImageProvider extends ContentProvider {
 		int resId = sysPaths.get(uri.getLastPathSegment()); //TODO: security. no content://blabla/../../../some.file
 		InputStream inputRawResource = this.getContext().getResources().openRawResource(resId);
 		
-		copyFile(file, inputRawResource);
+		copyFile(inputRawResource, file);
 	}
 
-	protected void copyFile(File file, InputStream inputStream) {
+	private static final int DEFAULT_BUFFER_SIZE = 1024 * 100;
+
+	private void copyFile(InputStream input, File target) {
+		byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
+		int n = 0;
 		try {
-			FileOutputStream fs = new FileOutputStream(file);
-
-			byte[] data = new byte[inputStream.available()];
-
-			inputStream.read(data);
-	        fs.write(data);
-
-			inputStream.close();
-			fs.close();
-
-		} catch (Exception e) {
+			FileOutputStream output = new FileOutputStream(target);
+			while (-1 != (n = input.read(buffer))) {
+				output.write(buffer, 0, n);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
-			//TODO: reporter.error("Error extracting system resource.", e);
+			e.printStackTrace();
 		}
+
 	}
-	
+
 	@Override
 	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
 			String sortOrder) {
@@ -182,7 +166,7 @@ public final class PracticeImageProvider extends ContentProvider {
 		try {
 			Uri sourceUri = Uri.parse(values.getAsString(Constants.SOURCE_URL));
 			InputStream stream = getContext().getContentResolver().openInputStream(sourceUri);
-			copyFile(result, stream);
+			copyFile(stream, result);
 			return Uri.parse(Constants.MEDIA_PROVIDER_ROOT + result.getName());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -197,9 +181,12 @@ public final class PracticeImageProvider extends ContentProvider {
 		Random rnd = new Random();
 
 		File folder = getPicturesFolder();
-		while (result.exists()) {
-			result = new File(folder, String.valueOf(rnd.nextInt(50000)));
-		}
+		String name = result.getName();
+		do {
+			result = new File(folder, name);
+			name = String.valueOf(rnd.nextInt(50000));
+		} while (result.exists());
+		
 		return result;
 	}
 
