@@ -1,9 +1,10 @@
 package com.meditationtracker2;
 
+import java.util.Calendar;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
@@ -18,14 +19,17 @@ import butterknife.Views;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.meditationtracker2.content.PracticeViewUpdater;
+import com.meditationtracker2.content.data.IPracticeProvider;
 import com.meditationtracker2.content.data.Practice;
 import com.meditationtracker2.content.data.PracticeProviderFactory;
 import com.meditationtracker2.model.PracticeDoModel;
+import com.meditationtracker2.preferences.Settinger;
 
 import doo.bandera.ModelBinder;
 
 public class PracticeDoActivity extends PracticeActivity {
 
+	private static final int DEFAULT_MALA_SIZE = 108;
 	@InjectView(R.id.buttonAddMala) ImageButton buttonAddMala;
 	@InjectView(R.id.editMalaCount)	EditText editMalaCount;
 	@InjectView(R.id.editMalaSize) EditText editMalaSize;
@@ -38,8 +42,7 @@ public class PracticeDoActivity extends PracticeActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		int windowFlagsToSet = WindowManager.LayoutParams.FLAG_FULLSCREEN;
-		getWindow().setFlags(windowFlagsToSet, windowFlagsToSet);
+		setupScreenForSession();
 		
 		setContentView(R.layout.activity_practice_do);
 		Views.inject(this);
@@ -51,6 +54,23 @@ public class PracticeDoActivity extends PracticeActivity {
 		bindData();
 	}
 
+	public void setupScreenForSession() {
+		int windowFlagsToSet = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+		getWindow().setFlags(windowFlagsToSet, windowFlagsToSet);
+		
+		Settinger settinger = new Settinger(this);
+		int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+		boolean isNight = hour >= 18 || hour < 9;
+		if (isNight && settinger.getBoolean(R.string.prefDimNight, false)) {
+			float dimAtNightValue = settinger.getInt(R.string.prefDimNightValue, 3);
+			
+			WindowManager.LayoutParams lp = getWindow().getAttributes();
+			
+			lp.screenBrightness = dimAtNightValue/100;
+			getWindow().setAttributes(lp);
+		}
+	}
+
 	protected void bindData() {
 		Practice practice = getPractice();
 
@@ -59,11 +79,6 @@ public class PracticeDoActivity extends PracticeActivity {
 
 		model = new PracticeDoModel(practice, this);
 		binder = doo.bandera.Models.Bind(this, model, new PracticeViewUpdater());
-	}
-
-	protected void updatePracticeImage(String url) {
-		Uri uri = Uri.parse(url);
-		buttonAddMala.setImageURI(uri);
 	}
 
 	private OnFocusChangeListener onFocusChanged = new OnFocusChangeListener() {
@@ -136,7 +151,15 @@ public class PracticeDoActivity extends PracticeActivity {
 
 	private void saveAndClose() {
 		if (binder.isDirty()) {
-			PracticeProviderFactory.getMeAProvider(this).addSession(getPractice(), model.getTotalCount());
+			IPracticeProvider dataProvider = PracticeProviderFactory.getMeAProvider(this);
+			Practice practice = getPractice();
+			dataProvider.addSession(practice, model.getTotalCount());
+			
+			int defaultMalaSize = new Settinger(this).getInt(R.string.prefMalaSize, DEFAULT_MALA_SIZE);
+			if (model.getMalaSize() != defaultMalaSize && practice.malaSize != model.getMalaSize()) {
+				practice.malaSize = model.getMalaSize();
+				dataProvider.savePractice(practice);
+			}
 		}
 
 		setResult(Constants.RESULT_DATA_CHANGED);

@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import doo.bandera.SimpleViewUpdater;
 
 public class PracticeViewUpdater extends SimpleViewUpdater {
-	private ImageLoader imageLoader = ImageLoader.getInstance();
+	protected ImageLoader imageLoader = ImageLoader.getInstance();
 
 	@Override
 	public void updateImageView(ImageView v, Uri uri) {

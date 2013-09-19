@@ -31,7 +31,7 @@ public class PracticeHistory {
 	@DatabaseField(canBeNull = false, columnName = "PRACTICE_ID", foreign = true)
 	public Practice practice;
 	
-	@DatabaseField(columnName = "PRACTICE_DATE")
+	@DatabaseField(columnName = "PRACTICE_DATE", canBeNull=true)
     public Date practiceDate;
 	
 	@DatabaseField(columnName = "DONE_COUNT")

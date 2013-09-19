@@ -35,8 +35,18 @@ public class Settinger {
 		.commit();
 	}
 	
+	public int getInt(int keyResId, int defValue) {
+		try {
+		return getPrefManager()
+				.getInt(where.getString(keyResId), defValue);
+		} catch(ClassCastException e) {
+			return Integer.parseInt(getString(keyResId, String.valueOf(defValue)));
+		}
+	}
+	
 	protected SharedPreferences getPrefManager() {
 		return PreferenceManager
 				.getDefaultSharedPreferences(where);
 	}
+
 }

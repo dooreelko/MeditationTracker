@@ -109,7 +109,6 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 		} else {
 			Uri uri = Uri.fromFile(getCaptureFileName());
 			Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//			intent.setData(uri);
 			intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
 
 			startActivityForResult(intent, PICTURE_TAKEN);

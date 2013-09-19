@@ -94,7 +94,8 @@ public class PracticeDetailModel extends BaseModel<Practice> {
 	@BindState({ R.id.textLastPracticeDate, R.id.titleLastPractice })
 	public ViewState getLastPracticeVisibility() {
 		// like if it's at least 5 milliseconds after the Epoch
-		return getModel().lastPracticeDate.getTime() > 5 ? ViewState.Normal : ViewState.Gone;
+		Date lastPracticeDate = getModel().lastPracticeDate;
+		return lastPracticeDate!=null && lastPracticeDate.getTime() > 5 ? ViewState.Normal : ViewState.Gone;
 	}
 	
 }
