@@ -401,7 +401,7 @@ public class IntentUtils {
      * Pick image from gallery
      */
     public static Intent pickImage() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         return intent;
     }
