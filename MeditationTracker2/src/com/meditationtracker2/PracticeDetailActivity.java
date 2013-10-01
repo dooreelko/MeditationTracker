@@ -64,6 +64,9 @@ public class PracticeDetailActivity extends PracticeActivity {
 		case R.id.menu_delete:
 			maybeDeletePractice();
 			break;
+		case R.id.menu_settings:
+			startActivityForResult(new Intent(this, SettingsActivity.class), Constants.SETTINGS_DONE);
+			break;
 
 		}
 		

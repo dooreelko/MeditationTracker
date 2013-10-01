@@ -53,7 +53,7 @@ public final class PracticeImageProvider extends ContentProvider {
 		File file = buildFileFromUri(uri);
 
 		if (!file.exists()) { // fallback if file not found
-			file = buildFileFromUri(Constants.buildScreenUri(Constants.SIXTEENTH_KARMAPA_PNG));
+			file = buildFileFromUri(Uri.parse(Constants.SIXTEENTH_KARMAPA_PNG));
 		}
 		
 		ParcelFileDescriptor parcel = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY);

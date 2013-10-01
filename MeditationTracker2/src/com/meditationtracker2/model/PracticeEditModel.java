@@ -5,7 +5,6 @@ import java.util.Date;
 
 import android.net.Uri;
 
-import com.meditationtracker2.Constants;
 import com.meditationtracker2.R;
 import com.meditationtracker2.content.data.Practice;
 
@@ -33,7 +32,7 @@ public class PracticeEditModel extends BaseModel<Practice> {
 	}
 
 	public void updatePractice(Practice practice) {
-		practice.imageUrl = Constants.getCleanImageUri(imageUri).toString();
+		practice.imageUrl = imageUri.toString();
 		practice.title = title;
 		practice.totalCount = totalCount;
 		practice.currentCount = currentCount;
@@ -47,7 +46,7 @@ public class PracticeEditModel extends BaseModel<Practice> {
 	}
 	
 	public void setImageUri(Uri imageUri) {
-		this.imageUri = Constants.buildScreenUri(imageUri);
+		this.imageUri = imageUri;
 	}
 
 	@BindModel(R.id.editPracticeName)

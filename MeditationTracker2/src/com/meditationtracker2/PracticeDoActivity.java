@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.view.WindowManager;
@@ -37,6 +38,7 @@ public class PracticeDoActivity extends PracticeActivity {
 	
 	private ModelBinder binder;
 	private PracticeDoModel model;
+	private boolean beadHaptic;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,8 @@ public class PracticeDoActivity extends PracticeActivity {
 		editSessionTotalCount.setOnFocusChangeListener(onFocusChanged);
 
 		bindData();
+
+		beadHaptic = new Settinger(this).getBoolean(R.string.prefOneBeadHaptic, true);
 	}
 
 	public void setupScreenForSession() {
@@ -97,10 +101,38 @@ public class PracticeDoActivity extends PracticeActivity {
 	
 	@OnClick(R.id.buttonAddMala)
 	void onClickAddMala(View v) {
+		int preMalaCount = model.getMalaCount();
+		
+		
 		model.addMala();
 		binder.updateDirtyValues();
+		
+		doTheBuzz(preMalaCount, model.getMalaCount());
 	}
 
+	private void doTheBuzz(int preMalaCount, int postMalaCount) {
+		boolean is10 = (preMalaCount % 10) > (postMalaCount % 10);
+		boolean is50 = (preMalaCount % 50) > (postMalaCount % 50);
+
+		if (beadHaptic && (is10 || is50))
+			vibrate(is50);
+		else
+			vibrate(50);
+	}
+
+	protected void vibrate(int duration) {
+		Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+		vibrator.vibrate(duration);
+	}
+
+	long[] pattern10 = { 0, 30, 100, 100 };
+	long[] pattern50 = { 0, 100, 100, 30, 100, 100 };
+
+	protected void vibrate(boolean is50) {
+		Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+		vibrator.vibrate(is50 ? pattern50 : pattern10, -1);
+	}	
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 

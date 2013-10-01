@@ -1,7 +1,5 @@
 package com.meditationtracker2;
 
-import android.net.Uri;
-
 public class Constants {
 
 	public static final String PRACTICE_ID = "PracticeId";
@@ -21,23 +19,4 @@ public class Constants {
 	public static final String DIAMOND_MIND_PNG = "diamondMind.png";
 	public static final String REFUGE_PNG = "refuge.png";
 	public static final String SOURCE_URL = "sourceUrl";
-	
-	public static final String SIZEHINT_SCREEN = "screen";
-	public static final String SIZEHINT_KEY = "sizehint";
-
-	
-	public static Uri buildScreenUri(String path) {
-		return buildScreenUri(Uri.parse(path));
-	}
-
-	public static Uri buildScreenUri(Uri path) {
-		return path
-				.buildUpon()
-				.appendQueryParameter(SIZEHINT_KEY, SIZEHINT_SCREEN)
-				.build();
-	}
-	
-	public static Uri getCleanImageUri(Uri path) {
-		return path.buildUpon().clearQuery().build();
-	}
 }

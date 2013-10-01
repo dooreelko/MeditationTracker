@@ -28,9 +28,9 @@
     </CheckBoxPreference>
     <CheckBoxPreference
         android:defaultValue="true"
-        android:key="@string/prefOneBeadHeptic"
-        android:summary="@string/oneBeadHepticSummary"
-        android:title="@string/oneBeadHeptic" >
+        android:key="@string/prefOneBeadHaptic"
+        android:summary="@string/oneBeadHapticSummary"
+        android:title="@string/oneBeadHaptic" >
     </CheckBoxPreference>
     <CheckBoxPreference
         android:defaultValue="true"

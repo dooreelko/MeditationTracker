@@ -150,8 +150,8 @@ Karmapa chenno!</string>
     <string name="about">About&#8230;</string>
     <string name="support">Support/discussion→</string>
     <string name="support_web_warning">Go to app\'s blog</string>
-    <string name="oneBeadHeptic">Buzz differently</string>
-    <string name="oneBeadHepticSummary">Use different patterns on every 10th and 50th
+    <string name="oneBeadHaptic">Buzz differently</string>
+    <string name="oneBeadHapticSummary">Use different patterns on every 10th and 50th
 		\"bead\"</string>
     <string name="dimNight">Dim at night time</string>
     <string name="dimNightSummary">Dim session screen during late meditations</string>
