@@ -2,12 +2,15 @@ package com.meditationtracker2;
 
 import java.io.File;
 
+import android.annotation.TargetApi;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageButton;
@@ -115,8 +118,13 @@ public class PracticeEditActivity extends PracticeActivity implements PictureSou
 		}
 	}
 
+	@TargetApi(Build.VERSION_CODES.FROYO)
 	protected File getCaptureFileName() {
-		return new File(getExternalCacheDir(), "mtrk.png");
+		if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.FROYO) {
+			return new File(getExternalCacheDir(), "mtrk.png");
+		} else {
+			return new File(Environment.getExternalStorageDirectory(), "mtrk.png");
+		}
 	}
 
 	private void askIfToSaveAndMaybeDo() {
