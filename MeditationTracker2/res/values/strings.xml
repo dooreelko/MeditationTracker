@@ -3,7 +3,7 @@
  
 	<string name="app_name">Meditation Tracker</string>
 
-	<string name="dummy_practice_name">Diamond Mind and some more text to make it surely multiline and then some more just to be sure you know</string>
+	<string name="dummy_practice_name">Diamond Mind</string>
 	<string name="dummy_practice_total_count">111111</string>
 	<string name="dummy_practice_scheduled_count">108</string>
 	<string name="dummy_practice_current_count1">12315 (80%)</string>
@@ -52,8 +52,8 @@
     
     <string name="tap_the_image_to_add_mala">Tap the image to add mala</string>
     <string name="meditation_name">Meditation name</string>
-    <string name="scheduled_total">Practice total (but very loong)</string>
-    <string name="completed_total">Completed total (also long one but not insanely)</string>
+    <string name="scheduled_total">Practice total</string>
+    <string name="completed_total">Completed total</string>
     <string name="daily_repetitions">Daily repetitions</string>
     <string name="tap_image_to_change">Tap image to change</string>
     <string name="completion_date">(Maybe) completion date</string>
@@ -118,7 +118,7 @@ Karmapa chenno!</string>
     <string name="myMeditationsTitle">My meditations</string>
     <string name="guruYoga">Guru Yoga</string>
     <string name="refuge">Refuge</string>
-    <string name="diamondMind">Diamond Mind and some more text to make it surely multiline and then some more just to be sure you know</string>
+    <string name="diamondMind">Diamond Mind</string>
     <string name="mandalaOffering">Mandala Offering</string>
     <string name="practiceName">Practice name</string>
     <string name="requiredRepetitions">Required repetitions</string>

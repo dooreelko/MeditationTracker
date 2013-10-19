@@ -19,8 +19,12 @@ public class Settinger {
 	}
 
 	public boolean getBoolean(int keyResId, boolean defValue) {
+		return getBoolean(where.getString(keyResId), defValue);
+	}
+
+	public boolean getBoolean(String key, boolean defValue) {
 		return getPrefManager()
-				.getBoolean(where.getString(keyResId), defValue);
+				.getBoolean(key, defValue);
 	}
 
 	public String getString(int keyResId, String defValue) {

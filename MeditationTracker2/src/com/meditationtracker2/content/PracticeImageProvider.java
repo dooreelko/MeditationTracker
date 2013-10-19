@@ -99,8 +99,9 @@ public final class PracticeImageProvider extends ContentProvider {
 	private void copyFile(InputStream input, File target) {
 		byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
 		int n = 0;
+		FileOutputStream output = null;
 		try {
-			FileOutputStream output = new FileOutputStream(target);
+			output = new FileOutputStream(target);
 			while (-1 != (n = input.read(buffer))) {
 				output.write(buffer, 0, n);
 			}
@@ -108,7 +109,16 @@ public final class PracticeImageProvider extends ContentProvider {
 			// TODO Auto-generated catch block
 			Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG).show();
 			e.printStackTrace();
-		}
+		} finally {
+			if (output != null) {
+				try {
+					output.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}		
 
 	}
 

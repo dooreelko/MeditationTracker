@@ -9,7 +9,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import com.meditationtracker2.Constants;
 
 @DatabaseTable(tableName = "Practices")
-public class Practice {
+public class Practice implements Comparable<Practice> {
 	
 /* _id INTEGER PRIMARY KEY, 
  * ISNGONDRO BOOLEAN NOT NULL DEFAULT 0, 
@@ -81,5 +81,10 @@ public class Practice {
 	@Override
 	public String toString() {
 		return title;
+	}
+
+	@Override
+	public int compareTo(Practice other) {
+		return lastPracticeDate.compareTo(other.lastPracticeDate);
 	}
 }

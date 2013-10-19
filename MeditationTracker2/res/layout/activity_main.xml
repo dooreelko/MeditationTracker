@@ -5,16 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <StackView
-        android:id="@+id/flipper"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:animateFirstView="true"
-        android:loopViews="true"
-        tools:context=".MainActivity" >
-
-    </StackView>
-
+    <com.fima.cardsui.views.CardUI android:layout_height="match_parent" android:layout_width="match_parent" android:id="@+id/flipper"/>
+    
     <RelativeLayout
         android:id="@+id/layoutEmptyPracticeList"
         android:layout_width="match_parent"

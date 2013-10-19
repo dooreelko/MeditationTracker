@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap.CompressFormat;
@@ -22,14 +21,15 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 public class MeditationTrackerApplication extends Application {
+	@SuppressWarnings("deprecation")
 	@Override
     public void onCreate() {
         super.onCreate();
 
 		WindowManager winman = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 		Display defaultDisplay = winman.getDefaultDisplay();
-		Point outSize = new Point();
-		defaultDisplay.getSize(outSize);
+		Point outSize = new Point(defaultDisplay.getWidth(), defaultDisplay.getHeight());
+//TODO		defaultDisplay.getSize(outSize);
 		int biggestScreenDimension = Math.max(outSize.x, outSize.y);
 
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
@@ -66,8 +66,10 @@ public class MeditationTrackerApplication extends Application {
 	private void copyFile(InputStream input, File target) {
 		byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
 		int n = 0;
+		FileOutputStream output = null;
+
 		try {
-			FileOutputStream output = new FileOutputStream(target);
+			output = new FileOutputStream(target);
 			while (-1 != (n = input.read(buffer))) {
 				output.write(buffer, 0, n);
 			}
@@ -75,6 +77,15 @@ public class MeditationTrackerApplication extends Application {
 			// TODO Auto-generated catch block
 			Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_LONG).show();
 			e.printStackTrace();
+		} finally {
+			if (output != null) {
+				try {
+					output.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 
 	}

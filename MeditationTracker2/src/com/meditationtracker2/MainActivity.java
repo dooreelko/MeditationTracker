@@ -1,5 +1,6 @@
 package com.meditationtracker2;
 
+import java.util.Collections;
 import java.util.List;
 
 import android.app.Activity;
@@ -11,12 +12,10 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.StackView;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -25,7 +24,7 @@ import butterknife.Views;
 import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.meditationtracker2.content.ComplexViewArrayAdapter;
+import com.fima.cardsui.views.CardUI;
 import com.meditationtracker2.content.ICanFillView;
 import com.meditationtracker2.content.data.IPracticeProvider;
 import com.meditationtracker2.content.data.Practice;
@@ -34,7 +33,7 @@ import com.meditationtracker2.preferences.Settinger;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class MainActivity extends PracticeActivity {
-	@InjectView(R.id.flipper) StackView flipper;
+	@InjectView(R.id.flipper) CardUI flipper;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -48,9 +47,9 @@ public class MainActivity extends PracticeActivity {
 		setContentView(R.layout.activity_main);
 		Views.inject(this);
 
-		flipper.setOnItemClickListener(itemSelected);
-		flipper.setEmptyView(Views.findById(this, R.id.layoutEmptyPracticeList));
-		
+//		flipper.setOnItemClickListener(itemSelected);
+//		flipper.setEmptyView(Views.findById(this, R.id.layoutEmptyPracticeList));
+
 		bindData();
 	}
 
@@ -86,24 +85,35 @@ public class MainActivity extends PracticeActivity {
 	}
 
 	protected void bindData() {
-		List<Practice> filteredPractices = filterPractices(getPracticeProvider().getPractices());
+		List<Practice> filteredPractices = filterAndSortPractices(getPracticeProvider().getPractices());
+		boolean showFlat = new Settinger(this).getBoolean("dbgPrefFlatDisplay", true);
+		
 
+		flipper.clearCards();
 		if (filteredPractices.size() == 0) {
-			flipper.setAdapter(null);
+			flipper.refresh();
 			return;
 		}
-		
-		ComplexViewArrayAdapter<Practice> adapter = new ComplexViewArrayAdapter<Practice>(
-                this,
-                R.layout.fragment_practice_intro,
-                R.id.practice_title,
-                filteredPractices, viewFiller);
 
-		flipper.setAdapter(adapter);
-		((ComplexViewArrayAdapter<?>)flipper.getAdapter()).notifyDataSetChanged();
+		if (!showFlat) {
+			Collections.reverse(filteredPractices);
+		}
+
+		for (Practice p : filteredPractices) {
+			PracticeCard card = new PracticeCard(p, viewFiller);
+			card.setOnClickListener(cardClickListener);
+			
+			if (showFlat) {
+				flipper.addCard(card);
+			} else {
+				flipper.addCardToLastStack(card);
+			}
+		}
+		
+		flipper.refresh();
 	}
 
-	private List<Practice> filterPractices(final List<Practice> practices) {
+	private List<Practice> filterAndSortPractices(final List<Practice> practices) {
 		boolean showNgondro = new Settinger(this).getBoolean(R.string.prefShowNgondro, true);
 		
 		if (showNgondro) {
@@ -116,6 +126,8 @@ public class MainActivity extends PracticeActivity {
 			}
 		}
 		
+		Collections.sort(practices);
+		
 		return practices;
 	}
 
@@ -126,8 +138,10 @@ public class MainActivity extends PracticeActivity {
 		public void fill(View view, Practice with) {
 			ImageView image = Views.findById(view, R.id.practice_image);
 			TextView scheduledCountText = Views.findById(view, R.id.scheduled_count);
+			TextView titleText = Views.findById(view, R.id.practice_title);
 			TextView currentCountText = Views.findById(view, R.id.completed_count);
 			
+			titleText.setText(with.title);
 			imageLoader.displayImage(with.imageUrl, image);
 			
 			int scheduledForToday = with.scheduledForToday;
@@ -154,18 +168,18 @@ public class MainActivity extends PracticeActivity {
 		return PracticeProviderFactory.getMeAProvider(this);
 	}
 
-	private OnItemClickListener itemSelected = new OnItemClickListener() {
-
+	private OnClickListener cardClickListener = new OnClickListener() {
+		
 		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		public void onClick(View view) {
 			Integer practiceId = getPracticeIdFromTag(view);
 			Practice practice = getPracticeProvider().getPractice(practiceId);
 			startActivityForResult(new Intent(MainActivity.this, PracticeDetailActivity.class).putExtra(Constants.PRACTICE_ID, practice.id), 
 									Constants.PRACTICE_VIEW_DONE);
 		}
-
 	};
 
+	
 	private Integer getPracticeIdFromTag(View view) {
 		FrameLayout vv = ((FrameLayout)view);
 		
@@ -185,19 +199,14 @@ public class MainActivity extends PracticeActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Integer practiceId = getPracticeIdFromTag(flipper.getCurrentView());
 
 		switch (item.getItemId()) {
-			case R.id.menu_start:
-				startActivityForPractice(practiceId, PracticeDoActivity.class, Constants.PRACTICE_DONE);
-				break;
-
 			case R.id.menu_add:
 				initiateAddPractice();
 				break;
 
 			case R.id.menu_settings:
-				startActivityForPractice(practiceId, SettingsActivity.class, Constants.SETTINGS_DONE);
+				startActivityForPractice(-1, SettingsActivity.class, Constants.SETTINGS_DONE);
 				break;
 		}
 		

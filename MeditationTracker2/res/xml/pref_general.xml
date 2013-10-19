@@ -7,6 +7,14 @@
         android:title="@string/showNgondro" >
     </CheckBoxPreference>
 
+    <!-- TODO REMOVE -->
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="dbgPrefFlatDisplay"
+        android:title="Show practices in a flat list" >
+    </CheckBoxPreference>
+    
+    
     <com.meditationtracker2.preferences.ChattyIntPreference
         android:defaultValue="108"
         android:dialogTitle="@string/malaSize"
