@@ -16,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -107,6 +108,7 @@ public class MainActivity extends PracticeActivity {
 				flipper.addCard(card);
 			} else {
 				flipper.addCardToLastStack(card);
+				flipper.setCurrentStackTitle("All practices");
 			}
 		}
 		
@@ -133,6 +135,7 @@ public class MainActivity extends PracticeActivity {
 
 	private ICanFillView<Practice> viewFiller = new ICanFillView<Practice>() {
 		private ImageLoader imageLoader = ImageLoader.getInstance();
+		private int[] Colors = new int[] { 0xFFfae46a, 0xFFf2be44, 0xFFea8e37, 0xFFce4b39};
 		
 		@Override
 		public void fill(View view, Practice with) {
@@ -154,11 +157,19 @@ public class MainActivity extends PracticeActivity {
 			}
 			
 			if (with.currentCount != 0 && with.totalCount > 0) {
-				currentCountText.setText(String.format("%d (%d%%)", with.currentCount, with.currentCount * 100 / with.totalCount));
+				long progress = with.currentCount * 100 / with.totalCount;
+				currentCountText.setText(String.format("%d (%d%%)", with.currentCount, progress));
+
+				ProgressBar pb = Views.findById(view, R.id.progressBarPractice);
+				pb.setProgress((int) progress);
 			}
 			else {
 				currentCountText.setText(String.valueOf(with.currentCount));
 			}
+			
+			View bg = Views.findById(view, R.id.lay_outer);
+			bg.setBackgroundColor(Colors[with.id % 4]);
+			
 			
 			view.setTag((Integer)with.id);
 		}

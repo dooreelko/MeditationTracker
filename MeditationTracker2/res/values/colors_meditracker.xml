@@ -21,4 +21,5 @@
     <color name="text_bg_meditracker">#60000000</color>
     <color name="text_fg_meditracker">#FFFFFFFF</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="dark">#FF303030</color>
 </resources>

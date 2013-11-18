@@ -1,94 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay_outer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000" >
-    
-    <ImageView
-        android:id="@+id/practice_image"
+    android:background="#F00"
+    android:orientation="vertical"
+    android:paddingTop="5dp"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp"
+    android:paddingBottom="2dp" >
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="1dp"
-        android:contentDescription="@string/practiceImage"
-        android:scaleType="centerCrop"
-        android:src="@drawable/sixteenth_karmapa" />
-    
-    <TextView
-        android:id="@+id/practice_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:background="@color/text_bg_meditracker"
-        android:padding="8dp"
-        android:text="@string/dummy_practice_name"
-        android:textAppearance="@style/textAppearanceHuge"
-        android:textColor="@color/text_fg_meditracker"
-        android:width="280dp" />
-    
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:background="@color/text_bg_meditracker"
-        android:orientation="horizontal" >
+        android:background="#FFF" >
+
+        <TextView
+            android:id="@+id/practice_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:padding="8dp"
+            android:text="@string/dummy_practice_name"
+            android:textAppearance="@style/textAppearanceHuge"
+            android:textColor="@color/dark"
+            android:width="280dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBarPractice"
+            style="@style/meditracker_ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/practice_title"
+            android:indeterminate="false"
+            android:max="100"
+            android:minHeight="8dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:progress="77" />
+
+        <ImageView
+            android:id="@+id/practice_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/progressBarPractice"
+            android:layout_margin="1dp"
+            android:contentDescription="@string/practiceImage"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sixteenth_karmapa" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/progressBarPractice"
+            android:background="@color/text_bg_meditracker"
+            android:orientation="horizontal"
+            android:visibility="invisible" >
 
-		    <TextView
-		        android:id="@+id/scheduled_title"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:padding="8dp"
-		        android:text="@string/scheduled"
-		        android:textAppearance="?android:attr/textAppearanceLarge"
-		        android:textColor="@color/text_fg_meditracker" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-		    <TextView
-		        android:id="@+id/completed_title"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:padding="8dp"
-		        android:text="@string/completed"
-		        android:textAppearance="?android:attr/textAppearanceLarge"
-		        android:textColor="@color/text_fg_meditracker" />
-		    		    
+                <TextView
+                    android:id="@+id/scheduled_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/scheduled"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/text_fg_meditracker" />
+
+                <TextView
+                    android:id="@+id/completed_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/completed"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/text_fg_meditracker" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/scheduled_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/dummy_practice_scheduled_count"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/text_fg_meditracker" />
+
+                <TextView
+                    android:id="@+id/completed_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/dummy_practice_current_count1"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/text_fg_meditracker" />
+            </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+    </RelativeLayout>
 
-		    <TextView
-		        android:id="@+id/scheduled_count"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:padding="8dp"
-		        android:text="@string/dummy_practice_scheduled_count"
-		        android:textAppearance="?android:attr/textAppearanceLarge"
-		        android:textColor="@color/text_fg_meditracker" />
-            
-		    <TextView
-		        android:id="@+id/completed_count"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:padding="8dp"
-		        android:text="@string/dummy_practice_current_count1"
-		        android:textAppearance="?android:attr/textAppearanceLarge"
-		        android:textColor="@color/text_fg_meditracker" />
-
-		    
-            
-        </LinearLayout>
-        
-        
-    </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

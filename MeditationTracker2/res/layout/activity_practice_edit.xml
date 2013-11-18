@@ -68,9 +68,9 @@
 
                 <RelativeLayout
                     android:id="@+id/button_layout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2" >
+                    android:layout_weight="10" >
 
                     <ImageButton
                         android:id="@+id/buttonPracticeImage"
@@ -97,14 +97,15 @@
                         android:layout_alignBottom="@+id/buttonPracticeImage"
                         android:layout_alignLeft="@+id/buttonPracticeImage"
                         android:layout_alignRight="@+id/buttonPracticeImage"
-                        android:layout_marginBottom="16dp"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
                         android:background="@color/text_bg_meditracker"
                         android:gravity="center_horizontal"
+                        android:paddingBottom="8dp"
                         android:text="@string/tap_image_to_change"
                         android:textColor="@color/text_fg_meditracker"
                         android:textStyle="italic" />
+
                 </RelativeLayout>
                 
                 <LinearLayout
@@ -114,7 +115,7 @@
                     android:layout_gravity="right"
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_weight="1"
+                    android:measureWithLargestChild="true"
                     android:orientation="vertical" >
 
                     <TextView
