@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:durilka="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#f0f0f0"
+    android:id="@+id/constraintLayout">
+
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_logo_bg"
+        android:layout_width="0dp"
+        android:id="@+id/headerLayout"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp">
+
+        <ImageView
+            android:id="@+id/ImageView01"
+            android:src="@drawable/top_logo"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"></ImageView>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/ScrollView01"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        tools:layout_constraintTop_creator="1"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
+        tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout
+            android:id="@+id/LinearLayout01"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:addStatesFromChildren="true">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:text="@string/ngondroTitle"
+                android:textSize="23sp"
+                android:id="@+id/ngondroTitle"
+                android:paddingLeft="10dip"
+                android:background="#ffffff"
+                android:layout_width="fill_parent"></TextView>
+
+            <com.meditationtracker.controls.NoScrollListView
+                android:id="@+id/ngondroList"
+                android:entries="@array/dummyListEntries"
+                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:isScrollContainer="false"
+                android:scrollbars="none"
+                android:background="#ffffff" />
+
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="@string/myMeditationsTitle"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:textSize="23sp"
+                android:id="@+id/customPracticesTitle"
+                android:paddingLeft="10dip"
+                android:layout_width="fill_parent"
+                android:background="#ffffff"
+                android:layout_marginTop="20dip"></TextView>
+
+            <com.meditationtracker.controls.NoScrollListView
+                android:id="@+id/customList"
+                android:entries="@array/dummyListEntries"
+                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:scrollbars="none"
+                android:background="#ffffff" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/menu_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_dots"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintRight_toRightOf="@+id/constraintLayout"
+        android:layout_marginRight="16dp" />
+
+
+</android.support.constraint.ConstraintLayout>

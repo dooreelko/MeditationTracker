@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:doo="http://schemas.durilka.com/doo"
+	android:layout_height="fill_parent"
+	android:layout_width="fill_parent">
+	<LinearLayout
+		android:layout_width="fill_parent" android:orientation="vertical"
+		android:layout_height="match_parent">
+
+		<com.meditationtracker.controls.MenuBar
+			android:layout_height="wrap_content" android:layout_width="fill_parent"
+			android:id="@+id/menuBar" doo:text="@string/newPractice"/>
+
+		<ImageView android:layout_height="wrap_content" android:id="@+id/practiceImage"
+			android:src="@drawable/karmapa" android:layout_margin="10dip"
+			android:layout_width="wrap_content" android:layout_gravity="center"
+			android:paddingRight="10dip" android:paddingLeft="10dip"
+			android:scaleType="fitCenter"></ImageView>
+
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/titlePracticeName" android:text="@string/practiceName"
+			android:layout_marginLeft="10dip" android:textColor="#000000"></TextView>
+		<EditText android:text="" android:id="@+id/textPracticeName"
+			android:layout_height="wrap_content" android:layout_width="fill_parent"
+			android:layout_marginLeft="10dip" android:layout_marginRight="10dip" android:inputType="text|textCapSentences|textAutoCorrect"></EditText>
+
+		<LinearLayout android:id="@+id/LinearLayout03"
+			android:layout_height="wrap_content" android:layout_width="fill_parent" android:baselineAligned="false">
+			<LinearLayout android:id="@+id/LinearLayout01"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:orientation="vertical" android:layout_weight="1">
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:id="@+id/titleRepetitionCount" android:text="@string/requiredRepetitions"
+					android:layout_marginLeft="10dip"
+					android:textColor="#000000"></TextView>
+
+
+				<EditText android:text="" android:id="@+id/textRepetitionCount"
+					android:layout_height="wrap_content"
+					android:layout_width="fill_parent" android:layout_marginLeft="10dip"
+					android:inputType="number"></EditText>
+			</LinearLayout>
+
+			<LinearLayout android:id="@+id/LinearLayout02"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:orientation="vertical" android:layout_weight="1">
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:id="@+id/titleCompletedCount" android:text="@string/completedRepetitions"
+					android:layout_marginRight="10dip"
+					android:textColor="#000000"></TextView>
+
+				<EditText android:text="" android:id="@+id/textCompletedRepetitions"
+					android:layout_height="wrap_content"
+					android:layout_width="fill_parent" android:layout_marginRight="10dip"
+					android:inputType="number"></EditText>
+			</LinearLayout>
+
+		</LinearLayout>
+
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="0dip" android:layout_marginLeft="10dip" android:layout_weight="1"
+			android:textColor="#000000" android:id="@+id/titleMalaSize" android:text="@string/customMalaSize"></TextView>
+
+
+		<EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_marginLeft="10dip"
+			android:inputType="number" android:id="@+id/textMalaSize" android:layout_marginRight="10dip"></EditText>
+
+		<Button android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:text="@string/save"
+			android:layout_gravity="center" android:layout_marginLeft="20dip"
+			android:layout_marginRight="20dip" android:layout_marginTop="20dip"
+			android:id="@+id/saveButton"></Button>
+
+	</LinearLayout>
+</ScrollView>

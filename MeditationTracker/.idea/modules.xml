@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MeditationTracker.iml" filepath="$PROJECT_DIR$/MeditationTracker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dootil/dootil.iml" filepath="$PROJECT_DIR$/dootil/dootil.iml" />
+      <module fileurl="file://$PROJECT_DIR$/meditationTracker/meditationTracker.iml" filepath="$PROJECT_DIR$/meditationTracker/meditationTracker.iml" />
+    </modules>
+  </component>
+</project>

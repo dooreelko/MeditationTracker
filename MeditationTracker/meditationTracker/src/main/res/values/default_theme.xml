@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="mytheme" parent="@style/mytheme_base">
+        <item name="android:panelBackground">@drawable/white_bg</item>
+    </style>
+</resources>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="delete">Löschen</string>
+	<string name="open">Öffnen</string>
+	<string name="takePicture">Foto machen</string>
+	<string name="browseImage">Bild auswählen</string>
+	<string name="ringtone">Klingelton</string>
+	<string name="buzz">Vibrieren</string>
+	<string name="newPractice">Meditation hinzufügen</string>
+	<string name="countDown">Countdown</string>
+	<string name="stopWatch">Stopuhr</string>
+	<string name="useStopWatch">Stopuhr oder Countdown?</string>
+	<string name="timerNotification">Ton abspielen</string>
+	<string name="sessionLength">Sitzungslänge (min.)</string>
+	<string name="malaSize">Malagröße</string>
+	<string name="customMalaSize">Malagröße (leer für Standard)</string>
+	<string name="showNgondro">Ngöndro anzeigen</string>
+
+	<string name="settings">Einstellungen</string>
+
+	<string name="app_name">Meditations-Tracker</string>
+	<string name="ngondroTitle">Ngöndro</string>
+	<string name="myMeditationsTitle">Meine Meditationen</string>
+	<string name="guruYoga">Guru Yoga</string>
+	<string name="refuge">Zuflucht</string>
+	<string name="diamondMind">Diamantgeist</string>
+	<string name="mandalaOffering">Mandala Gaben</string>
+	<string name="practiceName">Name der Meditation</string>
+	<string name="requiredRepetitions">Benötigte Menge</string>
+	<string name="completedRepetitions">Abgeschlossene Menge</string>
+	<string name="save">Speichern</string>
+	<string name="tapImgToChoose">Bild antippen zum Auswählen</string>
+	<string name="imageSourceTitle">Bildquelle auswählen</string>
+	<string name="start">Starten</string>
+	<string name="schedule">Zeitplan</string>
+	<string name="edit">Editieren</string>
+	<string name="scheduledForToday">Geplant für heute</string>
+	<string name="completedToday">Heute gemacht</string>
+	<string name="lastPracticeDate">Tag der letzten Übung</string>
+	<string name="scheduledCompletionDate">Erwartetes Abschlussdatum</string>
+	<string name="dailyRepetitions">Tägliche Wiederholungen</string>
+	<string name="completionDate">Abschlussdatum</string>
+	<string name="chooseAction">Aktion auswählen</string>
+	<string name="msgNoEditNgondro">Sie könenn das Ngöndro nicht löschen. Falls nicht
+		gebraucht, kann es unter Einstellungen ausgeblendet werden.</string>
+	<string name="error">Fehler</string>
+	<string name="info">Information</string>
+	<string name="confirmDeletionMsg">Möchten Sie wirklich diese Übung löschen?</string>
+	<string name="confirmDeletionTitle">Bestätigen</string>
+	<string name="scheduled">Geplant:</string>
+	<string name="completed">Fertig:</string>
+	<string name="howMuch">Wie viel zugeben?</string>
+	<string name="stopTimer">Uhr stoppen</string>
+	<string name="startTimer">Uhr starten</string>
+	<string name="addMala">Mala hinzugeben</string>
+	<string name="setMalaCount">Neue Malagröße</string>
+
+	<string name="about">Über&#8230;</string>
+	<string name="hi">Hi!</string>
+	<string name="version">v7 \'Tara\'
+		\n\nProgrammierung von Doo Reelkow.
+		\nÜbersetzung auf Deutsch und Spanisch von Philipp Rollinger, Polnisch: Kamil
+		Albrycht. Ukrainisch, Testing und riesige Hilfe: Vika Onischenko.
+		\n\nKarmapa Tschenno!</string>
+	<string name="support">Support/Diskussion→</string>
+	<string name="support_web_warning">Zum Blog der App </string>
+	<string name="oneBeadHeptic">Andere Vibrationsart</string>
+	<string name="oneBeadHepticSummary">Verwende anderes Muster bei jeder 10ten und 50ten
+		\"Perle\"</string>
+	<string name="dimNight">Abblenden bei Nacht</string>
+	<string name="dimNightSummary">Sitzungsfenster wird während später Meditationen
+		abgeblendet</string>
+	<string name="versionInfo">Version</string>
+	<string name="postInstallWelcome">Grüezi und willkommen zum neuen Meditations Tracker.
+		\n\nDiese version bringt die möglichkeit Menu zu öffnen um Meditation zu hinzufügen.
+		\n\nMeditiern!
+		\n\nGrüsse, Doo Reelkow.</string>
+</resources>

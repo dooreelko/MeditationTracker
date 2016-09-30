@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/LinearLayout01" android:layout_width="fill_parent" android:orientation="vertical" android:layout_height="fill_parent">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/menu_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_dots"
+        app:layout_constraintTop_toBottomOf="@+id/menuBar"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/LinearLayout01"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp" />
+
+    <com.meditationtracker.controls.MenuBar
+		android:layout_height="wrap_content" android:layout_width="0dp"
+		android:id="@+id/menuBar"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/LinearLayout01"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/LinearLayout01"
+        app:layout_constraintTop_toTopOf="@+id/LinearLayout01" />
+
+	<LinearLayout android:id="@+id/ScrollView01"
+		android:keepScreenOn="true"
+        android:layout_width="0dp"
+		android:layout_height="wrap_content"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/LinearLayout01"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/LinearLayout01"
+        app:layout_constraintHorizontal_bias="1.0"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/menuBar">
+
+			<ImageView android:layout_height="wrap_content"
+				android:src="@drawable/karmapa" android:padding="10dip" android:id="@+id/imgPractice"
+				android:layout_width="wrap_content" android:layout_gravity="center" android:minHeight="196dp" android:minWidth="150dp"></ImageView>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:layout_gravity="center"
+				android:text="10:00:00" android:textSize="35sp" android:id="@+id/textTimer" android:visibility="gone"></TextView>
+		<LinearLayout android:layout_height="fill_parent"
+			android:orientation="horizontal" android:layout_gravity="center_horizontal" android:layout_width="wrap_content">
+
+			<TextView android:layout_width="wrap_content"
+				android:text="0" android:textSize="50sp" android:id="@+id/textViewMalaCount" android:layout_height="wrap_content"></TextView>
+			<Button android:id="@+id/editMalaButton"
+				android:layout_width="wrap_content"
+				android:text="..." android:layout_height="fill_parent"></Button>
+			<!--EditText android:layout_height="wrap_content" android:text="0"
+				android:id="@+id/textMalaCount" android:inputType="number"
+				android:layout_width="wrap_content" android:layout_gravity="center"></EditText-->
+
+		</LinearLayout>
+	</LinearLayout>
+	<Button android:text="@string/addMala" android:id="@+id/addMalaButton"
+		app:layout_constraintTop_toBottomOf="@+id/ScrollView01"
+		app:layout_constraintRight_toRightOf="@+id/LinearLayout01"
+		app:layout_constraintLeft_toLeftOf="@+id/LinearLayout01"
+		app:layout_constraintBottom_toBottomOf="@+id/LinearLayout01"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1"></Button>
+
+
+</android.support.constraint.ConstraintLayout>

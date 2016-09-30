@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:doo="http://schemas.android.com/apk/res-auto"
+	android:layout_height="fill_parent"
+	android:layout_width="fill_parent">
+
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="vertical"
+		android:padding="10dip">
+
+		<com.meditationtracker.controls.MenuBar
+			android:layout_height="wrap_content" android:layout_width="fill_parent"
+			android:id="@+id/menuBar" doo:text="@string/schedule" />
+
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_weight="1" android:layout_height="0dip"
+			android:paddingBottom="10dip">
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="@string/requiredRepetitions"
+				android:textColor="#000000"></TextView>
+			<TextView android:layout_height="wrap_content"
+				android:textSize="25sp" android:layout_width="fill_parent"
+				android:gravity="right" android:text="111111" android:textColor="#606060"
+				android:id="@+id/textRepetitionCount"></TextView>
+		</LinearLayout>
+
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_weight="1" android:layout_height="0dip"
+			android:paddingBottom="10dip">
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="@string/completedRepetitions"
+				android:textColor="#000000"></TextView>
+			<TextView android:layout_height="wrap_content"
+				android:textSize="25sp" android:layout_width="fill_parent"
+				android:gravity="right" android:text="108" android:textColor="#606060"
+				android:id="@+id/textCompletedRepetitions"></TextView>
+		</LinearLayout>
+
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_weight="1" android:layout_height="0dip"
+			android:paddingBottom="10dip">
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="@string/dailyRepetitions"
+				android:textColor="#000000" android:layout_weight="2"></TextView>
+
+			<EditText android:layout_height="wrap_content"
+				android:gravity="right" android:layout_width="wrap_content"
+				android:layout_weight="0.5" android:text="108"
+				android:id="@+id/textScheduledForToday" android:inputType="number"></EditText>
+		</LinearLayout>
+
+		<LinearLayout android:orientation="vertical"
+			android:layout_width="fill_parent" android:layout_weight="1"
+			android:layout_height="0dip">
+			<TextView android:text="@string/completionDate"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:textColor="#000000"></TextView>
+			<DatePicker android:layout_height="wrap_content"
+				android:layout_width="fill_parent" android:id="@+id/pickerScheduledEndDate"
+				android:endYear="30000"></DatePicker>
+		</LinearLayout>
+	</LinearLayout>
+</ScrollView>
