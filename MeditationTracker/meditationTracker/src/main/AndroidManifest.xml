@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="auto"
     package="com.meditationtracker"
-    android:versionCode="7"
-    android:versionName="Tara" >
+    android:versionCode="8"
+    android:versionName="Liberation" >
 
     <uses-sdk android:minSdkVersion="9" />
 
@@ -53,5 +53,7 @@
         </activity>
 
     </application>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" ></uses-permission>
 
 </manifest>

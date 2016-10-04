@@ -1,7 +1,16 @@
 package com.meditationtracker;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
+import java.nio.channels.WritableByteChannel;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.Map.Entry;
 
@@ -14,6 +23,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.provider.BaseColumns;
 import android.util.Log;
+
+import com.meditationtracker.util.Util;
 
 public class PracticeDatabase {
 	// private static final String MTRK_LOG_KEY = "MTRK";
@@ -111,20 +122,26 @@ public class PracticeDatabase {
 	private static HashMap<String, Set<String>> tableColumns;
 
 	public PracticeDatabase(Context ctx) {
-		if (db == null || !db.isOpen()) {
-			MySQLiteOpenHelper helper = new MySQLiteOpenHelper(ctx);
-			db = helper.getWritableDatabase();
-		}
-
-		if (tableColumns == null) {
-			tableColumns = new HashMap<String, Set<String>>();
-
-			getTableColumnsNames(PRACTICE_TABLE_NAME);
-			getTableColumnsNames(PRACTICE_HISTORY_TABLE_NAME);
-		}
+        open(ctx);
 	}
 
-	public boolean isOpen() {
+    private void open(Context ctx) {
+        if ((db == null || !db.isOpen())) {
+            MySQLiteOpenHelper helper = new MySQLiteOpenHelper(ctx);
+            db = helper.getWritableDatabase();
+        }
+
+        if (isOpen()) {
+            if (tableColumns == null) {
+                tableColumns = new HashMap<String, Set<String>>();
+
+                getTableColumnsNames(PRACTICE_TABLE_NAME);
+                getTableColumnsNames(PRACTICE_HISTORY_TABLE_NAME);
+            }
+        }
+    }
+
+    public boolean isOpen() {
 		return db != null && db.isOpen();
 	}
 
@@ -133,7 +150,35 @@ public class PracticeDatabase {
 			db.close();
 	}
 
-	private void getTableColumnsNames(String tableName) {
+    public void exportDatabase(File outPath) throws IOException {
+        String dbPath = db.getPath();
+
+        FileChannel dbChannel = new FileInputStream(dbPath).getChannel();
+        FileChannel dbDest = new FileOutputStream(outPath).getChannel();
+        dbChannel.transferTo(0, dbChannel.size(), dbDest);
+
+        dbChannel.close();
+        dbDest.close();
+    }
+
+    public void importDatabase(File inFile, Context ctx) throws Exception {
+        String dbPath = db.getPath();
+        release();
+
+        FileChannel dbSource = new FileInputStream(inFile).getChannel();
+        FileChannel dbDest = new FileOutputStream(dbPath).getChannel();
+        if (dbSource.transferTo(0, dbSource.size(), dbDest) == 0) {
+            throw new Exception("No bytes were copied");
+        }
+
+        dbSource.close();
+        dbDest.close();
+
+        open(ctx);
+    }
+
+
+    private void getTableColumnsNames(String tableName) {
 		Cursor c = db.rawQuery("SELECT * FROM " + tableName, null);
 		HashSet<String> columns = new HashSet<String>();
 		for (String col : c.getColumnNames()) {
@@ -329,7 +374,8 @@ public class PracticeDatabase {
 		return db;
 	}
 
-	public static class MySQLiteOpenHelper extends SQLiteOpenHelper {
+
+    public static class MySQLiteOpenHelper extends SQLiteOpenHelper {
 		public MySQLiteOpenHelper(Context context) {
 			super(context, DBNAME, null, DBVERSION);
 		}

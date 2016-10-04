@@ -5,12 +5,17 @@ import android.app.backup.RestoreObserver;
 import android.content.Context;
 import android.util.Log;
 
+import com.meditationtracker.util.Util;
+
 public class RealBackupManager implements IBackupManager {
 	private BackupManager instance;
-	
-	public RealBackupManager(Context context) {
+    private Context context;
+
+    public RealBackupManager(Context context) {
+
 		instance = new BackupManager(context);
-	}
+        this.context = context;
+    }
 	
 	@Override
 	public void dataChanged() {

@@ -76,5 +76,15 @@
         \n\nThis is a small release that simply adds a possibility to open menus and add new practices.
 	    \n\nKeep up your practices!
 	    \n\nYours, Doo Reelkow.</string>
+    <string name="data_category">Data</string>
+    <string name="export_summary">Export your practices history to SD card</string>
+    <string name="export_title">Export data</string>
+    <string name="import_summary">Import your practices history from SD card</string>
+    <string name="import_title">Import data</string>
+    <string name="error_db_title">Failed opening database!</string>
+    <string name="error_db_text">We could not open the practice database. This is bad. Please try to completely restart the app and if the problem persist, let us know at our page.</string>
+
+    <string name="error_import_title">Failed importing database!</string>
+    <string name="error_import_text">We could not import the practice database. This is bad. Please let us know at our page.</string>
 
 </resources>

@@ -1,15 +1,31 @@
 package com.meditationtracker.util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.channels.FileChannel;
 import java.util.Calendar;
 import java.util.Date;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.meditationtracker.PracticeDatabase;
+import com.meditationtracker.R;
 
 public final class Util
 {
@@ -59,8 +75,106 @@ public final class Util
 		
 		return result;
 	}
-	
-	public static class Reflection
+
+    public static void exportDatabase(Context context) {
+        exportDatabase(context, false);
+    }
+
+    public static void exportDatabase(Context context, boolean silent) {
+        PracticeDatabase db = new PracticeDatabase(context);
+
+        File outDir = new File(Environment.getExternalStorageDirectory(), "MeditationTracker");
+        File outFile = new File(outDir, "backup.db");
+        File rollFile = new File(outDir, "backup.db."+ (new Date().getTime()));
+
+        if (!outDir.exists()) {
+            outDir.mkdir();
+        } else {
+            if (outFile.exists()) {
+                outFile.renameTo(rollFile);
+            }
+        }
+
+        try {
+            db.exportDatabase(outFile);
+
+            if (!silent) {
+                Toast
+                        .makeText(context, "Data exported. You can find the file at " + outFile.getAbsolutePath(), Toast.LENGTH_LONG)
+                        .show();
+            }
+        } catch (IOException e) {
+            if (!silent) {
+                Toast
+                        .makeText(context, "Failed data export. Get in touch with us.", Toast.LENGTH_LONG)
+                        .show();
+            }
+        }
+
+        db.release();
+
+    }
+
+    public static void importDatabase(final Context context) {
+        PracticeDatabase db = new PracticeDatabase(context);
+
+        File outDir = new File(Environment.getExternalStorageDirectory(), "MeditationTracker");
+        File inFile = new File(outDir, "backup.db");
+
+        if (!inFile.exists()) {
+            return;
+        }
+
+        try {
+            db.importDatabase(inFile, context);
+            if (!db.hasNgondroEntries(context)) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder
+                        .setTitle(R.string.error_db_title)
+                        .setMessage(R.string.error_db_text)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(R.string.appUrl, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.appUrl))));
+                            }
+                        }).show();
+
+            }
+
+            Toast
+                .makeText(context, "Data successfully imported.", Toast.LENGTH_LONG)
+                .show();
+        } catch (Exception e) {
+            Toast
+                .makeText(context, "Failed data import. Get in touch with us.", Toast.LENGTH_LONG)
+                .show();
+
+            writeError(e.toString());
+        }
+    }
+
+    public static void writeError(String text)  {
+        Log.d("MTRK", text);
+
+        File outDir = new File(Environment.getExternalStorageDirectory(), "MeditationTracker");
+        File outFile = new File(outDir, "error-" + (new Date().getTime()) + ".txt");
+
+        if (!outDir.exists()) {
+            outDir.mkdir();
+        }
+
+        FileWriter streamWriter = null;
+        try {
+            streamWriter = new FileWriter(outFile);
+            streamWriter.write(text);
+            streamWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static class Reflection
 	{
 
 		public static void dumpDeclareds(Object on)

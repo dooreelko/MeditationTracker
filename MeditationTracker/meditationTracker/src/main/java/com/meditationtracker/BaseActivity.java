@@ -8,9 +8,14 @@ import java.io.Writer;
 import java.lang.Thread.UncaughtExceptionHandler;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+
+import static com.meditationtracker.R.string.appUrl;
 
 public class BaseActivity extends Activity
 {
@@ -50,7 +55,22 @@ public class BaseActivity extends Activity
 			
 			db = new PracticeDatabase(this);
 		}
-		
+
+		// still?
+		if (db == null || !db.isOpen()){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder
+                    .setTitle(R.string.error_db_title)
+                    .setMessage(R.string.error_db_text)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setPositiveButton(R.string.appUrl, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.appUrl))));
+                        }
+                    }).show();
+
+		}
+
 		return db;
 	}
 	
