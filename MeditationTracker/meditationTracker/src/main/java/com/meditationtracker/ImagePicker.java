@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 
 public class ImagePicker extends BaseActivity
@@ -40,7 +41,7 @@ public class ImagePicker extends BaseActivity
 				tempFile.delete();
 				Log.d("MTRK", "Temp file should be gone now.");
 			}
-			startActivityForResult(new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE).putExtra(android.provider.MediaStore.EXTRA_OUTPUT, getCropUri()), TAKE_PHOTO);
+			startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE).putExtra(MediaStore.EXTRA_OUTPUT, getCropUri()), TAKE_PHOTO);
 		}
 		else 
 		{
@@ -135,9 +136,10 @@ public class ImagePicker extends BaseActivity
 			setResult(Activity.RESULT_CANCELED);
 			Util.showWhateverError(this, "The image disappeared. Impermanence.", new OnClickListener()
 			{
+				@Override
 				public void onClick(DialogInterface dialog, int which)
 				{
-					ImagePicker.this.finish();
+					finish();
 				}
 			});
 			return;

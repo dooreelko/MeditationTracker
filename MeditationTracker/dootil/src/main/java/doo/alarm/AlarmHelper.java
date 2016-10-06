@@ -2,6 +2,7 @@ package doo.alarm;
 
 import java.util.Calendar;
 
+import android.R.drawable;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -74,7 +75,7 @@ public class AlarmHelper
 		}
 		else
 		{
-			Notification notification = new Notification(android.R.drawable.ic_lock_idle_alarm, null, System.currentTimeMillis());
+			Notification notification = new Notification(drawable.ic_lock_idle_alarm, null, System.currentTimeMillis());
 			Intent dummyIntent = new Intent(ctx, notificaionActionClass); 
 			PendingIntent dummyPending = PendingIntent.getActivity(ctx, 0, dummyIntent, 0/*PendingIntent.FLAG_NO_CREATE*/); 
 			int hours = alarmTime / 60;

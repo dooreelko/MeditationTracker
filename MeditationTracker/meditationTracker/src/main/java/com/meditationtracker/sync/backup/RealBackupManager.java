@@ -8,8 +8,8 @@ import android.util.Log;
 import com.meditationtracker.util.Util;
 
 public class RealBackupManager implements IBackupManager {
-	private BackupManager instance;
-    private Context context;
+	private final BackupManager instance;
+    private final Context context;
 
     public RealBackupManager(Context context) {
 

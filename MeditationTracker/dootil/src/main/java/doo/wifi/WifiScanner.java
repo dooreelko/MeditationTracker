@@ -14,7 +14,7 @@ public class WifiScanner
 {
 	public interface OnScanResults
 	{
-		public void onResults(List<ScanResult> results);
+		void onResults(List<ScanResult> results);
 	}
 
 	private WifiManager wifiMan;
@@ -65,7 +65,7 @@ public class WifiScanner
 	// wifi manager's isWifiEnabled is not trustworthy, doing its job
 	private boolean isWifiEnabled() {
 		return wifiMan.getWifiState() >= WifiManager.WIFI_STATE_ENABLED;
-	};
+	}
 
 	public void setResultReceiver(OnScanResults receiver)
 	{
@@ -106,7 +106,7 @@ public class WifiScanner
 		return running;
 	}
 
-	private BroadcastReceiver receiverWifi = new BroadcastReceiver()
+	private final BroadcastReceiver receiverWifi = new BroadcastReceiver()
 	{
 
 		@Override

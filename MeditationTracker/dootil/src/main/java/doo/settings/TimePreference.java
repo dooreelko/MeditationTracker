@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TimePicker;
 import android.widget.TimePicker.OnTimeChangedListener;
 import doo.util.root.R;
+import doo.util.root.R.id;
+import doo.util.root.R.layout;
 
 public class TimePreference extends Preference implements OnTimeChangedListener
 {
@@ -39,11 +41,11 @@ public class TimePreference extends Preference implements OnTimeChangedListener
 	{
 		if (timePicker == null)
 		{
-			this.setLayoutResource(R.layout.timepicker);
+			setLayoutResource(layout.timepicker);
 
 			View view = super.onCreateView(parent);
 			TimePicker timePicker = (TimePicker) view
-					.findViewById(R.id.prefTimePicker);
+					.findViewById(id.prefTimePicker);
 			timePicker.setIs24HourView(true); //TODO: for some reason it's not automatically read from system settings, so do it manually here
 			timePicker.setOnTimeChangedListener(this);
 			return view;
@@ -57,7 +59,7 @@ public class TimePreference extends Preference implements OnTimeChangedListener
 	{
 		super.onBindView(view);
 
-		TimePicker tp = (TimePicker) view.findViewById(R.id.prefTimePicker);
+		TimePicker tp = (TimePicker) view.findViewById(id.prefTimePicker);
 
 		Integer allTime = getPersistedInt(tp.getCurrentHour() * 60 + tp.getCurrentMinute());
 
@@ -86,24 +88,25 @@ public class TimePreference extends Preference implements OnTimeChangedListener
 		return super.onSaveInstanceState();
 	}
 
-	public void onTimeChanged(TimePicker view, final int hourOfDay,
-			final int minute)
+	@Override
+	public void onTimeChanged(TimePicker view, int hourOfDay,
+							  int minute)
 	{
 		setNewTime(hourOfDay, minute);
 	}
 
-	private void setNewTime(final int hourOfDay, final int minute)
+	private void setNewTime(int hourOfDay, int minute)
 	{
 		setNewTime(timeToInt(hourOfDay, minute));
 	}
 
-	private void setNewTime(final int compressedTime)
+	private void setNewTime(int compressedTime)
 	{
         if (!callChangeListener(compressedTime)) {
             return;
         }
 
-		this.persistInt(compressedTime);
+		persistInt(compressedTime);
 
 		notifyDependencyChange(shouldDisableDependents());
         
@@ -111,7 +114,7 @@ public class TimePreference extends Preference implements OnTimeChangedListener
         
 	}
 	
-	private int timeToInt(final int hourOfDay, final int minute)
+	private int timeToInt(int hourOfDay, int minute)
 	{
 		return hourOfDay * 60 + minute;
 	}

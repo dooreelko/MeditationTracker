@@ -13,7 +13,7 @@ public class PracticeEntry
 	 * private long scheduledCompletion; private long lastPracticed;
 	 */
 	
-	private ContentValues values;
+	private final ContentValues values;
 
 	public PracticeEntry(Cursor q)
 	{

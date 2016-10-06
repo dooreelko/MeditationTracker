@@ -6,7 +6,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 
+import android.R.drawable;
+import android.R.string;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface.OnClickListener;
 import android.text.format.DateFormat;
@@ -15,9 +18,9 @@ import android.util.Log;
 public final class Util
 {
 	public static void showWhateverError(Context ctx, String message, OnClickListener okClick){
-		AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
-		builder.setMessage(message).setTitle(android.R.string.dialog_alert_title).setIcon(
-				android.R.drawable.ic_dialog_alert).setPositiveButton(android.R.string.ok, okClick).show();
+		Builder builder = new Builder(ctx);
+		builder.setMessage(message).setTitle(string.dialog_alert_title).setIcon(
+				drawable.ic_dialog_alert).setPositiveButton(string.ok, okClick).show();
 		
 	}
 	
@@ -32,7 +35,7 @@ public final class Util
 		int[] ymd = new int[3];
 		
 		for (int x=0; x<3; x++) {
-			Pair<Boolean, Long> parsed = Util.tryParse(parts[x]);
+			Pair<Boolean, Long> parsed = tryParse(parts[x]);
 			//cal.set(partPositions[x], parsed._2.intValue());
 			ymd[x] = parsed._2.intValue();
 		}
@@ -99,7 +102,7 @@ public final class Util
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				Util.Reflection.dumpDeclareds(on);
+				dumpDeclareds(on);
 			} catch (IllegalArgumentException e)
 			{
 				// TODO Auto-generated catch block

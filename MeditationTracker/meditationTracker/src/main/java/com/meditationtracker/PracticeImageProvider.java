@@ -9,6 +9,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
+import android.provider.MediaStore.Images;
+import android.provider.MediaStore.Images.Media;
 
 public class PracticeImageProvider extends ContentProvider
 {
@@ -45,7 +47,7 @@ public class PracticeImageProvider extends ContentProvider
 	@Override
 	public String getType(Uri uri)
 	{
-		return android.provider.MediaStore.Images.Media.CONTENT_TYPE;
+		return Media.CONTENT_TYPE;
 	}
 
 	@Override

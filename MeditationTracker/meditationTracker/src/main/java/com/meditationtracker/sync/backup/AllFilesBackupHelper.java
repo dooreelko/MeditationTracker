@@ -46,7 +46,7 @@ public class AllFilesBackupHelper extends FileBackupHelper {
         
 //      writeFile(f, data);
         try {
-			Method declaredMethod = FileBackupHelper.class.getSuperclass().getDeclaredMethod("writeFile", new Class[] { File.class, BackupDataInputStream.class});
+			Method declaredMethod = FileBackupHelper.class.getSuperclass().getDeclaredMethod("writeFile", File.class, BackupDataInputStream.class);
 			declaredMethod.setAccessible(true);
 			declaredMethod.invoke(this, f, data);
 		} catch (Exception e) {

@@ -24,6 +24,7 @@ import android.database.sqlite.SQLiteStatement;
 import android.provider.BaseColumns;
 import android.util.Log;
 
+import com.meditationtracker.R.drawable;
 import com.meditationtracker.util.Util;
 
 public class PracticeDatabase {
@@ -395,12 +396,12 @@ public class PracticeDatabase {
 		public static void patchIcons(SQLiteDatabase db) {
 			Log.d("MTRK", "Patching icons for " + db);
 			
-			updateNgondroIcons(db, 1, R.drawable.refuge, R.drawable.icon_refuge);
-			updateNgondroIcons(db, 2, R.drawable.diamond_mind_big, R.drawable.icon_diamond_mind);
-			updateNgondroIcons(db, 3, R.drawable.mandala_offering_big, R.drawable.icon_mandala_offering);
-			updateNgondroIcons(db, 4, R.drawable.guru_yoga_big, R.drawable.icon_guru_yoga);
+			updateNgondroIcons(db, 1, drawable.refuge, drawable.icon_refuge);
+			updateNgondroIcons(db, 2, drawable.diamond_mind_big, drawable.icon_diamond_mind);
+			updateNgondroIcons(db, 3, drawable.mandala_offering_big, drawable.icon_mandala_offering);
+			updateNgondroIcons(db, 4, drawable.guru_yoga_big, drawable.icon_guru_yoga);
 
-			updateOtherIcons(db, R.drawable.karmapa, R.drawable.icon_karmapa);
+			updateOtherIcons(db, drawable.karmapa, drawable.icon_karmapa);
 		}
 
 		public static void updateNgondroIcons(SQLiteDatabase db, int id, int iconId, int thumbId) {

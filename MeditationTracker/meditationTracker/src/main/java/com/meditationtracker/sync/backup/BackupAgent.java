@@ -2,6 +2,7 @@ package com.meditationtracker.sync.backup;
 
 import java.io.IOException;
 
+import android.app.backup.BackupAgentHelper;
 import android.app.backup.BackupDataInput;
 import android.app.backup.BackupDataOutput;
 import android.app.backup.BackupHelper;
@@ -11,7 +12,7 @@ import android.os.ParcelFileDescriptor;
 import com.meditationtracker.PracticeDatabase;
 import com.meditationtracker.util.Util;
 
-public class BackupAgent extends android.app.backup.BackupAgentHelper {
+public class BackupAgent extends BackupAgentHelper {
 
 	private BackupHelper prefsHelper;
 	private AllFilesBackupHelper dbData;

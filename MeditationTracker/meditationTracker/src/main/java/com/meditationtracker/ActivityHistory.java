@@ -11,7 +11,7 @@ import android.text.format.DateFormat;
 public class ActivityHistory
 {
 	private static final int MAX_SIZE = 50;
-	private List<String> history = new ArrayList<String>();
+	private final List<String> history = new ArrayList<String>();
 	
 	
 	

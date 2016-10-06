@@ -1,5 +1,6 @@
 package com.meditationtracker;
 
+import com.meditationtracker.R.xml;
 import com.meditationtracker.sync.backup.BackupManagerWrapper;
 
 import android.preference.PreferenceActivity;
@@ -13,7 +14,7 @@ public class SettingsActivity extends PreferenceActivity
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	
-	    addPreferencesFromResource(R.xml.preferences);
+	    addPreferencesFromResource(xml.preferences);
 	}
 
 	@Override

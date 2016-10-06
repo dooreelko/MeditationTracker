@@ -11,11 +11,11 @@ import android.content.Intent;
 public class AlarmOperator
 {
 	private static final int REQUEST_CODE = 0;
-	private Context context;
+	private final Context context;
 
 	public AlarmOperator(Context ctx)
 	{
-		this.context = ctx;
+		context = ctx;
 	}
 	
 	public void setAlarm(Class<? extends BroadcastReceiver> alarmClass, long millisecondsAfterNow, String alarmMessage)

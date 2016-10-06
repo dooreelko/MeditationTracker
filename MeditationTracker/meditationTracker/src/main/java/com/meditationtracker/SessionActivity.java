@@ -1,10 +1,6 @@
 package com.meditationtracker;
 
-import java.util.Calendar;
-
-import com.meditationtracker.controls.MenuBar;
-
-import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,11 +17,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.WindowManager;
+import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.meditationtracker.R.id;
+import com.meditationtracker.R.layout;
+import com.meditationtracker.R.string;
+import com.meditationtracker.controls.MenuBar;
+
+import java.util.Calendar;
+
 import doo.util.Pair;
 import doo.util.Util;
 
@@ -52,9 +56,9 @@ public class SessionActivity extends BaseActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.session);
+		setContentView(layout.session);
 
-		int windowFlagsToSet = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+		int windowFlagsToSet = LayoutParams.FLAG_FULLSCREEN;
 		getWindow().setFlags(windowFlagsToSet, windowFlagsToSet);
 
 		updateUI();
@@ -66,26 +70,27 @@ public class SessionActivity extends BaseActivity {
 			String imgUrl = extras.getString(ExtraKeys.ImgURL);
 			Pair<Boolean, Long> parsed = Util.tryParse(imgUrl);
 			if (parsed._1)
-				((ImageView) findViewById(R.id.imgPractice)).setImageResource(parsed._2.intValue());
+				((ImageView) findViewById(id.imgPractice)).setImageResource(parsed._2.intValue());
 			else
-				((ImageView) findViewById(R.id.imgPractice)).setImageURI(Uri.parse(imgUrl));
+				((ImageView) findViewById(id.imgPractice)).setImageURI(Uri.parse(imgUrl));
 
 			malaSize = extras.getLong(ExtraKeys.MalaSize);
 
 			String practiceTitle = extras.getString(ExtraKeys.Title);
-			((MenuBar) findViewById(R.id.menuBar)).setText(practiceTitle);
+			((MenuBar) findViewById(id.menuBar)).setText(practiceTitle);
 			// ((TextView)
 			// findViewById(R.id.textPracticeName)).setText(practiceTitle);
 		}
 
-		Button btnAdd = (Button) findViewById(R.id.addMalaButton);
+		Button btnAdd = (Button) findViewById(id.addMalaButton);
 		btnAdd.setOnClickListener(addMalaClick);
-		btnAdd.setText(String.format("%s (%d)", getString(R.string.addMala), malaSize));
+		btnAdd.setText(String.format("%s (%d)", getString(string.addMala), malaSize));
 
-        View fab = findViewById(R.id.menu_fab);
+        View fab = findViewById(id.menu_fab);
         if (fab != null) {
-            fab.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
+            fab.setOnClickListener(new OnClickListener() {
+                @Override
+				public void onClick(View v) {
                     openOptionsMenu();
                 }
             });
@@ -93,39 +98,39 @@ public class SessionActivity extends BaseActivity {
 
 		// findViewById(R.id.textMalaCount).setOnKeyListener(malaCountChanged);
 
-		((Button) findViewById(R.id.editMalaButton)).setOnClickListener(editMalaClick);
+		findViewById(id.editMalaButton).setOnClickListener(editMalaClick);
 
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-		doStopwatch = preferences.getBoolean(getString(R.string.prefUseStopWatch), true);
+		doStopwatch = preferences.getBoolean(getString(string.prefUseStopWatch), true);
 
 		Pair<Boolean, Long> parsed = Util.tryParse(preferences.getString(
-				getString(R.string.prefSessionLength), "10"));
+				getString(string.prefSessionLength), "10"));
 		sessionLength = 10 * 60;
 		if (parsed._1)
 			sessionLength = parsed._2.intValue() * 60;
 
-		doSessionEndSound = preferences.getBoolean(getString(R.string.prefTimerSound), false);
-		sessionEndSoundUrl = preferences.getString(getString(R.string.prefBellSound), "");
-		doSessionEndBuzz = preferences.getBoolean(getString(R.string.prefTimerBuzz), false);
+		doSessionEndSound = preferences.getBoolean(getString(string.prefTimerSound), false);
+		sessionEndSoundUrl = preferences.getString(getString(string.prefBellSound), "");
+		doSessionEndBuzz = preferences.getBoolean(getString(string.prefTimerBuzz), false);
 
-		timerView = (TextView) findViewById(R.id.textTimer);
+		timerView = (TextView) findViewById(id.textTimer);
 
 		updateTimer(sessionLength * 1000);
 
-		boolean dimAtNight = preferences.getBoolean(getString(R.string.prefDimNight), true);
+		boolean dimAtNight = preferences.getBoolean(getString(string.prefDimNight), true);
 		int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
 		boolean isNight = hour >= 18 || hour < 9;
 
 		if (dimAtNight && isNight) { // blind'n'night mode
-			WindowManager.LayoutParams lp = getWindow().getAttributes();
-			float dimAtNightValue = preferences.getInt(getString(R.string.prefDimNightValue), 3);
+			LayoutParams lp = getWindow().getAttributes();
+			float dimAtNightValue = preferences.getInt(getString(string.prefDimNightValue), 3);
 			
 			lp.screenBrightness = dimAtNightValue/100;
 			getWindow().setAttributes(lp);
 		}
 
-		oneBeadHeptic = malaSize == 1 && preferences.getBoolean(getString(R.string.prefOneBeadHeptic), true);
+		oneBeadHeptic = malaSize == 1 && preferences.getBoolean(getString(string.prefOneBeadHeptic), true);
 	}
 
 	@Override
@@ -155,7 +160,7 @@ public class SessionActivity extends BaseActivity {
 
 	private void updateResult() {
 		setResult(RESULT_OK, new Intent().putExtra(ExtraKeys.MalaCount, malaCount));
-		((TextView) findViewById(R.id.textViewMalaCount)).setText(String.valueOf(malaCount));
+		((TextView) findViewById(id.textViewMalaCount)).setText(String.valueOf(malaCount));
 	}
 
 	private void startTimer() {
@@ -206,18 +211,20 @@ public class SessionActivity extends BaseActivity {
 		timerView.setVisibility(View.GONE);
 	}
 
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.timer_menu, menu);
 		return true;
 	}
 
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.startTimerMenuItem:
+		case id.startTimerMenuItem:
 			startTimer();
 			return true;
-		case R.id.stopTimerMenuItem:
+		case id.stopTimerMenuItem:
 			stopTimer();
 			return true;
 		default:
@@ -225,7 +232,8 @@ public class SessionActivity extends BaseActivity {
 		}
 	}
 
-	private OnClickListener addMalaClick = new OnClickListener() {
+	private final OnClickListener addMalaClick = new OnClickListener() {
+		@Override
 		public void onClick(View v) {
 			int preMalaCount = malaCount;
 			malaCount += malaSize;
@@ -241,10 +249,10 @@ public class SessionActivity extends BaseActivity {
 		}
 	};
 
-	private OnClickListener editMalaClick = new OnClickListener() {
+	private final OnClickListener editMalaClick = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			SessionActivity.this.showDialog(DIALOG_CHANGE_MALA_COUNT);
+			showDialog(DIALOG_CHANGE_MALA_COUNT);
 		}
 	};
 
@@ -256,13 +264,13 @@ public class SessionActivity extends BaseActivity {
 		editTextMalaCount.setInputType(InputType.TYPE_CLASS_NUMBER);
 		editTextMalaCount.setText(String.valueOf(malaCount));
 
-		return new AlertDialog.Builder(SessionActivity.this)
+		return new Builder(this)
 				.setPositiveButton(android.R.string.ok, onEditMalaOkClick)
 				.setNegativeButton(android.R.string.cancel, null).setView(editTextMalaCount)
-				.setTitle(R.string.setMalaCount).create();
+				.setTitle(string.setMalaCount).create();
 	}
 
-	private android.content.DialogInterface.OnClickListener onEditMalaOkClick = new android.content.DialogInterface.OnClickListener() {
+	private final DialogInterface.OnClickListener onEditMalaOkClick = new DialogInterface.OnClickListener() {
 
 		@Override
 		public void onClick(DialogInterface dialog, int which) {

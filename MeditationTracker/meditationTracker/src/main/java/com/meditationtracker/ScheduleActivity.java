@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.DatePicker.OnDateChangedListener;
 
+import com.meditationtracker.R.id;
+import com.meditationtracker.R.layout;
+
 import doo.util.Pair;
 import doo.util.Util;
 
@@ -25,12 +28,12 @@ public class ScheduleActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.schedule);
+		setContentView(layout.schedule);
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null){
 			String val;
-			((TextView)findViewById(R.id.textRepetitionCount)).setText(val = extras.getString(ExtraKeys.TotalCount));
+			((TextView)findViewById(id.textRepetitionCount)).setText(val = extras.getString(ExtraKeys.TotalCount));
 			Pair<Boolean, Long> parsed = Util.tryParse(val);
 			if (parsed._1){
 				totalCount = parsed._2;
@@ -40,7 +43,7 @@ public class ScheduleActivity extends BaseActivity
 				//TODO: error and exit
 			}
 			
-			((TextView)findViewById(R.id.textCompletedRepetitions)).setText(val = extras.getString(ExtraKeys.CurrentCount));
+			((TextView)findViewById(id.textCompletedRepetitions)).setText(val = extras.getString(ExtraKeys.CurrentCount));
 			parsed = Util.tryParse(val);
 			if (parsed._1){
 				currentCount = parsed._2;
@@ -51,13 +54,13 @@ public class ScheduleActivity extends BaseActivity
 			}
 			
 			
-			scheduleCountText = (EditText)findViewById(R.id.textScheduledForToday);
+			scheduleCountText = (EditText)findViewById(id.textScheduledForToday);
 			scheduleCountText.setText(extras.getString(ExtraKeys.ScheduledCount));
 			scheduleCountText.addTextChangedListener(textChangedListener);
 			//scheduleCountText.setOnKeyListener(keyPressListener);
 		}
 
-		DatePicker dp = (DatePicker)findViewById(R.id.pickerScheduledEndDate);
+		DatePicker dp = (DatePicker)findViewById(id.pickerScheduledEndDate);
 		dp.init(2010, 01, 01, onDateChangedListener);
 		
 		updatePicker();
@@ -73,9 +76,9 @@ public class ScheduleActivity extends BaseActivity
 		softUpdate = true;
 	
 		try {
-			DatePicker dp = (DatePicker)findViewById(R.id.pickerScheduledEndDate);
+			DatePicker dp = (DatePicker)findViewById(id.pickerScheduledEndDate);
 	
-			String scheduledString = ((TextView)findViewById(R.id.textScheduledForToday)).getText().toString();
+			String scheduledString = ((TextView)findViewById(id.textScheduledForToday)).getText().toString();
 			Pair<Boolean, Long> parsed = Util.tryParse(scheduledString);
 			if (parsed._1 && parsed._2 != 0){
 				long remainingDays = (totalCount - currentCount) / parsed._2 + 1;
@@ -122,19 +125,22 @@ public class ScheduleActivity extends BaseActivity
 	}
 
 	
-	private TextWatcher textChangedListener = new TextWatcher()
+	private final TextWatcher textChangedListener = new TextWatcher()
 	{
+		@Override
 		public void onTextChanged(CharSequence s, int start, int before, int count)
 		{
 			updatePicker();
 		}
 		
+		@Override
 		public void beforeTextChanged(CharSequence s, int start, int count, int after)
 		{
 			// TODO Auto-generated method stub
 			
 		}
 		
+		@Override
 		public void afterTextChanged(Editable s)
 		{
 			// TODO Auto-generated method stub
@@ -142,8 +148,9 @@ public class ScheduleActivity extends BaseActivity
 		}
 	};
 	
-	private OnDateChangedListener onDateChangedListener = new OnDateChangedListener()
+	private final OnDateChangedListener onDateChangedListener = new OnDateChangedListener()
 	{
+		@Override
 		public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth)
 		{
 			updateCount(year, monthOfYear, dayOfMonth);

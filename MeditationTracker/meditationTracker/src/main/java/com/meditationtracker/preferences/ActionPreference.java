@@ -1,6 +1,7 @@
 package com.meditationtracker.preferences;
 
 import com.meditationtracker.R;
+import com.meditationtracker.R.styleable;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -13,15 +14,15 @@ public class ActionPreference extends Preference {
 		void act(Preference preference, String param);
 	}
 
-	private String actorClass;
-	private String actionParam;
+	private final String actorClass;
+	private final String actionParam;
 	
 	public ActionPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
-		TypedArray a=getContext().obtainStyledAttributes(attrs,R.styleable.Attributes);
-		actorClass = a.getString(R.styleable.Attributes_actor);
-		actionParam = a.getString(R.styleable.Attributes_param);
+		TypedArray a=getContext().obtainStyledAttributes(attrs, styleable.Attributes);
+		actorClass = a.getString(styleable.Attributes_actor);
+		actionParam = a.getString(styleable.Attributes_param);
 	}
 
 	@Override

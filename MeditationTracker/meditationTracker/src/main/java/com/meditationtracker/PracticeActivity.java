@@ -1,10 +1,5 @@
 package com.meditationtracker;
 
-import java.util.Calendar;
-
-import com.meditationtracker.controls.MenuBar;
-import com.meditationtracker.sync.backup.BackupManagerWrapper;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -15,6 +10,14 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.meditationtracker.R.layout;
+import com.meditationtracker.R.string;
+import com.meditationtracker.controls.MenuBar;
+import com.meditationtracker.sync.backup.BackupManagerWrapper;
+
+import java.util.Calendar;
+
 import doo.util.Pair;
 import doo.util.Util;
 
@@ -38,7 +41,7 @@ public class PracticeActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.practice);
+		setContentView(layout.practice);
 
 		findViewById(R.id.scheduleButton).setOnClickListener(scheduleClicked);
 		findViewById(R.id.editPracticeButton).setOnClickListener(editClicked);
@@ -132,8 +135,9 @@ public class PracticeActivity extends BaseActivity
 		return result;
 	}
 
-	private OnClickListener scheduleClicked = new OnClickListener()
+	private final OnClickListener scheduleClicked = new OnClickListener()
 	{
+		@Override
 		public void onClick(View v)
 		{
 			startActivityForResult(new Intent(PracticeActivity.this, ScheduleActivity.class).putExtra(
@@ -142,8 +146,9 @@ public class PracticeActivity extends BaseActivity
 		}
 	};
 
-	private OnClickListener editClicked = new OnClickListener()
+	private final OnClickListener editClicked = new OnClickListener()
 	{
+		@Override
 		public void onClick(View v)
 		{
 			startActivityForResult(new Intent(PracticeActivity.this, NewOrEditPracticeDBActivity.class).putExtra(
@@ -151,8 +156,9 @@ public class PracticeActivity extends BaseActivity
 		}
 	};
 
-	private OnClickListener startClicked = new OnClickListener()
+	private final OnClickListener startClicked = new OnClickListener()
 	{
+		@Override
 		public void onClick(View v)
 		{
 			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(PracticeActivity.this);
@@ -165,7 +171,7 @@ public class PracticeActivity extends BaseActivity
 			}
 			else
 			{
-				Pair<Boolean, Long> parsed = Util.tryParse(preferences.getString(getString(R.string.prefMalaSize), "108"));
+				Pair<Boolean, Long> parsed = Util.tryParse(preferences.getString(getString(string.prefMalaSize), "108"));
 				if (parsed._1){
 					malaSize = parsed._2.intValue();
 				}

@@ -13,6 +13,7 @@ import android.widget.SimpleCursorAdapter.ViewBinder;
 public class SmartViewBinder implements ViewBinder
 {
 
+	@Override
 	public boolean setViewValue(View view, Cursor cursor, int columnIndex)
 	{
 		String textToBind = cursor.getString(columnIndex);

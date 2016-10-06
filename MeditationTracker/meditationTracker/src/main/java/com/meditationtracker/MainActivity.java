@@ -1,8 +1,8 @@
 package com.meditationtracker;
 
-import com.meditationtracker.controls.SmartViewBinder;
-
-import android.app.AlertDialog;
+import android.R.drawable;
+import android.R.string;
+import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -12,7 +12,6 @@ import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -29,6 +28,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import com.meditationtracker.R.id;
+import com.meditationtracker.R.layout;
+import com.meditationtracker.R.xml;
+import com.meditationtracker.controls.SmartViewBinder;
+
 public class MainActivity extends BaseActivity {
     protected static final int SETTINGS_DONE = 0;
     protected static final int NEW_OR_EDIT_PRACTICE_DONE = 1;
@@ -43,11 +47,11 @@ public class MainActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        PreferenceManager.setDefaultValues(this, xml.preferences, false);
 
         ensureNgondroDefaultsOnFirstRun();
 
-        setContentView(R.layout.main);
+        setContentView(layout.main);
     }
 
     @Override
@@ -57,8 +61,8 @@ public class MainActivity extends BaseActivity {
         updateUI();
 
         try {
-            PackageManager pm = this.getPackageManager();
-            PackageInfo packageInfo = pm.getPackageInfo(this.getPackageName(), 0);
+            PackageManager pm = getPackageManager();
+            PackageInfo packageInfo = pm.getPackageInfo(getPackageName(), 0);
 
             String currentVersion = packageInfo.versionCode + " \"" + packageInfo.versionName + "\"";
 
@@ -73,7 +77,7 @@ public class MainActivity extends BaseActivity {
                 editor.putString(getString(R.string.prefVersion), currentVersion);
                 editor.commit();
 
-                showDialog(R.layout.post_install);
+                showDialog(layout.post_install);
             }
 
         } catch (Exception e) {
@@ -89,7 +93,7 @@ public class MainActivity extends BaseActivity {
         if (cursorCustoms != null)
             cursorCustoms.close();
 
-        super.onDestroy();
+        onDestroy();
     }
 
     @Override
@@ -105,25 +109,25 @@ public class MainActivity extends BaseActivity {
     private void updateUI() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        ListView lv = (ListView) findViewById(R.id.ngondroList);
+        ListView lv = (ListView) findViewById(id.ngondroList);
 
         int ngondroVisible = preferences.getBoolean(getString(R.string.prefShowNgondro), true) ? View.VISIBLE
                 : View.GONE;
 
         lv.setVisibility(ngondroVisible);
-        findViewById(R.id.ngondroTitle).setVisibility(ngondroVisible);
-        findViewById(R.id.customPracticesTitle).setVisibility(ngondroVisible);
+        findViewById(id.ngondroTitle).setVisibility(ngondroVisible);
+        findViewById(id.customPracticesTitle).setVisibility(ngondroVisible);
 
-        findViewById(R.id.menu_fab).setOnClickListener(showMenu);
+        findViewById(id.menu_fab).setOnClickListener(showMenu);
 
         SimpleCursorAdapter viewAdapter;
 
         if (ngondroVisible != View.GONE) {
             cursorNgondro = db().getPracticesStatuses(true);
-            viewAdapter = new SimpleCursorAdapter(this, R.layout.practice_list_item, cursorNgondro,
+            viewAdapter = new SimpleCursorAdapter(this, layout.practice_list_item, cursorNgondro,
                     new String[]{PracticeDatabase.KEY_THUMBURL, PracticeDatabase.KEY_TITLE,
                             PracticeDatabase.KEY_SCHEDULEDCOUNT, PracticeDatabase.KEY_DONE}, new int[]{
-                    R.id.practiceImg, R.id.practiceTitle, R.id.scheduledText, R.id.completedText});
+                    id.practiceImg, id.practiceTitle, id.scheduledText, id.completedText});
             viewAdapter.setViewBinder(new SmartViewBinder());
 
             lv.setAdapter(viewAdapter);
@@ -131,13 +135,13 @@ public class MainActivity extends BaseActivity {
             lv.setOnItemClickListener(practiceClick);
         }
 
-        lv = (ListView) findViewById(R.id.customList);
+        lv = (ListView) findViewById(id.customList);
 
         cursorCustoms = db().getPracticesStatuses(false);
-        viewAdapter = new SimpleCursorAdapter(this, R.layout.practice_list_item, cursorCustoms, new String[]{
+        viewAdapter = new SimpleCursorAdapter(this, layout.practice_list_item, cursorCustoms, new String[]{
                 PracticeDatabase.KEY_THUMBURL, PracticeDatabase.KEY_TITLE,
                 PracticeDatabase.KEY_SCHEDULEDCOUNT, PracticeDatabase.KEY_DONE}, new int[]{
-                R.id.practiceImg, R.id.practiceTitle, R.id.scheduledText, R.id.completedText});
+                id.practiceImg, id.practiceTitle, id.scheduledText, id.completedText});
         viewAdapter.setViewBinder(new SmartViewBinder());
 
         lv.setAdapter(viewAdapter);
@@ -167,7 +171,8 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private View.OnClickListener showMenu = new View.OnClickListener() {
+    private final View.OnClickListener showMenu = new View.OnClickListener() {
+        @Override
         public void onClick(View v) {
             openOptionsMenu();
         }
@@ -177,19 +182,21 @@ public class MainActivity extends BaseActivity {
         db().patchIcons();
     }
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.settingsMenuItem:
+            case id.settingsMenuItem:
                 startActivityForResult(new Intent(this, SettingsActivity.class), SETTINGS_DONE);
 
                 return true;
-            case R.id.addPracticeMenuItem:
+            case id.addPracticeMenuItem:
                 editPractice(-1);
                 return true;
             default:
@@ -239,8 +246,9 @@ public class MainActivity extends BaseActivity {
         db().deletePractice(id);
     }
 
-    private OnItemClickListener practiceClick = new OnItemClickListener() {
+    private final OnItemClickListener practiceClick = new OnItemClickListener() {
 
+        @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Log.d("MTRK", "selected: " + id);
             openPractice(id);
@@ -252,24 +260,25 @@ public class MainActivity extends BaseActivity {
         final AdapterContextMenuInfo menuInfo = (AdapterContextMenuInfo) item.getMenuInfo();
 
         switch (item.getItemId()) {
-            case R.id.openPractice:
+            case id.openPractice:
                 openPractice(menuInfo.id);
                 break;
-            case R.id.editPractice:
+            case id.editPractice:
                 // if (!isNgondroEditAction(menuInfo))
                 editPractice(menuInfo.id);
                 break;
-            case R.id.deletePractice:
+            case id.deletePractice:
                 if (!isNgondroEditAction(menuInfo)) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    Builder builder = new Builder(this);
                     builder.setMessage(R.string.confirmDeletionMsg).setTitle(R.string.confirmDeletionTitle)
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .setPositiveButton(android.R.string.yes, new OnClickListener() {
+                            .setIcon(drawable.ic_dialog_alert)
+                            .setPositiveButton(string.yes, new OnClickListener() {
+                                @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     deletePractice(menuInfo.id);
                                     updateUI();
                                 }
-                            }).setNegativeButton(android.R.string.no, null).show();
+                            }).setNegativeButton(string.no, null).show();
 
                 }
                 break;
@@ -278,7 +287,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private boolean isNgondroEditAction(AdapterContextMenuInfo info) {
-        if (isChildOf(info.targetView, R.id.ngondroList)) {
+        if (isChildOf(info.targetView, id.ngondroList)) {
             ShowNoEditNgondroMessage();
             return true;
         } else
@@ -287,9 +296,9 @@ public class MainActivity extends BaseActivity {
     }
 
     private void ShowNoEditNgondroMessage() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        Builder builder = new Builder(this);
         builder.setMessage(R.string.msgNoEditNgondro).setTitle(R.string.info)
-                .setIcon(android.R.drawable.ic_dialog_info).setPositiveButton(android.R.string.ok, null)
+                .setIcon(drawable.ic_dialog_info).setPositiveButton(string.ok, null)
                 .show();
 
     }

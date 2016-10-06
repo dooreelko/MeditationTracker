@@ -20,7 +20,7 @@ public class Locker {
 	
 	public static WakeLock getWakeLock(Context ctx, String tag, int flags)
 	{
-		final PowerManager powerManager = (PowerManager) ctx.getSystemService(Context.POWER_SERVICE);
+		PowerManager powerManager = (PowerManager) ctx.getSystemService(Context.POWER_SERVICE);
 		WakeLock wakeLock = powerManager.newWakeLock(flags, tag);
 		wakeLock.acquire();
 		

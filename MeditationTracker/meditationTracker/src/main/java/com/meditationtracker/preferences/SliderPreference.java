@@ -1,6 +1,9 @@
 package com.meditationtracker.preferences;
 
 import com.meditationtracker.R;
+import com.meditationtracker.R.id;
+import com.meditationtracker.R.layout;
+import com.meditationtracker.R.styleable;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -21,18 +24,18 @@ public class SliderPreference extends Preference {
 	
 	
 	private static final int DEFAULT = 3;
-	private int max;
+	private final int max;
 	private int min;
 	private int cur;
-	private String actorClass;
+	private final String actorClass;
 	private IScrollReactor reactor = dummyReactor;
 	
 	public SliderPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		
-		TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.Attributes);
-		max = a.getInteger(R.styleable.Attributes_max, 100);
-		actorClass = a.getString(R.styleable.Attributes_actor);
+		TypedArray a = getContext().obtainStyledAttributes(attrs, styleable.Attributes);
+		max = a.getInteger(styleable.Attributes_max, 100);
+		actorClass = a.getString(styleable.Attributes_actor);
 		
 		
 		if (actorClass!=null) {
@@ -53,10 +56,10 @@ public class SliderPreference extends Preference {
 
 	@Override
 	protected View onCreateView(ViewGroup parent) {
-		setLayoutResource(R.layout.slider_pref);
+		setLayoutResource(layout.slider_pref);
 		
 		View result = super.onCreateView(parent);
-		SeekBar sb = (SeekBar) result.findViewById(R.id.prefSeekBar);
+		SeekBar sb = (SeekBar) result.findViewById(id.prefSeekBar);
 		sb.setMax(max - min);
 		sb.setProgress(cur);
 		sb.setOnSeekBarChangeListener(seekChanged);
@@ -64,7 +67,7 @@ public class SliderPreference extends Preference {
 		return result;
 	}
 
-	private OnSeekBarChangeListener seekChanged = new OnSeekBarChangeListener() {
+	private final OnSeekBarChangeListener seekChanged = new OnSeekBarChangeListener() {
 		
 		@Override
 		public void onStopTrackingTouch(SeekBar seekBar) {
@@ -73,17 +76,17 @@ public class SliderPreference extends Preference {
 		
 		@Override
 		public void onStartTrackingTouch(SeekBar seekBar) {
-			reactor.onStartTracking(SliderPreference.this.getContext());
+			reactor.onStartTracking(getContext());
 		}
 		
 		@Override
 		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 			reactor.onScroll(progress+min);
-			SliderPreference.this.persistInt(progress+min);
+			persistInt(progress+min);
 		}
 	};
 	
-	private final static IScrollReactor dummyReactor = new IScrollReactor() {
+	private static final IScrollReactor dummyReactor = new IScrollReactor() {
 		
 		@Override
 		public void onScroll(int val) {

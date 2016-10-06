@@ -6,6 +6,7 @@ import android.preference.Preference;
 import android.widget.Toast;
 
 import com.meditationtracker.PracticeDatabase;
+import com.meditationtracker.preferences.ActionPreference.IActor;
 import com.meditationtracker.util.Util;
 
 import java.io.File;
@@ -16,7 +17,7 @@ import java.util.Date;
  * Created by sasha on 04.10.16.
  */
 
-public class ExportActor implements ActionPreference.IActor {
+public class ExportActor implements IActor {
     @Override
     public void act(Preference preference, String param) {
         Util.exportDatabase(preference.getContext());

@@ -46,10 +46,10 @@ public class VerboseRingtonePreference extends RingtonePreference
 
 	private void updateSummary(Uri ringtoneUri)
 	{
-		Ringtone ringtone = RingtoneManager.getRingtone(this.getContext(), ringtoneUri);
+		Ringtone ringtone = RingtoneManager.getRingtone(getContext(), ringtoneUri);
 		if (ringtone != null)
 		{
-			setSummary(ringtone.getTitle(this.getContext()));
+			setSummary(ringtone.getTitle(getContext()));
 		}
 	}
 }
