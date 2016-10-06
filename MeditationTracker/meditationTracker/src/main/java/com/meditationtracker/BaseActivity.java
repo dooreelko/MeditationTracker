@@ -15,6 +15,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 
+import com.meditationtracker.util.Util;
+
 import static com.meditationtracker.R.string.appUrl;
 
 public class BaseActivity extends Activity
@@ -91,11 +93,8 @@ public class BaseActivity extends Activity
 		        ex.printStackTrace(printWriter);
 		        String stacktrace = result.toString();
 		        printWriter.close();
-				
-				BufferedWriter bos = new BufferedWriter(new FileWriter(Environment.getExternalStorageDirectory().getAbsolutePath() + "/meditracker.crash.log"));
-	            bos.write(ex.toString() + "\n\n" + stacktrace + "\n\n" + activityHistory.getLog());
-	            bos.flush();
-	            bos.close();
+
+                Util.writeError(ex + "\n\n" + stacktrace + "\n\n" + activityHistory.getLog());
 
 			} catch(Exception e) {
 				

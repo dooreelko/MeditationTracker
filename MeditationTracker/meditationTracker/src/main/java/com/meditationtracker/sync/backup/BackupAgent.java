@@ -29,8 +29,8 @@ public class BackupAgent extends android.app.backup.BackupAgentHelper {
 		prefsHelper = new SharedPreferencesBackupHelper(this);
 		addHelper("settings", prefsHelper);
 
-		dbData = new AllFilesBackupHelper(this);
-		addHelper(PracticeDatabase.DBNAME, dbData);
+//		dbData = new AllFilesBackupHelper(this);
+//		addHelper(PracticeDatabase.DBNAME, dbData);
 	}
 
 	@Override
