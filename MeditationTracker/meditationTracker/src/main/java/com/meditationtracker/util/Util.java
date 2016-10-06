@@ -17,10 +17,14 @@ import com.meditationtracker.PracticeDatabase;
 import com.meditationtracker.R.string;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.nio.channels.FileChannel;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -124,7 +128,7 @@ public final class Util {
     }
 
     @NonNull
-    private static File getDataPath() {
+    public static File getDataPath() {
         return new File(Environment.getExternalStorageDirectory(), "MeditationTracker");
     }
 
@@ -165,6 +169,20 @@ public final class Util {
 
             writeError(e.toString());
         }
+    }
+
+    public static void copyFile(String from, String to) throws IOException {
+        copyFile(new File(from), new File(to));
+    }
+
+    public static void copyFile(File from, File to) throws IOException {
+        FileChannel fromChannel = new FileInputStream(from).getChannel();
+        FileChannel destChannel = new FileOutputStream(to).getChannel();
+        fromChannel.transferTo(0, fromChannel.size(), destChannel);
+
+        fromChannel.close();
+        destChannel.close();
+
     }
 
     public static void writeError(String text) {

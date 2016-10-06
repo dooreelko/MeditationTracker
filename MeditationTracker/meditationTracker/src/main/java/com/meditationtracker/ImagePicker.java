@@ -2,7 +2,6 @@ package com.meditationtracker;
 
 import java.io.File;
 
-import doo.util.Util;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -13,26 +12,22 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import com.meditationtracker.util.Util;
+
 public class ImagePicker extends BaseActivity
 {
-	private final String SDCARD_PATH = "/sdcard/"; //TODO: make it sdcard independent
-	//private final String TEMP_PATH = SDCARD_PATH + "temp_picture.jpeg"; 
 	public static final String TAKE_PICTURE = "take-picture";
 
-	private String cropFileName;
+	private static final String cropFileName = "crop.jpg";
 	
 	private static final int SELECT_IMAGE = 0;
 	private static final int TAKE_PHOTO = 1;
 	private static final int REQUEST_CROP_PHOTO = 2;
 
-	//private Uri imgCaptureUri;
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
-		generateCropFileName();
 		
 		if (getIntent().getBooleanExtra(TAKE_PICTURE, false))
 		{
@@ -45,27 +40,12 @@ public class ImagePicker extends BaseActivity
 		}
 		else 
 		{
-			//startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), SELECT_IMAGE);
 			startActivityForResult(new Intent(Intent.ACTION_PICK).setType("image/*"), SELECT_IMAGE);
 		}
 	}
 
-	/*private Uri getTempUri()
-	{
-		return Uri.fromFile(getCropFile());
-	}
-
-	private File getTempFile()
-	{
-		return new File(TEMP_PATH);
-	}*/
-	
-	private void generateCropFileName(){
-		cropFileName = Math.random() + ".jpg";
-	}
-	
 	private File getCropFile() {
-		return new File(getCropFileName());
+		return new File(Util.getDataPath(), cropFileName);
 	}
 	
 	private Uri getCropUri()
@@ -73,10 +53,6 @@ public class ImagePicker extends BaseActivity
 		return Uri.fromFile(getCropFile());
 	}
 
-	private String getCropFileName() {
-		return SDCARD_PATH + cropFileName;
-	}
-	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
@@ -113,7 +89,9 @@ public class ImagePicker extends BaseActivity
 				Log.d("MTRK", "Using data from intent(pick or fallbackto thumb) " + uri);
 			}
 
-	        cropImage(uri);
+            setResult(Activity.RESULT_OK, new Intent(data));
+            finish();
+//	        cropImage(uri);
 			break;
 		case REQUEST_CROP_PHOTO:
 			File cropFile = getCropFile();
