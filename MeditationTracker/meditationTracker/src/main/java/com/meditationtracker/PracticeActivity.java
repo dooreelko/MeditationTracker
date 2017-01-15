@@ -76,7 +76,7 @@ public class PracticeActivity extends BaseActivity {
             TextView textLastPractice = (TextView) findViewById(R.id.textLastPracticeDate);
 
             textLastPractice.setText(lastPractice.length() != 10 ? "-" :
-                                             Util.formatCalendar(Util.parseSqliteDate(lastPractice), this));
+                    Util.formatCalendar(Util.parseSqliteDate(lastPractice), this));
 
             calculateScheduledEnd();
 
@@ -94,8 +94,7 @@ public class PracticeActivity extends BaseActivity {
             Pair<Boolean, Long> parsed = Util.tryParse(imgUrl);
             if (parsed._1) {
                 ((ImageView) findViewById(R.id.imgPractice)).setImageResource(parsed._2.intValue());
-            }
-            else if (imgUrl != null) {
+            } else if (imgUrl != null) {
                 ((ImageView) findViewById(R.id.imgPractice)).setImageURI(Uri.parse(imgUrl));
             }
 
@@ -161,9 +160,9 @@ public class PracticeActivity extends BaseActivity {
 
             startActivityForResult(
                     new Intent(PracticeActivity.this, SessionActivity.class).
-                                                                                    putExtra(ExtraKeys.ImgURL, imgUrl).
-                                                                                                                              putExtra(ExtraKeys.MalaSize, malaSize).
-                                                                                                                                                                            putExtra(ExtraKeys.Title, title),
+                            putExtra(ExtraKeys.ImgURL, imgUrl).
+                            putExtra(ExtraKeys.MalaSize, malaSize).
+                            putExtra(ExtraKeys.Title, title),
                     SESSION_DONE);
         }
 
@@ -189,7 +188,7 @@ public class PracticeActivity extends BaseActivity {
                 break;
             case SESSION_DONE:
             /*SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-			int malaSize = 108; 
+            int malaSize = 108;
 			Pair<Boolean, Long> parsed = Util.tryParse(preferences.getString(getString(R.string.prefMalaSize), "108"));
 			if (parsed._1){
 				malaSize = parsed._2.intValue();

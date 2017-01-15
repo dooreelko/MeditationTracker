@@ -31,5 +31,5 @@ dependencies {
     compile 'commons-dbutils:commons-dbutils:1.6'
     compile 'com.android.support:design:23+'
     compile 'com.android.support:appcompat-v7:23+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
 }
