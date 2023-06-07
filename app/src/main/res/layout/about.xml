@@ -11,7 +11,7 @@
 			android:layout_alignParentRight="true"></ImageView>
 
 	</RelativeLayout>
-	<LinearLayout android:id="@+id/linearLayout1"
+	<LinearLayout android:id="@+id/aboutContainer"
 		android:layout_height="wrap_content" android:layout_width="fill_parent"
 		android:orientation="vertical" android:background="#ffffff"
 		android:layout_margin="10dip">

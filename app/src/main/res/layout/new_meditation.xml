@@ -53,7 +53,7 @@
         android:layout_below="@id/textPracticeName">
 
         <LinearLayout
-            android:id="@+id/LinearLayout01"
+            android:id="@+id/sessContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
