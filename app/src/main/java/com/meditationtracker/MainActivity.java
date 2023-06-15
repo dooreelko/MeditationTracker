@@ -88,8 +88,6 @@ public class MainActivity extends BaseActivity {
                 showDialog(layout.post_install);
             }
 
-//            checkWritePermissions();
-
         } catch (Exception e) {
             Log.e("MTRK", "Error while migrating", e);
         }
@@ -184,6 +182,7 @@ public class MainActivity extends BaseActivity {
     private final View.OnClickListener showMenu = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            invalidateOptionsMenu();
             openOptionsMenu();
         }
     };
@@ -201,6 +200,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        closeOptionsMenu();
         final int iid = item.getItemId();
         if (iid == id.settingsMenuItem) {
             startActivityForResult(new Intent(this, SettingsActivity.class), SETTINGS_DONE);
