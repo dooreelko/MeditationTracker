@@ -38,6 +38,7 @@ public class NewOrEditPracticeScreenActivity extends BaseActivity {
     private static final String THUMBNAIL_PREFIX = "th_";
 
     private static final int SELECT_IMAGE = 0;
+    private static final int TAKE_PHOTO = 1;
 
     private static final String IMAGE_URL = "ImageUrl";
     private static final String THUMB_URL = "ThumbUrl";
@@ -139,11 +140,9 @@ public class NewOrEditPracticeScreenActivity extends BaseActivity {
     public boolean onContextItemSelected(MenuItem item) {
         final int iid = item.getItemId();
         if (iid == id.browseImage) {
-            startActivityForResult(new Intent(this, ImagePicker.class).putExtra(ImagePicker.TAKE_PICTURE, false), SELECT_IMAGE);
-            return true;
+            startActivityForResult(new Intent(Intent.ACTION_PICK).setType("image/*"), SELECT_IMAGE);
         } else if (iid == id.takePhoto){
-                startActivityForResult(new Intent(this, ImagePicker.class).putExtra(ImagePicker.TAKE_PICTURE, true), SELECT_IMAGE);
-                return true;
+            startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE), TAKE_PHOTO);
         }
 
         return super.onContextItemSelected(item);
@@ -157,36 +156,41 @@ public class NewOrEditPracticeScreenActivity extends BaseActivity {
             return;
 
         ImageView v = (ImageView) findViewById(id.practiceImage);
-        if (requestCode == SELECT_IMAGE) {
 
-            FileOutputStream fos;
-            try {
-                Bitmap photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
-                File mainImageFile = File.createTempFile("img", ".png", getFilesDir());
-                String practiceImageName = mainImageFile.getName();
-
-                fos = openFileOutput(practiceImageName, Context.MODE_PRIVATE);
-                Bitmap.createScaledBitmap(photo, 300, getScaledHeight(photo, 300), true).compress(CompressFormat.PNG, 95, fos);
-                fos.close();
-
-                fos = openFileOutput(THUMBNAIL_PREFIX + practiceImageName, Context.MODE_PRIVATE);
-                Bitmap.createScaledBitmap(photo, 35, 46, true).compress(CompressFormat.JPEG, 95, fos);
-                fos.close();
-
-                imgUrl = PracticeImageProvider.URI_PREFIX + File.separator + practiceImageName;
-                thumbUrl = PracticeImageProvider.URI_PREFIX + File.separator + THUMBNAIL_PREFIX + practiceImageName;
-                v.setImageURI(Uri.parse(imgUrl));
-
-                updateResult();
-            } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+        Bitmap photo;
+        try {
+            if (requestCode == SELECT_IMAGE) {
+                photo = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
+            } else {
+                Bundle extras = data.getExtras();
+                photo = (Bitmap) extras.get("data");
             }
 
+            FileOutputStream fos;
+            File mainImageFile = File.createTempFile("img", ".png", getFilesDir());
+            String practiceImageName = mainImageFile.getName();
+
+            fos = openFileOutput(practiceImageName, Context.MODE_PRIVATE);
+            Bitmap.createScaledBitmap(photo, 300, getScaledHeight(photo, 300), true).compress(CompressFormat.PNG, 95, fos);
+            fos.close();
+
+            fos = openFileOutput(THUMBNAIL_PREFIX + practiceImageName, Context.MODE_PRIVATE);
+            Bitmap.createScaledBitmap(photo, 35, 46, true).compress(CompressFormat.JPEG, 95, fos);
+            fos.close();
+
+            imgUrl = PracticeImageProvider.URI_PREFIX + File.separator + practiceImageName;
+            thumbUrl = PracticeImageProvider.URI_PREFIX + File.separator + THUMBNAIL_PREFIX + practiceImageName;
+            v.setImageURI(Uri.parse(imgUrl));
+
+            updateResult();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
+
     }
 
     private int getScaledHeight(Bitmap bmp, int desiredWidth) {
