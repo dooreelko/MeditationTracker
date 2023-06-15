@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.meditationtracker.R.layout;
 import com.meditationtracker.R.string;
 import com.meditationtracker.controls.MenuBar;
-import com.meditationtracker.sync.backup.BackupManagerWrapper;
 
 import java.util.Calendar;
 
@@ -200,7 +199,6 @@ public class PracticeActivity extends BaseActivity {
                 }
         }
 
-        new BackupManagerWrapper(this).dataChanged();
         updateView();
     }
 

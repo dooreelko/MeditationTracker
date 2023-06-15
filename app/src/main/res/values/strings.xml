@@ -73,9 +73,10 @@
     <string name="dimNightSummary">Dim session screen during late meditations</string>
     <string name="versionInfo">Version</string>
     <string name="postInstallWelcome">Welcome to the new meditation tracker.
-        \n\nThis is a small release that simply adds a possibility to open menus and add new practices.
+        \n\nThis release allows support for modern versions of Android.
+        \n\nIMPORTANT. The manual backup function was removed, only native android backups are now used. Fingers crossed, it works.
 	    \n\nKeep up your practices!
-	    \n\nYours, Doo Reelkow.</string>
+	    \n\nYours, Doo.</string>
     <string name="data_category">Data</string>
     <string name="export_summary">Export your practices history to SD card</string>
     <string name="export_title">Export data</string>

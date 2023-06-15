@@ -76,10 +76,6 @@
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/data_category" >
         <com.meditationtracker.preferences.ActionPreference
-            doo:actor="com.meditationtracker.preferences.ExportActor"
-            android:summary="@string/export_summary"
-            android:title="@string/export_title" />
-        <com.meditationtracker.preferences.ActionPreference
             doo:actor="com.meditationtracker.preferences.ImportActor"
             android:summary="@string/import_summary"
             android:title="@string/import_title" />

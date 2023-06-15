@@ -137,6 +137,8 @@ public final class Util {
     }
 
     public static void importDatabase(final Context context) {
+        context.getExternalMediaDirs();
+
         PracticeDatabase db = new PracticeDatabase(context);
 
         File outDir = getDataPath();

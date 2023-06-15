@@ -95,47 +95,6 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-//    private ActivityResultLauncher<String> requestPermissionLauncher =
-//            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-//                if (isGranted) {
-//                    Log.d("MTRK", "WOOHOO");
-//
-//                    // Permission is granted. Continue the action or workflow in your
-//                    // app.
-//                } else {
-//                    Log.d("MTRK", "NOPE");
-//                    // Explain to the user that the feature is unavailable because the
-//                    // feature requires a permission that the user has denied. At the
-//                    // same time, respect the user's decision. Don't link to system
-//                    // settings in an effort to convince the user to change their
-//                    // decision.
-//                }
-//            });
-
-    protected void checkWritePermissions() {
-        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                == PackageManager.PERMISSION_DENIED) {
-            if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                Log.d("MTRK", "YES WE SHOULD");
-            }
-
-//            requestPermissionLauncher.launch(
-//                    Manifest.permission.WRITE_EXTERNAL_STORAGE);
-            String[] perms = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-            requestPermissions(perms, 1);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                              String[] permissions,
-                                              int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        Log.d("MTRK", grantResults.toString());
-
-    }
-
     @Override
     protected void onStop() {
         if (cursorNgondro != null)

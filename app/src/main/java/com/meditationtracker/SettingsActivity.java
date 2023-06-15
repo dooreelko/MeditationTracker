@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
 import com.meditationtracker.R.xml;
-import com.meditationtracker.sync.backup.BackupManagerWrapper;
 
 public class SettingsActivity extends PreferenceActivity
 {
@@ -19,14 +18,4 @@ public class SettingsActivity extends PreferenceActivity
 	    addPreferencesFromResource(xml.preferences);
 	}
 
-	@Override
-	public void onPause() {
-		super.onPause();
-		if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-				== PackageManager.PERMISSION_DENIED) {
-			String[] perms = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-			this.requestPermissions(perms, 1);
-		}
-		new BackupManagerWrapper(this).dataChanged();
-	}
 }
