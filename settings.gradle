@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "meditation tracker two"
+rootProject.name = "meditation tracker"
 include ':app'
